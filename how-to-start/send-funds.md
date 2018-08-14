@@ -96,5 +96,15 @@ The optional `callbackUri` will be invoked few times while payment is being proc
 {% endtab %}
 {% endtabs %}
 
-We recommend everyone to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make make sure it's FlashFX calling your webhook endpoint. To avoid storing the signatures in the database it can be a [JWT](https://jwt.io/) or any other securely verifiable string.
+{% hint style="danger" %}
+#### Security note
+
+The callback \(aka webhook\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector.
+{% endhint %}
+
+We highly recommend everyone to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make make sure it's FlashFX calling your webhook endpoint. To avoid storing the signatures in the database it can be a [JWT](https://jwt.io/) or any other securely verifiable string. For example:
+
+```text
+https://my-webhooks.example.com/flashfx?signature=oZaDlmfXbdXSKCnuWrvos2ImVBFX2Ru5
+```
 
