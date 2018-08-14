@@ -37,5 +37,9 @@ All the responses are JSON and have at least one property `data` and optional pr
 In GraphQL Playground query editor press `Cmd+Space` or `Ctrl+Space` or `Opt+Space` or `Alt+Space` to show context help and possible options.
 {% endhint %}
 
+Some of the GraphQL query parameters are required, others are optional. To understand if a variable/property is required you would need to check the API schema.
 
+* Go to the [GraphQL Playground](https://api.flash-fx.com/) and click the green button "SCHEMA" on the right.
+* Browse through queries, mutations, input and output types. Find a variable/property which have an exclamation mark at the end. E.g. `fromCurrency: FromCurrency!`.
+* The exclamation mark denotes that the variable/property is mandatory.
 

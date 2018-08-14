@@ -28,7 +28,7 @@ mutation {
         rippleAddress: "r14cZWbgRsDwSVxxbG8r2VhVmz8D9zkNb6z"
       }
       externalReference: "my ref 221b"
-      callbackUri: "http://sherlock.proxy.beeceptor.com"
+      callbackUri: "https://example.com/flashfx?signature=ASecretPerPaymentKey"
     }
   ) {
     success
@@ -64,7 +64,9 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
-The `callbackUri` will be invoked couple of times while payment is being processed. The example JSON payloads are below.
+### Callback \(aka Webhook\) URI
+
+The optional `callbackUri` will be invoked few times while payment is being processed. The example JSON payloads are below.
 
 {% tabs %}
 {% tab title="currency\_converted" %}
@@ -94,5 +96,5 @@ The `callbackUri` will be invoked couple of times while payment is being process
 {% endtab %}
 {% endtabs %}
 
-
+We recommend everyone to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make make sure it's FlashFX calling your webhook endpoint. To avoid storing the signatures in the database it can be a [JWT](https://jwt.io/) or any other securely verifiable string.
 
