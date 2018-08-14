@@ -5,7 +5,9 @@ description: Step by step instruction how to start using Flash FX API
 # Basics
 
 {% hint style="info" %}
-You would need to be a verified customer of Flash FX. Also, we would need to enable API access for your account.
+### Assumptions
+
+The examples below assume you are a verified customer of Flash FX and have been enabled for API access.
 {% endhint %}
 
 All the GraphQL queries can be sent via the [GraphQL Playground](https://api.flash-fx.com/) or as a HTTP POST request to `https://api.flash-fx.com`. Example:

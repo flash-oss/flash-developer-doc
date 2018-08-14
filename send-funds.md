@@ -1,6 +1,10 @@
 # Send funds
 
-To send funds you need to execute the `createPayment` mutation.
+To make a payment from AUD to another currency you need to execute the `createPayment` mutation as below. 
+
+{% hint style="info" %}
+Note you must have an AUD balance in your account to make an outbound AUD payment.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Query" %}
@@ -66,7 +70,7 @@ mutation {
 
 ### Callback \(aka Webhook\) URI
 
-The optional `callbackUri` will be invoked few times while payment is being processed. The example JSON payloads are below.
+The optional `callbackUri` will be invoked several times during the processing of a  payment.  These callbacks will usually occur soon \(within several seconds\)  after the initial create payment call - but may be delayed in some cases.  The example JSON payloads are below.
 
 {% tabs %}
 {% tab title="currency\_converted" %}
@@ -102,9 +106,11 @@ The optional `callbackUri` will be invoked few times while payment is being proc
 The callback \(aka webhook\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector.
 {% endhint %}
 
-We highly recommend everyone to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make make sure it's FlashFX calling your webhook endpoint. To avoid storing the signatures in the database it can be a [JWT](https://jwt.io/) or any other securely verifiable string. For example:
+We recommend API clients generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make make sure it's FlashFX calling your webhook endpoint. To avoid storing the signatures in the database it can be a [JWT](https://jwt.io/) or any other securely verifiable string. For example:
 
 ```text
 https://my-webhooks.example.com/flashfx?signature=oZaDlmfXbdXSKCnuWrvos2ImVBFX2Ru5
 ```
+
+You can also use the callback as a trigger to retrieve the latest payment details via the Get Payment api call.
 
