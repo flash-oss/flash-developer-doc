@@ -2,7 +2,7 @@
 description: Step by step instruction how to start using Flash FX API
 ---
 
-# How to start
+# Basics
 
 {% hint style="info" %}
 You would need to be a verified customer of Flash FX. Also, we would need to enable API access for your account.
