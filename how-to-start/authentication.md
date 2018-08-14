@@ -8,7 +8,7 @@ description: Get your access token
 This mutation is subject to change during BETA period.
 {% endhint %}
 
-Here is an example for the login query.
+Here is an example of the login query.
 
 {% tabs %}
 {% tab title="Query" %}

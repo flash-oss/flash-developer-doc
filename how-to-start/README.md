@@ -17,8 +17,8 @@ curl -X POST 'https://api.flash-fx.com' \
 -d '{
   "query":
     "{ quote(input: {fromCurrency: AUD, toCurrency: XRP, size: 9.9, currency: AUD}) { 
-      bid ask symbol timestamp inverted }
-    }"
+      bid ask symbol timestamp inverted
+    } }"
 }'
 ```
 

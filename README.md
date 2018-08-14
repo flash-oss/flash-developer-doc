@@ -25,5 +25,5 @@ The API is in the **beta** stage right now. We are planning to do few breaking c
 5. Click the **"HTTP HEADERS"** on the bottom and add this: `{"authorization": "Bearer YOUR_TOKEN"}`. Replace the `YOUR_TOKEN` with the token you just got.
 6. Execute any other queries.
 
-For more details instructions head to the How to start page.
+For more detailed instructions head to the [How to start](how-to-start/) page.
 
