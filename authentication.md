@@ -6,6 +6,8 @@ description: Get your access token
 
 {% hint style="warning" %}
 This mutation is subject to change during BETA period.
+
+With current implementation the token will **expire in 4 hours**.
 {% endhint %}
 
 Here is an example of the login query.
@@ -47,6 +49,4 @@ If using [GraphQL Playground](https://api.flash-fx.com/) then click the "HTTP HE
   "authorization": "Bearer YOUR_TOKEN"
 }
 ```
-
-
 

@@ -1,6 +1,8 @@
-# Quote
+---
+description: Quote the current bid and ask for a currency pair and size.
+---
 
-Quote the current bid and ask for a currency pair and size.
+# Quote
 
 Paste this query to the GraphQL Playground
 
@@ -37,4 +39,6 @@ Paste this query to the GraphQL Playground
 ```
 {% endtab %}
 {% endtabs %}
+
+
 
