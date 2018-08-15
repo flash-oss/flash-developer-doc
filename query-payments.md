@@ -50,7 +50,7 @@ Retrieving some of your payments.
 ```graphql
 {
   # there are more query parameters available, see the API schema
-  payments(input: { fromCurrencies: AUD, toCurrencies: [EUR USD] }) {
+  payments(input: { statuses: CLOSED, toCurrencies: [EUR USD] }) {
     id
     fromCurrency
     toCurrency
