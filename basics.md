@@ -1,5 +1,5 @@
 ---
-description: Step by step instruction how to start using Flash FX API
+description: General information how to start using Flash FX API
 ---
 
 # Basics

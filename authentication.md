@@ -42,7 +42,7 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
-If using [GraphQL Playground](https://api.flash-fx.com/) then click the "HTTP HEADERS" on the bottom left and paste there the following \(replace the token with the value you have just received form the above mutation\):
+If using [GraphQL Playground](https://api.flash-fx.com/) then click the "HTTP HEADERS" on the bottom left and paste there the following \(replace the `YOUR_TOKEN` with the value you have just received form the above mutation\):
 
 ```javascript
 {

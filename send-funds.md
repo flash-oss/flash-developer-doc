@@ -3,7 +3,7 @@
 To make a payment from AUD to another currency you need to execute the `createPayment` mutation as below. 
 
 {% hint style="info" %}
-Note you must have an AUD balance in your account to make an outbound AUD payment.
+Note you must have an AUD [balance](balance.md) in your account to make an outbound AUD payment.
 {% endhint %}
 
 {% tabs %}
@@ -70,7 +70,7 @@ mutation {
 
 ### Callback \(aka Webhook\) URI
 
-The optional `callbackUri` will be invoked several times during the processing of a  payment.  These callbacks will usually occur soon \(within several seconds\)  after the initial create payment call - but may be delayed in some cases.  The example JSON payloads are below.
+The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon \(within several seconds\) after the initial create payment call - but may be delayed in some cases. The example JSON payloads are below.
 
 {% tabs %}
 {% tab title="currency\_converted" %}
@@ -100,6 +100,8 @@ The optional `callbackUri` will be invoked several times during the processing o
 {% endtab %}
 {% endtabs %}
 
+Please note that `toAmount` \(or `fromAmount`\) and other fluctuating payment properties can change during payment execution.
+
 {% hint style="danger" %}
 #### Security note
 
@@ -112,5 +114,5 @@ We recommend API clients generate and add `?signature=ASecretPerPaymentKey` quer
 https://my-webhooks.example.com/flashfx?signature=oZaDlmfXbdXSKCnuWrvos2ImVBFX2Ru5
 ```
 
-You can also use the callback as a trigger to retrieve the latest payment details via the Get Payment api call.
+You can also use the callback as a trigger to retrieve the latest payment details via the [payments query](query-payments.md).
 
