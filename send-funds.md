@@ -68,6 +68,12 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
+### Recipient
+
+We are legally obliged to collect the actual recipient details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
+
+Please, send us the final funds recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com/) for other recipient details options.
+
 ### Callback \(aka Webhook\) URI
 
 The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon \(within several seconds\) after the initial create payment call - but may be delayed in some cases. The example JSON payloads are below.

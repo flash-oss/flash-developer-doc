@@ -36,7 +36,7 @@ All the responses are JSON and have at least one property `data` and optional pr
 {% hint style="info" %}
 ### Tip
 
-In GraphQL Playground query editor press `Cmd+Space` or `Ctrl+Space` or `Opt+Space` or `Alt+Space` to show context help and possible options.
+In GraphQL Playground query editor press `Cmd+Space` or `Ctrl+Space` or `Opt+Space` or `Alt+Space` or `Shift+Space` to show context help and possible options.
 {% endhint %}
 
 Some of the GraphQL query parameters are required, others are optional. To understand if a variable/property is required you would need to check the API schema.
