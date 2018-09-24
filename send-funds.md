@@ -18,6 +18,8 @@ mutation {
       size: 1000
       currency: AUD
       reason: BUSINESS
+      externalReference: "my ref 221b"
+      callbackUri: "https://example.com/flashfx?signature=ASecretPerPaymentKey"
       recipient: {
         firstName: "Sherlock"
         lastName: "Holmes"
@@ -29,10 +31,10 @@ mutation {
           postcode: "2000"
           country: AU
         }
+        accountIdType: RIPPLE
+        currency: XRP
         rippleAddress: "r14cZWbgRsDwSVxxbG8r2VhVmz8D9zkNb6z"
       }
-      externalReference: "my ref 221b"
-      callbackUri: "https://example.com/flashfx?signature=ASecretPerPaymentKey"
     }
   ) {
     success
@@ -70,9 +72,63 @@ mutation {
 
 ### Recipient
 
+To avoid sending the full recipient data every time you can [pre-create recipients](recipients.md#create-a-recipient) and send us their ID.
+
+{% tabs %}
+{% tab title="Query" %}
+```graphql
+mutation {
+  createPayment(
+    input: {
+      paymentType: SEND_FUNDS
+      fromCurrency: AUD
+      toCurrency: XRP
+      size: 1000
+      currency: AUD
+      reason: BUSINESS
+      externalReference: "my ref 221b"
+      callbackUri: "https://example.com/flashfx?signature=ASecretPerPaymentKey"
+      recipientId: "5ba89a6b35a2b327b81ffc3b"
+    }
+  ) {
+    success
+    code
+    message
+    payment {
+      id
+      status
+      size
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "createPayment": {
+      "success": true,
+      "code": "SUCCESS",
+      "message": "Scheduled for immediate execution",
+      "payment": {
+        "id": "60711af8c078ba061f623531",
+        "status": "OPEN",
+        "size": 1000
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
 We are legally obliged to collect the actual recipient details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com/) for other recipient details options.
+{% endhint %}
 
 ### Callback \(aka Webhook\) URI
 

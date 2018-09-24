@@ -1,6 +1,6 @@
 # Query payments
 
-Retrieving all your payments.
+#### Retrieving all your payments
 
 {% tabs %}
 {% tab title="Query" %}
@@ -43,7 +43,7 @@ Retrieving all your payments.
 {% endtab %}
 {% endtabs %}
 
-Retrieving some of your payments.
+#### Retrieving some of your payments
 
 {% tabs %}
 {% tab title="Query" %}
@@ -82,7 +82,7 @@ Retrieving some of your payments.
 {% endtab %}
 {% endtabs %}
 
-Retrieving a single payment.
+#### Retrieving a single payment
 
 {% tabs %}
 {% tab title="Query" %}
