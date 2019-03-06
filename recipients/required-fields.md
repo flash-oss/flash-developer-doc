@@ -53,7 +53,7 @@ Understand what minimal data you need to have to successfully transfer a payment
 {% endtab %}
 {% endtabs %}
 
-The response above means that if you want to send to Austria \(AT\) then you'd need a BIC \(aka SWIFT\) code **and** an IBAN.
+The response above means that if you want to send euros to Austria \(AT\) then you'd need a BIC \(aka SWIFT\) code **and** an IBAN.
 
 #### List some of the delivery methods
 
@@ -101,7 +101,7 @@ The response above means that if you want to send to Austria \(AT\) then you'd n
 {% endtab %}
 {% endtabs %}
 
-The response above means that to send to France \(FR\) you have to have other of:
+The response above means that to send euros to France \(FR\) you have to have ether of:
 
 * BIC and an account number, or
 * BIC and an IBAN.
