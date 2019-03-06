@@ -5,7 +5,8 @@
 * [Authentication](authentication.md)
 * [Quote](quote.md)
 * [Balance](balance.md)
-* [Recipients](recipients.md)
+* [Recipients](recipients/README.md)
+  * [Required fields](recipients/required-fields.md)
 * [Query payments](query-payments.md)
 * [Send funds](send-funds.md)
 

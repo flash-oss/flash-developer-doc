@@ -72,7 +72,7 @@ mutation {
 
 ### Recipient
 
-To avoid sending the full recipient data every time you can [pre-create recipients](recipients.md#create-a-recipient) and send us their ID.
+To avoid sending the full recipient data every time you can [pre-create recipients](recipients/#create-a-recipient) and send us their ID.
 
 {% tabs %}
 {% tab title="Query" %}
