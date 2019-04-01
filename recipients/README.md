@@ -1,5 +1,5 @@
 ---
-description: The API has CRUD queries for your recipients
+description: CRUD queries for your payment recipients
 ---
 
 # Recipients
@@ -86,7 +86,7 @@ Please, send us the final funds recipient. If sending to self then please provid
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
-{
+mutation {
   createRecipient(
     input: {
       firstName: "John"
@@ -147,7 +147,7 @@ Please, send us the final funds recipient. If sending to self then please provid
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
-{
+mutation {
   updateRecipient(
     id: "5ba89a6b35a2b327b81ffc3b",
     input: {

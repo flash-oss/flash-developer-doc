@@ -7,6 +7,7 @@
 * [Balance](balance.md)
 * [Recipients](recipients/README.md)
   * [Required fields](recipients/required-fields.md)
+* [Senders](senders.md)
 * [Query payments](query-payments.md)
 * [Send funds](send-funds.md)
 
