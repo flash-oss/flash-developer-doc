@@ -22,5 +22,7 @@ The current status of your payment.
 * CANCELLED - the payment has not completed and has been cancelled.
   * Usually done by FlashFX operations team.
 
-
+{% hint style="info" %}
+Important to understand that the `Payment.history` is a transfer logs and is not related to payment status at all. Sometimes the history may contain half a dozen entries, however your payment will go through only two steps: `OPEN` and `CLOSED`.
+{% endhint %}
 
