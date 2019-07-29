@@ -8,6 +8,8 @@
 * [Recipients](recipients/README.md)
   * [Required fields](recipients/required-fields.md)
 * [Senders](senders.md)
-* [Query payments](query-payments.md)
-* [Send funds](send-funds.md)
+* [Payments](payments/README.md)
+  * [Payment statuses](payments/payment-statuses.md)
+  * [Query payments](payments/query-payments.md)
+  * [Send funds](payments/send-funds.md)
 
