@@ -1,6 +1,6 @@
 # Table of contents
 
-* [FlashFX API documentation](README.md)
+* [Overview](README.md)
 * [Basics](basics.md)
 * [Authentication](authentication.md)
 * [Quote](quote.md)
