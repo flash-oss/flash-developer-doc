@@ -12,4 +12,5 @@
   * [Payment statuses](payments/payment-statuses.md)
   * [Query payments](payments/query-payments.md)
   * [Send funds](payments/send-funds.md)
+* [Change log](change-log.md)
 
