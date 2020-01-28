@@ -24,6 +24,7 @@ description: History of changes to this API schema
 
 * Removed the unused enum `PaymentType`. It has no sense and was deprecated a year ago.
   * Simultaneously removed properties `Payment.paymentType`, `PaymentQueryInput.paymentTypes`, `PaymentInput.paymentType`.
+* Removed the long deprecated `PaymentInput.recipient` object. The only way to provide a recipient for a payment is via `PaymentInput.recipientId`. You would need to [pre-create the recipient](recipients/#create-a-recipient) beforehand.
 * Removed never used `AccountIdType` enum values: `BPAY`, `FIN_BTN`, `INTERAC`.
 
 

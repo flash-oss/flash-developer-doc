@@ -2,11 +2,11 @@
 description: FlashFX Developer API documentation
 ---
 
-# Overview
+# FlashFX API documentation
 
 ## General information
 
-FlashFX API is [GraphQL](http://graphql.github.io/learn/queries/) based. It's easier than RESTful and quite developer friendly. Although, the data you send and receive is JSON.
+FlashFX API is [GraphQL](http://graphql.github.io/learn/queries/) based. It's easier than RESTful and quite developer friendly.
 
 FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com/)
 
