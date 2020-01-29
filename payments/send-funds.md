@@ -12,75 +12,6 @@ Note you must have an AUD [balance](../balance.md) in your account to make an ou
 mutation {
   createPayment(
     input: {
-      paymentType: SEND_FUNDS
-      fromCurrency: AUD
-      toCurrency: XRP
-      size: 1000
-      currency: AUD
-      reason: BUSINESS
-      externalReference: "my ref 221b"
-      callbackUri: "https://example.com/flashfx?signature=ASecretPerPaymentKey"
-      recipient: {
-        firstName: "Sherlock"
-        lastName: "Holmes"
-        email: "detective@example.com"
-        address: {
-          street: "221b Baker St"
-          suburb: "SYDNEY"
-          state: "NSW"
-          postcode: "2000"
-          country: AU
-        }
-        accountIdType: RIPPLE
-        currency: XRP
-        rippleAddress: "r14cZWbgRsDwSVxxbG8r2VhVmz8D9zkNb6z"
-      }
-    }
-  ) {
-    success
-    code
-    message
-    payment {
-      id
-      status
-      size
-    }
-  }
-}
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```javascript
-{
-  "data": {
-    "createPayment": {
-      "success": true,
-      "code": "SUCCESS",
-      "message": "Scheduled for immediate execution",
-      "payment": {
-        "id": "60711af8c078ba061f623531",
-        "status": "OPEN",
-        "size": 1000
-      }
-    }
-  }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-### Recipient
-
-To avoid sending the full recipient data every time you can [pre-create recipients](../recipients/#create-a-recipient) and send us their ID.
-
-{% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createPayment(
-    input: {
-      paymentType: SEND_FUNDS
       fromCurrency: AUD
       toCurrency: XRP
       size: 1000
@@ -124,8 +55,12 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
+### Recipient
+
+You should [pre-create recipients](../recipients/#create-a-recipient) and send us their ID.
+
 {% hint style="warning" %}
-We are legally obliged to collect the actual recipient details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
+We are legally obliged to collect the actual beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com/) for other recipient details options.
 {% endhint %}

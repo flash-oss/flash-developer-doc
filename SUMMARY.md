@@ -1,7 +1,8 @@
 # Table of contents
 
 * [Overview](README.md)
-* [Basics](basics.md)
+* [Basics](basics/README.md)
+  * [Sending data as JSON](basics/sending-data-as-json.md)
 * [Authentication](authentication.md)
 * [Quote](quote.md)
 * [Balance](balance.md)
@@ -13,4 +14,7 @@
   * [Query payments](payments/query-payments.md)
   * [Send funds](payments/send-funds.md)
 * [Change log](change-log.md)
+* [Withdrawals](withdrawals/README.md)
+  * [Query withdrawals](withdrawals/query-withdrawals.md)
+  * [Withdraw funds](withdrawals/withdraw-funds.md)
 
