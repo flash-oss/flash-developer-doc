@@ -25,7 +25,7 @@ curl -X POST 'https://api.flash-fx.com' \
 }'
 ```
 
-We understand that such long query strings would be difficult to construct with code. Here is how to send query and data separately.
+We understand that such long query strings would be difficult to construct with code. Here is how to send **query and data separately**.
 
 Each GraphQL request to our API contains a JSON of minimum two properties: `query` and optional `variables`. You can \(and should\) declare parameters using the GraphQL dollar-notation and then reuse it in the query or mutation.
 
