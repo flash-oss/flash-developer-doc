@@ -13,8 +13,8 @@
   * [Payment statuses](payments/payment-statuses.md)
   * [Query payments](payments/query-payments.md)
   * [Send funds](payments/send-funds.md)
-* [Change log](change-log.md)
 * [Withdrawals](withdrawals/README.md)
   * [Query withdrawals](withdrawals/query-withdrawals.md)
   * [Withdraw funds](withdrawals/withdraw-funds.md)
+* [Change log](change-log.md)
 
