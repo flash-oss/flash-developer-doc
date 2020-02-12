@@ -20,6 +20,7 @@ mutation {
       externalReference: "my ref 221b"
       callbackUri: "https://example.com/flashfx?signature=ASecretPerPaymentKey"
       recipientId: "5ba89a6b35a2b327b81ffc3b"
+      externalId: "12344321"
     }
   ) {
     success
@@ -65,7 +66,9 @@ We are legally obliged to collect the actual beneficiary details. Please, do not
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com/) for other recipient details options.
 {% endhint %}
 
-### Callback \(aka Webhook\) URI
+### Callback \(aka [Webhook](../webhooks.md)\) URI
+
+We recommend against continuous polling for payment status changes. Instead, please use `callbackUri`.
 
 The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon \(within several seconds\) after the initial create payment call - but may be delayed in some cases. The example JSON payloads are below.
 
@@ -78,7 +81,8 @@ The optional `callbackUri` will be invoked several times during the processing o
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP"
+  "toCurrency": "XRP",
+  "externalId": "12344321"
 }
 ```
 {% endtab %}
@@ -91,7 +95,8 @@ The optional `callbackUri` will be invoked several times during the processing o
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP"
+  "toCurrency": "XRP",
+  "externalId": "12344321"
 }
 ```
 {% endtab %}
@@ -102,14 +107,6 @@ Please note that `toAmount` \(or `fromAmount`\) and other fluctuating payment pr
 {% hint style="danger" %}
 #### Security note
 
-The callback \(aka webhook\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector.
+The callback \(aka [webhook](../webhooks.md)\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks.md) page to secure your data properly.
 {% endhint %}
-
-We recommend API clients generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make make sure it's FlashFX calling your webhook endpoint. To avoid storing the signatures in the database it can be a [JWT](https://jwt.io/) or any other securely verifiable string. For example:
-
-```text
-https://my-webhooks.example.com/flashfx?signature=oZaDlmfXbdXSKCnuWrvos2ImVBFX2Ru5
-```
-
-You can also use the callback as a trigger to retrieve the latest payment details via the [payments query](query-payments.md).
 
