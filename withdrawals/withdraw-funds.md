@@ -68,15 +68,13 @@ We are legally obliged to collect the actual beneficiary details. Please, do not
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com/) for other recipient details options.
 {% endhint %}
 
-### Sender Institution - acceptingInstructionInstitutionSenderId
+### Sender Institution - `acceptingInstructionInstitutionSenderId`
 
-This optional element is a reference to a `recipient` like object to give the information about the party who this withdrawal ultimately came from. This is normally in the instance where you are transmitting money for a third party institution. These details are needed for AML/KYC obligations here in Australia. This is not the sender. If there is no other institution who has instructed this withdrawal leave this blank and your own details will be used for compliance and auditing purposes.
+This optional element is a reference to a [`sender`](../senders.md) object to give the information about the party who this withdrawal ultimately came from. This is normally the financial institution that accepts an **instruction** from a customer to transfer money electronically to a beneficiary institution so that it reaches the intended recipient. This is not the sender. If there is no other institution who has instructed this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.
 
-### Accepting Institution - acceptingMoneyInstitutionSenderId
+### Accepting Institution - `acceptingMoneyInstitutionSenderId`
 
-This optional element is a reference to a `recipient` like object to give the information about the party who this withdrawal ultimately will arrive at. This is normally in the instance where you are transmitting money for a third party institution. These details are needed for AML/KYC obligations here in Australia. This is not the recipient. If there is no other institution who has instructed this withdrawal or will ultimately receive this withdrawal leave this blank and your own details will be used for compliance and auditing purposes.
-
-### 
+This optional element is a reference to a [`sender`](../senders.md) object to give the information about the party who this withdrawal ultimately came from. This is normally the financial institution that accepts **money** from a customer to transfer money electronically to a beneficiary institution so that it reaches the intended recipient. These details are needed for AML/KYC obligations here in Australia. This is not the sender. If there is no other institution who has accepted money that will result with this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.
 
 ### Callback \(aka [Webhook](../webhooks.md)\) URI
 
