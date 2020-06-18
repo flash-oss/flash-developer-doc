@@ -4,6 +4,30 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2020-02-11
+
+### Added
+
+* New items in `RecipientQueryInput`. This means that recipients can be searched by:
+  * `firstName`
+  * `lastName`
+  * `middleName`
+  * `dob` - date of birth
+  * `companyName`
+  * `phCashoutNetwork`
+  * `payid`
+  * `bic`
+  * `iban`
+  * `aba`
+  * `bsb`
+  * `clabe`
+  * `cnaps`
+  * `sortCode`
+  * `ifsc`
+  * `accountNo`
+  * `rippleAddress`
+  * `externalId` - ID in your system
+
 ## 2020-01-28
 
 ### Added
