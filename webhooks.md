@@ -4,6 +4,8 @@ description: How to secure your callback endpoints
 
 # Webhooks
 
+When [sending a payment](payments/send-funds.md) or [creating a local withdrawal](withdrawals/withdraw-funds.md) you can provide us a webhook \(callback\) URI - `callbackUri`. We will call it when a payment or withdrawal status changes.
+
 We recommend API clients to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make make sure it's FlashFX calling your webhook endpoint. For example:
 
 ```text
@@ -15,7 +17,7 @@ To avoid storing the signatures in a database we recommend generating them on th
 ## Example
 
 {% hint style="info" %}
-This is just an example. Feel free to sign you URLs the way you want.
+This is just an example. Feel free to sign your URLs the way you want.
 {% endhint %}
 
 You would need to implement two functions.
