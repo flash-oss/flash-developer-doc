@@ -10,12 +10,6 @@ FlashFX API is [GraphQL](http://graphql.github.io/learn/queries/) based. It's si
 
 FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com/)
 
-{% hint style="warning" %}
-#### Warning - BETA
-
-The API is in the **beta** stage right now. It is subject to change without notice. While we will endeavour to not break existing API calls no guarantees are made at this stage of development.  We will notify all API users of changes as they are released.
-{% endhint %}
-
 ## Quick start
 
 1. Sign up for FlashFX account here: [https://www.flash-fx.com/](https://www.flash-fx.com/) You'd need to provide us your driver's license or passport. We'll start verification process immediately. Typically takes an hour.
