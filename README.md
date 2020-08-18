@@ -29,5 +29,5 @@ While we will endeavour to not introduce any breaking changes they might still o
 
 ### Complete API docs
 
-This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can provide/obtain is listed in the [API Playground](https://api.flash-fx.com/) \(click "**DOCS**" on the right hand side\).
+This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can send/receive is listed in the [API Playground](https://api.flash-fx.com/) \(click "**DOCS**" on the right hand side\).
 
