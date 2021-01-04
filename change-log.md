@@ -4,6 +4,46 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2020-12-16
+
+### Added
+
+* New item in `BsbDepositDetails`
+  * `accountName` - Australian bank account name.
+* New item in `Withdrawal`
+  * `statusMessage` - a human readable message of the current status reason, like processing error messages.
+* New item in `Payment` and `PaymentInput`
+  * `sourceOfFunds` - mandatory field for some destinations.
+* New enum `SourceOfFunds`.
+
+## 2020-10-14
+
+### Added
+
+* New items in both query type and mutation input `Senders`.
+  * `legalName` 
+  * `tradingAsName`
+  * `businessNumber` - differs by country, e.g. ABN in Australia.
+  * `acn` - Australian Company Number. Should not be used for other countries.
+
+## 2020-06-18
+
+### Changed \(BREAKING\)
+
+* Fixed typo in `RecipientQueryInput` field name. `snaps` -&gt; `cnaps` 
+
+## 2020-03-05
+
+### Changed \(BREAKING\)
+
+* Fixed typo in the `WithdrawalStatus` enum item. `INITIALISING` -&gt; `INITIALISED`
+
+## 2020-02-12
+
+### Added
+
+* `callbackUri` to `Payment`, `Withdrawal`, `CreateWithdrawalInput`. Now you can query the callback/webhook URI you have supplied earlier. Also, this allows you to receive webhooks when you create a withdrawal \(aka _local payout_\).
+
 ## 2020-02-11
 
 ### Added
