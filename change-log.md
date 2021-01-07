@@ -4,6 +4,18 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-01-07
+
+### Removed \(BREAKING\)
+
+These types and fields were never used by anyone for couple of years.
+
+* Removed enum `DepositMechanism`.
+* `PaymentInput` and `ConfirmPaymentInput` fields:
+  * removed `depositMechanism` 
+  * removed `depositReference` 
+  * removed `depositAmount` 
+
 ## 2020-12-16
 
 ### Added
