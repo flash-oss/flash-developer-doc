@@ -12,7 +12,7 @@ FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.
 
 ## High level feature overview
 
-You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
+\(Coming Soon\) You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
 
 ### Instant local Australian deposit \(aka pay-in\)
 
@@ -22,7 +22,7 @@ By default, only yourself is allowed to deposit to it. However, the third party 
 
 Sometimes, banks can delay your deposit by up to 24 hours. This should be expected. But typically, deposits are reflected in your FlashFX balance immediately.
 
-If set, you would get a webhook \(aka callback\) notification about every deposit made to your bank account. Go to the [https://connect.flash-fx.com](https://connect.flash-fx.com) to setup a webhook.
+\(Coming Soon\) If set, you would get a webhook \(aka callback\) notification about every deposit made to your bank account. Go to the [https://connect.flash-fx.com](https://connect.flash-fx.com) to setup a webhook.
 
 You can manually reject unwanted deposits via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface. The funds will be returned to the original sender bank account.
 

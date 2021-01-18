@@ -8,7 +8,7 @@ You can [retrieve](query-withdrawals.md) all or some of your withdrawals.
 
 You can [create withdrawals](withdraw-funds.md). By default you can withdraw only to your personal bank account.
 
-If you are a fully verified customer you can disburse to any bank account. You'd need to:
+If you are a fully verified customer you can payout to any bank account. You'd need to:
 
 * have a recipient ID \(see [Recipients](../recipients/) to query your address book\); otherwise
 * understand the supported delivery methods using the [availableDeliveryMethods](../recipients/required-fields.md) query and [create a new recipient](../recipients/#create-a-recipient)
