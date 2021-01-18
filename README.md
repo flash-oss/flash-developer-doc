@@ -52,7 +52,7 @@ Depending on the recipient's country a payment can take from few minutes to few 
 
 The API token you generate expires in 4 hours. You can always use `logout` GraphQL mutation to expire it earlier.
 
-The [https://connect.flash-fx.com](https://connect.flash-fx.com) interface supports Google and Facebook logins. It is recommended to enable 2FA there.
+\(Coming Soon\) The [https://connect.flash-fx.com](https://connect.flash-fx.com) interface supports Google and One-Time-Password logins.
 
 ## Quick start
 
