@@ -17,6 +17,8 @@
   * [Query withdrawals](withdrawals/query-withdrawals.md)
   * [Withdraw funds](withdrawals/withdraw-funds.md)
 * [Deposits](deposits.md)
-* [Webhooks](webhooks.md)
+* [Webhooks](webhooks/README.md)
+  * [Webhooks](webhooks/webhooks.md)
+  * [Adhoc webhooks](webhooks/adhoc-webhooks.md)
 * [Change log](change-log.md)
 

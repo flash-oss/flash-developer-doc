@@ -66,7 +66,7 @@ We are legally obliged to collect the actual beneficiary details. Please, do not
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.flash-fx.com/) for other recipient details options.
 {% endhint %}
 
-### Callback \(aka [Webhook](../webhooks.md)\) URI
+### Callback \(aka [Webhook](../webhooks/adhoc-webhooks.md)\) URI
 
 We recommend against continuous polling for payment status changes. Instead, please use `callbackUri`.
 
@@ -107,6 +107,6 @@ Please note that `toAmount` \(or `fromAmount`\) and other fluctuating payment pr
 {% hint style="danger" %}
 #### Security note
 
-The callback \(aka [webhook](../webhooks.md)\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks.md) page to secure your data properly.
+The callback \(aka [webhook](../webhooks/adhoc-webhooks.md)\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
 {% endhint %}
 

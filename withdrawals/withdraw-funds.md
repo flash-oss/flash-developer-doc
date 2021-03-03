@@ -81,7 +81,7 @@ This optional element is a reference to a [`sender`](../senders.md) object to gi
 
 This optional element is a reference to a [`sender`](../senders.md) object to give the information about the party who this withdrawal ultimately came from. This is normally the financial institution that accepts **money** from a customer to transfer money electronically to a beneficiary institution so that it reaches the intended recipient. These details are needed for AML/KYC obligations here in Australia. This is not the sender. If there is no other institution who has accepted money that will result with this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.
 
-### Callback \(aka [Webhook](../webhooks.md)\) URI
+### Callback \(aka [Webhook](../webhooks/adhoc-webhooks.md)\) URI
 
 We recommend against continuous polling for withdrawal status changes. Instead, please use `callbackUri`.
 
@@ -140,6 +140,6 @@ The optional `callbackUri` will be invoked several times during the processing o
 {% hint style="danger" %}
 #### Security note
 
-The callback \(aka [webhook](../webhooks.md)\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks.md) page to secure your data properly.
+The callback \(aka [webhook](../webhooks/adhoc-webhooks.md)\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
 {% endhint %}
 
