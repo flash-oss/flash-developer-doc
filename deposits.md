@@ -6,7 +6,7 @@ description: Explains how to accept deposits programmatically
 
 After fully registering with us you get a BSB and a dedicated bank account number. Every deposit to this account would increase your FlashFX balance.
 
-\(Coming Soon\) You can receive notifications via Webhooks about every deposit.
+You can receive notifications via [Webhooks](webhooks/webhooks.md) about every deposit.
 
 The deposit data includes the payment reference \(we call it `externalReference` in this API\).
 

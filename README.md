@@ -12,29 +12,29 @@ FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.
 
 ## High level feature overview
 
-You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
+\(Coming Soon\) You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
 
 ### Instant local Australian deposit \(aka pay-in\)
 
-You would get a dedicated Australian BSB and a bank account number. Any funds deposited to that account would increase your FlashFX balance. We preserve the provided payment reference of every deposit for your further utilisation. E.g. invoice number or else.
+You would get a dedicated Australian BSB and a bank account number. Any funds deposited to that account would increase you FlashFX balance. We preserve the payment reference of every deposit for your utilisation. E.g. invoice number or else.
 
-By default, only yourself is allowed to deposit to it. However, the third party deposits are also possible. Although, we would need to enable this setting for you separately.
+By default, only yourself is allowed to deposit to it. However, the third party deposits are also allowed. Although, we would need to allow this setting for you separately.
 
 Sometimes, banks can delay your deposit by up to 24 hours. This should be expected. But typically, deposits are reflected in your FlashFX balance immediately.
 
-If set, you would get a webhook \(aka callback\) notification about every deposit made to your bank account. Go to the [https://connect.flash-fx.com](https://connect.flash-fx.com) to setup a deposit webhook.
+\(Coming Soon\) If set, you would get a webhook \(aka callback\) notification about every deposit made to your bank account. Go to the [https://connect.flash-fx.com](https://connect.flash-fx.com) to setup a webhook.
 
 You can manually reject unwanted deposits via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface. The funds will be returned to the original sender bank account.
 
-### Local Australian withdrawal \(aka pay-out\)
+### Local Australian withdrawals \(aka pay-out\)
 
-This API allows you to withdraw your FlashFX balance. By default, only yourself is allowed to receive those funds. The third party withdrawals \(aka payouts\) are also possible. Although, we would need to enable this setting for you separately.
+This API allows you to withdraw your FlashFX balance. By default, only yourself is allowed to receive those funds. The third party withdrawals \(aka payouts\) are also allowed. Although, we would need to allow this setting for you separately.
 
-If your payout is part of an FX payments, we are legally obliged to use classic Australian payment system a.k.a. Direct Entry. It would take from 0 up to few hours to deliver such funds. Otherwise, payouts are delivered to the recipient instantly.
+If your payout is part of an FX payments, we are legally obliged to use classic Australian payment system -  Direct Entry. It would take from 0 up to few hours to deliver such funds. Otherwise, payouts are delivered to the recipient instantly.
 
 If a payout fails you would receive a webhook notification with a clear explanation of what's went wrong. This is typically bank account number typos.
 
-The payout remitter name is configurable. You can give us the remitter name as `withdrawal.sender` data property. This is especially useful for FX-linked payouts. If a Brazilian mama Katarina Oreiro sends money to her son in Australia, he would see his mom's name in the bank statement - "Payment from Katarina Oreiro".
+The payout remitter name is configurable. You can supply the remitter name as `withdrawal.sender`. This is especially useful for FX-linked payouts. If a Brazilian mama Katarina Oreiro sends money to her son in Australia, he would see his mom's name in the bank statement - "Payment from Katarina Oreiro".
 
 Payouts can also be done via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface.
 
@@ -46,17 +46,17 @@ Your code would need to pre-create both sender and recipient before creating a p
 
 All the entities in our database \(withdrawal, payment, sender, recipient\) can hold your system's ID. See the `externalId` field in the [API docs](https://api.flash-fx.com/).
 
-Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state changes.
+Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state change.
 
 ### Security
 
 The API token you generate expires in 4 hours. You can always use `logout` GraphQL mutation to expire it earlier.
 
-The [https://connect.flash-fx.com](https://connect.flash-fx.com) interface supports Google and One-Time-Password logins.
+\(Coming Soon\) The [https://connect.flash-fx.com](https://connect.flash-fx.com) interface supports Google and One-Time-Password logins.
 
 ## Quick start
 
-1. Sign up for FlashFX account here: [https://connect.flash-fx.com/](https://connect.flash-fx.com/) \(Coming Soon\)
+1. Sign up for FlashFX account here: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
 2. Ask us for API access in the support chat on the bottom right or on the [main site](https://www.flash-fx.com/).
 3. After we enable you, go to the [https://api.flash-fx.com/](https://api.flash-fx.com/) playground, click **"DOCS"** on the right to explore the possibilities.
 4. Find there the `login` mutation. Execute it to obtain your access token. For example: `mutation { login(input: {email: "YOUR_EMAIL" password: "YOUR_PWD"}) {token message} }`
