@@ -183,7 +183,7 @@ Webhook requests come with event data. You can see all available event types in 
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP",
+  "toCurrency": "EUR",
   "externalId": "12344321"
 }
 ```
@@ -197,7 +197,7 @@ Webhook requests come with event data. You can see all available event types in 
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP",
+  "toCurrency": "EUR",
   "externalId": "12344321"
 }
 ```
@@ -211,21 +211,21 @@ Webhook requests come with event data. You can see all available event types in 
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP",
+  "toCurrency": "EUR",
   "externalId": "12344321"
 }
 ```
 {% endtab %}
 
 {% tab title="payment\_cancelled" %}
-```
+```javascript
 {
   "event": "payment_cancelled",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP",
+  "toCurrency": "EUR",
   "externalId": "12344321"
 }
 ```
