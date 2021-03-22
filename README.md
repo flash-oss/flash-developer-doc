@@ -16,7 +16,13 @@ You can search, visualise, or extract your data using our FlashConnect product: 
 
 ### Instant local Australian deposit \(aka pay-in\)
 
-You would get a dedicated Australian BSB and a bank account number. Any funds deposited to that account would increase your FlashFX balance. We preserve the provided payment reference of every deposit for your further utilisation. E.g. invoice number or else.
+You would get a dedicated Australian BSB and a bank account number.
+
+{% hint style="warning" %}
+Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
+{% endhint %}
+
+Any funds deposited to that account would increase your FlashFX balance. We preserve the provided payment reference of every deposit for your further utilisation. E.g. invoice number or else.
 
 By default, only yourself is allowed to deposit to it. However, the third party deposits are also possible. Although, we would need to enable this setting for you separately.
 

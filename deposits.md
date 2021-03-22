@@ -4,7 +4,13 @@ description: Explains how to accept deposits programmatically
 
 # Deposits
 
-After fully registering with us you get a BSB and a dedicated bank account number. Every deposit to this account would increase your FlashFX balance.
+After fully registering with us you get a BSB and a dedicated bank account number.
+
+{% hint style="warning" %}
+Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
+{% endhint %}
+
+Every deposit to this account would increase your FlashFX balance.
 
 You can receive notifications via [Webhooks](webhooks/webhooks.md) about every deposit.
 
