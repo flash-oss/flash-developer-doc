@@ -20,7 +20,7 @@ mutation {
     input: {
       amount: 1000
       recipientId: "5ba89a6b35a2b327b81ffc3b",
-      senderID: "5eaf71a1cb328c56f94f9375",
+      senderId: "5eaf71a1cb328c56f94f9375",
       acceptingInstructionInstitutionSenderId: "5eaf7159cb328c56f94f936d",
       acceptingMoneyInstitutionSenderId: "5eaf9e9b1c84a7678d3f7c6c"
       externalId: "12344321"
