@@ -8,7 +8,7 @@ description: How to setup web hooks for your integration
 
 FlashFX uses webhooks to notify your application when a transaction event happens in your account. This includes status update of your withdrawal, clearing of the incoming deposit, and more.
 
-With webhooks, you can subscribe to the events of interest to trigger a subsequent action within you integration.
+With webhooks, you can subscribe to the events of interest to trigger a subsequent action within your integration.
 
 There are two steps to begin using webhooks. Building a custom endpoint on your server and registering it via the [FlashConnect](https://connect.flash-fx.com/) settings.
 
