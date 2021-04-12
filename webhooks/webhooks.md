@@ -91,6 +91,12 @@ Webhook requests come with event data. You can see all available event types in 
   "sender": {
     "accountName": "ACME Inc",
     "companyName": "ACME Inc"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387"
   }
 }
 ```
@@ -112,6 +118,12 @@ Webhook requests come with event data. You can see all available event types in 
   "sender": {
     "accountName": "ACME Inc",
     "companyName": "ACME Inc"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387"
   }
 }
 ```
@@ -128,7 +140,13 @@ Webhook requests come with event data. You can see all available event types in 
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "currency": "AUD",
-  "externalId": "12344321"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387"
+  }
 }
 ```
 {% endtab %}
@@ -141,7 +159,13 @@ Webhook requests come with event data. You can see all available event types in 
   "amount": 2000,
   "currency": "AUD",
   "externalId": "12344321",
-  "statusMessage": "Transaction Confirmed"
+  "statusMessage": "Transaction Confirmed",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387"
+  }
 }
 ```
 {% endtab %}
@@ -153,7 +177,13 @@ Webhook requests come with event data. You can see all available event types in 
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "currency": "AUD",
-  "externalId": "12344321"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387"
+  }
 }
 ```
 {% endtab %}
@@ -166,7 +196,13 @@ Webhook requests come with event data. You can see all available event types in 
   "amount": 2000,
   "currency": "AUD",
   "externalId": "12344321",
-  "statusMessage": "Withdrawal cancelled"
+  "statusMessage": "Withdrawal cancelled",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387"
+  }
 }
 ```
 {% endtab %}

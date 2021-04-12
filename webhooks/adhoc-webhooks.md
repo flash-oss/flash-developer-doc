@@ -2,7 +2,7 @@
 description: How to secure your callback endpoints
 ---
 
-# Adhoc webhooks
+# Ad hoc webhooks
 
 When [sending a payment](../payments/send-funds.md) or [creating a local withdrawal](../withdrawals/withdraw-funds.md) you can provide us a webhook \(callback\) URI - `callbackUri`. We will call it when a payment or withdrawal status changes.
 
