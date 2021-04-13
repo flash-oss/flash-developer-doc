@@ -1,12 +1,12 @@
 ---
-description: Creating and querying your sub-clients
+description: Generate Virtual Account Numbers for your clients for collection
 ---
 
 # Sub-clients
 
-The sub-client feature allows you to create client accounts for transaction purposes. 
+The sub-client feature allows you to create client accounts for deposit collection purposes. 
 
-Each sub-client will receive a dedicated BSB and account number that you or your clients can use to accept domestic AUD transfers in Australia. 
+Each sub-client will receive a dedicated BSB and account number that you or your clients can use to accept domestic AUD transfers within Australia. 
 
 All [deposits](deposits.md#querying-deposits) sent to your sub-client bank details are booked on your \(master-client\) account's balance and linked with the sub-client ID. Notifications via [webhook](webhooks/webhooks.md)s will provide important sub-client information as well.
 
