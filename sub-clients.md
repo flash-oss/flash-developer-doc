@@ -19,7 +19,7 @@ If you are creating a sub-client of the company type, we require you to provide 
 * `legalName` - company legal name
 * `businessNumber` - company business number \(e.g ABN in Australia\)
 
-If these fields are not set, the sub-client will be created as `individual` type.
+If the above fields are not set, the sub-client will be created as `individual` type.
 
 You can find the description of each field in the GraphQL API schema.
 
@@ -29,6 +29,8 @@ You can find the description of each field in the GraphQL API schema.
 mutation {
   createSubClient(
     input: {
+      legalName: "Chineese Tradings"
+      businessNumber: "330782000329701"
       firstName: "John"
       lastName: "Smith"
       email: "john.smith@example.com"
@@ -36,11 +38,11 @@ mutation {
       dob: "1979-05-12"
       address: {
         building: "25"
-        street: "Moore St"
-        suburb: "Surry Hills"
-        state: "NSW"
-        postcode: "2010"
-        country: AU
+        street: "Xihu Road, Yuexiu District"
+        suburb: "Guangzhou City"
+        state: "Guangdong Province"
+        postcode: "510030"
+        country: CN
       }
       docType: passport
       docNumber: "FA1948394"
@@ -52,6 +54,8 @@ mutation {
     message
     subClient {
       id
+      legalName
+      businessNumber
       fullName
       clientType
       status
@@ -61,6 +65,9 @@ mutation {
         email
         mobile
         dob
+      }
+      address {
+        country
       }
       bsb
       accountNo
@@ -83,6 +90,8 @@ mutation {
       "message": "Sub-client was successfully created",
       "subClient": {
         "id": "606d28675a2d931bc925fec2",
+        "legalName": "Chineese Tradings",
+        "businessNumber": "330782000329701",
         "fullName": "John Smith",
         "clientType": "INDIVIDUAL",
         "status": "ACTIVE",
@@ -92,6 +101,9 @@ mutation {
           "email": "john.smith@example.com",
           "mobile": "+61 422 832 849",
           "dob": "1979-05-12"
+        },
+        "address": {
+          "country": "CN"
         },
         "bsb": "802919",
         "accountNo": "1066419",
