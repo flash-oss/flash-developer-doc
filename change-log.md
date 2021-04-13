@@ -4,6 +4,19 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-04-12
+
+### Added
+
+* Added deposit queries
+  * query `deposits(input: DepositQueryInput): [Deposit]`
+  * query `deposit(id: ID!): Deposit`
+* Introduced sub-client feature  – transactional accounts for AUD processing in Australia.
+  * query `subClients(input: SubClientQueryInput): [SubClient]`
+  * query `subClient(id: ID!): SubClient`
+  * mutation  `createSubClient(input: CreateSubClientInput!): CreateSubClientReply`
+* Deposit and withdrawal webhooks now include `subClient` object with sub-client information when present
+
 ## 2021-01-07
 
 ### Removed \(BREAKING\)

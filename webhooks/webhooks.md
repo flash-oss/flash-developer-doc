@@ -96,7 +96,8 @@ Webhook requests come with event data. You can see all available event types in 
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
     "accountNo": "183939484893",
-    "bsb": "809387"
+    "bsb": "809387",
+    "externalId": "111222333"
   }
 }
 ```
@@ -123,7 +124,8 @@ Webhook requests come with event data. You can see all available event types in 
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
     "accountNo": "183939484893",
-    "bsb": "809387"
+    "bsb": "809387",
+    "externalId": "111222333"
   }
 }
 ```
@@ -145,7 +147,8 @@ Webhook requests come with event data. You can see all available event types in 
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
     "accountNo": "183939484893",
-    "bsb": "809387"
+    "bsb": "809387",
+    "externalId": "111222333"
   }
 }
 ```
@@ -164,7 +167,8 @@ Webhook requests come with event data. You can see all available event types in 
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
     "accountNo": "183939484893",
-    "bsb": "809387"
+    "bsb": "809387",
+    "externalId": "111222333"
   }
 }
 ```
@@ -182,7 +186,8 @@ Webhook requests come with event data. You can see all available event types in 
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
     "accountNo": "183939484893",
-    "bsb": "809387"
+    "bsb": "809387",
+    "externalId": "111222333"
   }
 }
 ```
@@ -201,7 +206,8 @@ Webhook requests come with event data. You can see all available event types in 
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
     "accountNo": "183939484893",
-    "bsb": "809387"
+    "bsb": "809387",
+    "externalId": "111222333"
   }
 }
 ```
