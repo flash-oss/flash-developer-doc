@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-04-16
+
+* Added ability to disable and activate sub-clients
+  * mutation `disableSubClient(id: ID!): MutateSubClientReply`
+  * mutation `activateSubClient(id: ID!): MutateSubClientReply`
+
 ## 2021-04-12
 
 ### Added
@@ -14,7 +20,7 @@ description: History of changes to this API schema
 * Introduced sub-client feature  – transactional accounts for AUD processing in Australia.
   * query `subClients(input: SubClientQueryInput): [SubClient]`
   * query `subClient(id: ID!): SubClient`
-  * mutation  `createSubClient(input: CreateSubClientInput!): CreateSubClientReply`
+  * mutation  `createSubClient(input: CreateSubClientInput!): MutateSubClientReply`
 * Deposit and withdrawal webhooks now include `subClient` object with sub-client information when present
 
 ## 2021-01-07
