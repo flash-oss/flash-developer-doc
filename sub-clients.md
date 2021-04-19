@@ -10,6 +10,10 @@ Each sub-client will receive a dedicated BSB and account number that you or your
 
 All [deposits](deposits.md#querying-deposits) sent to your sub-client bank details are booked on your \(master-client\) account's balance and linked with the sub-client ID. Notifications via [webhook](webhooks/webhooks.md)s will provide important sub-client information as well.
 
+{% hint style="info" %}
+Note. This feature is **OFF** by default. Contact us if you want it.
+{% endhint %}
+
 ### Creating a sub-client
 
 There are two types of sub-clients: `company` and `individual`. 
