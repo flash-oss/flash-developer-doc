@@ -4,7 +4,15 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-04-26
+
+### Changed
+
+* `RecipientAccountIdType` was fully duplicating the `AccountIdType`. Replace the former with the latter. This might break your auto-generated code in strongly typed languages. But won't change any API queries or responses. So, this change is not considered to be a breaking.
+
 ## 2021-04-16
+
+### Added
 
 * Added ability to disable and activate sub-clients
   * mutation `disableSubClient(id: ID!): MutateSubClientReply`
