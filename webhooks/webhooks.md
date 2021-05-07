@@ -103,6 +103,59 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
+{% tab title="deposit\_cancelled" %}
+```javascript
+{
+  "event": "deposit_cancelled",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "statusMessage": "Cancelled by: john@example.com : ",
+  "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="deposit\_refunding" %}
+```javascript
+{
+  "event": "deposit_refunding",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "refundAmount": 99,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "refundReason": "Client refund request",
+  "statusMessage": "Deposit refunded",
+  "refundedAt": "2021-03-03T03:28:43.936Z",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "183939484893",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+{% endtab %}
+
 {% tab title="deposit\_refunded" %}
 ```javascript
 {
