@@ -8,7 +8,9 @@ The sub-client feature allows you to create client accounts for deposit collecti
 
 Each sub-client will receive a dedicated BSB and account number that you or your clients can use to accept domestic AUD transfers within Australia. 
 
-All [deposits](deposits.md#querying-deposits) sent to your sub-client bank details are booked on your \(master-client\) account's balance. Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
+All [deposits](deposits.md#querying-deposits) sent to your sub-client bank details are booked on your \(master-client\) account's balance. Sub-clients can't have their own balances.
+
+Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
 
 {% hint style="info" %}
 Note. This feature is **OFF** by default. Contact us if you want it.
