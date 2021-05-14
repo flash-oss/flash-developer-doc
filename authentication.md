@@ -4,11 +4,41 @@ description: Get your access token
 
 # Authentication
 
-{% hint style="warning" %}
-This mutation is subject to change during BETA period.
+Before doing any other API calls you have to obtain an auth token. It's a standard JWT token carrying the following payload: 
 
-With current implementation the token will **expire in 4 hours**.
+```javascript
+{
+  ...
+
+  "iat": 1620967717,
+  "exp": 1621054117
+}
+```
+
+{% hint style="info" %}
+Tip: Use this handy website to parse the token contents: [jwt.io](https://jwt.io/)
 {% endhint %}
+
+The token lifetime is **4 hours** at this time. We might change this value in the future.
+
+{% hint style="warning" %}
+Warning! You can't login more than once per second. That's a DOS attack prevention feature.
+{% endhint %}
+
+To be more future-proof it is recommended to parse the token payload and compare current time to the token's expiration time. JavaScript code:
+
+```javascript
+const seconds = JSON.parse(Buffer.from(token.split(".")[1], "base64url")).exp;
+if (Date.now() >= seconds*1000) {
+  // get new token
+}
+```
+
+{% hint style="warning" %}
+This mutation is a subject to change in the future.
+{% endhint %}
+
+### Getting a token
 
 Here is an example of the login query.
 
