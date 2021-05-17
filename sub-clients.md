@@ -50,8 +50,11 @@ mutation {
         postcode: "510030"
         country: CN
       }
-      docType: passport
-      docNumber: "FA1948394"
+      idDoc: {
+        type: passport
+        docNumber: "FF1948394"
+        issuer: "AU"
+      }
       externalId: "991188227733"
     }
   ) {

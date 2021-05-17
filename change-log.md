@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-05-17
+
+### Changed \(BREAKING\)
+
+* Replaced `docIssuer`, `docType` and `docNumber` fields from `CreateSubClientInput` with `idDoc` nested field instead. 
+
 ## 2021-04-26
 
 ### Changed
