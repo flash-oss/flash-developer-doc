@@ -14,5 +14,5 @@ There are two types of webhooks in FlashFX.
   * You can receive webhooks when a deposit lands to your virtual bank account
 * [Ad hoc webhooks](adhoc-webhooks.md) - you would need to provide a callback URL per payment/withdrawal while creating them. Only "payment" and "withdrawal" events are supported.
 
-
+The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections) \(3XX codes\).
 
