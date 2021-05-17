@@ -26,7 +26,7 @@ Each webhook request has a `flashfx-request-id` header with a string that unique
 
 We advise that you acknowledge webhook request as early as possible.
 
-**Checking request**
+**Securing the request**
 
 To ensure that webhook was sent by FlashFX and not a third party, we include the cryptographic signature in each request’s `flashfx-signature` header.
 
