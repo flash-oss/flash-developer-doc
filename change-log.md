@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-05-25
+
+### Changed
+
+*  The `senderId` was always required when creating withdrawals via `createWithdrawal`. But now, if you provided the `subClientId` and didn't provide the `senderId` the sub-client becomes the sender, and will be reported to the government as the sender. However, you still must provide the `senderId` if your sub-client moves funds for other people/companies.
+
 ## 2021-05-17
 
 ### Changed \(BREAKING\)
