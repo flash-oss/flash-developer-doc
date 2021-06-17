@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-06-17
+
+### Added
+
+*  The `fundingAccounts` and `SubClient.fundingAccounts` queries. It returns international bank account numbers you can deposit in order to bring money to Australia. See [Auto receive funds](payments/auto-receive-funds.md) for more details.
+
 ## 2021-05-25
 
 ### Changed
