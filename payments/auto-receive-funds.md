@@ -7,7 +7,10 @@ description: Automatically receive and convert funds from other countries and cu
 Some customers can automatically receive funds from overseas. Meaning, if we detect an overseas deposit to the FlashFX controlled bank account\(s\) then we can automatically create an inbound payment, convert funds, and top up your FlashFX balance with AUD.
 
 {% hint style="info" %}
-Note! You must send money from the **bank account on your \(or your sub-client's\) name**. Also, the payment must have the **payment reference** we told you. See below.
+Note!  
+In case of sub-clients, they must have full real world address. Don't skip any fields while creating those in our system.  
+Also, you must send money from the **bank account on your \(or your sub-client's\) name**.  
+Also, the payment must have the **payment reference** we told you. See below.
 {% endhint %}
 
 Here is how it looks step by step.
