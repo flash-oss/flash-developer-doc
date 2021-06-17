@@ -1,3 +1,7 @@
+---
+description: Automatically receive and convert funds from other countries and currencies
+---
+
 # Auto receive funds
 
 Some customers can automatically receive funds from overseas. Meaning, if we detect an overseas deposit to the FlashFX controlled bank account\(s\) then we can automatically create an inbound payment, convert funds, and top up your FlashFX balance with AUD.
