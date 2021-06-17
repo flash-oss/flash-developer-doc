@@ -246,6 +246,13 @@ mutation {
     bsb
     accountNo
   	externalId
+    fundingAccounts(input: { currencies: [EUR, USD, HKD, CNY] }) {
+      iban
+      accountNo
+      bic
+      currency
+      externalReference
+    }
   }
 }
 

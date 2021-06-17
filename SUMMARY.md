@@ -13,6 +13,7 @@
   * [Payment statuses](payments/payment-statuses.md)
   * [Query payments](payments/query-payments.md)
   * [Send funds](payments/send-funds.md)
+  * [Auto receive funds](payments/auto-receive-funds.md)
 * [Withdrawals](withdrawals/README.md)
   * [Query withdrawals](withdrawals/query-withdrawals.md)
   * [Withdraw funds](withdrawals/withdraw-funds.md)
