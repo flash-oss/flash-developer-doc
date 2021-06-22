@@ -22,5 +22,7 @@
 * [Webhooks](webhooks/README.md)
   * [Regular webhooks](webhooks/webhooks.md)
   * [Ad hoc webhooks](webhooks/adhoc-webhooks.md)
+* [Reference data](reference-data/README.md)
+  * [Bank information](reference-data/bank-information.md)
 * [Change log](change-log.md)
 
