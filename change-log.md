@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added
 
-*  The `bankInfo` reference query. You can now validate your BSB for existence, check if we support your BIC, and ensure you IBAN validity.
+*  The `bankInfo` reference query. You can now validate your BSB for existence, check if we support your BIC, and retrieve BIC \(aka SWIFT code\) by IBAN.
 
 ## 2021-06-17
 

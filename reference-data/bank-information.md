@@ -55,6 +55,7 @@ The below sample queries will return `null` if the BSB, BIC, IBAN is not found.
 {
     bankInfo(input: { iban: "DE59500105178646768962" }) {
         name
+        bic
         address {
             building
             street
@@ -68,12 +69,13 @@ The below sample queries will return `null` if the BSB, BIC, IBAN is not found.
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Response IBAN" %}
 ```javascript
 {
   "data": {
     "bankInfo": {
       "name": "BARCLAYS BANK PLC",
+      "bic": "BARCGB22",
       "address": {
         "building": null,
         "street": "1 CHURCHILL PLACE",
