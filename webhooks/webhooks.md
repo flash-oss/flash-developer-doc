@@ -95,7 +95,7 @@ Webhook requests come with event data. You can see all available event types in 
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -120,7 +120,7 @@ Webhook requests come with event data. You can see all available event types in 
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -148,7 +148,7 @@ Webhook requests come with event data. You can see all available event types in 
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -176,7 +176,7 @@ Webhook requests come with event data. You can see all available event types in 
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -199,7 +199,7 @@ Webhook requests come with event data. You can see all available event types in 
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -216,10 +216,11 @@ Webhook requests come with event data. You can see all available event types in 
   "currency": "AUD",
   "externalId": "12344321",
   "statusMessage": "Transaction Confirmed",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -238,7 +239,36 @@ Webhook requests come with event data. You can see all available event types in 
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="withdrawal\_refunded" %}
+```javascript
+{
+  "event": "withdrawal_refunded",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "refundAmount": 1999,
+  "currency": "AUD",
+  "externalId": "12344321",
+  "refundReason": "Payout reversal of D.3eig for John Smith due to No account or incorrect account number",
+  "statusMessage": "Payout reversal of D.3eig for John Smith due to No account or incorrect account number",
+  "refundedAt": "2021-03-04T15:21:11.920Z",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "recipient": {
+    "displayName": "John Smith",
+    "bsb": "012620",
+    "accountNo": "89900998"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "John Smith",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -258,7 +288,7 @@ Webhook requests come with event data. You can see all available event types in 
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
-    "accountNo": "183939484893",
+    "accountNo": "1839394",
     "bsb": "809387",
     "externalId": "111222333"
   }
@@ -322,6 +352,26 @@ Webhook requests come with event data. You can see all available event types in 
   "toAmount": 411.04,
   "toCurrency": "EUR",
   "externalId": "12344321"
+}
+```
+{% endtab %}
+
+{% tab title="payment\_created" %}
+```javascript
+{
+  "event": "payment_created",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 3500,
+  "fromCurrency": "EUR",
+  "toAmount": 2501.94,
+  "toCurrency": "AUD",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
 }
 ```
 {% endtab %}
