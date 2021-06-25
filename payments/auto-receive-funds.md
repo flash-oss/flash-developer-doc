@@ -6,7 +6,7 @@ description: Automatically receive and convert funds from other countries and cu
 
 Some customers can automatically receive funds from overseas. Meaning, if we detect an overseas deposit to the FlashFX controlled bank account\(s\) then we can automatically create an inbound payment, convert funds, and top up your FlashFX balance with AUD.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Note!  
 In case of sub-clients, they must have full real world address. Don't skip any fields while creating those in our system.  
 Also, you must send money from the **bank account on your \(or your sub-client's\) name**.  
@@ -24,6 +24,11 @@ Here is how it looks step by step.
 6. Your FlashFX AUD balance would increase accordingly.
 
 To find which foreign currency bank account you would need to deposit to, please go to the [FlashConnect](https://connect.flash-fx.com/) and find there the list of inbound currencies we support and the corresponding bank account numbers. It's called the **"Funding Accounts"** throughout the user interface.
+
+{% hint style="info" %}
+Tip. You can simulate an international inbound payment using the FlashConnect tool. Just go to the _Dashboard_ page and click "SEND TEST INBOUND PAYMENT". It's available only in our development environment.  
+Additionally, you can fake an international inbound payment sent by your [sub-client](../sub-clients.md). Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST INBOUND PAYMENT". It's available only in our development environment.
+{% endhint %}
 
 To find out the Funding Accounts via API please use the `fundingAccounts` query.
 

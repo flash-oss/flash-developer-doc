@@ -22,6 +22,11 @@ We can also enable the [sub-client](sub-clients.md) feature. It allows you to pr
 
 To browse your deposits, you can use our FlashConnect tool: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
 
+{% hint style="info" %}
+Tip. You can simulate a deposit using the FlashConnect tool. Just go to the _Deposits_ page and click "SEND TEST DEPOSIT". It's available only in our development environment.  
+Additionally, you can fake a deposit sent by your [sub-client](sub-clients.md). Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST DEPOSIT". It's available only in our development environment.
+{% endhint %}
+
 ### Querying deposits
 
 #### Query all deposits
