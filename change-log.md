@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-06-29
+
+### Added
+
+*  The `totalFee` property to both `Deposit` and `Withdrawal` types as well as webhook payloads.
+
 ## 2021-06-22
 
 ### Added
