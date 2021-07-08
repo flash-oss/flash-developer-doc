@@ -4,6 +4,13 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-07-08
+
+### Added
+
+* The ability to query deposits, withdrawals, payments by the associated sub-client \(`subClientId`\).
+* The payments can also have sub-clients now. Added the `Payment.subClient` field.
+
 ## 2021-06-29
 
 ### Added
