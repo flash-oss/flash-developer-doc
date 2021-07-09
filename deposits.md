@@ -27,6 +27,16 @@ Tip. You can simulate a deposit using the FlashConnect tool. Just go to the _Dep
 Additionally, you can fake a deposit sent by your [sub-client](sub-clients.md). Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST DEPOSIT". It's available only in our development environment.
 {% endhint %}
 
+### Deposit processing statuses
+
+As soon as we see a deposit in FlashFX controlled bank account\(s\) we create a confirmed deposit.
+
+\(none\) -&gt; `CONFIRMED`
+
+If you choose to reject that deposit it goes through refunding statuses:
+
+`CONFIRMED`→`REFUNDING`→`REFUNDED` 
+
 ### Querying deposits
 
 #### Query all deposits

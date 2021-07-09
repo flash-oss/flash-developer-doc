@@ -27,7 +27,7 @@ Having a recipient ID you can now withdraw money.
      * `PENDING` - rare case - retrying. Sometimes it might work. Go to item 3.
 4. The recipient bank decided to return this transaction back to FlashFX. `CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount. _**FINAL status**_.
 
-### Most common status transactions
+### Most common status transitions
 
 #### Happy path
 
