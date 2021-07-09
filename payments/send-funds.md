@@ -13,12 +13,13 @@ mutation {
   createPayment(
     input: {
       fromCurrency: AUD
-      toCurrency: XRP
+      toCurrency: USD
       size: 1000
       currency: AUD
       reason: BUSINESS
+      sourceOfFunds: BUSINESS_FUNDS
       externalReference: "my ref 221b"
-      callbackUri: "https://example.com/flashfx?signature=ASecretPerPaymentKey"
+      senderId: "6092360ae40e2cfb52f85be1"
       recipientId: "5ba89a6b35a2b327b81ffc3b"
       externalId: "12344321"
     }
@@ -73,6 +74,20 @@ We recommend against continuous polling for payment status changes. Instead, ple
 The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon \(within several seconds\) after the initial create payment call - but may be delayed in some cases. The example JSON payloads are below.
 
 {% tabs %}
+{% tab title="" %}
+```javascript
+{
+  "event": "payment_complete",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "USD",
+  "externalId": "12344321"
+}
+```
+{% endtab %}
+
 {% tab title="currency\_converted" %}
 ```javascript
 {
@@ -81,7 +96,7 @@ The optional `callbackUri` will be invoked several times during the processing o
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP",
+  "toCurrency": "USD",
   "externalId": "12344321"
 }
 ```
@@ -95,7 +110,7 @@ The optional `callbackUri` will be invoked several times during the processing o
   "fromAmount": 1000,
   "fromCurrency": "AUD",
   "toAmount": 411.04,
-  "toCurrency": "XRP",
+  "toCurrency": "USD",
   "externalId": "12344321"
 }
 ```
