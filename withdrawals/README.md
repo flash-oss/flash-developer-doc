@@ -15,9 +15,6 @@ If you are a fully verified customer you can payout to any bank account. You'd n
 
 Having a recipient ID you can now withdraw money.
 
-* a
-* b
-
 ## Withdrawal processing statuses
 
 1. You create a withdrawal. Your **balance goes down** by the withdrawal amount plus fee. \(none\) → `INITIALISED`
