@@ -4,12 +4,6 @@ description: History of changes to this API schema
 
 # Change log
 
-## 2021-07-14
-
-### Changes
-
-* Allow `accountNo` to be 4 digits long. Some old Japanese bank accounts could be just 4 digits.
-
 ## 2021-07-08
 
 ### Added

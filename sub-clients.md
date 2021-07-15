@@ -18,6 +18,12 @@ Note. This feature is **OFF** by default. Contact us if you want it.
 
 ### Creating a sub-client
 
+{% hint style="warning" %}
+This action creates real bank account. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from FlashFX services.
+
+Please add all possible precautions, processes, staff training, warning messages, and validation checks to you system\(s\) before creating a sub-client.
+{% endhint %}
+
 There are two types of sub-clients: `company` and `individual`. 
 
 If you are creating a sub-client of the company type, we require you to provide extra details:
@@ -246,6 +252,13 @@ mutation {
     bsb
     accountNo
   	externalId
+    fundingAccounts(input: { currencies: [EUR, USD, HKD, CNY] }) {
+      iban
+      accountNo
+      bic
+      currency
+      externalReference
+    }
   }
 }
 
