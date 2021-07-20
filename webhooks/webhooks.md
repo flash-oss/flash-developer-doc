@@ -260,6 +260,7 @@ Webhook requests come with event data. You can see all available event types in 
   "event": "withdrawal_refunded",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
+  "totalFee": 1,
   "refundAmount": 2000,
   "currency": "AUD",
   "externalId": "12344321",
