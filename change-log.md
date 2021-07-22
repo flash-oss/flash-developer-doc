@@ -4,6 +4,18 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-07-22
+
+### Changed \(BREAKING\)
+
+* While creating sub-clients the address of the person/company was not required. It was a bug which was fixed. To create a sub-client you would also need their: **street** address, **suburb**/city, **state**/region, **postcode**, and country.
+
+## 2021-07-14
+
+### Changes
+
+* Allow `accountNo` to be 4 digits long. Some old Japanese bank accounts could be just 4 digits.
+
 ## 2021-07-08
 
 ### Added
@@ -62,7 +74,7 @@ description: History of changes to this API schema
 * Added deposit queries
   * query `deposits(input: DepositQueryInput): [Deposit]`
   * query `deposit(id: ID!): Deposit`
-* Introduced sub-client feature  – transactional accounts for AUD processing in Australia.
+* **Introduced sub-client feature** – transactional virtual account numbers for AUD processing in Australia.
   * query `subClients(input: SubClientQueryInput): [SubClient]`
   * query `subClient(id: ID!): SubClient`
   * mutation  `createSubClient(input: CreateSubClientInput!): MutateSubClientReply`
