@@ -42,7 +42,7 @@ If receiving from yourself then please provide your own details. See the DOCS in
       "lastName": "Smith",
       "companyName": null,
       "address": {
-        "country": "AU"
+        "country": "GB"
       }
     }
   }
@@ -82,7 +82,7 @@ If receiving from yourself then please provide your own details. See the DOCS in
         "lastName": "Smith",
         "companyName": null,
         "address": {
-          "country": "AU"
+          "country": "GB"
         }
       },
       {
@@ -103,6 +103,10 @@ If receiving from yourself then please provide your own details. See the DOCS in
 
 #### Create a sender
 
+{% hint style="info" %}
+In addresses the `suburb` is an Australian suburb. For other countries you should put the city \(e.g. Manila or London\) or any other small administrative area name.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
@@ -116,9 +120,9 @@ mutation {
       mobile: "+1 123412341234"
       address: {
         street: "1 Test St"
-        suburb: "Testville"
+        suburb: "London"
         state: "TST"
-        country: AU
+        country: GB
         postcode: "2000"
       }
     }
@@ -171,9 +175,9 @@ mutation {
       mobile: "+1 123412341234"
       address: {
         street: "1 Test St"
-        suburb: "Testville"
+        suburb: "London"
         state: "TST"
-        country: AU
+        country: GB
         postcode: "2001"
       }
     }

@@ -83,6 +83,10 @@ Please, send us the final funds recipient. If sending to self then please provid
 
 #### Create a recipient
 
+{% hint style="info" %}
+In addresses the `suburb` is an Australian suburb. For other countries you should put the city \(e.g. Manila or London\) or any other small administrative area name.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
