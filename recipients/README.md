@@ -35,8 +35,8 @@ Please, send us the final funds recipient. If sending to self then please provid
 {
   "data": {
     "recipient": {
-      "accountIdType": "RIPPLE",
-      "currency": "XRP",
+      "accountIdType": "ACC NO",
+      "currency": "USD",
       "country": "AU",
       "email": "john@example.com"
     }
@@ -52,7 +52,7 @@ Please, send us the final funds recipient. If sending to self then please provid
 {% tab title="Query" %}
 ```graphql
 {
-  recipients(input: { currency: XRP }) {
+  recipients(input: { currency: USD }) {
     accountIdType
     currency
     country
@@ -69,8 +69,8 @@ Please, send us the final funds recipient. If sending to self then please provid
   "data": {
     "recipients": [
       {
-        "accountIdType": "RIPPLE",
-        "currency": "XRP",
+        "accountIdType": "ACC NO",
+        "currency": "USD",
         "country": "AU",
         "email": "john@example.com"
       }
