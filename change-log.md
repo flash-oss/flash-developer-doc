@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-08-13
+
+### Changed \(BREAKING\)
+
+* Removed **XRP** currency form the list of supported currencies.
+
 ## 2021-07-22
 
 ### Changed \(BREAKING\)
