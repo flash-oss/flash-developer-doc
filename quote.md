@@ -11,7 +11,7 @@ Paste this query to the GraphQL Playground
 ```graphql
 {
   quote(
-    input: { fromCurrency: AUD, toCurrency: USD, size: 10000, currency: AUD }
+    input: { fromCurrency: AUD, toCurrency: XRP, size: 10000, currency: AUD }
   ) {
     bid
     ask
@@ -28,9 +28,9 @@ Paste this query to the GraphQL Playground
 {
   "data": {
     "quote": {
-      "bid": 0.61104,
-      "ask": 0.62077,
-      "symbol": "USDAUD",
+      "bid": 0.41104,
+      "ask": 0.42077,
+      "symbol": "XRPAUD",
       "timestamp": "2018-08-13T07:54:54.993Z",
       "inverted": true
     }
