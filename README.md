@@ -44,7 +44,7 @@ The payout remitter name is configurable. You can give us the remitter name as `
 
 Payouts can also be done via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface.
 
-### Send or receive money internationally
+### Send money internationally
 
 You can send you FlashFX balance internationally via our API and enjoy instant delivery to countries with local instant payment systems, e.g. Philippines. By the way, cash payments to Philippines are also supported.
 
@@ -53,8 +53,6 @@ Your code would need to pre-create both sender and recipient before creating a p
 All the entities in our database \(withdrawal, payment, sender, recipient\) can hold your system's ID. See the `externalId` field in the [API docs](https://api.flash-fx.com/).
 
 Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state changes.
-
-In most cases you can send money to your FlashFX balance. This can be automated. You will receive a webhook notification when we see you sending to FlashFX from other countries.
 
 ### Security
 

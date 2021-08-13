@@ -20,7 +20,7 @@ curl -X POST 'https://api.flash-fx.com' \
   "query":
     "{
        quote(input: {
-         fromCurrency: AUD, toCurrency: XRP, size: 9.9, currency: AUD
+         fromCurrency: AUD, toCurrency: USD, size: 9.9, currency: AUD
        })
        {
          bid ask symbol timestamp inverted
@@ -49,4 +49,8 @@ Some of the GraphQL query parameters are required, others are optional. To under
 * Go to the [GraphQL Playground](https://api.flash-fx.com/) and click the button "**DOCS**" on the right.
 * Browse through queries, mutations, input and output types. Find a variable/property which have an exclamation mark at the end. E.g. `fromCurrency: FromCurrency!`.
 * The exclamation mark denotes that the variable/property is mandatory.
+
+{% hint style="danger" %}
+Do not ever send us `"N/A"` or `"NA"` or `"NULL"` or `"null"` or `"nil"` or any other dummy string values in any of the API fields.
+{% endhint %}
 
