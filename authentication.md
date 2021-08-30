@@ -35,10 +35,15 @@ if (Date.now() >= seconds*1000) {
 ```
 
 {% hint style="warning" %}
-This mutation is a subject to change in the future.
+This `login` mutation is a subject to change in the future.
 {% endhint %}
 
 ### Getting a token
+
+1. After we enable you, go to the [https://api.flash-fx.com/](https://api.flash-fx.com/) playground, click **"DOCS"** on the right to explore the possibilities.
+2. Find there the `login` mutation. Execute it to obtain your access token. For example: `mutation { login(input: {email: "YOUR_EMAIL" password: "YOUR_PWD"}) {token message} }`
+3. Click the **"HTTP HEADERS"** on the bottom and add this: `{"authorization": "Bearer YOUR_TOKEN"}`. Replace the `YOUR_TOKEN` with the token you just got.
+4. Execute any other queries.
 
 Here is an example of the login query.
 

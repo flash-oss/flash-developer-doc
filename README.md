@@ -44,7 +44,7 @@ The payout remitter name is configurable. You can give us the remitter name as `
 
 Payouts can also be done via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface.
 
-### Send money internationally
+### Send or receive money internationally
 
 You can send you FlashFX balance internationally via our API and enjoy instant delivery to countries with local instant payment systems, e.g. Philippines. By the way, cash payments to Philippines are also supported.
 
@@ -53,6 +53,8 @@ Your code would need to pre-create both sender and recipient before creating a p
 All the entities in our database \(withdrawal, payment, sender, recipient\) can hold your system's ID. See the `externalId` field in the [API docs](https://api.flash-fx.com/).
 
 Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state changes.
+
+In most cases you can send money to your FlashFX balance. This can be automated. You will receive a webhook notification when we see you sending to FlashFX from other countries.
 
 ### Security
 
@@ -66,14 +68,11 @@ Webhooks have cryptographic signatures.
 
 \(coming soon\) IP address whitelisting.
 
-## Quick start
+## How to start
 
-1. Sign up for FlashFX account here: [https://connect.flash-fx.com/](https://connect.flash-fx.com/) \(Coming Soon\)
-2. Ask us for API access in the support chat on the bottom right or on the [main site](https://www.flash-fx.com/).
-3. After we enable you, go to the [https://api.flash-fx.com/](https://api.flash-fx.com/) playground, click **"DOCS"** on the right to explore the possibilities.
-4. Find there the `login` mutation. Execute it to obtain your access token. For example: `mutation { login(input: {email: "YOUR_EMAIL" password: "YOUR_PWD"}) {token message} }`
-5. Click the **"HTTP HEADERS"** on the bottom and add this: `{"authorization": "Bearer YOUR_TOKEN"}`. Replace the `YOUR_TOKEN` with the token you just got.
-6. Execute any other queries.
+1. Contact with us via [this page](https://www.flash-fx.com/connect) or by clicking the Intercom button on the bottom right of this page.
+2. Explain what kind of services you are looking from FlashFX.
+3. We will examine your needs and explain how to get access to our UAT environment.
 
 For more detailed instructions head to the [Basics](basics/) page.
 
