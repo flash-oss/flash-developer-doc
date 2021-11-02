@@ -9,7 +9,7 @@ description: History of changes to this API schema
 ### Changes
 
 * Occasionally `Payment` objects do not have `sender` or `recipient` properties. Thus these properties are now marked at "not required" (exclamation mark was removed) when querying payments.
-* We have added rate limiting. You can receive HTTP 429 error code and get temporary blocked  now if abusing the API too much.
+* We have added rate limiting. You can receive HTTP 429 error code and get temporary blocked if abusing the API too much.
 
 ## 2021-08-13
 
