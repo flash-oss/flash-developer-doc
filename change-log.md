@@ -4,15 +4,22 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-11-02
+
+### Changes
+
+* Occasionally `Payment` objects do not have `sender` or `recipient` properties. Thus these properties are now marked at "not required" (exclamation mark was removed) when querying payments.
+* We have added rate limiting. You can receive HTTP 429 error code and get temporary blocked  now if abusing the API too much.
+
 ## 2021-08-13
 
-### Changed \(BREAKING\)
+### Changed (BREAKING)
 
 * Removed **XRP** currency form the list of supported currencies.
 
 ## 2021-07-22
 
-### Changed \(BREAKING\)
+### Changed (BREAKING)
 
 * While creating sub-clients the address of the person/company was not required. It was a bug which was fixed. To create a sub-client you would also need their: **street** address, **suburb**/city, **state**/region, **postcode**, and country.
 
@@ -26,38 +33,38 @@ description: History of changes to this API schema
 
 ### Added
 
-* The ability to query deposits, withdrawals, payments by the associated sub-client \(`subClientId`\).
+* The ability to query deposits, withdrawals, payments by the associated sub-client (`subClientId`).
 * The payments can also have sub-clients now. Added the `Payment.subClient` field.
 
 ## 2021-06-29
 
 ### Added
 
-*  The `totalFee` property to both `Deposit` and `Withdrawal` types as well as webhook payloads.
+* &#x20;The `totalFee` property to both `Deposit` and `Withdrawal` types as well as webhook payloads.
 
 ## 2021-06-22
 
 ### Added
 
-*  The `bankInfo` reference query. You can now validate your BSB for existence, check if we support your BIC, and retrieve BIC \(aka SWIFT code\) by IBAN.
+* &#x20;The `bankInfo` reference query. You can now validate your BSB for existence, check if we support your BIC, and retrieve BIC (aka SWIFT code) by IBAN.
 
 ## 2021-06-17
 
 ### Added
 
-*  The `fundingAccounts` and `SubClient.fundingAccounts` queries. It returns international bank account numbers you can deposit in order to bring money to Australia. See [Auto receive funds](payments/auto-receive-funds.md) for more details.
+* &#x20;The `fundingAccounts` and `SubClient.fundingAccounts` queries. It returns international bank account numbers you can deposit in order to bring money to Australia. See [Auto receive funds](payments/auto-receive-funds.md) for more details.
 
 ## 2021-05-25
 
 ### Changed
 
-*  The `senderId` was always required when creating withdrawals via `createWithdrawal`. But now, if you provided the `subClientId` and didn't provide the `senderId` the sub-client becomes the sender, and will be reported to the government as the sender. However, you still must provide the `senderId` if your sub-client moves funds for other people/companies.
+* &#x20;The `senderId` was always required when creating withdrawals via `createWithdrawal`. But now, if you provided the `subClientId` and didn't provide the `senderId` the sub-client becomes the sender, and will be reported to the government as the sender. However, you still must provide the `senderId` if your sub-client moves funds for other people/companies.
 
 ## 2021-05-17
 
-### Changed \(BREAKING\)
+### Changed (BREAKING)
 
-* Replaced `docIssuer`, `docType` and `docNumber` fields from `CreateSubClientInput` with `idDoc` nested field instead. 
+* Replaced `docIssuer`, `docType` and `docNumber` fields from `CreateSubClientInput` with `idDoc` nested field instead.&#x20;
 
 ## 2021-04-26
 
@@ -88,15 +95,15 @@ description: History of changes to this API schema
 
 ## 2021-01-07
 
-### Removed \(BREAKING\)
+### Removed (BREAKING)
 
 These types and fields were never used by anyone for couple of years.
 
 * Removed enum `DepositMechanism`.
 * `PaymentInput` and `ConfirmPaymentInput` fields:
-  * removed `depositMechanism` 
-  * removed `depositReference` 
-  * removed `depositAmount` 
+  * removed `depositMechanism`&#x20;
+  * removed `depositReference`&#x20;
+  * removed `depositAmount`&#x20;
 
 ## 2020-12-16
 
@@ -115,28 +122,28 @@ These types and fields were never used by anyone for couple of years.
 ### Added
 
 * New items in both query type and mutation input `Senders`.
-  * `legalName` 
+  * `legalName`&#x20;
   * `tradingAsName`
   * `businessNumber` - differs by country, e.g. ABN in Australia.
   * `acn` - Australian Company Number. Should not be used for other countries.
 
 ## 2020-06-18
 
-### Changed \(BREAKING\)
+### Changed (BREAKING)
 
-* Fixed typo in `RecipientQueryInput` field name. `snaps` -&gt; `cnaps` 
+* Fixed typo in `RecipientQueryInput` field name. `snaps` -> `cnaps`&#x20;
 
 ## 2020-03-05
 
-### Changed \(BREAKING\)
+### Changed (BREAKING)
 
-* Fixed typo in the `WithdrawalStatus` enum item. `INITIALISING` -&gt; `INITIALISED`
+* Fixed typo in the `WithdrawalStatus` enum item. `INITIALISING` -> `INITIALISED`
 
 ## 2020-02-12
 
 ### Added
 
-* `callbackUri` to `Payment`, `Withdrawal`, `CreateWithdrawalInput`. Now you can query the callback/webhook URI you have supplied earlier. Also, this allows you to receive webhooks when you create a withdrawal \(aka _local payout_\).
+* `callbackUri` to `Payment`, `Withdrawal`, `CreateWithdrawalInput`. Now you can query the callback/webhook URI you have supplied earlier. Also, this allows you to receive webhooks when you create a withdrawal (aka _local payout_).
 
 ## 2020-02-11
 
@@ -166,7 +173,7 @@ These types and fields were never used by anyone for couple of years.
 
 ### Added
 
-* Introduced Withdrawals - send money from your account \(FlashFX digital wallet\) to local banks.
+* Introduced Withdrawals - send money from your account (FlashFX digital wallet) to local banks.
   * query `withdrawal(id: ID): Withdrawal`
   * query `withdrawals(input: WithdrawalQueryInput): [Withdrawal]`
   * mutation `createWithdrawal(input: CreateWithdrawalInput!): CreateWithdrawalReply`
@@ -176,14 +183,12 @@ These types and fields were never used by anyone for couple of years.
   * `Recipient.payid` new property.
 * `PH_CASH` recipient type for Philippines cash network payments.
   * `Recipient.phCashoutNetwork` new property.
-* You can now query your recipients by `accountIdType` property. For example: `recipients(input: {` **`accountIdType: PH_CASH`** `})`
+* You can now query your recipients by `accountIdType` property. For example: `recipients(input: { `**`accountIdType: PH_CASH`**` })`
 
-### Removed \(BREAKING\)
+### Removed (BREAKING)
 
 * Removed the unused enum `PaymentType`. It has no sense and was deprecated a year ago.
   * Simultaneously removed properties `Payment.paymentType`, `PaymentQueryInput.paymentTypes`, `PaymentInput.paymentType`.
 * Removed the long deprecated `PaymentInput.recipient` object. The only way to provide a recipient for a payment is via `PaymentInput.recipientId`. You would need to [pre-create the recipient](recipients/#create-a-recipient) beforehand.
 * Removed the never used `AccountIdType` enum values: `BPAY`, `FIN_BTN`, `INTERAC`.
-
-
 
