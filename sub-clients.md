@@ -4,36 +4,36 @@ description: Generate Virtual Account Numbers for your clients for collection
 
 # Sub-clients
 
-The sub-client feature allows you to create client accounts for deposit collection purposes. 
+The sub-client feature allows you to create client accounts for deposit collection purposes.&#x20;
 
-Each sub-client will receive a dedicated BSB and account number that you or your clients can use to accept domestic AUD transfers within Australia. The account number will be on your sub-client's \(aka merchant's\) name.
+{% hint style="info" %}
+Note. This feature is **OFF** by default. Contact us if you want it.
+{% endhint %}
+
+Each sub-client will receive a dedicated BSB and account number that you or your clients can use to accept domestic AUD transfers within Australia. The account number will be on your sub-client's (aka merchant's) name.
 
 {% hint style="warning" %}
 Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
 {% endhint %}
 
-All [deposits](deposits.md#querying-deposits) sent to your sub-client bank details are booked on your \(master-client\) account's balance. Sub-clients can't have their own balances.
+All [deposits](deposits.md#querying-deposits) sent to your sub-client bank details are booked on your (master-client) account's balance. **Sub-clients can't have their own balances**.
 
 Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
-
-{% hint style="info" %}
-Note. This feature is **OFF** by default. Contact us if you want it.
-{% endhint %}
 
 ### Creating a sub-client
 
 {% hint style="warning" %}
 This action creates real bank account. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from FlashFX services.
 
-Please add all possible precautions, processes, staff training, warning messages, and validation checks to you system\(s\) before creating a sub-client.
+Please add all possible precautions, processes, staff training, warning messages, and validation checks to you system(s) before creating a sub-client.
 {% endhint %}
 
-There are two types of sub-clients: `company` and `individual`. 
+There are two types of sub-clients: `company` and `individual`.&#x20;
 
 If you are creating a sub-client of the company type, we require you to provide extra details:
 
 * `legalName` - company legal name
-* `businessNumber` - company business number \(e.g ABN in Australia\)
+* `businessNumber` - company business number (e.g ABN in Australia)
 
 If the above fields are not set, the sub-client will be created as `individual` type.
 
@@ -429,6 +429,4 @@ mutation {
 ```
 {% endtab %}
 {% endtabs %}
-
-
 

@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2021-01-12
+
+### Changes
+
+* &#x20;`lastName` and `firstName` fields of `Sender` and `Recipient` objects can now be one symbol long to allow for initials. Please note that such single symbols have to be alphabetic.
+
 ## 2021-11-02
 
 ### Changes
@@ -183,7 +189,7 @@ These types and fields were never used by anyone for couple of years.
   * `Recipient.payid` new property.
 * `PH_CASH` recipient type for Philippines cash network payments.
   * `Recipient.phCashoutNetwork` new property.
-* You can now query your recipients by `accountIdType` property. For example: `recipients(input: { `**`accountIdType: PH_CASH`**` })`
+* You can now query your recipients by `accountIdType` property. For example: `recipients(input: {`` `**`accountIdType: PH_CASH`**` ``})`
 
 ### Removed (BREAKING)
 
