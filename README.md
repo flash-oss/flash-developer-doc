@@ -68,7 +68,7 @@ Webhooks have cryptographic signatures.
 
 IP address whitelisting feature is available from FlashConnect interface allowing login to our APIs from only preapproved addresses that you specify.
 
-API rate limiting is in place to ensure stable performance of our service and and prevent its potential abuse.
+API rate limiting is in place to ensure stable performance of our service and prevent its potential abuse.
 
 ## How to start
 
