@@ -66,7 +66,7 @@ The [https://connect.flash-fx.com](https://connect.flash-fx.com) interface suppo
 
 Webhooks have cryptographic signatures.
 
-(coming soon) IP address whitelisting.
+IP address whitelisting feature is available from FlashConnect interface allowing login to our APIs from only preapproved addresses that you specify.
 
 ## How to start
 
