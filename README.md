@@ -40,7 +40,7 @@ If your payout is a part of FX payments, we are legally obliged to use classic A
 
 If a payout fails you will receive a webhook notification with a clear explanation of what went wrong. This is typically bank account number typos.
 
-The payout remitter name is configurable. You can give us the remitter name as `withdrawal.sender` data property. This is especially useful for FX-linked payouts. If a Brazilian mama Katarina Oreiro sends money to her son in Australia, he would see his mom's name in the bank statement - "Payment from Katarina Oreiro".
+The payout remitter name is configurable. You can give us the remitter name as `withdrawal.sender` data property. This is especially useful for FX-linked payouts. If a Brazilian mama Katarina Oreiro sends money to her son in Australia, he will see his mom's name in the bank statement - "Payment from Katarina Oreiro".
 
 Payouts can also be done via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface.
 
