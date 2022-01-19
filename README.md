@@ -36,7 +36,7 @@ You can manually reject unwanted deposits via the [https://connect.flash-fx.com]
 
 This API allows you to withdraw your FlashFX balance. By default, only yourself is allowed to receive those funds. The third party withdrawals (aka payouts) are also possible. Although, we would need to enable this setting for you separately.
 
-If your payout is part of an FX payments, we are legally obliged to use classic Australian payment system a.k.a. Direct Entry. It would take from 0 up to few hours to deliver such funds. Otherwise, payouts are delivered to the recipient instantly.
+If your payout is a part of FX payments, we are legally obliged to use classic Australian payment system a.k.a. Direct Entry. It would take from 0 up to few hours to deliver such funds. Otherwise, payouts are delivered to the recipient instantly.
 
 If a payout fails you will receive a webhook notification with a clear explanation of what went wrong. This is typically bank account number typos.
 
