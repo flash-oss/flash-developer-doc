@@ -4,8 +4,6 @@ description: History of changes to this API schema
 
 # Change log
 
-##
-
 ## 2022-02-09
 
 ### Changes
