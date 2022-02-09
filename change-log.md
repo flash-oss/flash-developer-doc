@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Changes
 
-* `FundingAccount` type has been extended to include all deposit details you need to bring money to Australia. Your account address can now be retrieved using `accountAddress` property along with the `name` and `address` fields which identify the accepting financial institution associated with your bank account.
+* `FundingAccount` type has been extended to include all deposit details you need to bring money to Australia. Your account address can now be retrieved using `accountAddress` property along with `name` and `address` fields which identify the accepting financial institution associated with your bank account.
 
 ## 2022-01-12
 
