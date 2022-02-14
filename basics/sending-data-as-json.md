@@ -16,7 +16,7 @@ curl -X POST 'https://api.flash-fx.com' \
   "query":
     "{
        quote(input: {
-         fromCurrency: AUD, toCurrency: XRP, size: 9.9, currency: AUD
+         fromCurrency: AUD, toCurrency: USD, size: 9.9, currency: AUD
        })
        {
          bid ask symbol timestamp inverted
@@ -27,7 +27,7 @@ curl -X POST 'https://api.flash-fx.com' \
 
 We understand that such long query strings would be difficult to construct with code. Here is how to send **query and data separately**.
 
-Each GraphQL request to our API contains a JSON of minimum two properties: `query` and optional `variables`. You can \(and should\) declare parameters using the GraphQL dollar-notation and then reuse it in the query or mutation.
+Each GraphQL request to our API contains a JSON of minimum two properties: `query` and optional `variables`. You can (and should) declare parameters using the GraphQL dollar-notation and then reuse it in the query or mutation.
 
 ```bash
 curl -X POST 'https://api.flash-fx.com' \
@@ -39,7 +39,7 @@ curl -X POST 'https://api.flash-fx.com' \
        quote(input: $input) { bid ask symbol timestamp inverted }
      }"
   "variables": { 
-    "input": { "fromCurrency": "AUD", "toCurrency": "XRP", "size": 9.9, "currency": "AUD" }
+    "input": { "fromCurrency": "AUD", "toCurrency": "USD", "size": 9.9, "currency": "AUD" }
   }
 }'
 ```
@@ -79,4 +79,3 @@ curl 'https://api.flash-fx.com/' \
   }
 }'
 ```
-

@@ -6,7 +6,7 @@ description: This will send money from your FlashFX balance to bank account(s)
 
 
 
-To do a withdrawal \(AUD only\) you need to execute the `createWithdrawal` mutation as below. 
+To do a withdrawal (AUD only) you need to execute the `createWithdrawal` mutation as below.&#x20;
 
 {% hint style="info" %}
 Note you must have an AUD [balance](../balance.md) in your account to do a withdrawal.
@@ -70,7 +70,7 @@ You should [pre-create senders](../senders.md#create-a-sender) and provide us th
 {% hint style="warning" %}
 We are legally obliged to collect the actual sender and beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
-Please, send us the final funds sender and recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com/) for other recipient details options.
+Please, send us the final funds sender and recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com) for other recipient details options.
 {% endhint %}
 
 ### Sender Institution - `acceptingInstructionInstitutionSenderId`
@@ -81,14 +81,14 @@ This optional element is a reference to a [`sender`](../senders.md) object to gi
 
 This optional element is a reference to a [`sender`](../senders.md) object to give the information about the party who this withdrawal ultimately came from. This is normally the financial institution that accepts **money** from a customer to transfer money electronically to a beneficiary institution so that it reaches the intended recipient. These details are needed for AML/KYC obligations here in Australia. This is not the sender. If there is no other institution who has accepted money that will result with this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.
 
-### Callback \(aka [Webhook](../webhooks/adhoc-webhooks.md)\) URI
+### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
 
 We recommend against continuous polling for withdrawal status changes. Instead, please use `callbackUri`.
 
-The optional `callbackUri` will be invoked several times during the processing of a withdrawal. These callbacks will usually occur soon \(within several seconds\) after the initial create withdrawal call - but may be delayed in some cases. The example JSON payloads are below.
+The optional `callbackUri` will be invoked several times during the processing of a withdrawal. These callbacks will usually occur soon (within several seconds) after the initial create withdrawal call - but may be delayed in some cases. The example JSON payloads are below.
 
 {% tabs %}
-{% tab title="withdrawal\_initiated" %}
+{% tab title="withdrawal_initiated" %}
 ```javascript
 {
   "event": "withdrawal_initiated",
@@ -100,7 +100,7 @@ The optional `callbackUri` will be invoked several times during the processing o
 ```
 {% endtab %}
 
-{% tab title="withdrawal\_completed" %}
+{% tab title="withdrawal_completed" %}
 ```javascript
 {
   "event": "withdrawal_completed",
@@ -112,7 +112,7 @@ The optional `callbackUri` will be invoked several times during the processing o
 ```
 {% endtab %}
 
-{% tab title="withdrawal\_failed" %}
+{% tab title="withdrawal_failed" %}
 ```javascript
 {
   "event": "withdrawal_failed",
@@ -124,7 +124,7 @@ The optional `callbackUri` will be invoked several times during the processing o
 ```
 {% endtab %}
 
-{% tab title="withdrawal\_cancelled" %}
+{% tab title="withdrawal_cancelled" %}
 ```javascript
 {
   "event": "withdrawal_failed",
@@ -140,6 +140,5 @@ The optional `callbackUri` will be invoked several times during the processing o
 {% hint style="danger" %}
 #### Security note
 
-The callback \(aka [webhook](../webhooks/adhoc-webhooks.md)\) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
+The callback (aka [webhook](../webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
 {% endhint %}
-

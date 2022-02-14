@@ -14,18 +14,28 @@ Every deposit to this account would increase your FlashFX balance.
 
 You can receive notifications via [Webhooks](webhooks/webhooks.md) about every deposit.
 
-The deposit data includes the payment reference \(we call it `externalReference` in this API\).
+The deposit data includes the payment reference (we call it `externalReference` in this API).
 
 By default, only yourself is allowed to deposit. However, we can enable third party deposits feature for your account. This, effectively, makes your account number a local collection account.
 
 We can also enable the [sub-client](sub-clients.md) feature. It allows you to programmatically create client accounts for transaction purposes, with dedicated BSB and account number. You can give these bank account details to your clients to accept deposits. Once funds arrive, we will increase your account balance, and you will see a deposit with sub-client information linked to it.
 
-To browse your deposits, you can use our FlashConnect tool: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
+To browse your deposits, you can use our FlashConnect tool: [https://connect.flash-fx.com/](https://connect.flash-fx.com)
 
 {% hint style="info" %}
-Tip. You can simulate a deposit using the FlashConnect tool. Just go to the _Deposits_ page and click "SEND TEST DEPOSIT". It's available only in our development environment.  
+Tip. You can simulate a deposit using the FlashConnect tool. Just go to the _Deposits_ page and click "SEND TEST DEPOSIT". It's available only in our development environment.\
 Additionally, you can fake a deposit sent by your [sub-client](sub-clients.md). Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST DEPOSIT". It's available only in our development environment.
 {% endhint %}
+
+### Deposit processing statuses
+
+As soon as we see a deposit in FlashFX controlled bank account(s) we create a confirmed deposit.
+
+(none) -> `CONFIRMED`
+
+If you choose to reject that deposit it goes through refunding statuses:
+
+`CONFIRMED`→`REFUNDING`→`REFUNDED`&#x20;
 
 ### Querying deposits
 
@@ -136,4 +146,3 @@ Additionally, you can fake a deposit sent by your [sub-client](sub-clients.md). 
 ```
 {% endtab %}
 {% endtabs %}
-

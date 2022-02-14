@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2022-02-14
+
+### Changes
+
+* Additional validation for `lastName`, `middleName` and `firstName` introduced allowing only latin alphabetical characters and special symbols: ![](<.gitbook/assets/Screenshot 2022-02-14 at 14.51.52.png>)
+
 ## 2022-02-09
 
 ### Changes

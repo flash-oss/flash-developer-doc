@@ -10,11 +10,11 @@ FlashFX uses webhooks to notify your application when a transaction event happen
 
 With webhooks, you can subscribe to the events of interest to trigger a subsequent action within your integration.
 
-There are two steps to begin using webhooks. Building a custom endpoint on your server and registering it via the [FlashConnect](https://connect.flash-fx.com/) settings.
+There are two steps to begin using webhooks. Building a custom endpoint on your server and registering it via the [FlashConnect](https://connect.flash-fx.com) settings.
 
 ### Building webhook endpoint
 
-Each time a transaction event happens, we will send a HTTP POST request to your endpoint\(s\) that are subscribed to that event. The payload with event data is in the JSON format and can be used immediately. Every webhook endpoint must acknowledge the request, and as we strongly advise, verify the webhook signature.
+Each time a transaction event happens, we will send a HTTP POST request to your endpoint(s) that are subscribed to that event. The payload with event data is in the JSON format and can be used immediately. Every webhook endpoint must acknowledge the request, and as we strongly advise, verify the webhook signature.
 
 **Acknowledging request**
 
@@ -30,7 +30,7 @@ We advise that you acknowledge webhook request as early as possible.
 
 To ensure that webhook was sent by FlashFX and not a third party, we include the cryptographic signature in each request’s `flashfx-signature` header.
 
-Before you can verify a signature, you need to retrieve your endpoint’s secret from webhook settings in the [FlashConnect](https://connect.flash-fx.com/). Each registered endpoint has a unique secret that is used to sign a payload delivered to you on each event. Steps to verify signature:
+Before you can verify a signature, you need to retrieve your endpoint’s secret from webhook settings in the [FlashConnect](https://connect.flash-fx.com). Each registered endpoint has a unique secret that is used to sign a payload delivered to you on each event. Steps to verify signature:
 
 1. Extract signature from the request header
 2. Compute HMAC with SHA256 function. Use your endpoint secret as key and JSON payload string as a message.
@@ -78,7 +78,7 @@ Webhook requests come with event data. You can see all available event types in 
 **Deposits**
 
 {% tabs %}
-{% tab title="deposit\_cleared" %}
+{% tab title="deposit_cleared" %}
 ```javascript
 {
   "event": "deposit_cleared",
@@ -104,7 +104,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="deposit\_cancelled" %}
+{% tab title="deposit_cancelled" %}
 ```javascript
 {
   "event": "deposit_cancelled",
@@ -130,7 +130,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="deposit\_refunding" %}
+{% tab title="deposit_refunding" %}
 ```javascript
 {
   "event": "deposit_refunding",
@@ -159,7 +159,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="deposit\_refunded" %}
+{% tab title="deposit_refunded" %}
 ```javascript
 {
   "event": "deposit_refunded",
@@ -192,7 +192,7 @@ Webhook requests come with event data. You can see all available event types in 
 **Withdrawals**
 
 {% tabs %}
-{% tab title="withdrawal\_initiated" %}
+{% tab title="withdrawal_initiated" %}
 ```javascript
 {
   "event": "withdrawal_initiated",
@@ -212,7 +212,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="withdrawal\_completed" %}
+{% tab title="withdrawal_completed" %}
 ```javascript
 {
   "event": "withdrawal_completed",
@@ -234,7 +234,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="withdrawal\_failed" %}
+{% tab title="withdrawal_failed" %}
 ```javascript
 {
   "event": "withdrawal_failed",
@@ -254,7 +254,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="withdrawal\_refunded" %}
+{% tab title="withdrawal_refunded" %}
 ```javascript
 {
   "event": "withdrawal_refunded",
@@ -284,7 +284,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="withdrawal\_cancelled" %}
+{% tab title="withdrawal_cancelled" %}
 ```javascript
 {
   "event": "withdrawal_cancelled",
@@ -309,7 +309,7 @@ Webhook requests come with event data. You can see all available event types in 
 **Payments**
 
 {% tabs %}
-{% tab title="currency\_converted" %}
+{% tab title="currency_converted" %}
 ```javascript
 {
   "event": "currency_converted",
@@ -323,7 +323,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="payment\_complete" %}
+{% tab title="payment_complete" %}
 ```javascript
 {
   "event": "payment_complete",
@@ -337,7 +337,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="payment\_failed" %}
+{% tab title="payment_failed" %}
 ```javascript
 {
   "event": "payment_failed",
@@ -351,7 +351,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="payment\_cancelled" %}
+{% tab title="payment_cancelled" %}
 ```javascript
 {
   "event": "payment_cancelled",
@@ -365,7 +365,7 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 
-{% tab title="payment\_created" %}
+{% tab title="payment_created" %}
 ```javascript
 {
   "event": "payment_created",
@@ -385,4 +385,3 @@ Webhook requests come with event data. You can see all available event types in 
 ```
 {% endtab %}
 {% endtabs %}
-
