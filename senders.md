@@ -6,7 +6,7 @@ description: CRUD queries for your payment senders
 
 We are legally obliged to collect the actual sender details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
-If receiving from yourself then please provide your own details. See the DOCS in [Playground](https://api.flash-fx.com/) for other sender details options.
+If receiving from yourself then please provide your own details. See the DOCS in [Playground](https://api.flash-fx.com) for other sender details options.
 
 * `sender` and `senders` queries - **read** your address book.
 * `createSender` - **creates** a new record in the FlashFX database.
@@ -104,7 +104,7 @@ If receiving from yourself then please provide your own details. See the DOCS in
 #### Create a sender
 
 {% hint style="info" %}
-In addresses the `suburb` is an Australian suburb. For other countries you should put the city \(e.g. Manila or London\) or any other small administrative area name.
+In addresses the `suburb` is an Australian suburb. For other countries you should put the city (e.g. Manila or London) or any other small administrative area name.
 {% endhint %}
 
 {% tabs %}
@@ -124,6 +124,11 @@ mutation {
         state: "TST"
         country: GB
         postcode: "2000"
+      }
+      idDoc: {
+        type: passport
+        docNumber: "AU1234321"
+        issuer: "AU"
       }
     }
   ) {
@@ -239,6 +244,4 @@ mutation {
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
