@@ -127,8 +127,8 @@ mutation {
       }
       idDoc: {
         type: passport
-        docNumber: "AU1234321"
-        issuer: "AU"
+        docNumber: "GB1234321"
+        issuer: "GB"
       }
     }
   ) {
@@ -184,6 +184,11 @@ mutation {
         state: "TST"
         country: GB
         postcode: "2001"
+      }
+      idDoc: {
+        type: passport
+        docNumber: "GB1234321"
+        issuer: "GB"
       }
     }
   ) {
