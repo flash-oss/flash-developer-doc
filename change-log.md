@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2022-02-25
+
+### Changes
+
+* Added `deposit.sender.accountName` so that you can query who deposited money to your virtual bank account.
+
 ## 2022-02-14
 
 ### Changes
