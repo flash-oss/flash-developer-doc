@@ -33,7 +33,7 @@ Please follow our latest requitements for the proper sub-client data submission:
 2. Provide proper`mobile`number
 3. Provide proper `dob`: **the person must be under 65 years of age**&#x20;
 4. Provide proper residential `address` including unit and street number
-5. Provide proper proper`idDoc (type`, `docNumber`and `issuer)`based on the  address from item 4. For addresses in Australia either driver’s license or passport are accepted. For non-Australian addresses only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
+5. Provide proper`idDoc (type`, `docNumber`and `issuer)`based on the  address from item 4. For addresses in Australia either driver’s license or passport are accepted. For non-Australian addresses only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
 {% endhint %}
 
 There are two types of sub-clients: `company` and `individual`.&#x20;
