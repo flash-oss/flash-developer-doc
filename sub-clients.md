@@ -26,6 +26,14 @@ Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-cl
 This action creates real bank account. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from FlashFX services.
 
 Please add all possible precautions, processes, staff training, warning messages, and validation checks to you system(s) before creating a sub-client.
+
+Please follow our latest requitements for the proper sub-client data submission:
+
+1. Provide proper`firstName`and`lastName`
+2. Provide proper`mobile`number
+3. Provide proper `dob`: **the person must be under 65 years of age**&#x20;
+4. Provide proper residential address including unit and street number
+5. Proper proper`idDoc (type`, `docNumber`and `issuer)` based on the sub-client’s address provided in the item 4. For addresses in Australia either driver’s license or passport are accepted. For non-Australian addresses only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
 {% endhint %}
 
 There are two types of sub-clients: `company` and `individual`.&#x20;
