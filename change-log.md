@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2022-04-12
+
+### Changes
+
+* Added validation of address fields. From now on, any address submitted as a part of any  transaction should only include ASCII characters.
+
 ## 2022-02-25
 
 ### Changes
