@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2022-04-22
+
+### Changes
+
+* Additional validation for `dob` field introduced for Senders, Recipients and Sub-clients to enforce the data is entered in YYYY-MM-DD format. The field has been made mandatory for individuals allowing for only the data after 1900-01-01 and older than 18 years of age.
+
 ## 2022-04-12
 
 ### Changes
@@ -20,7 +26,7 @@ description: History of changes to this API schema
 
 ### Changes
 
-* Additional validation for `lastName`, `middleName` and `firstName` introduced allowing only for latin alphabetical characters and special symbols: ![](<.gitbook/assets/Screenshot 2022-02-14 at 14.51.52.png>)
+* Additional validation for `lastName`, `middleName` and `firstName` introduced allowing only for latin alphabetical characters and special symbols: <img src=".gitbook/assets/Screenshot 2022-02-14 at 14.51.52.png" alt="" data-size="line">
 
 ## 2022-02-09
 
