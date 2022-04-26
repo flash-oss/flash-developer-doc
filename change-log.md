@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Changes
 
-* Additional validation for `dob` field introduced for Senders, Recipients and Sub-clients to enforce the data is entered in YYYY-MM-DD format. The field will also allow for only the data after 1900-01-01 and older than 18 years of age.
+* Additional validation for `dob` field introduced for Senders, Recipients and Sub-clients to enforce the data is entered in YYYY-MM-DD format. The field will also allow for only the data after 1900-01-01 and individuals of 18 years of age or older.
 
 ## 2022-04-12
 
