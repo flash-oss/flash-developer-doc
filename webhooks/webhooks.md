@@ -10,7 +10,7 @@ FlashFX uses webhooks to notify your application when a transaction event happen
 
 With webhooks, you can subscribe to the events of interest to trigger a subsequent action within your integration.
 
-There are two steps to begin using webhooks. Building a custom endpoint on your server and registering it via the [FlashConnect](https://connect.flash-fx.com) settings.
+There are two steps to begin using webhooks. Building a custom endpoint on your server and registering it via the [FlashConnect](https://connect.flash-fx.com/) settings.
 
 ### Building webhook endpoint
 
@@ -30,7 +30,7 @@ We advise that you acknowledge webhook request as early as possible.
 
 To ensure that webhook was sent by FlashFX and not a third party, we include the cryptographic signature in each request’s `flashfx-signature` header.
 
-Before you can verify a signature, you need to retrieve your endpoint’s secret from webhook settings in the [FlashConnect](https://connect.flash-fx.com). Each registered endpoint has a unique secret that is used to sign a payload delivered to you on each event. Steps to verify signature:
+Before you can verify a signature, you need to retrieve your endpoint’s secret from webhook settings in the [FlashConnect](https://connect.flash-fx.com/). Each registered endpoint has a unique secret that is used to sign a payload delivered to you on each event. Steps to verify signature:
 
 1. Extract signature from the request header
 2. Compute HMAC with SHA256 function. Use your endpoint secret as key and JSON payload string as a message.
@@ -89,9 +89,15 @@ Webhook requests come with event data. You can see all available event types in 
   "externalReference": "2233445566",
   "clearedAt": "2021-03-03T03:25:12.792Z",
   "statusMessage": "Deposit cleared",
-  "sender": {
+  "recipient": {
     "accountName": "ACME Inc",
-    "companyName": "ACME Inc"
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+    "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -115,9 +121,15 @@ Webhook requests come with event data. You can see all available event types in 
   "externalReference": "2233445566",
   "clearedAt": "2021-03-03T03:25:12.792Z",
   "statusMessage": "Cancelled by: john@example.com : ",
-  "sender": {
+  "recipient": {
     "accountName": "ACME Inc",
-    "companyName": "ACME Inc"
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+    "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -144,9 +156,15 @@ Webhook requests come with event data. You can see all available event types in 
   "statusMessage": "Deposit refunded",
   "refundedAt": "2021-03-03T03:28:43.936Z",
   "clearedAt": "2021-03-03T03:25:12.792Z",
-  "sender": {
+  "recipient": {
     "accountName": "ACME Inc",
-    "companyName": "ACME Inc"
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+    "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -173,9 +191,15 @@ Webhook requests come with event data. You can see all available event types in 
   "statusMessage": "Deposit refunded",
   "refundedAt": "2021-03-03T03:28:43.936Z",
   "clearedAt": "2021-03-03T03:25:12.792Z",
-  "sender": {
+  "recipient": {
     "accountName": "ACME Inc",
-    "companyName": "ACME Inc"
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+    "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",

@@ -4,6 +4,20 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2022-07-01
+
+### Added
+
+* New item in `deposit` and related webhooks:
+  * `recipient` - deposit recipient information as specified by deposit sender for this transaction:
+    * `accountName` &#x20;
+    * `accountNo`&#x20;
+    * `bsb`&#x20;
+* New item in `deposit.sender:`
+  * `bankName`&#x20;
+* New mutation to refund deposits:
+  * `refundDeposit(id:ID! input:RefundDepositInput): RefundDepositReply`
+
 ## 2022-04-22
 
 ### Changes
