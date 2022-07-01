@@ -20,7 +20,7 @@ By default, only yourself is allowed to deposit. However, we can enable third pa
 
 We can also enable the [sub-client](sub-clients.md) feature. It allows you to programmatically create client accounts for transaction purposes, with dedicated BSB and account number. You can give these bank account details to your clients to accept deposits. Once funds arrive, we will increase your account balance, and you will see a deposit with sub-client information linked to it.
 
-To browse your deposits, you can use our FlashConnect tool: [https://connect.flash-fx.com/](https://connect.flash-fx.com)
+To browse your deposits, you can use our FlashConnect tool: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
 
 {% hint style="info" %}
 Tip. You can simulate a deposit using the FlashConnect tool. Just go to the _Deposits_ page and click "SEND TEST DEPOSIT". It's available only in our development environment.\
@@ -123,7 +123,6 @@ If you choose to reject that deposit it goes through refunding statuses:
     # more fields available, see API schema
   }
 }
-
 ```
 {% endtab %}
 
@@ -140,6 +139,40 @@ If you choose to reject that deposit it goes through refunding statuses:
       "externalId": "PR.1vcl",
       "externalReference": "KX23249",
       "createdAt": "2021-03-18T22:32:01.010Z"
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### Refund deposit by ID
+
+{% tabs %}
+{% tab title="Request" %}
+```graphql
+mutation {
+  refundDeposit(
+    id: "6053d4e0e3bc655e0598a742"
+    input: { amount: 10, reason: "sent by mistake" }
+  ) {
+    success
+    code
+    message
+  }
+}
+
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "refundDeposit": {
+      "success": true,
+      "code": "REFUND_SENT",
+      "message": "Refund initiated successfully"
     }
   }
 }
