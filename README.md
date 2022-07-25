@@ -8,11 +8,11 @@ description: FlashFX Developer API documentation
 
 FlashFX API is [GraphQL](http://graphql.github.io/learn/queries/) based because GraphQL is simpler and easier than REST API and more developer friendly. Although, the data you send and receive is all JSON.
 
-FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com)
+FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com/)
 
 ## High level feature overview
 
-You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com)
+You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
 
 ### Instant local Australian deposit (aka pay-in)
 
@@ -50,7 +50,7 @@ You can send you FlashFX balance internationally via our API and enjoy instant d
 
 Your code would need to pre-create both sender and recipient before creating a payment for them.
 
-All the entities in our database (withdrawal, payment, sender, recipient) can hold your system's ID. See the `externalId` field in the [API docs](https://api.flash-fx.com).
+All the entities in our database (withdrawal, payment, sender, recipient) can hold your system's ID. See the `externalId` field in the [API docs](https://api.flash-fx.com/).
 
 Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state changes.
 
@@ -86,4 +86,4 @@ While we will endeavour to not introduce any breaking changes they might still o
 
 ### Complete API docs
 
-This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can send/receive is listed in the [API Playground](https://api.flash-fx.com) (click "**DOCS**" on the right hand side).
+This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can send/receive is listed in the [API Playground](https://api.flash-fx.com/) (click "**DOCS**" on the right hand side).

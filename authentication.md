@@ -16,7 +16,7 @@ Before doing any other API calls you have to obtain an auth token. It's a standa
 ```
 
 {% hint style="info" %}
-Tip: Use this handy website to parse the token contents: [jwt.io](https://jwt.io)
+Tip: Use this handy website to parse the token contents: [jwt.io](https://jwt.io/)
 {% endhint %}
 
 The token lifetime is **4 hours** at this time. We might change this value in the future.
@@ -40,7 +40,7 @@ This `login` mutation is a subject to change in the future.
 
 ### Getting a token
 
-1. After we enable you, go to the [https://api.flash-fx.com/](https://api.flash-fx.com) playground, click **"DOCS"** on the right to explore the possibilities.
+1. After we enable you, go to the [https://api.flash-fx.com/](https://api.flash-fx.com/) playground, click **"DOCS"** on the right to explore the possibilities.
 2. Find there the `login` mutation. Execute it to obtain your access token. For example:\
    `mutation { login(input: {email: "YOUR_EMAIL" password: "YOUR_PWD"}) {token message} }`
 3. Click the **"HTTP HEADERS"** on the bottom and add this: `{"authorization": "Bearer YOUR_TOKEN"}`. Replace the `YOUR_TOKEN` with the token you just got.
@@ -78,7 +78,7 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
-If using [GraphQL Playground](https://api.flash-fx.com) then click the "HTTP HEADERS" on the bottom left and paste there the following (replace the `YOUR_TOKEN` with the value you have just received form the above mutation):
+If using [GraphQL Playground](https://api.flash-fx.com/) then click the "HTTP HEADERS" on the bottom left and paste there the following (replace the `YOUR_TOKEN` with the value you have just received form the above mutation):
 
 ```javascript
 {
