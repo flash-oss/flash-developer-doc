@@ -94,7 +94,7 @@ Webhook requests come with event data. You can see all available event types in 
     "accountNo": "1839394",
     "bsb": "809387"
   },
-    "sender": {
+  "sender": {
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
