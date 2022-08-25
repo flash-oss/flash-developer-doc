@@ -78,10 +78,39 @@ Webhook requests come with event data. You can see all available event types in 
 **Deposits**
 
 {% tabs %}
+{% tab title="deposit_initiated" %}
+<pre class="language-json"><code class="lang-json"><strong>{
+</strong>  "event": "deposit_cleared",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "statusMessage": "Deposit initiated",
+  "recipient": {
+    "accountName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+  "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}</code></pre>
+{% endtab %}
+
 {% tab title="deposit_cleared" %}
-```javascript
-{
-  "event": "deposit_cleared",
+<pre class="language-json"><code class="lang-json"><strong>{
+</strong>  "event": "deposit_cleared",
   "id": "603f0198770d6595e3c83e0d",
   "amount": 100,
   "totalFee": 1,
@@ -106,12 +135,11 @@ Webhook requests come with event data. You can see all available event types in 
     "bsb": "809387",
     "externalId": "111222333"
   }
-}
-```
+}</code></pre>
 {% endtab %}
 
 {% tab title="deposit_cancelled" %}
-```javascript
+```json
 {
   "event": "deposit_cancelled",
   "id": "603f0198770d6595e3c83e0d",
@@ -143,7 +171,7 @@ Webhook requests come with event data. You can see all available event types in 
 {% endtab %}
 
 {% tab title="deposit_refunding" %}
-```javascript
+```json
 {
   "event": "deposit_refunding",
   "id": "603f0198770d6595e3c83e0d",
@@ -178,7 +206,7 @@ Webhook requests come with event data. You can see all available event types in 
 {% endtab %}
 
 {% tab title="deposit_refunded" %}
-```javascript
+```json
 {
   "event": "deposit_refunded",
   "id": "603f0198770d6595e3c83e0d",
@@ -217,7 +245,7 @@ Webhook requests come with event data. You can see all available event types in 
 
 {% tabs %}
 {% tab title="withdrawal_initiated" %}
-```javascript
+```json
 {
   "event": "withdrawal_initiated",
   "id": "51711af8c078ba061f623531",
@@ -237,7 +265,7 @@ Webhook requests come with event data. You can see all available event types in 
 {% endtab %}
 
 {% tab title="withdrawal_completed" %}
-```javascript
+```json
 {
   "event": "withdrawal_completed",
   "id": "51711af8c078ba061f623531",
@@ -259,7 +287,7 @@ Webhook requests come with event data. You can see all available event types in 
 {% endtab %}
 
 {% tab title="withdrawal_failed" %}
-```javascript
+```json
 {
   "event": "withdrawal_failed",
   "id": "51711af8c078ba061f623531",
@@ -279,7 +307,7 @@ Webhook requests come with event data. You can see all available event types in 
 {% endtab %}
 
 {% tab title="withdrawal_refunded" %}
-```javascript
+```json
 {
   "event": "withdrawal_refunded",
   "id": "51711af8c078ba061f623531",
@@ -309,7 +337,7 @@ Webhook requests come with event data. You can see all available event types in 
 {% endtab %}
 
 {% tab title="withdrawal_cancelled" %}
-```javascript
+```json
 {
   "event": "withdrawal_cancelled",
   "id": "51711af8c078ba061f623531",
