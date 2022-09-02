@@ -38,7 +38,7 @@ If you choose to reject that deposit it goes through refunding statuses:
 `INITIALISED`-><mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`CONFIRMED`→`REFUNDING`→`REFUNDED`&#x20;
 
 {% hint style="warning" %}
-The <mark style="color:orange;">REVIEWING</mark> is an optional manual action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review.
+The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
 {% endhint %}
 
 If FlashFX Compliance choose to reject that deposit it goes through following statuses:

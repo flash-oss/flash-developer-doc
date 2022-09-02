@@ -19,7 +19,7 @@ Having a recipient ID you can now withdraw money.
 
 1. You create a withdrawal. Your **balance goes down** by the withdrawal amount plus fee.\
    `INITIALISED`
-   1. We might manually review the transaction.\
+   1. We might **manually** review the transaction.\
       `INITIALISED`-> <mark style="color:orange;">`REVIEWING`</mark>
    2. If review goes well it will become pending.\
       <mark style="color:orange;">`REVIEWING`</mark>→ `PENDING`
@@ -37,7 +37,7 @@ Having a recipient ID you can now withdraw money.
    `CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, FlashFX keeps the fee. _**FINAL status**_.
 
 {% hint style="warning" %}
-The <mark style="color:orange;">REVIEWING</mark> is an optional manual action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review.
+The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
 {% endhint %}
 
 ### Most common status transitions
