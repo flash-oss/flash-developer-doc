@@ -31,15 +31,19 @@ Additionally, you can fake a deposit sent by your [sub-client](sub-clients.md). 
 
 As soon as we see a deposit in FlashFX controlled bank account(s) we create a deposit.
 
-(none) -> `INITIALISED` -> `CONFIRMED`
+`INITIALISED`-><mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`CONFIRMED`
 
 If you choose to reject that deposit it goes through refunding statuses:
 
-`INITIALISED` -> `CONFIRMED`→`REFUNDING`→`REFUNDED`&#x20;
+`INITIALISED`-><mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`CONFIRMED`→`REFUNDING`→`REFUNDED`&#x20;
+
+{% hint style="warning" %}
+The <mark style="color:orange;">REVIEWING</mark> is an optional manual action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review.
+{% endhint %}
 
 If FlashFX Compliance choose to reject that deposit it goes through following statuses:
 
-`INITIALISED`→`REFUNDING`→`REFUNDED`&#x20;
+`INITIALISED`→`REVIEWING`→`REFUNDING`→`REFUNDED`&#x20;
 
 ### Querying deposits
 

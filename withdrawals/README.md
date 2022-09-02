@@ -18,7 +18,13 @@ Having a recipient ID you can now withdraw money.
 ## Withdrawal processing statuses
 
 1. You create a withdrawal. Your **balance goes down** by the withdrawal amount plus fee.\
-   (none) → `INITIALISED`
+   `INITIALISED`
+   1. We might manually review the transaction.\
+      `INITIALISED`-> <mark style="color:orange;">`REVIEWING`</mark>
+   2. If review goes well it will become pending.\
+      <mark style="color:orange;">`REVIEWING`</mark>→ `PENDING`
+   3. Otherwise it gets cancelled.\
+      <mark style="color:orange;">`REVIEWING`</mark>→ `CANCELLED`
 2. The transaction is sent to the recipient bank for processing.\
    `INITIALISED` → `PENDING`
 3. `PENDING` →
@@ -30,11 +36,15 @@ Having a recipient ID you can now withdraw money.
 4. The recipient bank decided to return this transaction back to FlashFX.\
    `CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, FlashFX keeps the fee. _**FINAL status**_.
 
+{% hint style="warning" %}
+The <mark style="color:orange;">REVIEWING</mark> is an optional manual action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review.
+{% endhint %}
+
 ### Most common status transitions
 
 #### Happy path
 
-`INITIALISED`→`PENDING`→`CONFIRMED`
+`INITIALISED`→<mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`PENDING`→`CONFIRMED`
 
 #### Unhappy paths
 
@@ -46,6 +56,6 @@ Recipient bank rejects the payout:
 
 `INITIALISED`→`PENDING`→`FAILED`→`REFUNDED`
 
-Our banking provider rejects the payout:
+FlashFX Compliance team rejects the payout:
 
-`INITIALISED`→`FAILED`
+`INITIALISED`→`REVIEWING`→`CANCELLED`
