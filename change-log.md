@@ -12,6 +12,14 @@ description: History of changes to this API schema
   * _`REVIEWING` : deposit_/withdrawal _is being **manually** checked (e.g. compliance) before proceeding._
   * Added corresponding [webhook](webhooks/) event types: `deposit_reviewing` and `withdrawal_reviewing`.
 
+## 2022-08-25
+
+### Added
+
+* New [webhook](webhooks/) event type: `deposit_initiated` to notify that we received a deposit but not yet cleared it.
+  * Previously only the `deposit_cleared` was sent and customers had no idea we are holding (reviewing) the deposit.
+  * The `deposit_cleared` will be sent immediately as we approve (clear) the deposits. So, no changes here.
+
 ## 2022-07-01
 
 ### Added
