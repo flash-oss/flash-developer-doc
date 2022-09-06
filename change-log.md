@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2022-09-06
+
+### Added
+
+* Missing `expireAt` property to the `Quote` object returned by the `quote` query.
+
 ## 2022-09-02
 
 ### Added
