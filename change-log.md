@@ -4,6 +4,14 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2022-09-02
+
+### Added
+
+* New `REVIEWING` status to deposit and withdrawal status enum.
+  * _`REVIEWING` : deposit_/withdrawal _is being **manually** checked (e.g. compliance) before proceeding._
+  * Added corresponding [webhook](webhooks/) event types: `deposit_reviewing` and `withdrawal_reviewing`.
+
 ## 2022-07-01
 
 ### Added
