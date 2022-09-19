@@ -10,6 +10,10 @@ FlashFX API is [GraphQL](http://graphql.github.io/learn/queries/) based because 
 
 FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com/)
 
+### Complete API docs
+
+This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can send/receive is listed in the [API Playground](https://api.flash-fx.com/) (click "**DOCS**" on the right hand side).
+
 ## High level feature overview
 
 You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
@@ -84,6 +88,3 @@ For more detailed instructions head to the [Basics](basics/) page.
 
 While we will endeavour to not introduce any breaking changes they might still occur in the future. In that case we will communicate about the upcoming changes via your registered email.
 
-### Complete API docs
-
-This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can send/receive is listed in the [API Playground](https://api.flash-fx.com/) (click "**DOCS**" on the right hand side).
