@@ -64,3 +64,7 @@ It is a good idea to always send custom `user-agent` HTTP header value when doin
 
 * In case of troubleshooting we will be able to trace and mitigate your support questions **faster**.
 * You might be **blocked** by our automated firewall if your user agent is something generic like `curl`, `Java-http-client`, `python-requests`, `Ruby`, etc.
+
+### 429 Too many requests
+
+Our API have smart monitoring. It might temporary block your IP address if it thinks you are abusing the system. There are many various scenarios when you can be blocked, but we won't going to disclose them at any point of time due to security reasons.
