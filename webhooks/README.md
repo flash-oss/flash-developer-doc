@@ -16,6 +16,19 @@ There are two types of webhooks in FlashFX.
 
 The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections) (3XX codes).
 
+### Security
+
+#### Cryptographic signature
+
+All webhook HTTP requests carry a cryptographic signature. Ad hoc and regular webhooks do it slightly different though.
+
+#### FlashFX webhook request IP address
+
+All webhook HTTP requests would be coming from these IP addresses:
+
+* Development environment: 52.62.195.119
+* Production environment: 52.62.138.234
+
 ### Example payloads
 
 **Deposits**
