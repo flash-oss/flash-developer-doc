@@ -46,7 +46,7 @@ For every company registered as a sub-client there must be **one contact person 
 If the above fields are not set, the sub-client will be created as `individual` type.
 
 {% hint style="info" %}
-Note: The above personal data submission [requirements](https://developer.flash-fx.com/sub-clients#creating-a-sub-client) should be as equally followed for the company contact person with an exception of `address` property, which can be a company address in this case. &#x20;
+Note: The above personal data submission [requirements](sub-clients.md#creating-a-sub-client) should be as equally followed for the company contact person with an exception of `address` property, which can be a company address in this case. &#x20;
 {% endhint %}
 
 You can find the description of each field in the GraphQL API schema.
