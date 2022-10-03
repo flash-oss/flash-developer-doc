@@ -27,7 +27,7 @@ This action creates real bank account. If you ever submit fake, unreal, testing,
 
 Please add all possible precautions, processes, staff training, warning messages, and validation checks to you system(s) before creating a sub-client.
 
-Please follow our latest requitements for the proper sub-client data submission:
+Please follow our latest requirements for the proper sub-client data submission:
 
 1. Provide proper`firstName`and`lastName`
 2. Provide proper`mobile`number
