@@ -7,7 +7,7 @@ description: Generate Virtual Account Numbers for your clients for collection
 The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. They can be issued for individuals as well as companies or other organisations.
 
 {% hint style="info" %}
-Note. This feature is **OFF** by default. Contact us if you want it.
+Note: This feature is **OFF** by default. Contact us if you want it.
 {% endhint %}
 
 Each sub-client will receive a dedicated **BSB** and **account number** that you or your clients can use to accept domestic AUD transfers within Australia. The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).
@@ -38,12 +38,16 @@ Please follow our latest requirements for the proper sub-client data submission:
 
 There are two types of sub-clients: `company` and `individual`.&#x20;
 
-If you are creating a sub-client of the company type, we require you to provide extra details:
+For every company registered as a sub-client there must be **one contact person individual data** submitted as well. Ideally the contact person should be a **company director** or have similar role. Therefore, if you are creating a sub-client of the company type, we require you to provide **extra** **details**:
 
 * `legalName` - company legal name
 * `businessNumber` - company business number (e.g ABN in Australia)
 
 If the above fields are not set, the sub-client will be created as `individual` type.
+
+{% hint style="info" %}
+Note: The above personal data submission [requirements](https://developer.flash-fx.com/sub-clients#creating-a-sub-client) should be as equally followed for the company contact person with an exception of `address` property, which can be a company address in this case. &#x20;
+{% endhint %}
 
 You can find the description of each field in the GraphQL API schema.
 
