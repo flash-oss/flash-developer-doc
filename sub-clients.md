@@ -38,7 +38,7 @@ Please follow our latest requirements for the proper sub-client data submission:
 
 There are two types of sub-clients: `company` and `individual`.&#x20;
 
-For every company registered as a sub-client there must be **one contact person individual data** submitted as well. Ideally the contact person should be a **company director** or have similar role. Therefore, if you are creating a sub-client of the company type, we require you to provide **extra** **details**:
+For every `company` registered as a sub-client there must be **one contact person individual data** submitted as well. Ideally the contact person should be a **company director** or have similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra** **details**:
 
 * `legalName` - company legal name
 * `businessNumber` - company business number (e.g ABN in Australia)
