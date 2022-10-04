@@ -32,8 +32,8 @@ Please follow our latest requirements for the proper sub-client data submission:
 1. Provide proper`firstName`and`lastName`
 2. Provide proper`mobile`number
 3. Provide proper `dob:` **the person must be under 65 years of age**&#x20;
-4. Provide proper residential `address` including unit and street number
-5. Provide proper`idDoc (type`, `docNumber`and `issuer)`based on the  address from item 4. For addresses in Australia either driver’s license or passport are accepted. For non-Australian addresses only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
+4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract. By default you're only allowed to have local Australian sub-accounts. **Any non-Australian entities should be pre-approved based on their location and industry relevance for FlashFX.**  &#x20;
+5. Provide proper`idDoc (type`, `docNumber` and `issuer)`based on the sub-client contact person address. For Australian residents either driver’s license or passport are accepted. For non-Australian residents only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
 {% endhint %}
 
 There are two types of sub-clients: `company` and `individual`.&#x20;
