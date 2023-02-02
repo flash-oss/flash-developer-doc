@@ -25,4 +25,3 @@
 * [Reference data](reference-data/README.md)
   * [Bank information](reference-data/bank-information.md)
 * [Change log](change-log.md)
-* [Security](security.md)
