@@ -27,7 +27,7 @@ All webhook HTTP requests carry a cryptographic signature. Ad hoc and regular we
 All webhook HTTP requests would be coming from these IP addresses:
 
 * Development environment: 52.62.195.119
-* Production environment: 52.62.138.234
+* Production environment: 52.62.138.234 and 52.62.3.195
 
 ### Example payloads
 
@@ -63,7 +63,8 @@ All webhook HTTP requests would be coming from these IP addresses:
     "bsb": "809387",
     "externalId": "111222333"
   }
-}</code></pre>
+}
+</code></pre>
 
 </details>
 
@@ -97,7 +98,8 @@ All webhook HTTP requests would be coming from these IP addresses:
     "bsb": "809387",
     "externalId": "111222333"
   }
-}</code></pre>
+}
+</code></pre>
 
 </details>
 
@@ -131,7 +133,8 @@ All webhook HTTP requests would be coming from these IP addresses:
     "bsb": "809387",
     "externalId": "111222333"
   }
-}</code></pre>
+}
+</code></pre>
 
 </details>
 
