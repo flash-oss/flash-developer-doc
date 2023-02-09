@@ -8,7 +8,7 @@
 {
   withdrawals {
     id
-    recipient { fullName }
+    recipient { firstName lastName }
     # there are many other properties
   }
 }
@@ -23,19 +23,22 @@
       {
         "id": "5b04c62ec0bf606bf216ae21",
         "recipient": {
-          "fullName": "John Smith"
+          "firstName": "John"
+          "lastName": "Smith"
         }
       },
       {
         "id": "5b04c6bfc0bf606bf216af06",
         "recipient": {
-          "fullName": "John Smith"
+          "firstName": "John"
+          "lastName": "Smith"
         }
       },
       {
         "id": "5b04c8e3c0bf606bf216b026",
         "recipient": {
-          "fullName": "John Smith"
+          "firstName": "John"
+          "lastName": "Smith"
         }
       }
     ]
@@ -113,6 +116,4 @@
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
