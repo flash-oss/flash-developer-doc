@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2023-02-08
+
+### Removed (BREAKING)
+
+* Removed the auto-creation of `id` for embedded senders and recipients. This means that if you (or FlashFX system) have created withdrawals and payments without explicitly providing sender or recipient ID then from now on the `sender.id` or `recipient.id` will be `null`. But, if you create payments or withdraals via this API then you will always have `payment.sender.id` or `withdrwal.recipient.id`.
+
 ## 2022-09-06
 
 ### Added
