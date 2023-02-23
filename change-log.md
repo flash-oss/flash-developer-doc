@@ -8,8 +8,8 @@ description: History of changes to this API schema
 
 ### Added
 
-* Fixed [webhook](webhooks/) event type: `withdrawal_reviewing`. Now event will trigger sending the [webhook](webhooks/) if you subscribe to it.&#x20;
-* Added [example](https://developer.flash-fx.com/webhooks#withdrawal\_reviewing) for `withdrawal_reviewing` [webhook](webhooks/)
+* Fixed the `withdrawal_reviewing` [webhook](webhooks/). It was never sent before even though declared on the Flash Connect website.&#x20;
+* Added [example](https://developer.flash-fx.com/webhooks#withdrawal\_reviewing) for the `withdrawal_reviewing` [webhook](webhooks/).
 
 ## 2023-02-08
 
