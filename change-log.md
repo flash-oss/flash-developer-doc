@@ -4,6 +4,13 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2023-02-24
+
+### Added
+
+* `idempotencyKey` to `createPayment` input.
+* `idempotencyKey` to `createWithdrawal` input.
+
 ## 2023-02-23
 
 ### Added

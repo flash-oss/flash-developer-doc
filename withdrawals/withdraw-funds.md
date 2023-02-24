@@ -24,6 +24,7 @@ mutation {
       acceptingInstructionInstitutionSenderId: "5eaf7159cb328c56f94f936d",
       acceptingMoneyInstitutionSenderId: "5eaf9e9b1c84a7678d3f7c6c"
       externalId: "12344321"
+      idempotencyKey: "12344321"
     }
   ) {
     success
