@@ -4,12 +4,13 @@ description: History of changes to this API schema
 
 # Change log
 
-## 2023-02-27
+## 2023-03-03
 
 ### Added
 
 * `idempotencyKey` to `createPayment` input.
 * `idempotencyKey` to `createWithdrawal` input.
+* New [sub-client](sub-clients.md) status - `UNAPPROVED`.
 
 ## 2023-02-23
 
