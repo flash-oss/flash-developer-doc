@@ -72,37 +72,7 @@ Please, send us the final funds recipient. If sending to self then please provid
 
 We recommend against continuous polling for payment status changes. Instead, please use `callbackUri`.
 
-The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon (within several seconds) after the initial create payment call - but may be delayed in some cases. The example JSON payloads are below.
-
-{% tabs %}
-{% tab title="currency_converted" %}
-```javascript
-{
-  "event": "currency_converted",
-  "id": "60711af8c078ba061f623531",
-  "fromAmount": 1000,
-  "fromCurrency": "AUD",
-  "toAmount": 411.04,
-  "toCurrency": "USD",
-  "externalId": "12344321"
-}
-```
-{% endtab %}
-
-{% tab title="payment_complete" %}
-```javascript
-{
-  "event": "payment_complete",
-  "id": "60711af8c078ba061f623531",
-  "fromAmount": 1000,
-  "fromCurrency": "AUD",
-  "toAmount": 411.04,
-  "toCurrency": "USD",
-  "externalId": "12344321"
-}
-```
-{% endtab %}
-{% endtabs %}
+The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon (within several seconds) after the initial create payment call - but may be delayed in some cases. The example JSON payloads can be found on the [Webhooks page](../webhooks/#example-payloads).
 
 Please note that `toAmount` (or `fromAmount`) and other fluctuating payment properties can change during payment execution.
 
