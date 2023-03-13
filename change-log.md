@@ -4,6 +4,13 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2023-03-15
+
+### Added
+
+* Added the `withdrawal_pending` [webhook](webhooks/). Invoked after the transaction is sent to the recipient bank for processing.&#x20;
+* Added [example](https://developer.flash-fx.com/webhooks#withdrawal\_pending) for the `withdrawal_pending` [webhook](webhooks/).
+
 ## 2023-03-03
 
 ### Added

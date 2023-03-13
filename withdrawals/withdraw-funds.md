@@ -95,8 +95,58 @@ The optional `callbackUri` will be invoked several times during the processing o
   "event": "withdrawal_initiated",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
+  "totalFee": 1,
   "currency": "AUD",
-  "externalId": "12344321"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="withdrawal_reviewing" %}
+```javascript
+{
+  "event": "withdrawal_reviewing",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "statusMessage": "Awaiting manual compliance"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="withdrawal_pending" %}
+```javascript
+{
+  "event": "withdrawal_pending",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "statusMessage": "Sent to recipient bank"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
 }
 ```
 {% endtab %}
@@ -107,8 +157,18 @@ The optional `callbackUri` will be invoked several times during the processing o
   "event": "withdrawal_completed",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
+  "totalFee": 1,
   "currency": "AUD",
-  "externalId": "12344321"
+  "externalId": "12344321",
+  "statusMessage": "Transaction Confirmed",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
 }
 ```
 {% endtab %}
@@ -119,8 +179,46 @@ The optional `callbackUri` will be invoked several times during the processing o
   "event": "withdrawal_failed",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
+  "totalFee": 1,
   "currency": "AUD",
-  "externalId": "12344321"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="withdrawal_refunded" %}
+```javascript
+{
+  "event": "withdrawal_refunded",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "refundAmount": 2000,
+  "currency": "AUD",
+  "externalId": "12344321",
+  "refundReason": "No account or incorrect account number",
+  "statusMessage": "Payout reversal",
+  "refundedAt": "2021-03-04T15:21:11.920Z",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "recipient": {
+    "displayName": "John Smith",
+    "bsb": "012620",
+    "accountNo": "89900998"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "John Smith",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
 }
 ```
 {% endtab %}
@@ -128,11 +226,20 @@ The optional `callbackUri` will be invoked several times during the processing o
 {% tab title="withdrawal_cancelled" %}
 ```javascript
 {
-  "event": "withdrawal_failed",
+  "event": "withdrawal_cancelled",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
+  "totalFee": 1,
   "currency": "AUD",
-  "externalId": "12344321"
+  "externalId": "12344321",
+  "statusMessage": "Withdrawal cancelled",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
 }
 ```
 {% endtab %}

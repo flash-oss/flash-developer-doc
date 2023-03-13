@@ -280,6 +280,56 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <details>
 
+<summary>withdrawal_reviewing</summary>
+
+```json
+{
+  "event": "withdrawal_reviewing",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "statusMessage": "Awaiting manual compliance"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>withdrawal_pending</summary>
+
+```json
+{
+  "event": "withdrawal_pending",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "statusMessage": "Sent to recipient bank"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
 <summary>withdrawal_completed</summary>
 
 ```json
