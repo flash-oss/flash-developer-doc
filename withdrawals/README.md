@@ -59,3 +59,25 @@ Recipient bank rejects the payout:
 FlashFX Compliance team rejects the payout:
 
 `INITIALISED`→`REVIEWING`→`CANCELLED`
+
+### Testing/simulating unhappy paths
+
+Typically, you want to adapt your system to handle the following common withdrawal scenarios:
+
+#### 1. Too long in PENDING status
+
+We are doing a manual review of your withdrawal, we sent your Compliance Team (or else) an email message requesting more information. In this case the withdrawal can be in `PENDING` state for up to 10 days (5 business days + 2 weekends + an occasional holiday).
+
+You can simulate the behaviour. Your `externalReference` must include this text: `HALT_AML`. For example: `"testing HALT_AML attempt 2"`. The withdrawal will get stuck in `PENDING` forever.
+
+#### 2. Fails AML and gets cancelled
+
+We checked the data you sent us for withdrawal. We didn't like it. So we cancel it immediately.
+
+You can simulate the behaviour. Your `externalReference` must include this text: `FAIL_AML`. For example: `"testing FAIL_AML attempt 4"`. The withdrawal will be cancelled next moment after you submit it.
+
+#### 3. Recipient bank rejects the money
+
+An often scenario in Australian banking system is when a local transaction went seemingly fine. However, few days later a recipient bank decides to return the money. There are multiple reasons for that. For example: account number does not exist, account was closed, account is of a wrong currency, etc.
+
+You can simulate the behaviour. Your `externalReference` must include this text: `FAIL_ACC`. For example: `"testing FAIL_ACC attempt 8"`. The withdrawal will be completed, and next moment failed and refunded.
