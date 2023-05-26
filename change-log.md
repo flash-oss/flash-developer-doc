@@ -4,6 +4,13 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2023-05-25
+
+### Changes
+
+* Improved mobile phone validation. Now if mobile starts with "00" it's treated as if it starts with "+".
+* Quote size accepts positive numbers only.
+
 ## 2023-03-15
 
 ### Added
