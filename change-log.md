@@ -11,6 +11,10 @@ description: History of changes to this API schema
 * Improved mobile phone validation. Now if mobile starts with "00" it's treated as if it starts with "+".
 * Quote size accepts positive numbers only.
 
+### Changes (BREAKING)
+
+* The `recipient.mobile` and `sender.mobile` now accept only valid international phone numbers. However, fields are recommended and can be empty.
+
 ## 2023-03-15
 
 ### Added
