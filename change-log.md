@@ -13,7 +13,7 @@ description: History of changes to this API schema
 
 ### Changes (BREAKING)
 
-* The `recipient.mobile` and `sender.mobile` now accept only valid international phone numbers. However, fields are recommended and can be empty.
+* The `recipient.mobile` and `sender.mobile` can accept only **valid** international phone numbers.
 
 ## 2023-03-15
 
