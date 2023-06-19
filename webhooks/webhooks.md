@@ -6,7 +6,7 @@ description: How to setup web hooks for your integration
 
 ### Event notifications with webhooks
 
-FlashFX uses webhooks to notify your application when a transaction event happens in your account. This includes status update of your withdrawal, clearing of the incoming deposit, and more.
+Flash Payments uses webhooks to notify your application when a transaction event happens in your account. This includes status update of your withdrawal, clearing of the incoming deposit, and more.
 
 With webhooks, you can subscribe to the events of interest to trigger a subsequent action within your integration.
 
@@ -28,7 +28,7 @@ We advise that you acknowledge webhook request as early as possible.
 
 **Securing the request**
 
-To ensure that webhook was sent by FlashFX and not a third party, we include the cryptographic signature in each request’s `flashfx-signature` header.
+To ensure that webhook was sent by Flash Payments and not a third party, we include the cryptographic signature in each request’s `flashfx-signature` header.
 
 Before you can verify a signature, you need to retrieve your endpoint’s secret from webhook settings in the [FlashConnect](https://connect.flash-fx.com/). Each registered endpoint has a unique secret that is used to sign a payload delivered to you on each event. Steps to verify signature:
 

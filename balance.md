@@ -38,7 +38,7 @@ Paste this query to the GraphQL Playground
 
 Top up your development account balance
 
-When you need to top up your development account balance please reach out to our FlashFX Dev Support team either by email or in our shared Slack chat and we will be happy to help you during our business hours.
+When you need to top up your development account balance please reach out to our Flash Payments Dev Support team either by email or in our shared Slack chat and we will be happy to help you during our business hours.
 
 
 

@@ -9,7 +9,7 @@ We are legally obliged to collect the actual recipient details. Please, do not s
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.flash-fx.com/) for other recipient details options.
 
 * `recipient` and `recipients` queries - **read** your address book.
-* `createRecipient` - **creates** a new record in the FlashFX database.
+* `createRecipient` - **creates** a new record in the Flash Payments database.
 * `updateRecipient` - **updates** an existing recipient.
 * `deleteRecipient` - **deletes** an existing recipient.
 
@@ -84,7 +84,7 @@ Please, send us the final funds recipient. If sending to self then please provid
 #### Create a recipient
 
 {% hint style="info" %}
-In addresses the `suburb` is an Australian suburb. For other countries you should put the city \(e.g. Manila or London\) or any other small administrative area name.
+In addresses the `suburb` is an Australian suburb. For other countries you should put the city (e.g. Manila or London) or any other small administrative area name.
 {% endhint %}
 
 {% tabs %}
@@ -232,6 +232,4 @@ mutation {
 ```
 {% endtab %}
 {% endtabs %}
-
-
 

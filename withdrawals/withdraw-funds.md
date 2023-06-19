@@ -1,5 +1,5 @@
 ---
-description: This will send money from your FlashFX balance to bank account(s)
+description: This will send money from your Flash Payments balance to bank account(s)
 ---
 
 # Withdraw funds

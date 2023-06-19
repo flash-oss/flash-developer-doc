@@ -10,7 +10,7 @@ After fully registering with us, you get a BSB and a dedicated bank account numb
 Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
 {% endhint %}
 
-Every deposit to this account would increase your FlashFX balance.
+Every deposit to this account would increase your Flash Payments balance.
 
 You can receive notifications via [Webhooks](webhooks/webhooks.md) about every deposit.
 
@@ -29,7 +29,7 @@ Additionally, you can fake a deposit sent by your [sub-client](sub-clients.md). 
 
 ### Deposit processing statuses
 
-As soon as we see a deposit in FlashFX controlled bank account(s) we create a deposit.
+As soon as we see a deposit in Flash Payments controlled bank account(s) we create a deposit.
 
 `INITIALISED`-><mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`CONFIRMED`
 
@@ -38,10 +38,10 @@ If you choose to reject that deposit it goes through refunding statuses:
 `INITIALISED`-><mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`CONFIRMED`→`REFUNDING`→`REFUNDED`&#x20;
 
 {% hint style="warning" %}
-The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
+The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
 {% endhint %}
 
-If FlashFX Compliance choose to reject that deposit it goes through following statuses:
+If Flash Payments Compliance choose to reject that deposit it goes through following statuses:
 
 `INITIALISED`→`REVIEWING`→`REFUNDING`→`REFUNDED`&#x20;
 

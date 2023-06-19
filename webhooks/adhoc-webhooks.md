@@ -4,11 +4,11 @@ description: How to secure your callback endpoints
 
 # Ad hoc webhooks
 
-When [sending a payment](../payments/send-funds.md) or [creating a local withdrawal](../withdrawals/withdraw-funds.md) you can provide us a webhook \(callback\) URI - `callbackUri`. We will call it when a payment or withdrawal status changes.
+When [sending a payment](../payments/send-funds.md) or [creating a local withdrawal](../withdrawals/withdraw-funds.md) you can provide us a webhook (callback) URI - `callbackUri`. We will call it when a payment or withdrawal status changes.
 
-We recommend API clients to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make sure it's FlashFX calling your webhook endpoint. For example:
+We recommend API clients to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make sure it's Flash Payments calling your webhook endpoint. For example:
 
-```text
+```
 https://my-webhooks.example.com/flashfx?signature=oZaDlmfXbdXSKCnuWrvos2ImVBFX2Ru5
 ```
 
@@ -27,7 +27,7 @@ You would need to implement two functions.
 
 ### Generating signatures
 
-Node.js pseudo code for creating transfers in FlashFX API.
+Node.js pseudo code for creating transfers in Flash Payments API.
 
 ```javascript
 const secret = 'abcdefg';
@@ -43,10 +43,10 @@ const callbackUri =
   "https://my-webhooks.example.com/flashfx?signature=" + signature;
 const externalId = stringIdFromMyDatabase;
 
-// Use both callbackUri and externalId when creating transfers with FlashFX API
+// Use both callbackUri and externalId when creating transfers with Flash Payments API
 ```
 
-The code above creates a `callbackUri` and `externalId` variables. Use both of them when creating a transfer in FlashFX API.
+The code above creates a `callbackUri` and `externalId` variables. Use both of them when creating a transfer in Flash Payments API.
 
 ### Verifying signatures
 
@@ -66,4 +66,3 @@ function myCallbackEndpointHandler(req, res) {
   // proceed with the webhook processing
 }
 ```
-

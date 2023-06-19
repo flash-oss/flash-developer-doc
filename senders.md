@@ -9,7 +9,7 @@ We are legally obliged to collect the actual sender details. Please, do not send
 If receiving from yourself then please provide your own details. See the DOCS in [Playground](https://api.flash-fx.com/) for other sender details options.
 
 * `sender` and `senders` queries - **read** your address book.
-* `createSender` - **creates** a new record in the FlashFX database.
+* `createSender` - **creates** a new record in the Flash Payments database.
 * `updateSender` - **updates** an existing sender.
 * `deleteSender` - **deletes** an existing sender.
 

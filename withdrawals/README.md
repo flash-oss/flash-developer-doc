@@ -31,13 +31,13 @@ Having a recipient ID you can now withdraw money.
    * `CONFIRMED` - _the recipient bank have the money now_. Does not mean the beneficiary account number was credited though. Mostly _**FINAL status**_. Except when bank decides to return the funds, the withdrawal gets refunded (see step 4).
    * `FAILED` - NOT FINAL status. Depending on the processing error we have three scenarios now.
      * `REFUNDED` - see step 4 below.
-     * `CANCELLED` - manual action. Your **balance goes up** by the amount, FlashFX keeps the fee. _**FINAL status.**_
+     * `CANCELLED` - manual action. Your **balance goes up** by the amount, Flash Payments keeps the fee. _**FINAL status.**_
      * `PENDING` - rare case - retrying. Sometimes it might work. Go to item 3.
-4. The recipient bank decided to return this transaction back to FlashFX.\
-   `CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, FlashFX keeps the fee. _**FINAL status**_.
+4. The recipient bank decided to return this transaction back to Flash Payments.\
+   `CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, Flash Payments keeps the fee. _**FINAL status**_.
 
 {% hint style="warning" %}
-The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by FlashFX Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
+The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
 {% endhint %}
 
 ### Most common status transitions
@@ -56,7 +56,7 @@ Recipient bank rejects the payout:
 
 `INITIALISED`→`PENDING`→`FAILED`→`REFUNDED`
 
-FlashFX Compliance team rejects the payout:
+Flash Payments Compliance team rejects the payout:
 
 `INITIALISED`→`REVIEWING`→`CANCELLED`
 

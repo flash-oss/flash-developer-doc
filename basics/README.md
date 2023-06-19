@@ -1,5 +1,5 @@
 ---
-description: General information how to start using Flash FX API
+description: General information how to start using Flash Payments API
 ---
 
 # Basics
@@ -7,7 +7,7 @@ description: General information how to start using Flash FX API
 {% hint style="info" %}
 ### Assumptions
 
-The examples below assume you are a verified customer of FlashFX and have been enabled for API access.
+The examples below assume you are a verified customer of Flash Payments and have been enabled for API access.
 {% endhint %}
 
 ### GraphQL Playground
@@ -60,7 +60,7 @@ Do not ever send us `"N/A"` or `"NA"` or `"NULL"` or `"null"` or `"nil"` or any 
 
 ### The user-agent HTTP header
 
-It is a good idea to always send custom `user-agent` HTTP header value when doing requests to FlashFX API. Here is why:
+It is a good idea to always send custom `user-agent` HTTP header value when doing requests to Flash Payments API. Here is why:
 
 * In case of troubleshooting we will be able to trace and mitigate your support questions **faster**.
 * You might be **blocked** by our automated firewall if your user agent is something generic like `curl`, `Java-http-client`, `python-requests`, `Ruby`, etc.

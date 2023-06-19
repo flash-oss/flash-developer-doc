@@ -1,14 +1,14 @@
 ---
-description: FlashFX Developer API documentation
+description: Flash Payments Developer API documentation
 ---
 
 # Overview
 
 ## General information
 
-FlashFX API is [GraphQL](http://graphql.github.io/learn/queries/) based because GraphQL is simpler and easier than REST API and more developer friendly. Although, the data you send and receive is all JSON.
+Flash Payments API is [GraphQL](http://graphql.github.io/learn/queries/) based because GraphQL is simpler and easier than REST API and more developer friendly. Although, the data you send and receive is all JSON.
 
-FlashFX API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com/)
+Flash Payments API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com/)
 
 ### Complete API docs
 
@@ -26,11 +26,11 @@ You would get a dedicated Australian BSB and a bank account number.
 Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
 {% endhint %}
 
-Any funds deposited to that account would increase your FlashFX balance. We preserve the provided payment reference of every deposit for your further utilisation. E.g. invoice number or else.
+Any funds deposited to that account would increase your Flash Payments balance. We preserve the provided payment reference of every deposit for your further utilisation. E.g. invoice number or else.
 
 By default, only yourself is allowed to deposit to it. However, the third party deposits are also possible. Although, we would need to enable this setting for you separately.
 
-Sometimes, banks can delay your deposit by up to 24 hours. This should be expected. But typically, deposits are reflected in your FlashFX balance immediately.
+Sometimes, banks can delay your deposit by up to 24 hours. This should be expected. But typically, deposits are reflected in your Flash Payments balance immediately.
 
 If set, you would get a webhook (aka callback) notification about every deposit made to your bank account. Go to the [https://connect.flash-fx.com](https://connect.flash-fx.com) to setup a deposit webhook.
 
@@ -38,7 +38,7 @@ You can manually reject unwanted deposits via the [https://connect.flash-fx.com]
 
 ### Local Australian withdrawal (aka pay-out)
 
-This API allows you to withdraw your FlashFX balance. By default, only yourself is allowed to receive those funds. The third party withdrawals (aka payouts) are also possible. Although, we would need to enable this setting for you separately.
+This API allows you to withdraw your Flash Payments balance. By default, only yourself is allowed to receive those funds. The third party withdrawals (aka payouts) are also possible. Although, we would need to enable this setting for you separately.
 
 If your payout is a part of FX payments, we are legally obliged to use classic Australian payment system a.k.a. Direct Entry. It would take from 0 up to few hours to deliver such funds. Otherwise, payouts are delivered to the recipient instantly.
 
@@ -50,7 +50,7 @@ Payouts can also be done via the [https://connect.flash-fx.com](https://connect.
 
 ### Send or receive money internationally
 
-You can send you FlashFX balance internationally via our API and enjoy instant delivery to countries with local instant payment systems, e.g. Philippines. By the way, cash payments to Philippines are also supported.
+You can send you Flash Payments balance internationally via our API and enjoy instant delivery to countries with local instant payment systems, e.g. Philippines. By the way, cash payments to Philippines are also supported.
 
 Your code would need to pre-create both sender and recipient before creating a payment for them.
 
@@ -58,7 +58,7 @@ All the entities in our database (withdrawal, payment, sender, recipient) can ho
 
 Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state changes.
 
-In most cases you can send money to your FlashFX balance. This can be automated. You will receive a webhook notification when we see you sending to FlashFX from other countries.
+In most cases you can send money to your Flash Payments balance. This can be automated. You will receive a webhook notification when we see you sending to Flash Payments from other countries.
 
 ### Security
 
@@ -77,7 +77,7 @@ API rate limiting is in place to ensure stable performance of our service and pr
 ## How to start
 
 1. Contact with us via [this page](https://www.flash-fx.com/connect) or by clicking the Intercom button on the bottom right of this page.
-2. Explain what kind of services you are looking from FlashFX.
+2. Explain what kind of services you are looking from Flash Payments.
 3. We will examine your needs and explain how to get access to our UAT environment.
 
 For more detailed instructions head to the [Basics](basics/) page.

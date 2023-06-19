@@ -6,7 +6,7 @@ description: Two types of the webhooks
 
 The main triggers for all webhooks - are payment or withdrawal status changes. E.g. when a withdrawal goes from `PENDING` to `CONFIRMED` status.
 
-There are two types of webhooks in FlashFX.
+There are two types of webhooks in Flash Payments.
 
 * [Regular webhooks](webhooks.md) - a URL would need to be saved to your [FlashConnect](https://connect.flash-fx.com/) settings. All types of events.
   * You can lookup the history of all the HTTP requests and responses, their JSON bodies and headers.
@@ -22,7 +22,7 @@ The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https
 
 All webhook HTTP requests carry a cryptographic signature. Ad hoc and regular webhooks do it slightly different though.
 
-#### FlashFX webhook request IP address
+#### Flash Payments webhook request IP address
 
 All webhook HTTP requests would be coming from these IP addresses:
 

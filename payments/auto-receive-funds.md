@@ -4,7 +4,7 @@ description: Automatically receive and convert funds from other countries and cu
 
 # Auto receive funds
 
-Some customers can automatically receive funds from overseas. Meaning, if we detect an overseas deposit to the FlashFX controlled bank account(s) then we can automatically create an inbound payment, convert funds, and top up your FlashFX balance with AUD.
+Some customers can automatically receive funds from overseas. Meaning, if we detect an overseas deposit to the Flash Payments controlled bank account(s) then we can automatically create an inbound payment, convert funds, and top up your Flash Payments balance with AUD.
 
 {% hint style="warning" %}
 Note!\
@@ -19,9 +19,9 @@ Here is how it looks step by step.
 2. You, or your [Sub-client](../sub-clients.md), would have a special bank account in, say, SEPA zone. Find the details below.
    * The account number and **payment reference** depends on the currency and country you wish to deposit to. E.g. the EUR currency account is usually a British IBAN (starts with "GB").
 3. You, or your [Sub-client](../sub-clients.md), would deposit money to it. Make sure to submit the exact **payment reference** we told you! Otherwise, your funds will be returned.
-4. The FlashFX would detect the account funding event and automatically create a EUR->AUD payment for you.
+4. The Flash Payments would detect the account funding event and automatically create a EUR->AUD payment for you.
 5. You would receive at least two webhook notifications - `payment_created` and `payment_complete`.
-6. Your FlashFX AUD balance would increase accordingly.
+6. Your Flash Payments AUD balance would increase accordingly.
 
 To find which foreign currency bank account you would need to deposit to, please go to the [FlashConnect](https://connect.flash-fx.com/) and find there the list of inbound currencies we support and the corresponding bank account numbers. It's called the **"Funding Accounts"** throughout the user interface.
 
