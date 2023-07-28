@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2023-07-28
+
+### Changes
+
+* Our system always allowed `accountNo` to have letter. However, our API forced digits only. So, from now on, when you use `createRecipient`, your `accountNo` can have both letters and digits.
+
 ## 2023-05-25
 
 ### Changes
