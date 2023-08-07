@@ -12,7 +12,7 @@ The examples below assume you are a verified customer of Flash Payments and have
 
 ### GraphQL Playground
 
-All the GraphQL queries can be sent via the [GraphQL Playground](https://api.flash-payments.com/) or as a HTTP POST request to `https://api.flash-fx.com`. Example:
+All the GraphQL queries can be sent via the [GraphQL Playground](https://api.flash-payments.com/) or as a HTTP POST request to `https://api.flash-payments.com`. Example:
 
 ```bash
 curl -X POST 'https://api.flash-payments.com' \
