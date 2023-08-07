@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Changes
 
-* Change links from [flash-fx.com](https://flash-fx.com/) to [flash-payments.com](https://flash-payments.com/) domain. Old domain will continue to working unit future notice.&#x20;
+* Changed links from [flash-fx.com](https://flash-fx.com/) to [flash-payments.com](https://flash-payments.com/) domain. Old domain will continue working unit future notice.
 
 ## 2023-07-28
 
