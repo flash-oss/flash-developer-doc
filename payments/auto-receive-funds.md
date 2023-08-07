@@ -23,7 +23,7 @@ Here is how it looks step by step.
 5. You would receive at least two webhook notifications - `payment_created` and `payment_complete`.
 6. Your Flash Payments AUD balance would increase accordingly.
 
-To find which foreign currency bank account you would need to deposit to, please go to the [FlashConnect](https://connect.flash-fx.com/) and find there the list of inbound currencies we support and the corresponding bank account numbers. It's called the **"Funding Accounts"** throughout the user interface.
+To find which foreign currency bank account you would need to deposit to, please go to the [FlashConnect](https://connect.flash-payments.com/) and find there the list of inbound currencies we support and the corresponding bank account numbers. It's called the **"Funding Accounts"** throughout the user interface.
 
 {% hint style="info" %}
 Tip. You can simulate an international inbound payment using the FlashConnect tool. Just go to the _Dashboard_ page and click "SEND TEST INBOUND PAYMENT". It's available only in our development environment.\

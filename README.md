@@ -8,15 +8,15 @@ description: Flash Payments Developer API documentation
 
 Flash Payments API is [GraphQL](http://graphql.github.io/learn/queries/) based because GraphQL is simpler and easier than REST API and more developer friendly. Although, the data you send and receive is all JSON.
 
-Flash Payments API playground is located here: [https://api.flash-fx.com/](https://api.flash-fx.com/)
+Flash Payments API playground is located here: [https://api.flash-payments.com/](https://api.flash-payments.com/)
 
 ### Complete API docs
 
-This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can send/receive is listed in the [API Playground](https://api.flash-fx.com/) (click "**DOCS**" on the right hand side).
+This documentation website **does not have full list of API** fields and methods. This is intentional. The full list of the API calls you can performs and the data fields you can send/receive is listed in the [API Playground](https://api.flash-payments.com/) (click "**DOCS**" on the right hand side).
 
 ## High level feature overview
 
-You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-fx.com/](https://connect.flash-fx.com/)
+You can search, visualise, or extract your data using our FlashConnect product: [https://connect.flash-payments.com/](https://connect.flash-payments.com/)
 
 ### Instant local Australian deposit (aka pay-in)
 
@@ -32,9 +32,9 @@ By default, only yourself is allowed to deposit to it. However, the third party 
 
 Sometimes, banks can delay your deposit by up to 24 hours. This should be expected. But typically, deposits are reflected in your Flash Payments balance immediately.
 
-If set, you would get a webhook (aka callback) notification about every deposit made to your bank account. Go to the [https://connect.flash-fx.com](https://connect.flash-fx.com) to setup a deposit webhook.
+If set, you would get a webhook (aka callback) notification about every deposit made to your bank account. Go to the [https://connect.flash-payments.com/](https://connect.flash-payments.com/) to setup a deposit webhook.
 
-You can manually reject unwanted deposits via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface. The funds will be returned to the original sender bank account.
+You can manually reject unwanted deposits via the [https://connect.flash-payments.com/](https://connect.flash-payments.com/) interface. The funds will be returned to the original sender bank account.
 
 ### Local Australian withdrawal (aka pay-out)
 
@@ -46,7 +46,7 @@ If a payout fails you will receive a webhook notification with a clear explanati
 
 The payout remitter name is configurable. You can give us the remitter name as `withdrawal.sender` data property. This is especially useful for FX-linked payouts. If a Brazilian mama Katarina Oreiro sends money to her son in Australia, he will see his mom's name in the bank statement - "Payment from Katarina Oreiro".
 
-Payouts can also be done via the [https://connect.flash-fx.com](https://connect.flash-fx.com) interface.
+Payouts can also be done via the [https://connect.flash-payments.com/](https://connect.flash-payments.com/) interface.
 
 ### Send or receive money internationally
 
@@ -54,7 +54,7 @@ You can send you Flash Payments balance internationally via our API and enjoy in
 
 Your code would need to pre-create both sender and recipient before creating a payment for them.
 
-All the entities in our database (withdrawal, payment, sender, recipient) can hold your system's ID. See the `externalId` field in the [API docs](https://api.flash-fx.com/).
+All the entities in our database (withdrawal, payment, sender, recipient) can hold your system's ID. See the `externalId` field in the [API docs](https://api.flash-payments.com/).
 
 Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state changes.
 
@@ -66,7 +66,7 @@ The API token you generate expires in 4 hours. You can always use `logout` Graph
 
 You can't reset your own password until we verify your identity.
 
-The [https://connect.flash-fx.com](https://connect.flash-fx.com) interface supports Google and One-Time-Password logins.
+The [https://connect.flash-payments.com/](https://connect.flash-payments.com/) interface supports Google and One-Time-Password logins.
 
 Webhooks have cryptographic signatures.
 
@@ -76,7 +76,7 @@ API rate limiting is in place to ensure stable performance of our service and pr
 
 ## How to start
 
-1. Contact with us via [this page](https://www.flash-fx.com/connect) or by clicking the Intercom button on the bottom right of this page.
+1. Contact with us via [this page](https://flash-payments.com/connect) or by clicking the Intercom button on the bottom right of this page.
 2. Explain what kind of services you are looking from Flash Payments.
 3. We will examine your needs and explain how to get access to our UAT environment.
 

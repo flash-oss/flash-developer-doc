@@ -10,7 +10,7 @@ Flash Payments uses webhooks to notify your application when a transaction event
 
 With webhooks, you can subscribe to the events of interest to trigger a subsequent action within your integration.
 
-There are two steps to begin using webhooks. Building a custom endpoint on your server and registering it via the [FlashConnect](https://connect.flash-fx.com/) settings.
+There are two steps to begin using webhooks. Building a custom endpoint on your server and registering it via the [FlashConnect](https://connect.flash-payments.com/) settings.
 
 ### Building webhook endpoint
 
@@ -30,7 +30,7 @@ We advise that you acknowledge webhook request as early as possible.
 
 To ensure that webhook was sent by Flash Payments and not a third party, we include the cryptographic signature in each request’s `flashfx-signature` header.
 
-Before you can verify a signature, you need to retrieve your endpoint’s secret from webhook settings in the [FlashConnect](https://connect.flash-fx.com/). Each registered endpoint has a unique secret that is used to sign a payload delivered to you on each event. Steps to verify signature:
+Before you can verify a signature, you need to retrieve your endpoint’s secret from webhook settings in the [FlashConnect](https://connect.flash-payments.com/). Each registered endpoint has a unique secret that is used to sign a payload delivered to you on each event. Steps to verify signature:
 
 1. Extract signature from the request header
 2. Compute HMAC with SHA256 function. Use your endpoint secret as key and JSON payload string as a message.
@@ -67,9 +67,9 @@ function myCallbackEndpointHandler(req, res) {
 
 **Testing your endpoint**
 
-To make sure your webhook endpoint is setup correctly, you can make a test HTTP request from the [FlashConnect](https://connect.flash-fx.com) webhook settings. Click the **"Send Test”** button. You should receive a dummy request, which will need to be acknowledged the same way as your real webhook requests.
+To make sure your webhook endpoint is setup correctly, you can make a test HTTP request from the [FlashConnect](https://connect.flash-payments.com/) webhook settings. Click the **"Send Test”** button. You should receive a dummy request, which will need to be acknowledged the same way as your real webhook requests.
 
 ### Subscribing to the events
 
-Webhook requests come with event data. You can see all available event types in the [FlashConnect ](https://connect.flash-fx.com)settings. To subscribe, select which events you would like to receive and specify your endpoint. Please note, your endpoint must adhere to the HTTPS protocol for security reasons.
+Webhook requests come with event data. You can see all available event types in the [FlashConnect ](https://connect.flash-payments.com/)settings. To subscribe, select which events you would like to receive and specify your endpoint. Please note, your endpoint must adhere to the HTTPS protocol for security reasons.
 

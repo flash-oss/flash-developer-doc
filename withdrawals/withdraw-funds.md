@@ -71,7 +71,7 @@ You should [pre-create senders](../senders.md#create-a-sender) and provide us th
 {% hint style="warning" %}
 We are legally obliged to collect the actual sender and beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
-Please, send us the final funds sender and recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-fx.com/) for other recipient details options.
+Please, send us the final funds sender and recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-payments.com/) for other recipient details options.
 {% endhint %}
 
 ### Sender Institution - `acceptingInstructionInstitutionSenderId`

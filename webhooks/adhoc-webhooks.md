@@ -9,7 +9,7 @@ When [sending a payment](../payments/send-funds.md) or [creating a local withdra
 We recommend API clients to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make sure it's Flash Payments calling your webhook endpoint. For example:
 
 ```
-https://my-webhooks.example.com/flashfx?signature=oZaDlmfXbdXSKCnuWrvos2ImVBFX2Ru5
+https://my-webhooks.example.com/flash-payments?signature=oZaDlmfXbdXSKCnuWrvos2ImVBFX2Ru5
 ```
 
 To avoid storing the signatures in a database we recommend generating them on the fly using a strong hash function or any kind of cryptography.
