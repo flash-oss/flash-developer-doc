@@ -36,9 +36,13 @@ Paste this query to the GraphQL Playground
 {% endtab %}
 {% endtabs %}
 
-Top up your development account balance
+The `cleared` is the **Primary** balance you see on the FlashConnect website.
 
-When you need to top up your development account balance please reach out to our Flash Payments Dev Support team either by email or in our shared Slack chat and we will be happy to help you during our business hours.
+The `pending` balance is typically not shown on the FlashConnect interface because it's rather short lived. If your **Pending** balance is not 0 then you can see it right next to the **Primary** balance.
+
+### Top up your development account balance
+
+If you need to increase your **development** account balance please sign in to the **FlashConnect** website, open **Deposits** page, and click **Send Test Deposit**.
 
 
 
