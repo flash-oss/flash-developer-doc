@@ -20,7 +20,7 @@ The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https
 
 #### Cryptographic signature
 
-All webhook HTTP requests carry a cryptographic signature. Ad hoc and regular webhooks do it slightly different though.
+All webhook HTTP requests carry a cryptographic signature. [Ad hoc](adhoc-webhooks.md) and [regular webhooks](webhooks.md) do it slightly different though.
 
 #### Flash Payments webhook request IP address
 
