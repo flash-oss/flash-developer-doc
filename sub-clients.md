@@ -16,14 +16,14 @@ Each sub-client will receive a dedicated **BSB** and **account number** that you
 Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
 {% endhint %}
 
-All [deposits](deposits/#querying-deposits) sent to your sub-client bank details are booked on your (master-client) account's balance. **Sub-clients can't have their own balances**.
+All [deposits](deposits/#querying-deposits) sent to your sub-client Virtual Account Number (VAN) are booked on your (master-client's) account balance. **Sub-clients can't have their own balances**.
 
 Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
 
 ### Creating a sub-client
 
 {% hint style="warning" %}
-This action creates real bank account. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from Flash Payments services.
+This action creates a real account number. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from Flash Payments services.
 
 Please add all possible precautions, processes, staff training, warning messages, and validation checks to you system(s) before creating a sub-client.
 

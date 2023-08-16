@@ -107,7 +107,7 @@ description: History of changes to this API schema
 
 ### Changes
 
-* Added `deposit.sender.accountName` so that you can query who deposited money to your virtual bank account.
+* Added `deposit.sender.accountName` so that you can query who deposited money to your Virtual Account Number (VAN).
 
 ## 2022-02-14
 
@@ -119,7 +119,7 @@ description: History of changes to this API schema
 
 ### Changes
 
-* `FundingAccount` type has been extended to include all deposit details you need to bring money to Australia. Your account address can now be retrieved using `accountAddress` property along with `name` and `address` fields which identify the accepting financial institution associated with your bank account.
+* `FundingAccount` type has been extended to include all deposit details you need to bring money to Australia. Your account address can now be retrieved using `accountAddress` property along with `name` and `address` fields which identify the accepting financial institution associated with your account.
 
 ## 2022-01-12
 
@@ -233,7 +233,7 @@ These types and fields were never used by anyone for couple of years.
 ### Added
 
 * New item in `BsbDepositDetails`
-  * `accountName` - Australian bank account name.
+  * `accountName` - Australian account name.
 * New item in `Withdrawal`
   * `statusMessage` - a human readable message of the current status reason, like processing error messages.
 * New item in `Payment` and `PaymentInput`

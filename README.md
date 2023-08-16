@@ -20,7 +20,7 @@ You can search, visualise, or extract your data using our FlashConnect product: 
 
 ### Instant local Australian deposit (aka pay-in)
 
-You would get a dedicated Australian BSB and a bank account number.
+You would get a dedicated Australian BSB and a Virtual Account Number (VAN).
 
 {% hint style="warning" %}
 Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
@@ -32,7 +32,7 @@ By default, only yourself is allowed to deposit to it. However, the third party 
 
 Sometimes, banks can delay your deposit by up to 24 hours. This should be expected. But typically, deposits are reflected in your Flash Payments balance immediately.
 
-If set, you would get a webhook (aka callback) notification about every deposit made to your bank account. Go to the [https://connect.flash-payments.com/](https://connect.flash-payments.com/) to setup a deposit webhook.
+If set, you would get a webhook (aka callback) notification about every deposit made to your VAN. Go to the [https://connect.flash-payments.com/](https://connect.flash-payments.com/) to setup a deposit webhook.
 
 You can manually reject unwanted deposits via the [https://connect.flash-payments.com/](https://connect.flash-payments.com/) interface. The funds will be returned to the original sender bank account.
 

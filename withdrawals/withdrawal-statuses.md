@@ -53,7 +53,7 @@ Typically, you want to adapt your system to handle the following common withdraw
 
 #### 1. Too long in the <mark style="color:orange;">REVIEWING</mark> status
 
-[We are doing](#user-content-fn-1)[^1] a manual review of your withdrawal, we sent your Compliance Team (or else) an email message requesting more information. In this case the withdrawal can be in <mark style="color:orange;">`REVIEWING`</mark> state for up to 10 days (5 business days + 2 weekends + an occasional holiday).
+We are doing a manual review of your withdrawal, we sent your Compliance Team (or else) an email message requesting more information. In this case the withdrawal can be in <mark style="color:orange;">`REVIEWING`</mark> state for up to 10 days (5 business days + 2 weekends + an occasional holiday).
 
 You can simulate the behaviour. Your `externalReference` must include this text: `HALT_AML`. For example: `"testing HALT_AML attempt 2"`. The withdrawal will get stuck in <mark style="color:orange;">`REVIEWING`</mark> forever.
 
@@ -65,8 +65,6 @@ You can simulate the behaviour. Your `externalReference` must include this text:
 
 #### 3. Recipient bank rejects the money
 
-An often scenario in Australian banking system is when a local transaction went seemingly fine. However, few days later a recipient bank decides to return the money. There are multiple reasons for that. For example: account number does not exist, account was closed, account is of a wrong currency, etc.
+An often scenario in Australian domestic payments system is when a local transaction went seemingly fine. However, few days later a recipient bank decides to return the money. There are multiple reasons for that. For example: account number does not exist, account was closed, account is of a wrong currency, etc.
 
 You can simulate the behaviour. Your `externalReference` must include this text: `FAIL_ACC`. For example: `"testing FAIL_ACC attempt 8"`. The withdrawal will be completed, and next moment failed and refunded.
-
-[^1]: 

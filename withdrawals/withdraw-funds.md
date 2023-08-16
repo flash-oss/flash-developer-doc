@@ -1,5 +1,5 @@
 ---
-description: This will send money from your Flash Payments balance to bank account(s)
+description: Send money from your Flash Payments balance to Australian bank accounts
 ---
 
 # Withdraw funds

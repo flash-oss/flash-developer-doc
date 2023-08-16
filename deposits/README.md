@@ -4,7 +4,7 @@ description: Explains how to accept deposits programmatically
 
 # Deposits
 
-After fully registering with us, you get a BSB and a dedicated bank account number.
+After fully registering with us, you get a BSB and a dedicated Virtual Account Number (VAN).
 
 {% hint style="warning" %}
 Warning: The account number can only process local transfers, **no SWIFT/RTGS**.

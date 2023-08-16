@@ -4,7 +4,7 @@ description: Deposit processing statuses
 
 # Deposit statuses
 
-As soon as we see a deposit in Flash Payments controlled bank account(s) we create a deposit.
+As soon as we see a deposit in a Flash Payments controlled Virtual Account Number (VAN) we create a deposit.
 
 `INITIALISED`-><mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`CONFIRMED`
 
