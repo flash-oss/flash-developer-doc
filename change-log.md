@@ -256,6 +256,14 @@ These types and fields were never used by anyone for couple of years.
 
 * Fixed typo in `RecipientQueryInput` field name. `snaps` -> `cnaps`&#x20;
 
+## 2020-05-04
+
+### Added
+
+* New compliance-related fields to the `CreateWithdrawalInput` input:
+  * `acceptingMoneyInstitutionSenderId` - you must pre-create this `Sender` and submit every time if you are not the FI who collected the money for this withdrawal.
+  * `acceptingInstructionInstitutionSenderId` - you must pre-create this `Sender` and submit every time if you were instructed by other FI to make this withdrawal.
+
 ## 2020-03-05
 
 ### Changed (BREAKING)
