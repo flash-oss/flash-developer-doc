@@ -19,6 +19,7 @@ mutation {
   createWithdrawal(
     input: {
       amount: 1000
+      externalReference: "invoice #123"
       recipientId: "5ba89a6b35a2b327b81ffc3b",
       senderId: "5eaf71a1cb328c56f94f9375",
       acceptingInstructionInstitutionSenderId: "5eaf7159cb328c56f94f936d",
@@ -59,6 +60,10 @@ mutation {
 ```
 {% endtab %}
 {% endtabs %}
+
+### Payment reference - `externalReference`
+
+Arbitrary text which will be seen in the ultimate recipient's bank statement. E.g. `"invoice #123"`. Will be eventually truncated to `18` ASCII chars if delivered via Australia's old (DE, Direct Entry) payment system. However, if you choose to use the real-time NPP network, then the maximum length is `280` chars.
 
 ### Recipient - `recipientId`
 
