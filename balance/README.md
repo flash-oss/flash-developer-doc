@@ -36,13 +36,13 @@ Paste this query to the GraphQL Playground
 {% endtab %}
 {% endtabs %}
 
-The `cleared` is the **Primary** balance you see on the FlashConnect website.
+The `cleared` is the **Primary** balance you see on the Flash Connect website.
 
-The `pending` balance is typically not shown on the FlashConnect interface because it's rather short lived. If your **Pending** balance is not 0 then you can see it right next to the **Primary** balance.
+The `pending` balance is typically not shown on the Flash Connect interface because it's rather short lived. If your **Pending** balance is not 0 then you can see it right next to the **Primary** balance.
 
 ### Top up your development account balance
 
-If you need to increase your **development** account balance please sign in to the **FlashConnect** website, open **Deposits** page, and click **Send Test Deposit**.
+If you need to increase your **development** account balance please sign in to the **Flash Connect** website, open **Deposits** page, and click **Send Test Deposit**.
 
 
 

@@ -9,7 +9,7 @@ description: Send money from your Flash Payments balance to Australian bank acco
 To do a withdrawal (AUD only) you need to execute the `createWithdrawal` mutation as below.&#x20;
 
 {% hint style="info" %}
-Note you must have an AUD [balance](../balance.md) in your account to do a withdrawal.
+Note you must have an AUD [balance](../balance/) in your account to do a withdrawal.
 {% endhint %}
 
 {% tabs %}

@@ -3,7 +3,7 @@
 To make a payment from AUD to another currency you need to execute the `createPayment` mutation as below.&#x20;
 
 {% hint style="info" %}
-Note you must have an AUD [balance](../balance.md) in your account to make an outbound AUD payment.
+Note you must have an AUD [balance](../balance/) in your account to make an outbound AUD payment.
 {% endhint %}
 
 {% tabs %}
