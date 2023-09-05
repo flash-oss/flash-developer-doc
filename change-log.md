@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added
 
-* `statement` query.
+* [`statement`](balance/statement.md) query.
   * This query returns the same data as the Download CSV button on the Account Statement page of the [Flash Connect](https://connect.flash-payments.com). It explains every change of you primary balance.
   * Currently it returns exactly 1 day of data. We plan to make date range selection more flexible in the future.
 
