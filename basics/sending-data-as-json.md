@@ -46,7 +46,7 @@ curl -X POST 'https://api.flash-payments.com' \
 
 Here is a screenshot of how a mutation looks in GraphQL Playground:
 
-![](../.gitbook/assets/image.png)
+![](<../.gitbook/assets/image (1).png>)
 
 Same request as cURL:
 
