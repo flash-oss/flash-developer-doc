@@ -74,18 +74,21 @@ You should [pre-create recipients](../recipients/#create-a-recipient) and provid
 You should [pre-create senders](../senders.md#create-a-sender) and provide us their ID.
 
 {% hint style="warning" %}
-We are legally obliged to collect the actual sender and beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
+We are legally obliged to collect the actual sender and beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc. Please see`instructingInstitutionId` if it is an intermediate.
 
-Please, send us the final funds sender and recipient. If sending to self then please provide your own details. See the schema in [Playground](https://api.flash-payments.com/) for other recipient details options.
+Please, send us the final funds sender and recipient. If sending to yourself then please provide your own details. See the schema in [Playground](https://api.flash-payments.com/) for other recipient details options.
 {% endhint %}
 
-### Sender Institution - `acceptingInstructionInstitutionSenderId`
+### Instructing Institution - `instructingInstitutionId`
 
-This optional element is a reference to a [`sender`](../senders.md) object to give the information about the party who this withdrawal ultimately came from. This is normally the financial institution that accepts an **instruction** from a customer to transfer money electronically to a beneficiary institution so that it reaches the intended recipient. This is not the sender. If there is no other institution who has instructed this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.
+This optional field is a reference to an `Institution` object to give the information about the party who instructed you to do the withdrawal. This field is important to facilitate real-time settlement times within Australia. This is not the sender. If there is no other institution who has instructed this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.&#x20;
 
-### Accepting Institution - `acceptingMoneyInstitutionSenderId`
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Institution explanation</p></figcaption></figure>
 
-This optional element is a reference to a [`sender`](../senders.md) object to give the information about the party who this withdrawal ultimately came from. This is normally the financial institution that accepts **money** from a customer to transfer money electronically to a beneficiary institution so that it reaches the intended recipient. These details are needed for AML/KYC obligations here in Australia. This is not the sender. If there is no other institution who has accepted money that will result with this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.
+#### Instructions to use
+
+1. Create an Institution in Flash Connect
+2. Copy an ID of the Institution and pass it into `instructingInstitutionId`
 
 ### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
 

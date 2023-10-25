@@ -4,6 +4,16 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2023-10-25
+
+### Removed  (BREAKING)
+
+* Fields `acceptingInstructionInstitutionSenderId` and `acceptingMoneyInstitutionSenderId` were removed from the `CreateWithdrawalInput`.
+
+### Added
+
+* Instead `instructingInstitutionId` was added. (A new API for creating "institutions" is coming soon, but at the moment they can be created via the Flash Connect.)
+
 ## 2023-08-22
 
 ### Added
