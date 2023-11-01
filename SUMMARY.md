@@ -15,6 +15,7 @@
   * [Query payments](payments/query-payments.md)
   * [Send funds](payments/send-funds.md)
   * [Auto receive funds](payments/auto-receive-funds.md)
+* [Institutions](institutions.md)
 * [Withdrawals](withdrawals/README.md)
   * [Withdrawal statuses](withdrawals/withdrawal-statuses.md)
   * [Query withdrawals](withdrawals/query-withdrawals.md)

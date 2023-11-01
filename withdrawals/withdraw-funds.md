@@ -22,8 +22,6 @@ mutation {
       externalReference: "invoice #123"
       recipientId: "5ba89a6b35a2b327b81ffc3b",
       senderId: "5eaf71a1cb328c56f94f9375",
-      acceptingInstructionInstitutionSenderId: "5eaf7159cb328c56f94f936d",
-      acceptingMoneyInstitutionSenderId: "5eaf9e9b1c84a7678d3f7c6c"
       externalId: "12344321"
       idempotencyKey: "12344321"
     }
@@ -74,21 +72,37 @@ You should [pre-create recipients](../recipients/#create-a-recipient) and provid
 You should [pre-create senders](../senders.md#create-a-sender) and provide us their ID.
 
 {% hint style="warning" %}
-We are legally obliged to collect the actual sender and beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc. Please see`instructingInstitutionId` if it is an intermediate.
+We are legally obliged to collect the actual sender and beneficiary details. Please, do not send us intermediate organisation details such as exchanges, banks, gateways, etc.&#x20;
+
+If it is an intermediate please see [Instiutions](withdraw-funds.md#institutions) instead.&#x20;
 
 Please, send us the final funds sender and recipient. If sending to yourself then please provide your own details. See the schema in [Playground](https://api.flash-payments.com/) for other recipient details options.
 {% endhint %}
 
-### Instructing Institution - `instructingInstitutionId`
 
-This optional field is a reference to an `Institution` object to give the information about the party who instructed you to do the withdrawal. This field is important to facilitate real-time settlement times within Australia. This is not the sender. If there is no other institution who has instructed this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.&#x20;
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Institution explanation</p></figcaption></figure>
+### Instructing Institutions&#x20;
 
-#### Instructions to use
+An organisation that instructed withdrawal to you.&#x20;
 
-1. Create an Institution in Flash Connect
-2. Copy an ID of the Institution and pass it into `instructingInstitutionId`
+{% hint style="info" %}
+If you want near real-time withdrawal settlement times consider passing either `instructingInstitutionId or instructingInstitution.`&#x20;
+
+`Please see` [Institutions](../institutions.md).
+{% endhint %}
+
+#### Using existing institutions `instructingInstitutionId`
+
+This optional field refers to an existing `Institution` one that was created before in Flash Connect or via API.
+
+#### Create institutions on the flight `instructingInstitution` field
+
+Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once it is passed Flash Payments will create the Institution for you, please note:&#x20;
+
+* If `instructingInstitution.externalId` is present we will match and deduplicate Institutions by this field and only by it.
+* Otherwise, we are going to deduplicate Institutions by `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
+
+
 
 ### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
 
@@ -99,5 +113,5 @@ The optional `callbackUri` will be invoked several times during the processing o
 {% hint style="danger" %}
 #### Security note
 
-The callback (aka [webhook](../webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
+The callback (aka [webhook](../webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone on the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
 {% endhint %}
