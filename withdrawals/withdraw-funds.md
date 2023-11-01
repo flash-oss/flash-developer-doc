@@ -83,19 +83,17 @@ Please, send us the final funds sender and recipient. If sending to yourself the
 
 ### Instructing Institutions&#x20;
 
-An organisation that instructed withdrawal to you.&#x20;
+An organisation that instructed you to make a withdrawal.&#x20;
 
 {% hint style="info" %}
-If you want near real-time withdrawal settlement times consider passing either `instructingInstitutionId or instructingInstitution.`&#x20;
-
-`Please see` [Institutions](../institutions.md).
+`For more information please see` [Institutions](../institutions.md).
 {% endhint %}
 
 #### Using existing institutions `instructingInstitutionId`
 
 This optional field refers to an existing `Institution` one that was created before in Flash Connect or via API.
 
-#### Create institutions on the flight `instructingInstitution` field
+#### Create institutions on the fly `instructingInstitution` field
 
 Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once it is passed Flash Payments will create the Institution for you, please note:&#x20;
 

@@ -6,7 +6,7 @@ description: CRUD queries for Institutions
 
 ### Instructing Institution
 
-`Institution` object is a piece of information about the party who instructed you to do the withdrawal. This field is important to facilitate real-time settlement times within Australia. This is not the sender. If there is no other institution who has instructed this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.&#x20;
+`Institution` entity is a piece of information about the party who instructed you to make the withdrawal. This data is important for compliance within Australia. This is not the sender. If there is no other institution who has instructed this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.&#x20;
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>Institution explanation</p></figcaption></figure>
 
@@ -17,6 +17,6 @@ description: CRUD queries for Institutions
 * by providing `instructingInstitution` object into `createWithdrawal` mutation.&#x20;
 
 {% hint style="warning" %}
-Please avoid creating multiple Institutions for the same organisation as long as they are used for legal reporting and subject to review.&#x20;
+Please avoid creating multiple Institutions for the same organisation because they are used for compliance reporting and subject to review.&#x20;
 {% endhint %}
 
