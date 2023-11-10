@@ -95,10 +95,12 @@ This optional field refers to an existing `Institution` one that was created bef
 
 #### Create institutions on the fly `instructingInstitution` field
 
-Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once it is passed Flash Payments will create the Institution for you, please note:&#x20;
+Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once passed, Flash Payments will create the Institution for you. Before creating an institution we will try to find an existing one:&#x20;
 
-* If `instructingInstitution.externalId` is present we will match and deduplicate Institutions by this field and only by it.
-* Otherwise, we are going to deduplicate Institutions by `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
+* By `instructingInstitution.externalId` if present.
+* By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
+
+
 
 
 
