@@ -4,8 +4,6 @@ description: Send money from your Flash Payments balance to Australian bank acco
 
 # Withdraw funds
 
-
-
 To do a withdrawal (AUD only) you need to execute the `createWithdrawal` mutation as below.&#x20;
 
 {% hint style="info" %}
@@ -79,11 +77,9 @@ If it is an intermediate please see [Instiutions](withdraw-funds.md#institutions
 Please, send us the final funds sender and recipient. If sending to yourself then please provide your own details. See the schema in [Playground](https://api.flash-payments.com/) for other recipient details options.
 {% endhint %}
 
-
-
 ### Instructing Institutions&#x20;
 
-An organisation that instructed you to make a withdrawal.&#x20;
+An organisation that instructed you to make a withdrawal. This data is mandatory if you submit this withdrawal on behalf of other financial institution.
 
 {% hint style="info" %}
 `For more information please see` [Institutions](../institutions.md).
@@ -91,18 +87,14 @@ An organisation that instructed you to make a withdrawal.&#x20;
 
 #### Using existing institutions `instructingInstitutionId`
 
-This optional field refers to an existing `Institution` one that was created before in Flash Connect or via API.
+This optional field refers to an existing `Institution` that was created earlier in the Flash Connect interface or via this API.
 
-#### Create institutions on the fly `instructingInstitution` field
+#### Create institutions on the fly using the `instructingInstitution` field
 
 Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once passed, Flash Payments will create the Institution for you. Before creating an institution we will try to find an existing one:&#x20;
 
 * By `instructingInstitution.externalId` if present.
 * By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
-
-
-
-
 
 ### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
 
