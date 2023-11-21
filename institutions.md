@@ -13,10 +13,67 @@ description: CRUD queries for Institutions
 #### Creating institutions
 
 * via Flash Connect (you can copy an ID of an existing Institution).&#x20;
-* via API by invoking `createInstitution` mutation (coming soon)
+* via API by invoking `createInstitution` mutation.&#x20;
 * by providing `instructingInstitution` object into `createWithdrawal` mutation.&#x20;
 
 {% hint style="warning" %}
 Please avoid creating multiple Institutions for the same organisation because they are used for compliance reporting and subject to review.&#x20;
 {% endhint %}
 
+{% hint style="info" %}
+Before creating or updating an institution we will try to find an existing one:&#x20;
+
+* By `instructingInstitution.externalId`
+* By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
+{% endhint %}
+
+
+
+### Creating institution example
+
+{% tabs %}
+{% tab title="Query" %}
+```graphql
+mutation {
+  createInstitution(
+    input: {
+      legalName: "Intermediate Institution Ltd"
+      businessNumber: "A39477669937"
+      address: {
+        postcode: "2000"
+        street: "203 Business Street"
+        country: AU
+        state: "NSW"
+        suburb: "Sydney"
+      }
+    }
+  ) {
+    success
+    code
+    message
+    institution {
+      id
+    }
+  }
+}
+
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "createInstitution": {
+      "success": true,
+      "code": "INSTITUTION_CREATED",
+      "message": "Institution created",
+      "institution": {
+        "id": "65570da4f176682c5e412552"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
