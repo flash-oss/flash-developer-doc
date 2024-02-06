@@ -4,6 +4,10 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2024-02-05
+
+Improved [`updateRecipient`](https://developer.flash-payments.com/recipients#update-recipient) to respond with appropriate error message when trying to change the recipient's `accountIdType` which is not allowed by design.&#x20;
+
 ## 2023-11-01
 
 Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-institutions) to the `CreateWithdrawalInput.`&#x20;
