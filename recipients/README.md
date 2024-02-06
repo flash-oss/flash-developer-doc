@@ -148,6 +148,10 @@ mutation {
 
 #### Update recipient
 
+{% hint style="info" %}
+Please note the recipient's`accountIdType`can't be changed
+{% endhint %}
+
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
