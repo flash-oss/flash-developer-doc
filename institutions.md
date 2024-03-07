@@ -21,10 +21,11 @@ Please avoid creating multiple Institutions for the same organisation because th
 {% endhint %}
 
 {% hint style="info" %}
-Before creating or updating an institution we will try to find an existing one:&#x20;
+Before creating or updating an institution we will try to find an existing one by:&#x20;
 
 * By `instructingInstitution.externalId`
 * By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
+* By `instructingInstitution.legalName` AND `instructingInstitution.address.country`
 {% endhint %}
 
 
