@@ -19,7 +19,7 @@
 * [Withdrawals](withdrawals/README.md)
   * [Withdraw funds](withdrawals/withdraw-funds.md)
   * [Withdrawal statuses](withdrawals/withdrawal-statuses.md)
-  * [Withdrawal rejection codes](withdrawals/withdrawal-rejection-codes.md)
+  * [Rejection codes](withdrawals/rejection-codes.md)
   * [Query withdrawals](withdrawals/query-withdrawals.md)
 * [Deposits](deposits/README.md)
   * [Deposit statuses](deposits/deposit-statuses.md)

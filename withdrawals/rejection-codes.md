@@ -1,8 +1,8 @@
 ---
-description: Withdrawal rejection static codes and standard status messages
+description: Transaction rejection static codes and standard status messages
 ---
 
-# Withdrawal rejection codes
+# Rejection codes
 
 If your withdrawal is canceled by our Compliance team, the unique `rejectCode` and a corresponding standard `statusMessage` will be assigned to this transaction and sent to your application via [withdrawal\_canceled](https://developer.flash-payments.com/webhooks#withdrawal\_cancelled) webhook to be used for a subsequent integration action such as field mapping or reconciliation.&#x20;
 
