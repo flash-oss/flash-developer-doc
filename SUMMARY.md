@@ -19,7 +19,6 @@
 * [Withdrawals](withdrawals/README.md)
   * [Withdraw funds](withdrawals/withdraw-funds.md)
   * [Withdrawal statuses](withdrawals/withdrawal-statuses.md)
-  * [Rejection codes](withdrawals/rejection-codes.md)
   * [Query withdrawals](withdrawals/query-withdrawals.md)
 * [Deposits](deposits/README.md)
   * [Deposit statuses](deposits/deposit-statuses.md)
@@ -31,4 +30,5 @@
   * [Ad hoc webhooks](webhooks/adhoc-webhooks.md)
 * [Reference data](reference-data/README.md)
   * [Bank information](reference-data/bank-information.md)
+  * [Rejection codes](reference-data/rejection-codes.md)
 * [Change log](change-log.md)
