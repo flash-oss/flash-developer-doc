@@ -424,7 +424,8 @@ All webhook HTTP requests would be coming from these IP addresses:
   "totalFee": 1,
   "currency": "AUD",
   "externalId": "12344321",
-  "statusMessage": "Withdrawal cancelled",
+  "rejectCode": "CANCELLATION_REQUESTED_BY_PARTICIPANT", 
+  "statusMessage": "The transaction is rejected upon request.",
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
