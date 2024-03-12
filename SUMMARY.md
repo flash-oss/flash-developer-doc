@@ -30,5 +30,5 @@
   * [Ad hoc webhooks](webhooks/adhoc-webhooks.md)
 * [Reference data](reference-data/README.md)
   * [Bank information](reference-data/bank-information.md)
-  * [Rejection codes](reference-data/rejection-codes.md)
+  * [Rejection codes](withdrawals/rejection-codes.md)
 * [Change log](change-log.md)
