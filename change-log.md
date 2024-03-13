@@ -6,7 +6,7 @@ description: History of changes to this API schema
 
 ## 2024-03-13
 
-New [static codes and standard status messages](https://developer.flash-payments.com/reference-data/rejection-codes) introduced for rejected transactions. Currently, the feature is fully supported for withdrawals that [get cancelled](https://developer.flash-payments.com/withdrawals/withdrawal-statuses), including new check status parameters `rejectCode` and `statusMessage` available in the API and sent to your application via [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal\_cancelled) webhook.&#x20;
+New [static codes and standard status messages](https://developer.flash-payments.com/reference-data/rejection-codes) introduced for rejected (aka cancelled) withdrawals. When withdrawals [get cancelled](https://developer.flash-payments.com/withdrawals/withdrawal-statuses) you can clearly see why using the new `rejectCode` and `statusMessage`. Available in the `Withdrawal` type and sent to your application via the [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal\_cancelled) webhook.&#x20;
 
 ## 2024-02-05
 

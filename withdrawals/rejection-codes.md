@@ -1,5 +1,5 @@
 ---
-description: Transaction rejection static codes and standard status messages
+description: Transaction cancellation static codes and standard status messages
 ---
 
 # Rejection codes
