@@ -12,13 +12,19 @@ Removed `Sender.isRipple` and `CurrencyIso3.XRP` from the GraphQL schema. These 
 
 ## 2024-03-13
 
+### Added
+
 New [static codes and standard status messages](https://developer.flash-payments.com/reference-data/rejection-codes) introduced for rejected (aka cancelled) withdrawals. When withdrawals [get cancelled](https://developer.flash-payments.com/withdrawals/withdrawal-statuses) you can clearly see why using the new `rejectCode` and `statusMessage`. Available in the `Withdrawal` type and sent to your application via the [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal\_cancelled) webhook.&#x20;
 
 ## 2024-02-05
 
+### Changed
+
 Improved [`updateRecipient`](https://developer.flash-payments.com/recipients#update-recipient) to respond with appropriate error message when trying to change the recipient's `accountIdType` which is not allowed by design.&#x20;
 
 ## 2023-11-01
+
+### Added
 
 Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-institutions) to the `CreateWithdrawalInput.`&#x20;
 
