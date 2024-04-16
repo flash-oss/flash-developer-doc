@@ -34,6 +34,7 @@ Please follow our latest requirements for the proper sub-client data submission:
 3. Provide proper `dob:` **the person must be under 65 years of age**&#x20;
 4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract. By default you're only allowed to have local Australian sub-accounts. **Any non-Australian entities should be pre-approved based on their location and industry relevance for Flash Payments.**  &#x20;
 5. Provide proper`idDoc (type`, `docNumber` and `issuer)`based on the sub-client contact person address. For Australian residents either driver’s license or passport are accepted. For non-Australian residents only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
+6. Sometimes we ask our partners to provide “instructing institution” information, but only in case you are creating this VAN on behalf of another financial institution. More about institutions [here](institutions.md). You may provide the ID of the already created institution via the field instructingInstitutionId or as a full object via the instructingInstitution field.
 {% endhint %}
 
 There are two types of sub-clients: `company` and `individual`.&#x20;
