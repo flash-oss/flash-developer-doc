@@ -4,6 +4,10 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2024-04-16
+
+Removed `Sender.isRipple` and `CurrencyIso3.XRP` from the GraphQL schema. these were deprecated 2.5 years ago.
+
 ## 2024-03-13
 
 New [static codes and standard status messages](https://developer.flash-payments.com/reference-data/rejection-codes) introduced for rejected (aka cancelled) withdrawals. When withdrawals [get cancelled](https://developer.flash-payments.com/withdrawals/withdrawal-statuses) you can clearly see why using the new `rejectCode` and `statusMessage`. Available in the `Withdrawal` type and sent to your application via the [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal\_cancelled) webhook.&#x20;
