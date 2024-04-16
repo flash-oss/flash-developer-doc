@@ -6,6 +6,8 @@ description: History of changes to this API schema
 
 ## 2024-04-16
 
+### Removed  (BREAKING)
+
 Removed `Sender.isRipple` and `CurrencyIso3.XRP` from the GraphQL schema. These were deprecated 2.5 years ago.
 
 ## 2024-03-13
