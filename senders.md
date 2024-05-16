@@ -108,10 +108,9 @@ In addresses the `suburb` is an Australian suburb. For other countries you shoul
 {% endhint %}
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createSender(
+{% tab title="Individual" %}
+<pre class="language-graphql"><code class="lang-graphql"><strong>mutation {
+</strong>  createSender(
     input: {
       firstName: "Malcolm"
       lastName: "Jez"
@@ -142,25 +141,42 @@ mutation {
     }
   }
 }
-```
+</code></pre>
 {% endtab %}
 
-{% tab title="Response" %}
-```javascript
-{
-  "data": {
-    "createSender": {
-      "success": true,
-      "code": "SUCCESS",
-      "message": "Sender created",
-      "sender": {
-        "id": "5ca18312ace1db0af5784826",
-        "nickName": "MalcolmJez"
+{% tab title="Company/Corporate" %}
+<pre class="language-graphql"><code class="lang-graphql"><strong>mutation {
+</strong>  createSender(
+    input: {
+      companyName: "Acme Pte Ltd"
+      businessNumber: "12345678912"
+      email: "acme@example.com"
+      mobile: "+1 123412341234"
+      address: {
+        street: "1 Test St"
+        suburb: "London"
+        state: "TST"
+        country: GB
+        postcode: "2000"
       }
+      idDoc: {
+        type: passport
+        docNumber: "GB1234321"
+        issuer: "GB"
+      }
+    }
+  ) {
+    success
+    code
+    message
+    sender {
+      id
+      nickName
+      # there are many other properties
     }
   }
 }
-```
+</code></pre>
 {% endtab %}
 {% endtabs %}
 

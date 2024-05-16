@@ -88,13 +88,14 @@ In addresses the `suburb` is an Australian suburb. For other countries you shoul
 {% endhint %}
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="Individual" %}
 ```graphql
 mutation {
   createRecipient(
     input: {
       firstName: "John"
       lastName: "Malkovich"
+      dob: "1987-06-05"
       accountIdType: BSB
       currency: AUD
       bsb: "123456"
@@ -125,20 +126,36 @@ mutation {
 ```
 {% endtab %}
 
-{% tab title="Response" %}
-```javascript
-{
-  "data": {
-    "createRecipient": {
-      "success": true,
-      "code": "SUCCESS",
-      "message": "Recipient created",
-      "recipient": {
-        "id": "5ba89a6b35a2b327b81ffc3b",
-        "nickName": "JohnMalkov",
-        "currency": "AUD",
-        "email": "john@example.com"
+{% tab title="Company/Corporate" %}
+```graphql
+mutation {
+  createRecipient(
+    input: {
+      companyName: "Acme Pty Ltd"
+      accountIdType: BSB
+      currency: AUD
+      bsb: "370370"
+      accountNo: "123412340"
+      email: "acme@example.com"
+      address: {
+        street: "22 Woolooware Rd"
+        suburb: "Woolooware"
+        state: "NSW"
+        country: AU
+        postcode: "2230"
       }
+    }
+  ) {
+    success
+    code
+    message
+    recipient {
+      id
+      nickName
+      accountIdType
+      currency
+      email
+      # there are many other properties
     }
   }
 }
