@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2024-05-17
+
+### Removed  (BREAKING)
+
+Removed `AccountIdType.RIPPLE`, `Recipient.rippleAddress` with `Recipient.destTag` from the GraphQL schema. These were deprecated 2.5 years ago.
+
 ## 2024-04-16
 
 ### Removed  (BREAKING)
