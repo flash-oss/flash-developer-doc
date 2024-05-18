@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2024-05-18
+
+### Removed  (BREAKING)
+
+Removed `AccountIdType.PH_CASH`, `Recipient.phCashoutNetwork` with `RecipientInput.phCashoutNetwork` and the corresponding enum type `PhCashoutNetwork` from the GraphQL schema. These were not working for more than a year.
+
 ## 2024-05-17
 
 ### Removed  (BREAKING)
