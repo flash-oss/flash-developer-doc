@@ -107,6 +107,10 @@ If receiving from yourself then please provide your own details. See the DOCS in
 In addresses the `suburb` is an Australian suburb. For other countries you should put the city (e.g. Manila or London) or any other small administrative area name.
 {% endhint %}
 
+{% hint style="info" %}
+The date of birth (`dob`) is not required. However, if you don't have it then your transactions will trigger more compliance alerts, thus your payments will be processed much slower (hours or days instead of mere seconds). Also, we charge you more fees for manual labour you cause.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Individual" %}
 <pre class="language-graphql"><code class="lang-graphql"><strong>mutation {
