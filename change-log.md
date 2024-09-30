@@ -4,9 +4,11 @@ description: History of changes to this API schema
 
 # Change log
 
-## 2024-05-18
+## 2024-10-01
 
-### Removed  (BREAKING)
+Improved validation of `recipient`, `sender`, `withdrawal`, `institution` realted mutations. From now on `email`, `companyName`, `legalName`, `businessNumber`, `externalReference` must include only the ASCII characters.
+
+## 2024-05-18
 
 Removed `AccountIdType.PH_CASH`, `Recipient.phCashoutNetwork` with `RecipientInput.phCashoutNetwork` and the corresponding enum type `PhCashoutNetwork` from the GraphQL schema. These were not working for more than a year.
 
