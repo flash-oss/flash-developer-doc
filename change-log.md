@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2024-10-11
+
+### Fixed
+
+The `bankInfo` [query](https://developer.flash-payments.com/reference-data/bank-information) was not returning information about BICs and IBANs. It works now.
+
 ## 2024-10-01
 
 ### Changed  (BREAKING)
