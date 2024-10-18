@@ -536,3 +536,100 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 </details>
 
+**Conversions**
+
+<details>
+
+<summary>conversion_initialised</summary>
+
+```javascript
+{
+  "event": "conversion_initialised",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_pending</summary>
+
+```javascript
+{
+  "event": "conversion_pending",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_converted</summary>
+
+```javascript
+{
+  "event": "conversion_pending",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_failed</summary>
+
+```javascript
+{
+  "event": "conversion_pending",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_cancelled</summary>
+
+```javascript
+{
+  "event": "conversion_pending",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+

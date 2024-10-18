@@ -6,7 +6,7 @@ description: Convert between your multi currency balances
 
 To convert between, say, `AUD` and `EUR` you should:
 
-1. request a tradeable quote with the `applicability: CONVERSION`,
+1. request a tradeable quote with the `applicability: CONVERSION`, and
 2. use it whilst creating a conversion.
 
 Get a quote ID:
