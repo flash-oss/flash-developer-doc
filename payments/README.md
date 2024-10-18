@@ -1,5 +1,5 @@
 ---
-description: Query or create payments
+description: Convert your balance and send it as one FX payment instruction
 ---
 
 # Payments
@@ -8,8 +8,7 @@ You can [retrieve](query-payments.md) all or some of your payments. If you are a
 
 You can [create payments](send-funds.md). But before you need to:
 
-* have a recipient ID \(see [Recipients](../recipients/) to query your address book\); otherwise
+* have a recipient ID (see [Recipients](../recipients/) to query your address book); otherwise
 * understand the supported delivery methods using the [availableDeliveryMethods](../recipients/required-fields.md) query and [create a new recipient](../recipients/#create-a-recipient)
 
 Having a recipient ID you can now send money.
-
