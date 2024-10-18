@@ -4,7 +4,7 @@ description: How to secure your callback endpoints
 
 # Ad hoc webhooks
 
-When [sending a payment](../payments/send-funds.md) or [creating a local withdrawal](../withdrawals/withdraw-funds.md) you can provide us a webhook (callback) URI - `callbackUri`. We will call it when a payment or withdrawal status changes.
+When [sending a payment](../payments/send-funds.md), [creating a local withdrawal](../withdrawals/withdraw-funds.md) or [ordering a conversion](../conversions/) you can provide us a webhook (callback) URI - `callbackUri`. We will call it when a payment or withdrawal status changes.
 
 We recommend API clients to generate and add `?signature=ASecretPerPaymentKey` query to your `callbackUri` to make sure it's Flash Payments calling your webhook endpoint. For example:
 
