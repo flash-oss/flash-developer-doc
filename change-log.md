@@ -4,6 +4,16 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2024-10-22
+
+### Added
+
+New the [Conversions](conversions/) feature.
+
+* New mutation `createConversion`. New queries `conversion` and `conversions`.
+* The `FromCurrency` enum used to have only one item `AUD`. Now there are 8: `AUD CAD CHF EUR GBP NZD SGD USD`.
+* New property for the `Quote` type: `applicability`. It indicates can the quote be used for _payments_ or _conversions_.
+
 ## 2024-10-11
 
 ### Fixed
