@@ -53,7 +53,11 @@ Typically, you want to adapt your system to handle the following common withdraw
 
 #### 1. Too long in the <mark style="color:orange;">REVIEWING</mark> status
 
-We are doing a manual review of your withdrawal, we sent your Compliance Team (or else) an email message requesting more information. In this case the withdrawal can be in <mark style="color:orange;">`REVIEWING`</mark> state for up to 10 days (5 business days + 2 weekends + an occasional holiday).
+We are doing a manual review of your withdrawal, we sent your Compliance Team (or else) an email message requesting more information. In this case the withdrawal can be in <mark style="color:orange;">`REVIEWING`</mark> state for up to 10 days (5 business days + 2 weekends + an occasional holiday).&#x20;
+
+{% hint style="info" %}
+Please always provide accurate sender and recipient information, including the full address, to prevent delays associated with manual compliance reviews.
+{% endhint %}
 
 You can simulate the behaviour. Your `externalReference` must include this text: `HALT_AML`. For example: `"testing HALT_AML attempt 2"`. The withdrawal will get stuck in <mark style="color:orange;">`REVIEWING`</mark> forever.
 
