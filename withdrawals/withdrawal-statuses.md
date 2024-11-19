@@ -57,6 +57,8 @@ We are doing a manual review of your withdrawal, we sent your Compliance Team (o
 
 {% hint style="info" %}
 Please always provide accurate sender and recipient information, including the full address, to prevent delays associated with manual compliance reviews.
+
+As a matter of fact, we have an automated address cleansing/validation layer where sender and recipient addresses will be checked again once the transaction is created. Our algorithm takes all address fields together, tries to make sense of them and verifies if such address actually exists. If the automated verification fails, the transaction will be marked as REVIEWING and sent to our Compliance team for manual verification. This means that transactions will be delayed and this can be avoided if the accurate address information is provided.
 {% endhint %}
 
 You can simulate the behaviour. Your `externalReference` must include this text: `HALT_AML`. For example: `"testing HALT_AML attempt 2"`. The withdrawal will get stuck in <mark style="color:orange;">`REVIEWING`</mark> forever.
