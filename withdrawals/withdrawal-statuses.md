@@ -56,7 +56,7 @@ Typically, you want to adapt your system to handle the following common withdraw
 We are doing a manual review of your withdrawal, we sent your Compliance Team (or else) an email message requesting more information. In this case the withdrawal can be in <mark style="color:orange;">`REVIEWING`</mark> state for up to 10 days (5 business days + 2 weekends + an occasional holiday).&#x20;
 
 {% hint style="info" %}
-Please always provide accurate sender and recipient information, including the full address, to prevent delays associated with manual compliance reviews.
+Please always provide accurate [sender](https://developer.flash-payments.com/senders#create-a-sender) and [recipient](https://developer.flash-payments.com/recipients#create-a-recipient) information, including the full address, to prevent delays associated with manual compliance reviews.
 
 As a matter of fact, we have an automated address cleansing/validation layer where sender and recipient addresses will be checked again once the transaction is created. Our algorithm takes all address fields together, tries to make sense of them and verifies if such address actually exists. If the automated verification fails, the transaction will be marked as REVIEWING and sent to our Compliance team for manual verification. This means that transactions will be delayed and this can be avoided if the accurate address information is provided.
 {% endhint %}
