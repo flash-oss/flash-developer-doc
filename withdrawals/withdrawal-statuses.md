@@ -15,7 +15,7 @@ description: Withdrawal processing statuses
 2. The transaction is sent to the recipient bank for processing.\
    `INITIALISED` → `PENDING`
 3. `PENDING` →
-   * `CONFIRMED` - _the recipient bank have the money now_. Does not mean the beneficiary account number was credited though. Mostly _**FINAL status**_. Except when bank decides to return the funds, the withdrawal gets refunded (see step 4).
+   * `CONFIRMED` - _the recipient bank has the money now_. Does not mean the beneficiary account number was credited though. Mostly _**FINAL status**_. Except when bank decides to return the funds, the withdrawal gets refunded (see step 4).
    * `FAILED` - NOT FINAL status. Depending on the processing error we have three scenarios now.
      * `REFUNDED` - see step 4 below.
      * `CANCELLED` - manual action. Your **balance goes up** by the amount, Flash Payments keeps the fee. _**FINAL status.**_
