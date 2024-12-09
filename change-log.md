@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2024-12-09
+
+### Added
+
+New [updateSubClient](sub-clients.md#update-sub-clients) mutation. You can change a sub-client's `externalId` now, but nothing else.
+
 ## 2024-10-22
 
 ### Added
@@ -48,7 +54,7 @@ Removed `Sender.isRipple` and `CurrencyIso3.XRP` from the GraphQL schema. These 
 
 ### Added
 
-New [static codes and standard status messages](https://developer.flash-payments.com/reference-data/rejection-codes) introduced for rejected (aka cancelled) withdrawals. When withdrawals [get cancelled](https://developer.flash-payments.com/withdrawals/withdrawal-statuses) you can clearly see why using the new `rejectCode` and `statusMessage`. Available in the `Withdrawal` type and sent to your application via the [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal\_cancelled) webhook.&#x20;
+New [static codes and standard status messages](https://developer.flash-payments.com/reference-data/rejection-codes) introduced for rejected (aka cancelled) withdrawals. When withdrawals [get cancelled](https://developer.flash-payments.com/withdrawals/withdrawal-statuses) you can clearly see why using the new `rejectCode` and `statusMessage`. Available in the `Withdrawal` type and sent to your application via the [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal_cancelled) webhook.&#x20;
 
 ## 2024-02-05
 
@@ -108,7 +114,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 ### Added
 
 * Added the `withdrawal_pending` [webhook](webhooks/). Invoked after the transaction is sent to the recipient bank for processing.&#x20;
-* Added [example](https://developer.flash-fx.com/webhooks#withdrawal\_pending) for the `withdrawal_pending` [webhook](webhooks/).
+* Added [example](https://developer.flash-fx.com/webhooks#withdrawal_pending) for the `withdrawal_pending` [webhook](webhooks/).
 
 ## 2023-03-03
 
@@ -123,7 +129,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 ### Added
 
 * Fixed the `withdrawal_reviewing` [webhook](webhooks/). It was never sent before even though declared on the Flash Connect website.&#x20;
-* Added [example](https://developer.flash-fx.com/webhooks#withdrawal\_reviewing) for the `withdrawal_reviewing` [webhook](webhooks/).
+* Added [example](https://developer.flash-fx.com/webhooks#withdrawal_reviewing) for the `withdrawal_reviewing` [webhook](webhooks/).
 
 ## 2023-02-08
 

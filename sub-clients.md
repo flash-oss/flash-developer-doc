@@ -443,3 +443,55 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
+#### Update sub-clients
+
+At this point you can udpate the `externalId` propery only because each sub-client is effectively a Virtual Account Number which can recieve and send domestic funds.
+
+{% tabs %}
+{% tab title="Query" %}
+```graphql
+{
+  udpatesubClient(
+    id: "5ca18312ace1db0af5784826"
+    input: {
+      externalId: "my_system_id_29f-ae0978b00d09e"
+    }
+  ) {
+    success
+    code
+    message
+    subClient {
+      id
+      externalId
+    }
+  }
+}
+
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "subClients": [
+      {
+        "id": "5fb314cb9224595df522db61",
+        "fullName": "John Smith",
+        "clientType": "INDIVIDUAL",
+        "status": "ACTIVE",
+        "primaryContact": {
+          "firstName": "John",
+          "lastName": "Smith"
+        },
+        "address": {
+          "country": "AU"
+        }
+      }
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
