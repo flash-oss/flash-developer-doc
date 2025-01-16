@@ -4,6 +4,13 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2025-01-18
+
+### Added
+
+New fields have been added to the [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), and [createSubClient](sub-clients.md#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document. \
+To avoid creating a breaking change, we currently allow you to provide `idDoc.country` and/or `idDoc.issuer`. In the future, we plan to make `idDoc.country` a **required** field.
+
 ## 2024-12-09
 
 ### Added

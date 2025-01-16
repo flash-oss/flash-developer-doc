@@ -133,7 +133,10 @@ The date of birth (`dob`) is not required. However, if you don't have it then yo
       idDoc: {
         type: passport
         docNumber: "GB1234321"
-        issuer: "GB"
+        issuer: "His Majesty’s Passport Office (HMPO)"
+        issueDate: "1990-01-01"
+        expiryDate: "2045-01-01"
+        country: "GB"
       }
     }
   ) {
@@ -166,9 +169,12 @@ The date of birth (`dob`) is not required. However, if you don't have it then yo
         postcode: "2000"
       }
       idDoc: {
-        type: passport
-        docNumber: "GB1234321"
-        issuer: "GB"
+        type: certificateOfRegistration
+        docNumber: "GB-REG-987654321"
+        issuer: "Companies House"
+        issueDate: "1990-01-01"
+        expiryDate: "2100-01-01"
+        country: "GB"
       }
     }
   ) {
@@ -210,7 +216,10 @@ mutation {
       idDoc: {
         type: passport
         docNumber: "GB1234321"
-        issuer: "GB"
+        issuer: "His Majesty’s Passport Office (HMPO)"
+        issueDate: "1990-01-01"
+        expiryDate: "2045-01-01"
+        country: "GB"
       }
     }
   ) {

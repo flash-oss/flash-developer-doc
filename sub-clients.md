@@ -33,7 +33,7 @@ Please follow our latest requirements for the proper sub-client data submission:
 2. Provide proper`mobile`number
 3. Provide proper `dob:` **the person must be under 65 years of age**&#x20;
 4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract. By default you're only allowed to have local Australian sub-accounts. **Any non-Australian entities will undergo an extended due dilligence based on their location and industry relevance for Flash Payments.**  &#x20;
-5. Provide proper`idDoc (type`, `docNumber` and `issuer)`based on the sub-client contact person address. For Australian residents either driver’s license or passport are accepted. For non-Australian residents only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
+5. Provide proper`idDoc (type`, `docNumber,` `issuer (optional),` `issueDate (optional),`  `expiryDate (optional)` and `country)`based on the sub-client contact person address. For Australian residents either driver’s license or passport are accepted. For non-Australian residents only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
 6. Sometimes we ask our partners to provide “instructing institution” information, but only in case you are creating this VAN on behalf of another financial institution. More about institutions [here](institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
 {% endhint %}
 
@@ -76,7 +76,11 @@ mutation {
       idDoc: {
         type: passport
         docNumber: "FF1948394"
-        issuer: "AU"
+        issuer: "Australian Passport Office (APO)"
+        issueDate: "2000-01-01"
+        expiryDate: "2045-01-01"
+        country: "AU"
+        
       }
       externalId: "991188227733"
     }
@@ -451,7 +455,7 @@ At this point you can udpate the `externalId` propery only because each sub-clie
 {% tab title="Query" %}
 ```graphql
 {
-  udpatesubClient(
+  udpateSubClient(
     id: "5ca18312ace1db0af5784826"
     input: {
       externalId: "my_system_id_29f-ae0978b00d09e"
