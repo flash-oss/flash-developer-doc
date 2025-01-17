@@ -12,10 +12,10 @@ The examples below assume you are a verified customer of Flash Payments and have
 
 ### GraphQL Playground
 
-All the GraphQL queries can be sent via the [GraphQL Playground](https://api.flash-payments.com/) or as a HTTP POST request to `https://api.flash-payments.com`. Example:
+All the GraphQL queries can be sent via the [GraphQL Playground](https://api.uat.flash-payments.com.au/) or as a HTTP POST request to `https://api.uat.flash-payments.com.au`. Example:
 
 ```bash
-curl -X POST 'https://api.flash-payments.com' \
+curl -X POST 'https://api.uat.flash-payments.com.au' \
 -H 'authorization: Bearer YOUR_TOKEN' \
 -H 'content-type: application/json' \
 -d '{
@@ -48,7 +48,7 @@ In GraphQL Playground query editor press `Cmd+Space` or `Ctrl+Space` or `Opt+Spa
 
 Some of the GraphQL query parameters are required, others are optional. To understand if a variable/property is required you would need to check the API schema.
 
-* Go to the [GraphQL Playground](https://api.flash-payments.com/) and click the button "**DOCS**" on the right.
+* Go to the [GraphQL Playground](https://api.uat.flash-payments.com.au/) and click the button "**DOCS**" on the right.
 * Browse through queries, mutations, input and output types. Find a variable/property which have an exclamation mark at the end. E.g. `fromCurrency: FromCurrency!`.
 * The exclamation mark denotes that the variable/property is mandatory.
 
