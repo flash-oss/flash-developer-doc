@@ -4,7 +4,7 @@ description: Understand every movement of your primary balance
 
 # Statement
 
-This query returns the same data as the Download CSV button on the Account Statement page of the [Flash Connect](https://connect.flash-payments.com).
+This query returns the same data as the Download CSV button on the Account Statement page of the [Flash Connect](https://connect.uat.flash-payments.com.au/).
 
 The dates must be any ISO 8601 formatted dates.
 
