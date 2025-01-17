@@ -15,7 +15,7 @@ enum PaymentStatus {
 The current status of your payment.
 
 * INITIALISING - a draft payment. It may or may not have all required information to be executed.
-  * Typically never happens via API. Can be created via the [Flash Payments app](https://app.flash-payments.com/) under certain circumstances.
+  * Typically never happens via API. Can be created via the [Flash Payments app](http://app.uat.flash-payments.com.au/) under certain circumstances.
 * OPEN - the payment is in **progress**.
 * CLOSED - means **successfully** delivered.
 * FAILED - an **error** has occurred with this payment.
