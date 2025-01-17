@@ -6,7 +6,7 @@ description: CRUD queries for your payment recipients
 
 We are legally obliged to collect the actual recipient details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
-Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.flash-payments.com/) for other recipient details options.
+Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 
 * `recipient` and `recipients` queries - **read** your address book.
 * `createRecipient` - **creates** a new record in the Flash Payments database.
