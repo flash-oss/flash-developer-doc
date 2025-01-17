@@ -9,7 +9,7 @@ description: >-
 Most of the documentation examples shows you how to send data by **embedding values** into the GraphQL queries.
 
 ```bash
-curl -X POST 'https://api.flash-payments.com' \
+curl -X POST 'https://api.uat.flash-payments.com.au' \
 -H 'authorization: Bearer YOUR_TOKEN' \
 -H 'content-type: application/json' \
 -d '{
@@ -30,7 +30,7 @@ We understand that such long query strings would be difficult to construct with 
 Each GraphQL request to our API contains a JSON of minimum two properties: `query` and optional `variables`. You can (and should) declare parameters using the GraphQL dollar-notation and then reuse it in the query or mutation.
 
 ```bash
-curl -X POST 'https://api.flash-payments.com' \
+curl -X POST 'https://api.uat.flash-payments.com.au' \
 -H 'authorization: Bearer YOUR_TOKEN' \
 -H 'content-type: application/json' \
 -d '{
@@ -51,7 +51,7 @@ Here is a screenshot of how a mutation looks in GraphQL Playground:
 Same request as cURL:
 
 ```bash
-curl 'https://api.flash-payments.com/' \
+curl 'https://api.uat.flash-payments.com.au' \
   -H 'authorization: Bearer YOUR_TOKEN' \
   -H 'content-type: application/json' 
   -d $'{
