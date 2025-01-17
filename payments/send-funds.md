@@ -65,7 +65,7 @@ You should [pre-create recipients](../recipients/#create-a-recipient) and send u
 {% hint style="warning" %}
 We are legally obliged to collect the actual beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
-Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.flash-payments.com/) for other recipient details options.
+Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 {% endhint %}
 
 ### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
