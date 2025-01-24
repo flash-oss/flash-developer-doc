@@ -4,6 +4,14 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2025-01-24
+
+### Added
+
+Improved validation rules for the following mutations:  [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), [createInstitution](institutions.md#creating-institutions), [createSubClient](sub-clients.md#creating-a-sub-client), [createWithdrawal](withdrawals/withdraw-funds.md), and  [createPayment](payments/send-funds.md) \
+Affected fields: `idDoc.docNumber, idDoc.issuer, legalName, businessNumber, legalName, externalId.` \
+These fields now only allow ASCII characters.
+
 ## 2025-01-18
 
 ### Added
