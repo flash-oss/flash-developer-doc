@@ -6,11 +6,14 @@ description: History of changes to this API schema
 
 ## 2025-01-24
 
-### Added
+### Changed
 
 Improved validation rules for the following mutations:  [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), [createInstitution](institutions.md#creating-institutions), [createSubClient](sub-clients.md#creating-a-sub-client), [createWithdrawal](withdrawals/withdraw-funds.md), and  [createPayment](payments/send-funds.md) \
-Affected fields: `idDoc.docNumber, idDoc.issuer, legalName, businessNumber, legalName, externalId.` \
-These fields now only allow ASCII characters.
+Affected fields: `idDoc.docNumber` `idDoc.issuer` `legalName` `businessNumber` `legalName` `externalId`. These fields allow only the ASCII characters now.
+
+Also, the first, last, and middle names are limited to 75 chars now.
+
+Also, FQDN-like names will be rejected. Examples: "Aaron x.com", "Ben.eu", "Visit as at URL:example.com/about", etc.
 
 ## 2025-01-18
 
