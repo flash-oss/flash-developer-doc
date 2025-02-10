@@ -8,6 +8,8 @@ description: General information how to start using Flash Payments API
 ### Assumptions
 
 The examples below assume you are a verified customer of Flash Payments and have been enabled for API access.
+
+Receiving a “Bad Request” (StatusCode 400) error in response when executing some of these examples in your environment may be due to the presence of new-line symbols (“\n”) in your code.
 {% endhint %}
 
 ### GraphQL Playground
