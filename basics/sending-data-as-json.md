@@ -27,7 +27,16 @@ echo '{
 
 We understand that such long query strings would be difficult to construct with code. Here is how to send **query and data separately**.
 
-Each GraphQL request to our API contains a JSON of minimum two properties: `query` and optional `variables`. You can (and should) declare parameters using the GraphQL dollar-notation and then reuse it in the query or mutation.
+You need to send us the JSON object with two properties - `"query"` and `"variables"`.
+
+* Declare the `$input` variable in the QraphQL `"query"` string. The technology also requires you to declare the type of your input(s). See the `QueryInput` in the example below.
+* Provide the `"variables"` object with the `"input"` property. The value of it must be a JSON object structured exactly as the `QueryInput` type.
+
+{% hint style="warning" %}
+Do NOT provide any other GraphQL types except the highest level input argument. Otherwise, you risk to experience production issues when we deploy schema changes.
+
+If you construct the GraphQL query using a third party library/software then you risk to violate the above requrement. We recommend to not use any GraphQL libraries.
+{% endhint %}
 
 ```bash
 echo '{
@@ -44,7 +53,7 @@ echo '{
 -d @-
 ```
 
-Here is a screenshot of how a mutation looks in GraphQL Playground:
+Here is a screenshot of how a typical mutation looks in the GraphQL Playground:
 
 ![](../.gitbook/assets/image.png)
 
