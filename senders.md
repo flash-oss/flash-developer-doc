@@ -122,7 +122,7 @@ The date of birth (`dob`) is not required. However, if you don't have it then yo
       lastName: "Jez"
       dob: "2000-01-01"
       email: "malcolm@example.com"
-      mobile: "+1 123412341234"
+      mobile: "+61 4123456789"
       address: {
         street: "1 Test St"
         suburb: "London"
