@@ -8,10 +8,6 @@ description: >-
 
 Most of the documentation examples shows you how to send data by **embedding values** into the GraphQL queries.
 
-{% hint style="info" %}
-Receiving a 400 (“Bad Request”) error in response when executing some of these examples in your environment may be due to the presence of new-line symbols (“\n”) in the code.
-{% endhint %}
-
 ```bash
 curl -X POST 'https://api.uat.flash-payments.com.au' \
 -H 'authorization: Bearer YOUR_TOKEN' \
