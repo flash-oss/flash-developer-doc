@@ -160,7 +160,7 @@ The date of birth (`dob`) is not required. However, if you don't have it then yo
       companyName: "Acme Pte Ltd"
       businessNumber: "12345678912"
       email: "acme@example.com"
-      mobile: "+1 123412341234"
+      mobile: "+61 4123456789"
       address: {
         street: "1 Test St"
         suburb: "London"
