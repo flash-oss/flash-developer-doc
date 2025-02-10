@@ -15,10 +15,7 @@ The examples below assume you are a verified customer of Flash Payments and have
 All the GraphQL queries can be sent via the [GraphQL Playground](https://api.uat.flash-payments.com.au/) or as a HTTP POST request to `https://api.uat.flash-payments.com.au`. Example:
 
 ```bash
-curl -X POST 'https://api.uat.flash-payments.com.au' \
--H 'authorization: Bearer YOUR_TOKEN' \
--H 'content-type: application/json' \
--d '{
+echo '{
   "query":
     "{
        quote(input: {
@@ -28,7 +25,10 @@ curl -X POST 'https://api.uat.flash-payments.com.au' \
          bid ask symbol timestamp inverted
        }
      }"
-}'
+}' | curl -X POST 'https://api.uat.flash-payments.com.au' \
+-H 'authorization: Bearer YOUR_TOKEN' \
+-H 'content-type: application/json' \
+-d @-
 ```
 
 All the responses are JSON and have at least one property `data` and optional property `errors`.
