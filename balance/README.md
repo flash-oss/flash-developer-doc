@@ -42,9 +42,9 @@ The `pending` balance is typically not shown on the Flash Connect interface beca
 
 If you omit the `currencies` input argument then the query would return all the currency balances you have. Contact us to enable more than just the default `AUD` currency.
 
-### Top up your development account balance
+### Top up your UAT account balance
 
-If you need to increase your **development** account balance please sign in to the **Flash Connect** website, open **Deposits** page, and click **Send Test Deposit**.
+If you need to increase your **UAT** account balance please sign in to the **Flash Connect** website, open **Deposits** page, and click **Send Test Deposit**.
 
 
 
