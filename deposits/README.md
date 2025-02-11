@@ -23,6 +23,7 @@ We can also enable the [sub-client](../sub-clients.md) feature. It allows you to
 To browse your deposits, you can use our FlashConnect tool: [https://connect.uat.flash-payments.com.au/](https://connect.uat.flash-payments.com.au/login)
 
 {% hint style="info" %}
-Tip. You can simulate a deposit using the FlashConnect tool. Just go to the _Deposits_ page and click "SEND TEST DEPOSIT". It's available only in our development environment.\
-Additionally, you can fake a deposit sent by your [sub-client](../sub-clients.md). Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST DEPOSIT". It's available only in our development environment.
+Tip. You can simulate and test a deposit with the FlashConnect tool in the UAT environment. Just go to the _Deposits_ page and click "SEND TEST DEPOSIT". \
+\
+Additionally, you can test a deposit sent by your [sub-client](../sub-clients.md) in the UAT. Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST DEPOSIT".&#x20;
 {% endhint %}
