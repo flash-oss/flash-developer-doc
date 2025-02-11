@@ -100,7 +100,7 @@ mutation {
       dob: "1987-06-05"
       accountIdType: BSB
       currency: AUD
-      bsb: "123456"
+      bsb: "370370"
       accountNo: "12341234"
       email: "john@example.com"
       address: {
@@ -184,7 +184,7 @@ mutation {
       lastName: "Malkovich"
       accountIdType: BSB
       currency: AUD
-      bsb: "123456"
+      bsb: "370370"
       accountNo: "12341234"
       email: "john@example.com"
       address: {
