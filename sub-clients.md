@@ -79,7 +79,7 @@ mutation {
         issuer: "Australian Passport Office (APO)"
         issueDate: "2000-01-01"
         expiryDate: "2045-01-01"
-        country: "AU"
+        country: AU
         
       }
       externalId: "991188227733"
