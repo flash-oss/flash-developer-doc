@@ -26,8 +26,9 @@ Here is how it looks step by step.
 To find which foreign currency bank account you would need to deposit to, please go to the [FlashConnect](https://connect.uat.flash-payments.com.au/) and find there the list of inbound currencies we support and the corresponding bank account numbers. It's called the **"Funding Accounts"** throughout the user interface.
 
 {% hint style="info" %}
-Tip. You can simulate an international inbound payment using the FlashConnect tool. Just go to the _Dashboard_ page and click "SEND TEST INBOUND PAYMENT". It's available only in our development environment.\
-Additionally, you can fake an international inbound payment sent by your [sub-client](../sub-clients.md). Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST INBOUND PAYMENT". It's available only in our development environment.
+Tip. You can simulate and test an international inbound payment with the FlashConnect tool in the UAT environment. Just go to the _FX Payments_ page and click "SEND TEST INBOUND PAYMENT". \
+\
+Additionally, you can test an international inbound payment sent by your [sub-client](../sub-clients.md) in the UAT. Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST INBOUND PAYMENT".&#x20;
 {% endhint %}
 
 To find out the Funding Accounts via API please use the `fundingAccounts` query.
