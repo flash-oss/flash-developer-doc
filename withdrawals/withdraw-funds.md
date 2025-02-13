@@ -4,7 +4,7 @@ description: Send money from your Flash Payments balance to Australian bank acco
 
 # Withdraw funds
 
-To do a withdrawal (AUD only) you need to execute the `createWithdrawal` mutation as below.&#x20;
+To do a withdrawal (AUD only), you need to execute the `createWithdrawal` mutation as below.&#x20;
 
 {% hint style="info" %}
 Note you must have an AUD [balance](../balance/) in your account to do a withdrawal.
@@ -59,27 +59,27 @@ mutation {
 
 ### Payment reference - `externalReference`
 
-Arbitrary text which will be seen in the ultimate recipient's bank statement. E.g. `"invoice #123"`. Will be eventually truncated to `18` ASCII chars if delivered via Australia's old (DE, Direct Entry) payment system. However, if you choose to use the real-time NPP network, then the maximum length is `280` chars.
+Arbitrary text, which will be seen in the ultimate recipient's bank statement. E.g. `"invoice #123"`. Will be eventually truncated to `18` ASCII chars if delivered via Australia's old (DE, Direct Entry) payment system. However, if you choose to use the real-time NPP network, then the maximum length is `280` chars.
 
 ### Recipient - `recipientId`
 
-You should [pre-create recipients](../recipients/#create-a-recipient) and provide us their ID. The recipient's account must be either `BSB` or `PAYID`.
+You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's account must be either `BSB` or `PAYID` (coming soon).
 
 ### Sender - `senderId`
 
-You should [pre-create senders](../senders.md#create-a-sender) and provide us their ID.
+You should [pre-create senders](../senders.md#create-a-sender) and provide us with their ID.
 
 {% hint style="warning" %}
-We are legally obliged to collect the actual sender and beneficiary details. Please, do not send us intermediate organisation details such as exchanges, banks, gateways, etc.&#x20;
+We are legally obliged to collect the actual sender and beneficiary details. Please do not send us intermediate organisation details such as exchanges, banks, gateways, etc.&#x20;
 
-If it is an intermediate please see [Instiutions](withdraw-funds.md#institutions) instead.&#x20;
+If it is an intermediate, please see [Instiutions](withdraw-funds.md#institutions) instead.&#x20;
 
-Please, send us the final funds sender and recipient. If sending to yourself then please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+Please send us the final funds, sender and recipient. If sending to yourself then please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 {% endhint %}
 
 ### Instructing Institutions&#x20;
 
-An organisation that instructed you to make a withdrawal. This data is mandatory if you submit this withdrawal on behalf of other financial institution.
+An organisation that instructed you to make a withdrawal. This data is mandatory if you submit this withdrawal on behalf of another financial institution.
 
 {% hint style="info" %}
 `For more information please see` [Institutions](../institutions.md).
@@ -91,7 +91,7 @@ This optional field refers to an existing `Institution` that was created earlier
 
 #### Create institutions on the fly using the `instructingInstitution` field
 
-Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once passed, Flash Payments will create the Institution for you. Before creating an institution we will try to find an existing one:&#x20;
+Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once passed, Flash Payments will create the Institution for you. Before creating an institution, we will try to find an existing one:&#x20;
 
 * By `instructingInstitution.externalId` if present.
 * By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
