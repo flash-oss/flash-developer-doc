@@ -4,13 +4,13 @@ description: Generate Virtual Account Numbers for your clients for collection
 
 # Sub-clients
 
-The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. They can be issued for individuals as well as companies or other organisations.
+The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, companies, or other organisations.
 
 {% hint style="info" %}
 Note: This feature is **OFF** by default. Contact us if you want it.
 {% endhint %}
 
-Each sub-client will receive a dedicated **BSB** and **account number** that you or your clients can use to accept domestic AUD transfers within Australia. The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).
+Each sub-client will receive a dedicated **BSB** and virtual **account number** that you or your clients can use to accept domestic AUD transfers within Australia. The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).
 
 {% hint style="warning" %}
 Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
@@ -25,29 +25,29 @@ Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-cl
 {% hint style="warning" %}
 This action creates a real account number. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from Flash Payments services.
 
-Please add all possible precautions, processes, staff training, warning messages, and validation checks to you system(s) before creating a sub-client.
+Please add all possible precautions, processes, staff training, warning messages, and validation checks to your system(s) before creating a sub-client.
 
 Please follow our latest requirements for the proper sub-client data submission:
 
 1. Provide proper`firstName`and`lastName`
 2. Provide proper`mobile`number
-3. Provide proper `dob:` **the person must be under 65 years of age**&#x20;
-4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract. By default you're only allowed to have local Australian sub-accounts. **Any non-Australian entities will undergo an extended due dilligence based on their location and industry relevance for Flash Payments.**  &#x20;
-5. Provide proper`idDoc (type`, `docNumber,` `issuer (optional),` `issueDate (optional),`  `expiryDate (optional)` and `country)`based on the sub-client contact person address. For Australian residents either driver’s license or passport are accepted. For non-Australian residents only passport is accepted as a document type. Also, this should be a foreign passport ID, not local.
-6. Sometimes we ask our partners to provide “instructing institution” information, but only in case you are creating this VAN on behalf of another financial institution. More about institutions [here](institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
+3. Provide proper `dob` : **the person must be under 65 years of age**&#x20;
+4. Provide proper residential `address` Including unit and street number. The sub-client address should correspond to your approved use case from the contract. By default, you're only allowed to have local Australian sub-accounts. **Any non-Australian entities will undergo extended due diligence based on their location and industry relevance for Flash Payments.**  &#x20;
+5. Provide proper`idDoc` (`type`, `docNumber,` `issuer` (optional), `issueDate` (optional), `expiryDate` (optional), and `country` ) based on the sub-client contact person's address. For Australian residents, either a driver’s license or a passport is accepted. For non-Australian residents, only a passport is accepted as a document type. Also, this should be a foreign passport ID, not a local one.
+6. Sometimes, we ask our partners to provide “instructing institution” information, but only if you are creating this VAN on behalf of another financial institution. More about institutions [here](institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
 {% endhint %}
 
 There are two types of sub-clients: `company` and `individual`.&#x20;
 
-For every `company` registered as a sub-client there must be **one contact person individual data** submitted. Ideally the contact person should be a **company director** or have similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra** **details**:
+For every `company` registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra** **details**:
 
 * `legalName` - company legal name
-* `businessNumber` - company business number (e.g ABN in Australia)
+* `businessNumber` - company business number (e.g. ABN in Australia)
 
 If the above fields are not set, the sub-client will be created as `individual` type.
 
 {% hint style="info" %}
-Note: The above personal data submission [requirements](sub-clients.md#creating-a-sub-client) should be as equally followed for the company contact person with an exception of `address` property, which can be a company address in this case. &#x20;
+Note: The above personal data submission [requirements](sub-clients.md#creating-a-sub-client) should be as equally followed for the company contact person, with the exception of `address` property, which can be a company address in this case. &#x20;
 {% endhint %}
 
 You can find the description of each field in the GraphQL API schema.
