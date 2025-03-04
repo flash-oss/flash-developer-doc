@@ -46,7 +46,7 @@ Paste this query to the GraphQL Playground to request an indicative quote
 
 In contrast to an indicative quote, a **tradable** quote is guaranteed by the market maker.
 
-Paste this query to the GraphQL Playground to request a tradable quote. It is important to consider the `expireAt` date and time, and preserve the `id` of a tradable quote for future `createPayment` calls.
+Paste this query to the GraphQL Playground to request a tradable quote. It is important to consider the `expireAt` date and time, and preserve the `id` of a tradable quote for future `createPayment` and `createConversion`calls.
 
 {% tabs %}
 {% tab title="Query" %}
