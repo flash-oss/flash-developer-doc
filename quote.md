@@ -53,7 +53,13 @@ Paste this query to the GraphQL Playground to request a tradable quote. It is im
 ```graphql
 {
   quote(
-    input: { fromCurrency: AUD, toCurrency: USD, size: 10000, currency: AUD, tradeable: true }
+    input: { 
+      fromCurrency: AUD 
+      toCurrency: USD 
+      size: 10000 
+      currency: AUD 
+      tradeable: true 
+    }
   ) {
     bid
     ask
