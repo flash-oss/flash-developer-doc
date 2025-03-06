@@ -1,13 +1,15 @@
 ---
-description: Send money from your Flash Payments balance to Australian bank accounts
+description: >-
+  Send money from your Flash Payments balances to Australian bank accounts or
+  internationally
 ---
 
 # Withdraw funds
 
-To do a withdrawal (AUD only), you need to execute the `createWithdrawal` mutation as below.&#x20;
+To make a withdrawal, you need to execute the `createWithdrawal` mutation as below.&#x20;
 
 {% hint style="info" %}
-Note you must have an AUD [balance](../balance/) in your account to do a withdrawal.
+You must have enough [balance](../balance/) in your account for the chosen `currency` to make a withdrawal.
 {% endhint %}
 
 {% tabs %}
@@ -17,9 +19,10 @@ mutation {
   createWithdrawal(
     input: {
       amount: 1000
+      currency: AUD
       externalReference: "invoice #123"
-      recipientId: "5ba89a6b35a2b327b81ffc3b",
-      senderId: "5eaf71a1cb328c56f94f9375",
+      recipientId: "5ba89a6b35a2b327b81ffc3b"
+      senderId: "5eaf71a1cb328c56f94f9375"
       externalId: "12344321"
       idempotencyKey: "12344321"
     }
@@ -31,6 +34,7 @@ mutation {
       id
       status
       amount
+      currency
     }
   }
 }
@@ -43,12 +47,13 @@ mutation {
   "data": {
     "createWithdrawal": {
       "success": true,
-      "code": "OK",
-      "message": "Scheduled for immediate execution",
+      "code": "OK"
+      "message": "Scheduled for immediate execution"
       "withdrawal": {
-        "id": "60711af8c078ba061f623531",
-        "status": "PENDING",
+        "id": "60711af8c078ba061f623531"
+        "status": "PENDING"
         "amount": 1000
+        "currency": AUD
       }
     }
   }
@@ -69,6 +74,58 @@ You should [pre-create recipients](../recipients/#create-a-recipient) and provid
 
 You should [pre-create senders](../senders.md#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. If `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government.
 
+To use `subClientId` as the sender for your withdrawal, please execute the `createWithdrawal` mutation as below.&#x20;
+
+{% tabs %}
+{% tab title="Query" %}
+```graphql
+mutation {
+  createWithdrawal(
+    input: {
+      amount: 1000
+      currency: AUD
+      externalReference: "invoice #1234"
+      recipientId: "5ba89a6b35a2b327b81ffc3b"
+      subClientId: "3fbj71b1dc328d56g94g9375"
+      externalId: "12344321"
+      idempotencyKey: "12344321"
+    }
+  ) {
+    success
+    code
+    message
+    withdrawal {
+      id
+      status
+      amount
+      currency
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+ {
+  "data": {
+    "createWithdrawal": {
+      "success": true
+      "code": "OK"
+      "message": "Scheduled for immediate execution"
+      "withdrawal": {
+        "id": "60711af8c078ba061f623531"
+        "status": "PENDING"
+        "amount": 1000
+        "currency: AUD
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
 {% hint style="warning" %}
 We are legally obliged to collect the actual sender and beneficiary details. Please do not send us intermediate organisation details such as exchanges, banks, gateways, etc.&#x20;
 
@@ -82,7 +139,7 @@ Please send us the final funds, sender and recipient. If sending to yourself the
 An organisation that instructed you to make a withdrawal. This data is mandatory if you submit this withdrawal on behalf of another financial institution.
 
 {% hint style="info" %}
-`For more information please see` [Institutions](../institutions.md).
+For more information please see [Institutions](../institutions.md).
 {% endhint %}
 
 #### Using existing institutions `instructingInstitutionId`
