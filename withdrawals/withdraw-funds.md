@@ -1,7 +1,7 @@
 ---
 description: >-
   Send money from your Flash Payments balances to Australian bank accounts or
-  internationally.
+  internationally per your approved use case.
 ---
 
 # Withdraw funds
