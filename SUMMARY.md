@@ -27,7 +27,7 @@
   * [Deposit statuses](deposits/deposit-statuses.md)
   * [Query deposits](deposits/query-deposits.md)
   * [Refund deposits](deposits/refund-deposits.md)
-* [Sub-clients](sub-clients/README.md)
+* [Sub-clients](sub-clients.md)
   * [Create sub-clients](sub-clients/create-sub-clients.md)
   * [Disable, Activate and Update sub-clients](sub-clients/disable-activate-and-update-sub-clients.md)
   * [Query sub-clients](sub-clients/query-sub-clients.md)

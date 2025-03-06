@@ -20,9 +20,9 @@ The **account name** is your sub-client's name. For companies - it's their `trad
 
 If your Flash account has a multi-currency feature enabled, each of your sub-clients will also have access to virtual accounts in the selected currencies for which you hold balances.
 
-All [deposits](../deposits/#querying-deposits) sent to your sub-client Virtual Account Numbers (VANs) are booked on your (master-client's) corresponding account balances. **Sub-clients can't have their own balances**.
+All [deposits](deposits/#querying-deposits) sent to your sub-client Virtual Account Numbers (VANs) are booked on your (master-client's) corresponding account balances. **Sub-clients can't have their own balances**.
 
 You can[ disburse funds](https://developer.flash-payments.com/withdrawals/withdraw-funds) on behalf of your sub-clients by providing the sub-client ID when you create a withdrawal. This sub-client record will be used as the sender, linked to the withdrawal, and will be reported to the government.
 
-Notifications via [webhooks](../webhooks/webhooks.md) will provide important sub-client information as well.
+Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
 

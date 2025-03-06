@@ -3,7 +3,7 @@
 To make a payment from AUD to another currency you need to execute the `createPayment` mutation as below.&#x20;
 
 {% hint style="info" %}
-Note you must have an AUD [balance](../balance/) in your account to make an outbound AUD payment.
+Note that you must have enough AUD balance to make an outbound AUD payment.
 {% endhint %}
 
 {% tabs %}
@@ -58,7 +58,7 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
-### Recipient
+### Recipient - recipient`Id`
 
 You should [pre-create recipients](../recipients/#create-a-recipient) and send us their ID.
 
@@ -67,6 +67,64 @@ We are legally obliged to collect the actual beneficiary details. Please, do not
 
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 {% endhint %}
+
+### Sender - `senderId` or `subClientId` <a href="#sender-senderid-or-subclientid" id="sender-senderid-or-subclientid"></a>
+
+You should [pre-create senders](https://developer.flash-payments.com/senders#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to make FX payments **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the payments created will be linked to that sub-client. If the `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government.
+
+To use `subClientId` as the sender for your payments, please execute the `createPayment` mutation as below.
+
+{% tabs %}
+{% tab title="Query" %}
+```graphql
+mutation {
+  createPayment(
+    input: {
+      fromCurrency: AUD
+      toCurrency: USD
+      size: 1000
+      currency: AUD
+      reason: BUSINESS
+      sourceOfFunds: BUSINESS_FUNDS
+      externalReference: "my ref 221c"
+      subClientId: "6092360bf40f2dgc52f85cf1"
+      recipientId: "5ba89a6b35a2b327b81ffc3b"
+      externalId: "12344321"
+      idempotencyKey: "12344321"
+    }
+  ) {
+    success
+    code
+    message
+    payment {
+      id
+      status
+      size
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "createPayment": {
+      "success": true,
+      "code": "SUCCESS",
+      "message": "Scheduled for immediate execution",
+      "payment": {
+        "id": "60711bg8d078cb061g623531",
+        "status": "OPEN",
+        "size": 1000
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
 
