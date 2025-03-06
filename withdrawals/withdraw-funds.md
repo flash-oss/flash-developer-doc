@@ -47,12 +47,12 @@ mutation {
   "data": {
     "createWithdrawal": {
       "success": true,
-      "code": "OK"
-      "message": "Scheduled for immediate execution"
+      "code": "OK",
+      "message": "Scheduled for immediate execution",
       "withdrawal": {
-        "id": "60711af8c078ba061f623531"
-        "status": "PENDING"
-        "amount": 1000
+        "id": "60711af8c078ba061f623531",
+        "status": "PENDING",
+        "amount": 1000,
         "currency": AUD
       }
     }
@@ -68,11 +68,11 @@ Arbitrary text, which will be seen in the ultimate recipient's bank statement. E
 
 ### Recipient - `recipientId`
 
-You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's Australian account must be either `BSB` or `PAYID` (coming soon).&#x20;
+You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's Australian account must be either `BSB` or `PAYID` (coming soon).
 
 ### Sender - `senderId` or `subClientId`
 
-You should [pre-create senders](../senders.md#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. If the `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government. &#x20;
+You should [pre-create senders](../senders.md#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. If the `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government.
 
 To use `subClientId` as the sender for your withdrawal, please execute the `createWithdrawal` mutation as below.&#x20;
 
@@ -110,13 +110,13 @@ mutation {
  {
   "data": {
     "createWithdrawal": {
-      "success": true
-      "code": "OK"
+      "success": true,
+      "code": "OK",
       "message": "Scheduled for immediate execution"
       "withdrawal": {
-        "id": "60711af8c078ba061f623531"
-        "status": "PENDING"
-        "amount": 1000
+        "id": "60711af8c078ba061f623531",
+        "status": "PENDING",
+        "amount": 1000,
         "currency: AUD
       }
     }
