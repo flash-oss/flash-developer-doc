@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Changed
 
-Improved validation rules for the following mutations:  [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), [createInstitution](institutions.md#creating-institutions), [createSubClient](sub-clients.md#creating-a-sub-client), [createWithdrawal](withdrawals/withdraw-funds.md), and  [createPayment](payments/send-funds.md) \
+Improved validation rules for the following mutations:  [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), [createInstitution](institutions.md#creating-institutions), [createSubClient](sub-clients/#creating-a-sub-client), [createWithdrawal](withdrawals/withdraw-funds.md), and  [createPayment](payments/send-funds.md) \
 Affected fields: `idDoc.docNumber` `idDoc.issuer` `legalName` `businessNumber` `legalName` `externalId`. These fields allow only the ASCII characters now.
 
 Also, the first, last, and middle names are limited to 75 chars now.
@@ -19,14 +19,14 @@ Also, FQDN-like names will be rejected. Examples: "Aaron x.com", "Ben.eu", "Visi
 
 ### Added
 
-New fields have been added to the [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), and [createSubClient](sub-clients.md#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document. \
+New fields have been added to the [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), and [createSubClient](sub-clients/#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document. \
 To avoid creating a breaking change, we currently allow you to provide `idDoc.country` and/or `idDoc.issuer`. In the future, we plan to make `idDoc.country` a **required** field.
 
 ## 2024-12-09
 
 ### Added
 
-New [updateSubClient](sub-clients.md#update-sub-clients) mutation. You can change a sub-client's `externalId` now, but nothing else.
+New [updateSubClient](sub-clients/#update-sub-clients) mutation. You can change a sub-client's `externalId` now, but nothing else.
 
 ## 2024-10-22
 
@@ -140,7 +140,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 
 * `idempotencyKey` to `createPayment` input.
 * `idempotencyKey` to `createWithdrawal` input.
-* New [sub-client](sub-clients.md) status - `UNAPPROVED`.
+* New [sub-client](sub-clients/) status - `UNAPPROVED`.
 
 ## 2023-02-23
 

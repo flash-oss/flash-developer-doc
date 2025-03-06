@@ -1,0 +1,28 @@
+---
+description: Generate Virtual Account Numbers for your clients for collection
+---
+
+# Sub-clients
+
+The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, companies, or other organisations.
+
+{% hint style="info" %}
+Note: This feature is **OFF** by default. Contact us if you want it.
+{% endhint %}
+
+Each sub-client will receive a dedicated **BSB** and virtual **account number** that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
+
+{% hint style="warning" %}
+Warning: This local account number can only process local transfers, **no SWIFT/RTGS**.
+{% endhint %}
+
+The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).
+
+If your Flash account has a multi-currency feature enabled, each of your sub-clients will also have access to virtual accounts in the selected currencies for which you hold balances.
+
+All [deposits](../deposits/#querying-deposits) sent to your sub-client Virtual Account Numbers (VANs) are booked on your (master-client's) corresponding account balances. **Sub-clients can't have their own balances**.
+
+You can disburse funds on behalf of your sub-clients by providing the sub-client ID when you create a withdrawal. This sub-client record will be used as the sender, linked to the withdrawal, and will be reported to the government.
+
+Notifications via [webhooks](../webhooks/webhooks.md) will provide important sub-client information as well.
+
