@@ -68,7 +68,7 @@ Arbitrary text, which will be seen in the ultimate recipient's bank statement. E
 
 ### Recipient - `recipientId`
 
-You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's account must be either `BSB` or `PAYID` (coming soon).
+You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's Australian account must be either `BSB` or `PAYID` (coming soon).&#x20;
 
 ### Sender - `senderId` or `subClientId`
 
