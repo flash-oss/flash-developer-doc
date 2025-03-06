@@ -112,7 +112,7 @@ mutation {
     "createWithdrawal": {
       "success": true,
       "code": "OK",
-      "message": "Scheduled for immediate execution"
+      "message": "Scheduled for immediate execution",
       "withdrawal": {
         "id": "60711af8c078ba061f623531",
         "status": "PENDING",
