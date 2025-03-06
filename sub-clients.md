@@ -22,7 +22,7 @@ If your Flash account has a multi-currency feature enabled, each of your sub-cli
 
 All [deposits](deposits/#querying-deposits) sent to your sub-client Virtual Account Numbers (VANs) are booked on your (master-client's) corresponding account balances. **Sub-clients can't have their own balances**.
 
-You can[ disburse funds](https://developer.flash-payments.com/withdrawals/withdraw-funds) on behalf of your sub-clients by providing the sub-client ID when you create a withdrawal. This sub-client record will be used as the sender, linked to the withdrawal, and will be reported to the government.
+You can[ disburse funds](https://developer.flash-payments.com/withdrawals/withdraw-funds) and [make FX payments](https://developer.flash-payments.com/payments/send-funds) on behalf of your sub-clients by providing the sub-client ID when you create withdrawals or payments. This sub-client record will then be used as the sender, linked to the transaction, and reported to the government.
 
 Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
 
