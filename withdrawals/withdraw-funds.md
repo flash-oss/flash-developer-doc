@@ -67,7 +67,7 @@ You should [pre-create recipients](../recipients/#create-a-recipient) and provid
 
 ### Sender - `senderId` or `subClientId`
 
-You should [pre-create senders](../senders.md#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to disburse funds for your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. If `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government.
+You should [pre-create senders](../senders.md#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. If `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government.
 
 {% hint style="warning" %}
 We are legally obliged to collect the actual sender and beneficiary details. Please do not send us intermediate organisation details such as exchanges, banks, gateways, etc.&#x20;
