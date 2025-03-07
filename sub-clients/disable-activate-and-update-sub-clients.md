@@ -85,10 +85,10 @@ At this point, you can update the `externalId` property only because each sub-cl
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
-{
-  udpateSubClient(
-    id: "5ca18312ace1db0af5784826"
-    input: {
+mutation {
+  updateSubClient(
+     id: "660fef8e1f3b5452bd6945ec"
+     input: {
       externalId: "my_system_id_29f-ae0978b00d09e"
     }
   ) {
@@ -97,11 +97,11 @@ At this point, you can update the `externalId` property only because each sub-cl
     message
     subClient {
       id
+      status
       externalId
     }
   }
 }
-
 ```
 {% endtab %}
 
@@ -109,21 +109,16 @@ At this point, you can update the `externalId` property only because each sub-cl
 ```javascript
 {
   "data": {
-    "subClients": [
-      {
-        "id": "5fb314cb9224595df522db61",
-        "fullName": "John Smith",
-        "clientType": "INDIVIDUAL",
+    "updateSubClient": {
+      "success": true,
+      "code": "SUCCESS",
+      "message": "Sub-client was successfully updated",
+      "subClient": {
+        "id": "660fef8e1f3b5452bd6945ec",
         "status": "ACTIVE",
-        "primaryContact": {
-          "firstName": "John",
-          "lastName": "Smith"
-        },
-        "address": {
-          "country": "AU"
-        }
+        "externalId": "my_system_id_29f-ae0978b00d09e"
       }
-    ]
+    }
   }
 }
 ```
