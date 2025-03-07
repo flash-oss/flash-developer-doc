@@ -70,9 +70,9 @@ Arbitrary text, which will be seen in the ultimate recipient's bank statement. E
 
 You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's Australian account must be either `BSB` or `PAYID` (coming soon).
 
-### Sender - `senderId` or `subClientId`
+### Sender - `senderId` or `subClientId or none`
 
-You should [pre-create senders](../senders.md#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. If the `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government.
+In the above `createWithdrawal` example, you had to first [pre-create a sender](../senders.md#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
 
 To use `subClientId` as the sender for your withdrawal, please execute the `createWithdrawal` mutation as below.&#x20;
 
@@ -131,8 +131,73 @@ We are legally obliged to collect the actual sender and beneficiary details. Ple
 
 If it is an intermediate, please see [Instiutions](withdraw-funds.md#institutions) instead.&#x20;
 
-Please send us the final funds, sender and recipient. If sending to yourself then please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+Please always send us the final funds, sender and recipient. If sending to yourself,  please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+
+If sending from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the example below.&#x20;
 {% endhint %}
+
+If your company is the ultimate sender for a withdrawal, you can skip both the `senderId` and `subClientId`. In this situation, we will use your company’s Flash account as the sender for the transaction. Please note that a new sender record will not be created in this case.
+
+Please execute the following `createWithdrawal` mutation to use  your company's Flash account details as sender.
+
+{% tabs %}
+{% tab title="Query" %}
+```graphql
+mutation {
+  createWithdrawal(
+    input: {
+      amount: 500
+      currency: AUD
+      externalReference: "invoice #123"
+      recipientId: "661e293b14a0e678c37fa327"
+      externalId: "1234567890"
+      idempotencyKey: "0987654321"
+    }
+  ) {
+    success
+    code
+    message
+    withdrawal {
+      id
+      status
+      amount
+      currency
+      sender {
+      id
+      firstName
+      lastName
+      companyName
+      }
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+{
+  "data": {
+    "createWithdrawal": {
+      "success": true,
+      "code": "SUCCESS",
+      "message": "Withdrawal was created",
+      "withdrawal": {
+        "id": "67cb69f2ee6c254315bb1c3d",
+        "status": "INITIALISED",
+        "amount": 500,
+        "currency": "AUD",
+        "sender": {
+          "firstName": "John",
+          "lastName": "Smith",
+          "companyName": "Smith Consulting Pty Ltd"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### Instructing Institutions&#x20;
 
