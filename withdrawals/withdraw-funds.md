@@ -131,7 +131,7 @@ We are legally obliged to collect the actual sender and beneficiary details. Ple
 
 If it is an intermediate, please see [Instiutions](withdraw-funds.md#institutions) instead.&#x20;
 
-Please always send us the final funds, sender and recipient. If sending to yourself,  please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+Please always send us the ultimate sender and recipient. If sending to yourself,  please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 
 If sending from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the example below.
 {% endhint %}

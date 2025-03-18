@@ -58,14 +58,18 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
-### Recipient - recipient`Id`
+### Recipient - `recipientId`
 
 You should [pre-create recipients](../recipients/#create-a-recipient) and send us their ID.
 
 {% hint style="warning" %}
-We are legally obliged to collect the actual beneficiary details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
+We are legally obliged to collect the actual sender and beneficiary details. Please do not send us intermediate organisation details such as exchanges, banks, gateways, etc.&#x20;
 
-Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+If it is an intermediate, please see [Instiutions](send-funds.md#institutions) instead.&#x20;
+
+Please always send us the ultimate sender and recipient. If sending to yourself,  please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+
+If sending from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the examples below.
 {% endhint %}
 
 ### Sender - `senderId` or `subClientId` , or neither <a href="#sender-senderid-or-subclientid" id="sender-senderid-or-subclientid"></a>
