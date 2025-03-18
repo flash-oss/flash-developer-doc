@@ -70,7 +70,7 @@ Arbitrary text, which will be seen in the ultimate recipient's bank statement. E
 
 You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's Australian account must be either `BSB` or `PAYID` (coming soon).
 
-### Sender - `senderId` or `subClientId` or `none`
+### Sender - `senderId` or `subClientId` or neither&#x20;
 
 In the above `createWithdrawal` example, you had to first [pre-create a sender](../senders.md#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
 
