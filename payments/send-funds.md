@@ -70,7 +70,7 @@ Please, send us the final funds recipient. If sending to self then please provid
 
 ### Sender - `senderId` or `subClientId` , or neither <a href="#sender-senderid-or-subclientid" id="sender-senderid-or-subclientid"></a>
 
-In the above `createPayment` example, you had to [pre-create a sender](https://developer.flash-payments.com/senders#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to make FX payments **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the FX payment created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.&#x20;
+In the above `createPayment` example, you had to [pre-create a sender](https://developer.flash-payments.com/senders#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to make FX payments **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the FX payment created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
 
 To use `subClientId` as the sender for your payments, please execute the `createPayment` mutation as below.
 
@@ -118,6 +118,71 @@ mutation {
         "id": "60711bg8d078cb061g623531",
         "status": "OPEN",
         "size": 1000
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+If your company is the ultimate sender for an FX payment, you can skip both the `senderId` and `subClientId`. In this situation, we will use your company’s Flash account as the sender for the payment. Please note that a new sender record will not be created in this case.
+
+Please execute the following `createPayment` mutation to use your company's Flash account details as sender.
+
+{% tabs %}
+{% tab title="Query" %}
+```graphql
+mutation {
+  createPayment(
+    input: {
+      fromCurrency: AUD
+      toCurrency: EUR
+      size: 1000
+      currency: AUD
+      reason: BUSINESS
+      sourceOfFunds: BUSINESS_FUNDS
+      externalReference: "my ref 234"
+      recipientId: "67d7d75ab8db0fdfccfb16b2"
+      externalId: "0123443210"
+      idempotencyKey: "0000012344321000"
+    }
+  ) {
+    success
+    code
+    message
+    payment {
+      id
+      status
+      size
+      sender {
+         firstName
+         lastName
+         companyName
+      }
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "createPayment": {
+      "success": true,
+      "code": "SUCCESS",
+      "message": "Scheduled for immediate execution",
+      "payment": {
+        "id": "67d8e98caaa23286e1a1fd00",
+        "status": "OPEN",
+        "size": 1000,
+        "sender": {
+          "firstName": "John",
+          "lastName": "Smith",
+          "companyName": "Smith Consulting Pty Ltd"
+        }
       }
     }
   }

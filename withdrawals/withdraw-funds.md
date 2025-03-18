@@ -163,7 +163,6 @@ mutation {
       amount
       currency
       sender {
-      id
       firstName
       lastName
       companyName
