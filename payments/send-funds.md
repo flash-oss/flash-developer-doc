@@ -68,9 +68,9 @@ We are legally obliged to collect the actual beneficiary details. Please, do not
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 {% endhint %}
 
-### Sender - `senderId` or `subClientId` <a href="#sender-senderid-or-subclientid" id="sender-senderid-or-subclientid"></a>
+### Sender - `senderId` or `subClientId` , or neither <a href="#sender-senderid-or-subclientid" id="sender-senderid-or-subclientid"></a>
 
-You should [pre-create senders](https://developer.flash-payments.com/senders#create-a-sender) and provide us with their ID. Alternatively, if your account is configured to make FX payments **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the payments created will be linked to that sub-client. If the `senderId` is not provided, the `subClientId` will be used as the sender and will be reported to the government.
+In the above `createPayment` example, you had to [pre-create a sender](https://developer.flash-payments.com/senders#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to make FX payments **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the FX payment created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.&#x20;
 
 To use `subClientId` as the sender for your payments, please execute the `createPayment` mutation as below.
 
