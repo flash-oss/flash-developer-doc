@@ -57,6 +57,7 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
+    "bankCountry": "AU"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -92,6 +93,7 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
+    "bankCountry": "AU"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -127,6 +129,7 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
+    "bankCountry": "AU"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -163,6 +166,7 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
+    "bankCountry": "AU"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -202,6 +206,7 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
+    "bankCountry": "AU"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -241,6 +246,7 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
+    "bankCountry": "AU"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
