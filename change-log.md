@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Removed  (BREAKING)
 
-Removed `depositDetails`  as deprecated and non-functioning since March 2024.
+Removed `depositDetails`  query as deprecated and non-functioning since March 2024.
 
 ## 2025-01-24
 
