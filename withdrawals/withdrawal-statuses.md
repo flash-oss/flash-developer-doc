@@ -53,7 +53,7 @@ Typically, you want to adapt your system to handle the following common withdraw
 
 #### 1. Too long in the <mark style="color:orange;">REVIEWING</mark> status
 
-We are doing a manual review of your withdrawal, we sent your Compliance Team (or else) an email message requesting more information. In this case the withdrawal can be in <mark style="color:orange;">`REVIEWING`</mark> state for up to 10 days (5 business days + 2 weekends + an occasional holiday).&#x20;
+If your withdrawal is in this status this means that we are doing a manual review of it. It happens occasionally when you trigger our monitoring rules. Also, this means that we have sent your Compliance Team (or else) an email message requesting more information. You must respond. In other words, if there is a delay - it's on you. Because Flash Payments delivers all your transactions in real-time 24/7.
 
 {% hint style="info" %}
 Please always provide accurate [sender](https://developer.flash-payments.com/senders#create-a-sender) and [recipient](https://developer.flash-payments.com/recipients#create-a-recipient) information, including the full address, to prevent delays associated with manual compliance reviews.
