@@ -6,7 +6,7 @@ description: Quote the current bid and ask for a currency pair and size.
 
 Consider requesting an **indicative** quote to understand the current currency trading rates before deciding to take action. Please be aware that market makers are not required to honor indicative quotes.
 
-Paste this query to the GraphQL Playground to request an indicative quote
+Paste this query to the API Playground to request an indicative quote
 
 {% tabs %}
 {% tab title="Query" %}

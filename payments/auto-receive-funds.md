@@ -8,9 +8,9 @@ Some customers can automatically receive funds from overseas. Meaning, if we det
 
 {% hint style="warning" %}
 Note!\
-In case of sub-clients, they must have full real world address. Don't skip any fields while creating those in our system.\
-Also, you must send money from the **bank account on your (or your sub-client's) name**.\
-Also, sometimes but not always, the payment must have the **payment reference** we told you. See below.
+For sub-clients, a complete real-world address is mandatory. All address fields must be provided when creating a sub-client in our system.
+Additionally, funds must be sent from a bank account registered under your name or your sub-client’s name.
+In some cases, but not always, the payment must include the specific payment reference we provide. See below for more details.
 {% endhint %}
 
 Here is how it looks step by step.

@@ -12,12 +12,16 @@ enum ConversionStatus {
 }
 ```
 
-The current status of your conversion.
+The status of a conversion can be any of the following:
 
-* INITIALISED - a conversion was created but nothing else happened to it.
-  * Typically never happens via API.
-* PENDING - the conversion is in **progress**. The typical status of the conversion after you create it.
-* CONVERTED - means **successfully** converted. You balances were updated accordingly.
-* FAILED - an **error** has occurred with this conversion. Termporary statement.
-* CANCELLED - the conversion didn't happen and has been cancelled.
-  * Usually done by Flash Payments operations team.
+* INITIALISED — A conversion record was created, but no further action has been taken.
+This status typically does not occur via the API.
+
+* PENDING — The conversion is in progress. This is the usual status immediately after creation.
+
+* CONVERTED — The conversion completed successfully. Your balances have been updated accordingly.
+
+* FAILED — An error occurred during the conversion. This is usually a temporary state.
+
+* CANCELLED — The conversion was not completed and has been cancelled.
+This action is typically performed by the Flash Payments operations team.

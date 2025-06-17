@@ -1,6 +1,6 @@
 # Send funds
 
-To make a payment from AUD to another currency you need to execute the `createPayment` mutation as below.&#x20;
+To make a payment from AUD to a different currency, you need to execute the `createPayment` mutation as below.&#x20;
 
 {% hint style="info" %}
 Note that you must have enough AUD balance to make an outbound AUD payment.
@@ -67,9 +67,9 @@ We are legally obliged to collect the actual sender and beneficiary details. Ple
 
 If it is an intermediate, please see [Instiutions](send-funds.md#institutions) instead.
 
-Please always send us the ultimate sender and recipient. If sending to yourself,  please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+Please always send us the ultimate sender and recipient. If sending funds to yourself,  please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 
-If sending from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the examples below.
+If sending funds from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the examples below.
 {% endhint %}
 
 ### Sender - `senderId` or `subClientId` , or neither <a href="#sender-senderid-or-subclientid-or-neither" id="sender-senderid-or-subclientid-or-neither"></a>

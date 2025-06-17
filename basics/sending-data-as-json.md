@@ -6,7 +6,7 @@ description: >-
 
 # Sending data as JSON
 
-Most of the documentation examples shows you how to send data by **embedding values** into the GraphQL queries.
+Most of the documentation examples demonstrate how to send data by **embedding values** into the GraphQL queries.
 
 ```bash
 echo '{
@@ -25,17 +25,15 @@ echo '{
 -d @-
 ```
 
-We understand that such long query strings would be difficult to construct with code. Here is how to send **query and data separately**.
-
-You need to send us the JSON object with two properties - `"query"` and `"variables"`.
+To make it easier to work with complex queries in code, we support sending GraphQL operations as a JSON object with two properties: `"query"` and `"variables"`. Here is how you can do it:
 
 * Declare the `$input` variable in the QraphQL `"query"` string. The technology also requires you to declare the type of your input(s). See the `QueryInput` in the example below.
 * Provide the `"variables"` object with the `"input"` property. The value of it must be a JSON object structured exactly as the `QueryInput` type.
 
 {% hint style="warning" %}
-Do NOT provide any other GraphQL types except the highest level input argument. Otherwise, you risk to experience production issues when we deploy schema changes.
+Only include the top-level input argument in your GraphQL queries. Including additional types may lead to compatibility issues when schema changes are deployed in production.
 
-If you construct the GraphQL query using a third party library/software then you risk to violate the above requrement. We recommend to not use any GraphQL libraries.
+If you're using third-party tools or libraries to construct GraphQL queries, be aware that they may generate unsupported structures. We recommend avoiding GraphQL libraries to reduce this risk.
 {% endhint %}
 
 ```bash
@@ -53,7 +51,7 @@ echo '{
 -d @-
 ```
 
-Here is a screenshot of how a typical mutation looks in the GraphQL Playground:
+Here is a screenshot of how a typical mutation looks like in the API Playground:
 
 ![](../.gitbook/assets/image.png)
 

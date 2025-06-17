@@ -58,7 +58,8 @@ If your withdrawal is in this status this means that we are doing a manual revie
 {% hint style="info" %}
 Please always provide accurate [sender](https://developer.flash-payments.com/senders#create-a-sender) and [recipient](https://developer.flash-payments.com/recipients#create-a-recipient) information, including the full address, to prevent delays associated with manual compliance reviews.
 
-As a matter of fact, we have an automated address cleansing/validation layer where sender and recipient addresses will be checked again once the transaction is created. Our algorithm takes all address fields together, tries to make sense of them and verifies if such address actually exists. If the automated verification fails, the transaction will be marked as REVIEWING and sent to our Compliance team for manual verification. This means that transactions will be delayed and this can be avoided if the accurate address information is provided.
+Sender and recipient addresses are automatically validated when a transaction is created. If the address cannot be verified, the transaction will be flagged for manual review by our Compliance team, resulting in processing delays.
+To help ensure smooth and timely processing, please provide complete and accurate address details.
 {% endhint %}
 
 You can simulate the behaviour. Your `externalReference` must include this text: `HALT_AML`. For example: `"testing HALT_AML attempt 2"`. The withdrawal will get stuck in <mark style="color:orange;">`REVIEWING`</mark> forever.
@@ -71,6 +72,6 @@ You can simulate the behaviour. Your `externalReference` must include this text:
 
 #### 3. Recipient bank rejects the money
 
-An often scenario in Australian domestic payments system is when a local transaction went seemingly fine. However, few days later a recipient bank decides to return the money. There are multiple reasons for that. For example: account number does not exist, account was closed, account is of a wrong currency, etc.
+A common scenario in the Australian domestic payment system involves a transaction that appears successful initially, but is later reversed by the recipient’s bank—sometimes days after processing. This can happen for various reasons, such as an invalid or closed account number, an account in the wrong currency, or other account-related issues.
 
 You can simulate the behaviour. Your `externalReference` must include this text: `FAIL_ACC`. For example: `"testing FAIL_ACC attempt 8"`. The withdrawal will be completed, and next moment failed and refunded.

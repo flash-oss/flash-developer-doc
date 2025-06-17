@@ -6,7 +6,7 @@ description: Flash Payments Developer API documentation
 
 ## General information
 
-Flash Payments API is [GraphQL](http://graphql.github.io/learn/queries/) based because GraphQL is simpler and easier than REST API and more developer friendly. Although, the data you send and receive is all JSON.
+Flash Payments API is [GraphQL](http://graphql.github.io/learn/queries/)-based, offering simple and developer-friendly querying experience. All data is exchanged in JSON format.
 
 Flash Payments API playground is located here: [https://api.uat.flash-payments.com.au/](https://api.uat.flash-payments.com.au/)
 
@@ -16,49 +16,49 @@ This documentation website **does not have full list of API** fields and methods
 
 ## High level feature overview
 
-You can search, visualise, or extract your data using our FlashConnect product: [https://connect.uat.flash-payments.com.au/](https://connect.uat.flash-payments.com.au/)
+You can search, visualise, or extract your data using our [FlashConnect](https://connect.uat.flash-payments.com.au/) product.
 
 ### Instant local Australian deposit (aka pay-in)
 
-You would get a dedicated Australian BSB and a Virtual Account Number (VAN).
+Once registration is complete, a dedicated BSB and Virtual Account Number (VAN) for use within Australia will be assigned to you.
 
 {% hint style="warning" %}
-Warning: The account number can only process local transfers, **no SWIFT/RTGS**.
+IMPORTANT: Your Australian VAN will be restricted to local Australian transfers. For international payments (aka FX payments), we offer different solutions. 
 {% endhint %}
 
-Any funds deposited to that account would increase your Flash Payments balance. We preserve the provided payment reference of every deposit for your further utilisation. E.g. invoice number or else.
+Any funds deposited to your VAN would increase your Flash Payments balance. We store and retain the reference attached to each deposit (e.g., an invoice number) to support your reconciliation or reporting needs.
 
-By default, only yourself is allowed to deposit to it. However, the third party deposits are also possible. Although, we would need to enable this setting for you separately.
+By default, only you can deposit into your VAN. Third-party deposits are also supported, but this feature must be enabled separately
 
-Sometimes, banks can delay your deposit by up to 24 hours. This should be expected. But typically, deposits are reflected in your Flash Payments balance immediately.
+Deposits are typically processed in real time, but depending on the bank, there may be a delay of up to 24 hours.
 
-If set, you would get a webhook (aka callback) notification about every deposit made to your VAN. Go to the [https://connect.uat.flash-payments.com.au/](https://connect.uat.flash-payments.com.au/) to setup a deposit webhook.
+You can configure webhook notifications to receive alerts for every deposit made to your VAN. Please visit [FlashConnect](https://connect.uat.flash-payments.com.au/) to set up your deposit webhook.
 
-You can manually reject unwanted deposits via the [https://connect.uat.flash-payments.com.au/](https://connect.uat.flash-payments.com.au/) interface. The funds will be returned to the original sender bank account.
+You can manually reject unwanted deposits via the [FlashConnect](https://connect.uat.flash-payments.com.au/) interface. The funds will be returned to the original sender bank account.
 
 ### Local Australian withdrawal (aka pay-out)
 
-This API allows you to withdraw your Flash Payments balance. By default, only yourself is allowed to receive those funds. The third party withdrawals (aka payouts) are also possible. Although, we would need to enable this setting for you separately.
+The Flash Payments API enables you to withdraw funds from your Flash Payments balance. By default, only you are authorized to receive these withdrawals. Third-party withdrawals (also known as payouts) are available upon request and require separate activation.
 
-If your payout is a part of FX payments, we are legally obliged to use classic Australian payment system a.k.a. Direct Entry. It would take from 0 up to few hours to deliver such funds. Otherwise, payouts are delivered to the recipient instantly.
+If your payout involves a foreign exchange (FX) payment, it must be processed using the Australian Direct Entry system in accordance with legal requirements. Processing time may vary from immediate to a few hours. Other payouts are credited instantly.
 
-If a payout fails you will receive a webhook notification with a clear explanation of what went wrong. This is typically bank account number typos.
+If a payout fails, you will receive a webhook notification detailing the reason for the failure.
 
 The payout remitter name is configurable. You can give us the remitter name as `withdrawal.sender` data property. This is especially useful for FX-linked payouts. If a Brazilian mama Katarina Oreiro sends money to her son in Australia, he will see his mom's name in the bank statement - "Payment from Katarina Oreiro".
 
-Payouts can also be done via the [https://connect.uat.flash-payments.com.au/](https://connect.uat.flash-payments.com.au/) interface.
+Payouts can also be done via the [FlashConnect](https://connect.uat.flash-payments.com.au/) interface.
 
 ### Send or receive money internationally
 
-You can send you Flash Payments balance internationally via our API and enjoy instant delivery to countries with local instant payment systems, e.g. Philippines. By the way, cash payments to Philippines are also supported.
+You can send your Flash Payments balance internationally via our API and benefit from instant delivery to many countries with local instant payment systems (e.g. Philippines)
 
-Your code would need to pre-create both sender and recipient before creating a payment for them.
+To initiate a payment, you must pre-create the sender and recipient via the API.
 
-All the entities in our database (withdrawal, payment, sender, recipient) can hold your system's ID. See the `externalId` field in the [API docs](https://api.uat.flash-payments.com.au/).
+All entities in our database, including withdrawals, payments, senders, and recipients, can store your system’s unique identifier. Please refer to the `externalId` field in the [API docs](https://api.uat.flash-payments.com.au/).
 
-Depending on the recipient's country a payment can take from few minutes to few days. You would receive a webhook notification when a payment state changes.
+Payment delivery times depend on the recipient's country. While many are processed quickly, some may take additional time. You’ll be notified via webhook whenever the payment status changes.
 
-In most cases you can send money to your Flash Payments balance. This can be automated. You will receive a webhook notification when we see you sending to Flash Payments from other countries.
+You can send funds through an international payment to your Flash Payments account. A webhook notification will be triggered when we detect payments from other countries.
 
 ### Security
 
@@ -66,7 +66,7 @@ The API token you generate expires in 4 hours. You can always use `logout` Graph
 
 You can't reset your own password until we verify your identity.
 
-The [https://connect.uat.flash-payments.com.au/](https://connect.uat.flash-payments.com.au/login) interface supports Google and One-Time-Password logins.
+The [FlashConnect](https://connect.uat.flash-payments.com.au/login) interface supports Google and One-Time-Password logins.
 
 Webhooks have cryptographic signatures.
 

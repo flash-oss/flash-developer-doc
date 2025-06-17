@@ -6,7 +6,7 @@ description: CRUD queries for your payment senders
 
 We are legally obliged to collect the actual sender details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
-If receiving from yourself then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other sender details options.
+If you want to receive funds from yourself then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other sender details options.
 
 * `sender` and `senders` queries - **read** your address book.
 * `createSender` - **creates** a new record in the Flash Payments database.
