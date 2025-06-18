@@ -6,10 +6,41 @@ description: Quote the current bid and ask for a currency pair and size.
 
 Consider requesting an **indicative** quote to understand the current currency trading rates before deciding to take action. Please be aware that market makers are not required to honor indicative quotes.
 
-Paste this query to the API Playground to request an indicative quote
+Paste this query to the API Playground to request an indicative quote.
+
+{% hint style="warning" %}
+We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the [API playground](https://api.uat.flash-payments.com.au/) or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).
+{% endhint %}
 
 {% tabs %}
 {% tab title="Query" %}
+```graphql
+query($input: QuoteInput!) {
+  quote(input: $input) {
+    bid
+    ask
+    symbol
+    timestamp
+    inverted
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
+{
+  "input": { 
+     "fromCurrency": "AUD", 
+     "toCurrency": "USD", 
+     "size": "10000", 
+     "currency": "AUD"
+ }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
 ```graphql
 {
   quote(
@@ -42,14 +73,42 @@ Paste this query to the API Playground to request an indicative quote
 {% endtab %}
 {% endtabs %}
 
-
-
 In contrast to an indicative quote, a **tradable** quote is guaranteed by the market maker.
 
 Paste this query to the GraphQL Playground to request a tradable quote. It is important to consider the `expireAt` date and time, and preserve the `id` of a tradable quote for future `createPayment` and `createConversion` calls.
 
 {% tabs %}
 {% tab title="Query" %}
+```graphql
+query($input: QuoteInput!) {
+  quote(input: $input) {
+    bid
+    ask
+    symbol
+    timestamp
+    inverted
+    expireAt
+    id
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
+ {
+  "input": { 
+     "fromCurrency": "AUD", 
+     "toCurrency": "USD", 
+     "size": "10000", 
+     "currency": "AUD",
+     "tradeable": true 
+ }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
 ```graphql
 {
   quote(
@@ -91,6 +150,3 @@ Paste this query to the GraphQL Playground to request a tradable quote. It is im
 ```
 {% endtab %}
 {% endtabs %}
-
-
-
