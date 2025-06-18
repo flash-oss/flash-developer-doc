@@ -110,8 +110,7 @@ If you find it technically challenging to submit all components of the sender’
 {% endhint %}
 
 {% hint style="info" %}
-The date of birth (`dob`) is not required. However, if you don't have it then your transactions will trigger more compliance alerts, thus your payments will be processed much slower (hours or days instead of mere seconds). Also, we charge you more fees for manual labour you cause.
-{% endhint %}
+The date of birth (`dob`) is not mandatory. However, if it is not provided, your transactions may undergo additional compliance reviews, which can lead to longer processing times—potentially several hours or days instead of seconds. Please also be aware that this may result in additional fees to cover the extra effort involved.{% endhint %}
 
 {% tabs %}
 {% tab title="Individual" %}

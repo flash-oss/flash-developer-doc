@@ -15,7 +15,7 @@ If you choose to reject a deposit, its status goes through the following lifecyc
 `INITIALISED`-><mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`CONFIRMED`→`REFUNDING`→`REFUNDED`&#x20;
 
 {% hint style="warning" %}
-The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
+The <mark style="color:orange;">REVIEWING</mark> is an **optional** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
 {% endhint %}
 
 If Flash Payments Compliance choose to reject a deposit, its status lifecycle goes through following stages:

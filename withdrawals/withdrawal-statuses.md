@@ -6,7 +6,7 @@ description: Withdrawal processing statuses
 
 1. You create a withdrawal. Your **balance goes down** by the withdrawal amount plus fee.\
    `INITIALISED`
-   1. We might **manually** review the transaction.\
+   1. We might internally review the transaction.\
       `INITIALISED`-> <mark style="color:orange;">`REVIEWING`</mark>
    2. If review goes well it will become pending.\
       <mark style="color:orange;">`REVIEWING`</mark>→ `PENDING`
@@ -20,11 +20,11 @@ description: Withdrawal processing statuses
      * `REFUNDED` - see step 4 below.
      * `CANCELLED` - manual action. Your **balance goes up** by the amount, Flash Payments keeps the fee. _**FINAL status.**_
      * `PENDING` - rare case - retrying. Sometimes it might work. Go to item 3.
-4. The recipient bank decided to return this transaction back to Flash Payments.\
+4. The recipient bank decided to return this transaction back to Flash Payments.
    `CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, Flash Payments keeps the fee. _**FINAL status**_.
 
 {% hint style="warning" %}
-The <mark style="color:orange;">REVIEWING</mark> is an **optional** **manual** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
+The <mark style="color:orange;">REVIEWING</mark> is an **optional** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
 {% endhint %}
 
 ### Most common status transitions
@@ -53,12 +53,12 @@ Typically, you want to adapt your system to handle the following common withdraw
 
 #### 1. Too long in the <mark style="color:orange;">REVIEWING</mark> status
 
-If your withdrawal is in this status this means that we are doing a manual review of it. It happens occasionally when you trigger our monitoring rules. Also, this means that we have sent your Compliance Team (or else) an email message requesting more information. You must respond. In other words, if there is a delay - it's on you. Because Flash Payments delivers all your transactions in real-time 24/7.
+If your withdrawal is in this status this means that we are doing an internal review of it. It happens occasionally when you trigger our monitoring rules. Also, this means that we have sent your Compliance Team (or else) an email message requesting more information. You must respond. In other words, if there is a delay - it's on you. Because Flash Payments delivers all your transactions in real-time 24/7.
 
 {% hint style="info" %}
-Please always provide accurate [sender](https://developer.flash-payments.com/senders#create-a-sender) and [recipient](https://developer.flash-payments.com/recipients#create-a-recipient) information, including the full address, to prevent delays associated with manual compliance reviews.
+Please always provide accurate [sender](https://developer.flash-payments.com/senders#create-a-sender) and [recipient](https://developer.flash-payments.com/recipients#create-a-recipient) information, including the full address, to prevent delays associated with internal compliance reviews on our side.
 
-Sender and recipient addresses are automatically validated when a transaction is created. If the address cannot be verified, the transaction will be flagged for manual review by our Compliance team, resulting in processing delays.
+Sender and recipient addresses are automatically validated when a transaction is created. If the address cannot be verified, the transaction will be flagged for review by our Compliance team, resulting in processing delays.
 To help ensure smooth and timely processing, please provide complete and accurate address details.
 {% endhint %}
 
