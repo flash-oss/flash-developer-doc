@@ -4,7 +4,7 @@ description: Get your access token
 
 # Authentication
 
-Before doing any other API calls you have to obtain an auth token. It's a standard JWT token carrying the following payload:&#x20;
+Before doing any other API calls you have to obtain an auth token. It's a standard JWT token carrying the following payload:
 
 ```javascript
 {
@@ -46,13 +46,17 @@ This `login` mutation is a subject to change in the future.
 3. Click the **"HTTP HEADERS"** on the bottom and add this: `{"authorization": "Bearer YOUR_TOKEN"}`. Replace the `YOUR_TOKEN` with the token you just got.
 4. Execute any other queries.
 
-Here is an example of the login query.
+Here is an example of the login query. &#x20;
+
+{% hint style="warning" %}
+We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the playground or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).&#x20;
+{% endhint %}
 
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
-mutation {
-  login(input: { email: "you@example.com", password: "12345678" }) {
+mutation($input: LoginInput!) {
+  login(input: $input) {
     token
     message
     code
@@ -60,6 +64,29 @@ mutation {
   }
 }
 ```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
+{
+  "input": { 
+   "email": "you@example.com", 
+   "password": "12345678" 
+ }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
+<pre class="language-graphql"><code class="lang-graphql"><strong>mutation {
+</strong>  login(input: { email: "you@example.com", password: "12345678" }) {
+    token
+    message
+    code
+    success
+  }
+}
+</code></pre>
 {% endtab %}
 
 {% tab title="Response" %}
@@ -85,3 +112,4 @@ If using [API Playground](https://api.uat.flash-payments.com.au/) then click the
   "authorization": "Bearer YOUR_TOKEN"
 }
 ```
+
