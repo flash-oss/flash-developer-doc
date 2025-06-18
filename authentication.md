@@ -90,7 +90,7 @@ mutation($input: LoginInput!) {
 {% endtab %}
 
 {% tab title="Response" %}
-```graphql
+```javascript
 {
   "data": {
     "login": {
