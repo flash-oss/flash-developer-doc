@@ -49,7 +49,7 @@ This `login` mutation is a subject to change in the future.
 Here is an example of the login query. &#x20;
 
 {% hint style="warning" %}
-We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the playground or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).&#x20;
+We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the [API playground](https://api.uat.flash-payments.com.au/) or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).&#x20;
 {% endhint %}
 
 {% tabs %}
