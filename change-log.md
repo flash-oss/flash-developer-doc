@@ -172,7 +172,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 ### Added
 
 * New `REVIEWING` status to deposit and withdrawal status enum.
-  * _`REVIEWING` : deposit_/withdrawal _is being **manually** checked (e.g. compliance) before proceeding._
+  * _`REVIEWING` : deposit_/withdrawal _is being internally checked by our compliance team before proceeding._
   * Added corresponding [webhook](webhooks/) event types: `deposit_reviewing` and `withdrawal_reviewing`.
 
 ## 2022-08-25

@@ -4,7 +4,7 @@ description: Two types of the webhooks
 
 # Webhooks
 
-The main triggers for all webhooks - are payment, withdrawal, deposit or conversion **status** changes. E.g. when a withdrawal goes from `PENDING` to `CONFIRMED` status.
+The primary triggers for all webhooks are **status** changes in payments, withdrawals, deposits, or conversions. For example, a webhook is sent when a withdrawal status changes from `PENDING` to `CONFIRMED`.
 
 There are two types of webhooks in Flash Payments.
 

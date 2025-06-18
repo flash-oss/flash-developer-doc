@@ -13,4 +13,4 @@ If you are a fully verified customer you can payout to any bank account number i
 * have a recipient ID (see [Recipients](../recipients/) to query your address book); otherwise
 * understand the supported delivery methods using the [availableDeliveryMethods](../recipients/required-fields.md) query and [create a new recipient](../recipients/#create-a-recipient)
 
-Having a recipient ID you can now withdraw money.
+Once you have the recipient ID, you can initiate a withdrawal.

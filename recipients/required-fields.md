@@ -6,7 +6,7 @@ description: >-
 
 # Required fields
 
-Understand what minimal data you need to have to successfully transfer a payment
+Please verify that you have all required data to initiate a successful payment transfer.
 
 #### List all the available payment delivery methods
 

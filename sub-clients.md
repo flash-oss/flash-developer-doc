@@ -7,13 +7,15 @@ description: Generate Virtual Account Numbers for your clients for collection
 The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, companies, or other organisations.
 
 {% hint style="info" %}
-Note: This feature is **OFF** by default. Contact us if you want it.
+Note: This feature is **disabled** by default. Contact us if you want it.
 {% endhint %}
 
-Each sub-client will receive a dedicated **BSB** and virtual **account number** that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
+Each sub-client will receive a dedicated **BSB** and virtual **account number** (VAN) that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
 
 {% hint style="warning" %}
 Warning: This local account number can only process local transfers, **no SWIFT/RTGS**.
+IMPORTANT: Your Australian VAN will be restricted to local Australian transfers. For international payments (aka FX payments), we offer different solutions.
+
 {% endhint %}
 
 The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).

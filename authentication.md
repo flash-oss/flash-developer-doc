@@ -22,10 +22,10 @@ Tip: Use this handy website to parse the token contents: [jwt.io](https://jwt.io
 The token lifetime is **4 hours** at this time. We might change this value in the future.
 
 {% hint style="warning" %}
-Warning! You can't login more than once per second. That's a DOS attack prevention feature.
+Warning! You can't log in more than once per second. This limit is in place to maintain platform stability.
 {% endhint %}
 
-To be more future-proof it is recommended to parse the token payload and compare current time to the token's expiration time. JavaScript code:
+To be more future-proof, it is recommended to parse the token payload and compare current time to the token's expiration time. JavaScript code:
 
 ```javascript
 const seconds = JSON.parse(Buffer.from(token.split(".")[1], "base64url")).exp;
@@ -40,7 +40,7 @@ This `login` mutation is a subject to change in the future.
 
 ### Getting a token
 
-1. After we enable you, go to the [https://api.uat.flash-payments.com.au/](https://api.uat.flash-payments.com.au/) playground, click **"DOCS"** on the right to explore the possibilities.
+1. After we enable you, go to the [API Playground](https://api.uat.flash-payments.com.au/), click **"DOCS"** on the right to explore the possibilities.
 2. Find there the `login` mutation. Execute it to obtain your access token. For example:\
    `mutation { login(input: {email: "YOUR_EMAIL" password: "YOUR_PWD"}) {token message} }`
 3. Click the **"HTTP HEADERS"** on the bottom and add this: `{"authorization": "Bearer YOUR_TOKEN"}`. Replace the `YOUR_TOKEN` with the token you just got.
@@ -78,7 +78,7 @@ mutation {
 {% endtab %}
 {% endtabs %}
 
-If using [GraphQL Playground](https://api.uat.flash-payments.com.au/) then click the "HTTP HEADERS" on the bottom left and paste there the following (replace the `YOUR_TOKEN` with the value you have just received form the above mutation):
+If using [API Playground](https://api.uat.flash-payments.com.au/) then click the "HTTP HEADERS" on the bottom left and paste there the following (replace the `YOUR_TOKEN` with the value you have just received form the above mutation):
 
 ```javascript
 {

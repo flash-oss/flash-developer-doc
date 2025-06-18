@@ -6,7 +6,7 @@ description: CRUD queries for your payment senders
 
 We are legally obliged to collect the actual sender details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
 
-If receiving from yourself then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other sender details options.
+If you want to receive funds from yourself then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other sender details options.
 
 * `sender` and `senders` queries - **read** your address book.
 * `createSender` - **creates** a new record in the Flash Payments database.
@@ -110,8 +110,7 @@ If you find it technically challenging to submit all components of the sender’
 {% endhint %}
 
 {% hint style="info" %}
-The date of birth (`dob`) is not required. However, if you don't have it then your transactions will trigger more compliance alerts, thus your payments will be processed much slower (hours or days instead of mere seconds). Also, we charge you more fees for manual labour you cause.
-{% endhint %}
+The date of birth (`dob`) is not mandatory. However, if it is not provided, your transactions may undergo additional compliance reviews, which can lead to longer processing times—potentially several hours or days instead of seconds. Please also be aware that this may result in additional fees to cover the extra effort involved.{% endhint %}
 
 {% tabs %}
 {% tab title="Individual" %}

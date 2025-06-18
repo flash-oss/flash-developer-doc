@@ -12,15 +12,15 @@ enum PaymentStatus {
 }
 ```
 
-The current status of your payment.
+The status of a payment can be any of the following:
 
-* INITIALISING - a draft payment. It may or may not have all required information to be executed.
-  * Typically never happens via API. Can be created via the [Flash Payments app](http://app.uat.flash-payments.com.au/) under certain circumstances.
-* OPEN - the payment is in **progress**.
-* CLOSED - means **successfully** delivered.
-* FAILED - an **error** has occurred with this payment.
-* CANCELLED - the payment has not completed and has been cancelled.
-  * Usually done by Flash Payments operations team.
+Payment Statuses:
+
+* INITIALISING – a draft payment. It may or may not have all required information to be executed. Typically, this never happens through the API. Can be created via the [Flash Payments app](http://app.uat.flash-payments.com.au/) under certain circumstances.
+* OPEN – The payment is in progress.
+* CLOSED – The payment was successfully delivered.
+* FAILED – An error occurred during processing.
+* CANCELLED – The payment did not complete and was cancelled, usually by the Flash Payments operations team.
 
 {% hint style="info" %}
 Important to understand that the `Payment.history` is a transfer logs and is not related to payment status at all. Sometimes the history may contain half a dozen entries, however your payment will go through only two steps: `OPEN` and `CLOSED`.
