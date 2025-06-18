@@ -16,7 +16,7 @@ This documentation website **does not have full list of API** fields and methods
 
 ## High level feature overview
 
-You can search, visualise, or extract your data using our [FlashConnect](https://connect.uat.flash-payments.com.au/) product.
+You can search, visualise, or extract your data using our [FlashConnect](https://connect.uat.flash-payments.com.au/) interface.
 
 ### Instant local Australian deposit (aka pay-in)
 

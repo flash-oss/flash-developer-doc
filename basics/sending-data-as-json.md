@@ -25,7 +25,7 @@ echo '{
 -d @-
 ```
 
-To make it easier to work with complex queries in code, we support sending GraphQL operations as a JSON object with two properties: `"query"` and `"variables"`. Here is how you can do it:
+To make it easier to work with complex queries in code, we support sending GraphQL queries as a JSON object with two properties: `"query"` and `"variables"`. Here is how you can do it:
 
 * Declare the `$input` variable in the QraphQL `"query"` string. The technology also requires you to declare the type of your input(s). See the `QueryInput` in the example below.
 * Provide the `"variables"` object with the `"input"` property. The value of it must be a JSON object structured exactly as the `QueryInput` type.
