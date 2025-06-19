@@ -33,7 +33,7 @@ query($input: QuoteInput!) {
 ```
 {% endtab %}
 
-{% tab title="Query Vadiables" %}
+{% tab title="Query Variables" %}
 ```javascript
 {
   "input": { 
