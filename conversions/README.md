@@ -7,13 +7,48 @@ description: Convert between your multi currency balances
 To convert between, say, `AUD` and `EUR` you should:
 
 1. Request a tradeable quote with applicability: CONVERSION.
-2. Retrieve the quoteID from the response.
-3. Reference the quoteID when creating the conversion.
+2. Retrieve the quote ID from the response.
+3. Reference the quote ID when creating the conversion.
 
-Get a quote ID:
+{% hint style="warning" %}
+We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the [API playground](https://api.uat.flash-payments.com.au/) or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).
+{% endhint %}
+
+Get a tradable quote ID:
 
 {% tabs %}
-{% tab title="Quote" %}
+{% tab title="Query" %}
+```graphql
+query($input: QuoteInput!) {
+  quote(input: $input) {
+    id
+    bid
+    ask
+    symbol
+    timestamp
+    inverted
+    expireAt
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Query Vadiables" %}
+```javascript
+{
+  "input": { 
+     "fromCurrency": "AUD", 
+     "toCurrency": "EUR", 
+     "size": "10000", 
+     "currency": "AUD",
+     "tradeable": true,
+     "applicability": "CONVERSION"
+ }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
 ```graphql
 {
   quote(
@@ -43,13 +78,13 @@ Get a quote ID:
 {
   "data": {
     "quote": {
-      "id": "6711ec0e950ae23de886ebe5",
-      "bid": 0.61104,
-      "ask": 0.62077,
-      "symbol": "USDAUD",
-      "timestamp": "2024-08-13T07:54:54.993Z",
-      "inverted": true,
-      "expireAt": "2024-08-13T07:55:54.993Z"
+      "id": "685369cf85f7cb51fb4ae2eb",
+      "bid": 0.55663,
+      "ask": 0.57153,
+      "symbol": "AUDEUR",
+      "timestamp": "2025-06-19T01:37:19.418Z",
+      "inverted": false,
+      "expireAt": "2025-06-19T01:39:19.419Z"
     }
   }
 }
@@ -61,6 +96,46 @@ Convert funds:
 
 {% tabs %}
 {% tab title="Query" %}
+```graphql
+ mutation($input: ConversionInput!) {
+  createConversion(input: $input) {
+    success
+    code
+    message
+    conversion {
+      id
+      fromCurrency
+      toCurrency
+      currencyPair
+      fromAmount
+      toAmount
+      rate
+      note
+      status
+      statusMessage
+      callbackUri
+      externalId
+      createdAt
+      updatedAt
+    }
+  }
+```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
+ {
+  "input": { 
+      "note": "for major client",
+      "externalId": "561402",
+      "quoteId": "6711ec0e950ae23de886ebe5",
+      "callbackUri": "https://example.com/my-webhook/endpoint/"
+ }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
 ```graphql
 mutation {
   createConversion(
@@ -125,6 +200,3 @@ mutation {
 ```
 {% endtab %}
 {% endtabs %}
-
-###
-
