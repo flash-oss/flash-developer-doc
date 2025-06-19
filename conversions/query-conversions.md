@@ -157,7 +157,7 @@ query($input: ID) {
 {% tab title="Query Variables" %}
 ```javascript
 {
-  "input": "678a18bb2879c374b378ee71"
+  "input": "6b04c62ec0bf606bf216ae21"
 }
 ```
 {% endtab %}
