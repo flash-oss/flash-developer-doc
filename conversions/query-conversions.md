@@ -9,6 +9,29 @@ description: You can query all your past conversions
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
+ query($input: ConversionQueryInput!) {
+  conversions(input: $input) {
+    id
+    fromCurrency
+    toCurrency
+    rate
+    # there are many other properties
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
+ {
+  "input": { 
+ }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
+```graphql
 {
   conversions {
     id
@@ -56,6 +79,30 @@ description: You can query all your past conversions
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
+query($input: ConversionQueryInput!) {
+  conversions(input: $input) {
+    id
+    fromCurrency
+    toCurrency
+    # there are many other properties
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
+{
+  "input": { 
+    "statuses": "CONVERTED",
+    "toCurrencies": ["EUR","USD"]
+ }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
+```graphql
 {
   # there are more query parameters available, see the API schema
   conversions(input: { statuses: CONVERTED, toCurrencies: [EUR USD] }) {
@@ -72,16 +119,16 @@ description: You can query all your past conversions
 ```javascript
 {
   "data": {
-    "payments": [
+    "conversions": [
       {
-        "id": "6b04c62ec0bf606bf216ae21",
-        "fromCurrency": "AUD",
-        "toCurrency": "EUR"
-      },
-      {
-        "id": "6b04c6bfc0bf606bf216af06",
+        "id": "6833ad9b4e94acce5d4a031b",
         "fromCurrency": "AUD",
         "toCurrency": "USD"
+      },
+      {
+        "id": "678a18bb2879c374b378ee71",
+        "fromCurrency": "AUD",
+        "toCurrency": "EUR"
       }
     ]
   }
@@ -90,13 +137,34 @@ description: You can query all your past conversions
 {% endtab %}
 {% endtabs %}
 
-#### Retrieving a single conversion
+#### Retrieving a single conversion by ID
 
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
+query($input: ID) {
+  conversion(id: $input) {
+    status
+    createdAt
+    fromAmount
+    toAmount
+    # there are many other properties
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
 {
-  # there are more query parameters available, see the API schema
+  "input": "678a18bb2879c374b378ee71"
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
+```graphql
+{
   conversion(id: "6b04c62ec0bf606bf216ae21") {
     status
     createdAt
@@ -105,7 +173,6 @@ description: You can query all your past conversions
     # there are many other properties
   }
 }
-
 ```
 {% endtab %}
 
