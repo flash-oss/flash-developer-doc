@@ -11,6 +11,35 @@ The dates must be any ISO 8601 formatted dates.
 {% tabs %}
 {% tab title="Query" %}
 ```graphql
+query($input: StatementQueryInput!) {
+  statement(input: $input) {
+    success
+    code
+    message
+    fromDate
+    toDate
+    rows {
+      debit
+      credit
+      # and many other fields
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Query Variables" %}
+```javascript
+{
+  "input": {
+    "fromDate": "2023-08-28T00:00:00+03:00"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Embedded Variables" %}
+```graphql
 {
   statement(input: { fromDate: "2023-08-28T00:00:00+03:00" }) {
     success
