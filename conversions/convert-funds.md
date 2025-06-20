@@ -16,17 +16,17 @@ Get a tradable quote ID:
 {% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
-    variables: {
+  variables: {
     input: {
-        fromCurrency: "AUD",
-            toCurrency: "EUR",
-            size: "10000",
-            currency: "AUD",
-            tradeable: true,
-            applicability: "CONVERSION",
+      fromCurrency: "AUD",
+      toCurrency: "EUR",
+      size: "10000",
+      currency: "AUD",
+      tradeable: true,
+      applicability: "CONVERSION",
     },
-},
-    query: `
+  },
+  query: `
 query ($input: QuoteInput!) {
   quote(input: $input) {
     id bid ask symbol timestamp inverted expireAt
@@ -56,13 +56,13 @@ query($input: QuoteInput!) {
 ```javascript
 {
   "input": { 
-     "fromCurrency": "AUD", 
-     "toCurrency": "EUR", 
-     "size": "10000", 
-     "currency": "AUD",
-     "tradeable": true,
-     "applicability": "CONVERSION"
- }
+    "fromCurrency": "AUD", 
+    "toCurrency": "EUR", 
+    "size": "10000", 
+    "currency": "AUD",
+    "tradeable": true,
+    "applicability": "CONVERSION"
+  }
 }
 ```
 {% endtab %}
@@ -92,15 +92,15 @@ Convert funds:
 {% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
-    variables: {
+  variables: {
     input: {
         note: "for major client",
         externalId: "561402",
         quoteId: "6854dcffaa36ba8534d5f8e2",
         callbackUri: "https://example.com/my-webhook/endpoint/",
     }
-},
-    query: `
+  },
+  query: `
 mutation ($input: ConversionInput!) {
   createConversion(input: $input) {    
     success code message 
@@ -116,26 +116,12 @@ mutation ($input: ConversionInput!) {
 
 {% tab title="GraphQL Query" %}
 ```graphql
- mutation($input: ConversionInput!) {
+mutation($input: ConversionInput!) {
   createConversion(input: $input) {
-    success
-    code
-    message
+    success code message
     conversion {
-      id
-      fromCurrency
-      toCurrency
-      currencyPair
-      fromAmount
-      toAmount
-      rate
-      note
-      status
-      statusMessage
-      callbackUri
-      externalId
-      createdAt
-      updatedAt
+      id fromCurrency toCurrency currencyPair fromAmount toAmount rate note
+      status statusMessage callbackUri externalId createdAt updatedAt
     }
   }
 }
@@ -144,13 +130,13 @@ mutation ($input: ConversionInput!) {
 
 {% tab title="Variables" %}
 ```javascript
- {
+{
   "input": { 
-      "note": "for major client",
-      "externalId": "561402",
-      "quoteId": "6854dcffaa36ba8534d5f8e2",
-      "callbackUri": "https://example.com/my-webhook/endpoint/"
- }
+    "note": "for major client",
+    "externalId": "561402",
+    "quoteId": "6854dcffaa36ba8534d5f8e2",
+    "callbackUri": "https://example.com/my-webhook/endpoint/"
+  }
 }
 ```
 {% endtab %}
