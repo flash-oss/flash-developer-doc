@@ -108,8 +108,8 @@ mutation ($input: ConversionInput!) {
       id fromCurrency toCurrency currencyPair fromAmount toAmount rate note 
       status statusMessage callbackUri externalId createdAt updatedAt 
     }
-   }
- }`,
+  }
+}`,
 };
 ```
 {% endtab %}
