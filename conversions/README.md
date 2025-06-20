@@ -17,7 +17,30 @@ We suggest always sending your queries and related data separately using the "QU
 Get a tradable quote ID:
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+    variables: {
+    input: {
+        fromCurrency: "AUD",
+            toCurrency: "EUR",
+            size: "10000",
+            currency: "AUD",
+            tradeable: true,
+            applicability: "CONVERSION",
+    },
+},
+    query: `
+query ($input: QuoteInput!) {
+  quote(input: $input) {
+    id bid ask symbol timestamp inverted expireAt
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
 query($input: QuoteInput!) {
   quote(input: $input) {
@@ -33,7 +56,7 @@ query($input: QuoteInput!) {
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
 {
   "input": { 
@@ -44,31 +67,6 @@ query($input: QuoteInput!) {
      "tradeable": true,
      "applicability": "CONVERSION"
  }
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-{
-  quote(
-    input: { 
-      fromCurrency: AUD
-      toCurrency: EUR
-      size: 10000
-      currency: AUD
-      tradeable: true
-      applicability: CONVERSION
-    }
-  ) {
-    id
-    bid
-    ask
-    symbol
-    timestamp
-    inverted
-    expireAt
-  }
 }
 ```
 {% endtab %}
@@ -95,7 +93,32 @@ query($input: QuoteInput!) {
 Convert funds:
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+    variables: {
+    input: {
+        note: "for major client",
+        externalId: "561402",
+        quoteId: "6854dcffaa36ba8534d5f8e2",
+        callbackUri: "https://example.com/my-webhook/endpoint/",
+    }
+},
+    query: `
+mutation ($input: ConversionInput!) {
+  createConversion(input: $input) {    
+    success code message 
+    conversion { 
+      id fromCurrency toCurrency currencyPair fromAmount toAmount rate note 
+      status statusMessage callbackUri externalId createdAt updatedAt 
+    }
+   }
+ }`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
  mutation($input: ConversionInput!) {
   createConversion(input: $input) {
@@ -119,10 +142,11 @@ Convert funds:
       updatedAt
     }
   }
+}
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
  {
   "input": { 
@@ -131,41 +155,6 @@ Convert funds:
       "quoteId": "6711ec0e950ae23de886ebe5",
       "callbackUri": "https://example.com/my-webhook/endpoint/"
  }
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-mutation {
-  createConversion(
-    input: {
-      note: "for major client"
-      externalId: "561402"
-      quoteId: "6711ec0e950ae23de886ebe5"
-      callbackUri: "https://example.com/my-webhook/endpoint/"
-    }
-  ) {
-    success
-    code
-    message
-    conversion {
-      id
-      fromCurrency
-      toCurrency
-      currencyPair
-      fromAmount
-      toAmount
-      rate
-      note
-      status
-      statusMessage
-      callbackUri
-      externalId
-      createdAt
-      updatedAt
-    }
-  }
 }
 ```
 {% endtab %}
