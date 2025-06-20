@@ -6,6 +6,7 @@
 * [Authentication](authentication.md)
 * [Quote](quote.md)
 * [Conversions](conversions/README.md)
+  * [Convert funds](conversions/conversions.md)
   * [Query conversions](conversions/query-conversions.md)
   * [Conversion statuses](conversions/payment-statuses.md)
 * [Balance](balance/README.md)
