@@ -46,14 +46,32 @@ This `login` mutation is a subject to change in the future.
 3. Click the **"HTTP HEADERS"** on the bottom and add this: `{"authorization": "Bearer YOUR_TOKEN"}`. Replace the `YOUR_TOKEN` with the token you just got.
 4. Execute any other queries.
 
-Here is an example of the login query. &#x20;
+Here is an example of the login query.
 
 {% hint style="warning" %}
-We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the [API playground](https://api.uat.flash-payments.com.au/) or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).&#x20;
+We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the [API playground](https://api.uat.flash-payments.com.au/) or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).
 {% endhint %}
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+<pre class="language-javascript"><code class="lang-javascript"><strong>const bodyJSON = {
+</strong>  variables: {
+    input: {
+      "email": "pavlo@flash-payments.com",
+      "password": "FFX@pdov123",
+    }
+  },
+  query: `
+mutation ($input: LoginInput!) {
+  login(input: $input) {
+    token message code success
+  }
+}`,
+};
+</code></pre>
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
 mutation($input: LoginInput!) {
   login(input: $input) {
@@ -66,27 +84,15 @@ mutation($input: LoginInput!) {
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
 {
   "input": { 
-   "email": "you@example.com", 
-   "password": "12345678" 
- }
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-<pre class="language-graphql"><code class="lang-graphql"><strong>mutation {
-</strong>  login(input: { email: "you@example.com", password: "12345678" }) {
-    token
-    message
-    code
-    success
+  "email": "you@example.com", 
+  "password": "12345678" 
   }
 }
-</code></pre>
+```
 {% endtab %}
 
 {% tab title="Response" %}
