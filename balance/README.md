@@ -9,12 +9,12 @@ Paste this query to the GraphQL Playground
 {% tabs %}
 {% tab title="JavaScript" %}
 ```javascript
-const bodyJSON ={
-  operationName:"balances",
-  variables:{
-    currencies:["AUD"],
+const bodyJSON = {
+  operationName: "balances",
+  variables: {
+    currencies: ["AUD"],
   },
-  query:`
+  query: `
 query balances($currencies: [CurrencyIso3]) {
   balances(currencies: $currencies) {
     currency cleared pending
