@@ -7,14 +7,39 @@ description: Query your account balances
 Paste this query to the GraphQL Playground
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON ={
+  operationName:"balances",
+  variables:{
+    currencies:["AUD"],
+  },
+  query:`
+query balances($currencies: [CurrencyIso3]) {
+  balances(currencies: $currencies) {
+    currency cleared pending
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  balances(currencies: AUD) {
+query balances($currencies: [CurrencyIso3]){
+  balances(currencies: $currencies) {
     currency
     cleared
     pending
   }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```
+{
+  "currencies": ["AUD"]
 }
 ```
 {% endtab %}
