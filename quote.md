@@ -79,7 +79,7 @@ Paste this query to the GraphQL Playground to request a tradable quote. It is im
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```graphql
+```javascript
 const bodyJSON = {
   variables:{
     input:{
