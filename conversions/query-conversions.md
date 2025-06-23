@@ -148,7 +148,23 @@ query($input: ConversionQueryInput!) {
 #### Retrieving a single conversion by ID
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables:{
+    input: "6b04c62ec0bf606bf216ae21",
+  },
+  query: `
+query ($input: ID) {  
+  conversion(id: $input) {
+    status createdAt fromAmount toAmount 
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
 query($input: ID) {
   conversion(id: $input) {
@@ -162,24 +178,10 @@ query($input: ID) {
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
 {
   "input": "6b04c62ec0bf606bf216ae21"
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-{
-  conversion(id: "6b04c62ec0bf606bf216ae21") {
-    status
-    createdAt
-    fromAmount
-    toAmount
-    # there are many other properties
-  }
 }
 ```
 {% endtab %}
