@@ -16,16 +16,40 @@ Please, send us the final funds recipient. If sending to self then please provid
 #### Query single recipient
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables:{
+    input:"6b04c62ec0bf606bf216ae21",
+  },
+  query: `
+query ($input: ID) {
+  recipient(id: $input) {
+    accountIdType currency country email
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  recipient(id: "12341234123412341234") {
+query($input: ID) {
+  recipient(id: $input) {
     accountIdType
     currency
     country
     email
     # there are many other properties
   }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```
+{
+  "input": "6b04c62ec0bf606bf216ae21"
 }
 ```
 {% endtab %}
