@@ -9,7 +9,28 @@ This query returns the same data as the Download CSV button on the Account State
 The dates must be any ISO 8601 formatted dates.
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+        fromDate: "2023-08-28T00:00:00+03:00"
+    }
+  },
+    query: `
+query ($input: StatementQueryInput!) {
+  statement(input: $input) {
+    succes code message fromDate toDate 
+      rows {
+        debit credit
+    }
+  }  
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL" %}
 ```graphql
 query($input: StatementQueryInput!) {
   statement(input: $input) {
@@ -28,33 +49,13 @@ query($input: StatementQueryInput!) {
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
-```javascript
-{
-  "input": {
-    "fromDate": "2023-08-28T00:00:00+03:00"
+{% tab title="Variables" %}
+<pre class="language-javascript"><code class="lang-javascript">{
+<strong>  "input": {
+</strong>    "fromDate": "2023-08-28T00:00:00+03:00"
   }
 }
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-{
-  statement(input: { fromDate: "2023-08-28T00:00:00+03:00" }) {
-    success
-    code
-    message
-    fromDate
-    toDate
-    rows {
-      debit
-      credit
-      # and many other fields
-    }
-  }
-}
-```
+</code></pre>
 {% endtab %}
 
 {% tab title="Response" %}
