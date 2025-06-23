@@ -11,8 +11,8 @@ description: You can query all your past conversions
 ```javascript
 const bodyJSON = {
   variables: {
-    "input": {
-    }
+    input: {
+    },
   },
   query: `
 query ($input: ConversionQueryInput!) {
@@ -80,7 +80,26 @@ query ($input: ConversionQueryInput!) {
 #### Retrieving some of your conversions
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      statuses: "CONVERTED",
+      toCurrencies: ["EUR","USD"], 
+    },
+  },
+  query: `
+query ($input: ConversionQueryInput!) {
+  conversions(input: $input) {   
+    id fromCurrency toCurrency rate 
+  }
+}`,
+};    
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
 query($input: ConversionQueryInput!) {
   conversions(input: $input) {
@@ -93,26 +112,12 @@ query($input: ConversionQueryInput!) {
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
 {
   "input": { 
     "statuses": "CONVERTED",
     "toCurrencies": ["EUR","USD"]
- }
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-{
-  # there are more query parameters available, see the API schema
-  conversions(input: { statuses: CONVERTED, toCurrencies: [EUR USD] }) {
-    id
-    fromCurrency
-    toCurrency
-    # there are many other properties
   }
 }
 ```

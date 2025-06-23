@@ -14,11 +14,11 @@ Paste this query to the API Playground to request an indicative quote.
 const bodyJSON = {
   variables:{
     input:{
-      "fromCurrency":"AUD",
-      "toCurrency":"USD",
-      "size":"10000",
-      "currency":"AUD"
-    }
+      fromCurrency:"AUD",
+      toCurrency:"USD",
+      size:"10000",
+      currency:"AUD",
+    },
   },
   query: `
 query ($input: QuoteInput!) { 
@@ -83,12 +83,12 @@ Paste this query to the GraphQL Playground to request a tradable quote. It is im
 const bodyJSON = {
   variables:{
     input:{
-      "fromCurrency":"AUD",
-      "toCurrency":"USD",
-      "size":"10000",
-      "currency":"AUD",
-      "tradable": true
-    }
+      fromCurrency:"AUD",
+      toCurrency:"USD",
+      size:"10000",
+      currency:"AUD",
+      tradable: true,
+    },
   },
   query: `
 query ($input: QuoteInput!) { 

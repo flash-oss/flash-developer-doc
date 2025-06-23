@@ -57,9 +57,9 @@ We suggest always sending your queries and related data separately using the "QU
 <pre class="language-javascript"><code class="lang-javascript"><strong>const bodyJSON = {
 </strong>  variables: {
     input: {
-      "email": "pavlo@flash-payments.com",
-      "password": "FFX@pdov123",
-    }
+      email: "you@example.com",
+      password: "12345678",
+    },
   },
   query: `
 mutation ($input: LoginInput!) {
