@@ -7,7 +7,24 @@ description: You can query all your past conversions
 #### Retrieving all your conversions
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    "input": {
+    }
+  },
+  query: `
+query ($input: ConversionQueryInput!) {
+  conversions(input: $input) {   
+    id fromCurrency toCurrency rate 
+  }
+}`,
+};    
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
  query($input: ConversionQueryInput!) {
   conversions(input: $input) {
@@ -21,24 +38,10 @@ description: You can query all your past conversions
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
  {
   "input": { 
- }
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-{
-  conversions {
-    id
-    fromCurrency
-    toCurrency
-    rate
-    # there are many other properties
   }
 }
 ```
