@@ -8,15 +8,31 @@ Consider requesting an **indicative** quote to understand the current currency t
 
 Paste this query to the API Playground to request an indicative quote.
 
-{% hint style="warning" %}
-We suggest always sending your queries and related data separately using the "QUERY VARIABLES" tab in the [API playground](https://api.uat.flash-payments.com.au/) or programmatically by [submitting the variables as JSON](https://developer.flash-payments.com/basics/sending-data-as-json).
-{% endhint %}
-
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-query($input: QuoteInput!) {
-  quote(input: $input) {
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables:{
+    input:{
+      "fromCurrency":"AUD",
+      "toCurrency":"USD",
+      "size":"10000",
+      "currency":"AUD"
+    }
+  },
+  query: `
+query ($input: QuoteInput!) { 
+  quote(input: $input) {   
+    bid ask symbol timestamp inverted 
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+<pre class="language-graphql"><code class="lang-graphql"><strong>query($input: QuoteInput!) {
+</strong>  quote(input: $input) {
     bid
     ask
     symbol
@@ -24,33 +40,17 @@ query($input: QuoteInput!) {
     inverted
   }
 }
-```
+</code></pre>
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
 {
   "input": { 
-     "fromCurrency": "AUD", 
-     "toCurrency": "USD", 
-     "size": "10000", 
-     "currency": "AUD"
- }
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-{
-  quote(
-    input: { fromCurrency: AUD, toCurrency: USD, size: 10000, currency: AUD }
-  ) {
-    bid
-    ask
-    symbol
-    timestamp
-    inverted
+    "fromCurrency": "AUD", 
+    "toCurrency": "USD", 
+    "size": "10000", 
+    "currency": "AUD"
   }
 }
 ```
@@ -78,7 +78,29 @@ In contrast to an indicative quote, a **tradable** quote is guaranteed by the ma
 Paste this query to the GraphQL Playground to request a tradable quote. It is important to consider the `expireAt` date and time, and preserve the `id` of a tradable quote for future `createPayment` and `createConversion` calls.
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```graphql
+const bodyJSON = {
+  variables:{
+    input:{
+      "fromCurrency":"AUD",
+      "toCurrency":"USD",
+      "size":"10000",
+      "currency":"AUD",
+      "tradable": true
+    }
+  },
+  query: `
+query ($input: QuoteInput!) { 
+  quote(input: $input) {   
+    bid ask symbol timestamp inverted expireAt id
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
 query($input: QuoteInput!) {
   quote(input: $input) {
@@ -94,39 +116,15 @@ query($input: QuoteInput!) {
 ```
 {% endtab %}
 
-{% tab title="Query Variables" %}
+{% tab title="Variables" %}
 ```javascript
  {
   "input": { 
-     "fromCurrency": "AUD", 
-     "toCurrency": "USD", 
-     "size": "10000", 
-     "currency": "AUD",
-     "tradeable": true 
- }
-}
-```
-{% endtab %}
-
-{% tab title="Embedded Variables" %}
-```graphql
-{
-  quote(
-    input: { 
-      fromCurrency: AUD 
-      toCurrency: USD 
-      size: 10000 
-      currency: AUD 
-      tradeable: true 
-    }
-  ) {
-    bid
-    ask
-    symbol
-    timestamp
-    inverted
-    expireAt
-    id
+    "fromCurrency": "AUD", 
+    "toCurrency": "USD", 
+    "size": "10000", 
+    "currency": "AUD",
+    "tradeable": true 
   }
 }
 ```
