@@ -25,7 +25,7 @@ query ($input: QuoteInput!) {
   quote(input: $input) {   
     bid ask symbol timestamp inverted 
   }
-}`,
+  }`,
 };
 ```
 {% endtab %}
@@ -95,7 +95,7 @@ query ($input: QuoteInput!) {
   quote(input: $input) {   
     bid ask symbol timestamp inverted expireAt id
   }
-}`,
+  }`,
 };
 ```
 {% endtab %}

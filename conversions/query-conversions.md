@@ -94,7 +94,7 @@ query ($input: ConversionQueryInput!) {
   conversions(input: $input) {   
     id fromCurrency toCurrency rate 
   }
-}`,
+  }`,
 };    
 ```
 {% endtab %}
@@ -159,7 +159,7 @@ query ($input: ID) {
   conversion(id: $input) {
     status createdAt fromAmount toAmount 
   }
-}`,
+  }`,
 };
 ```
 {% endtab %}

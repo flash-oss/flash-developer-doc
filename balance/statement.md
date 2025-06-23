@@ -10,14 +10,13 @@ The dates must be any ISO 8601 formatted dates.
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```javascript
-const bodyJSON = {
+<pre class="language-javascript"><code class="lang-javascript">const bodyJSON = {
   variables: {
     input: {
-        fromDate: "2023-08-28T00:00:00+03:00"
-    }
+        fromDate: "2023-08-28T00:00:00+03:00",
+    },
   },
-    query: `
+  query: `
 query ($input: StatementQueryInput!) {
   statement(input: $input) {
     succes code message fromDate toDate 
@@ -25,9 +24,9 @@ query ($input: StatementQueryInput!) {
         debit credit
     }
   }  
-}`,
-};
-```
+<strong>  }`,
+</strong>};
+</code></pre>
 {% endtab %}
 
 {% tab title="GraphQL" %}

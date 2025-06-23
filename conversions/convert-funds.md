@@ -31,7 +31,7 @@ query ($input: QuoteInput!) {
   quote(input: $input) {
     id bid ask symbol timestamp inverted expireAt
   }
-}`,
+  }`,
 };
 ```
 {% endtab %}
@@ -98,7 +98,7 @@ const bodyJSON = {
         externalId: "561402",
         quoteId: "6854dcffaa36ba8534d5f8e2",
         callbackUri: "https://example.com/my-webhook/endpoint/",
-    }
+    },
   },
   query: `
 mutation ($input: ConversionInput!) {
@@ -109,7 +109,7 @@ mutation ($input: ConversionInput!) {
       status statusMessage callbackUri externalId createdAt updatedAt 
     }
   }
-}`,
+  }`,
 };
 ```
 {% endtab %}

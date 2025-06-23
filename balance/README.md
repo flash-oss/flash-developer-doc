@@ -19,7 +19,7 @@ query balances($currencies: [CurrencyIso3]) {
   balances(currencies: $currencies) {
     currency cleared pending
   }
-}`,
+  }`,
 };
 ```
 {% endtab %}
