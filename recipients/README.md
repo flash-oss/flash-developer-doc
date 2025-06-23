@@ -19,8 +19,8 @@ Please, send us the final funds recipient. If sending to self then please provid
 {% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
-  variables:{
-    input:"6b04c62ec0bf606bf216ae21",
+  variables: {
+    input: "6b04c62ec0bf606bf216ae21",
   },
   query: `
 query ($input: ID) {
