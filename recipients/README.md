@@ -13,7 +13,7 @@ Please, send us the final funds recipient. If sending to self then please provid
 * `updateRecipient` - **updates** an existing recipient.
 * `deleteRecipient` - **deletes** an existing recipient.
 
-#### Query single recipient
+#### Query a single recipient
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -73,10 +73,28 @@ query($input: ID) {
 #### Query multiple recipients
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      currency:"USD",
+    }
+  },
+  query: `
+query ($input: RecipientQueryInput!) {
+  recipients(input: $input) {
+    accountIdType currency country email
+  } 
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  recipients(input: { currency: USD }) {
+query($input: RecipientQueryInput!) {
+  recipients(input: $input) {
     accountIdType
     currency
     country
@@ -84,6 +102,16 @@ query($input: ID) {
     # there are many other properties
   }
 }
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```graphql
+{
+  "input": { 
+    "currency": "USD"
+  }
+}  
 ```
 {% endtab %}
 
@@ -255,12 +283,39 @@ mutation {
 #### Delete recipient
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  deleteRecipient(id: "5ba89a6b35a2b327b81ffc3b") {
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input:"6b04c62ec0bf606bf216ae21",
+  },
+  query: `
+mutation ($input: ID) {
+  deleteRecipient(id: $input) {
     success code message
   }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($input: ID) {
+  deleteRecipient(id: $input) {
+  success 
+  code 
+  message
+  # there are many other properties
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```graphql
+{
+  "input": "6b04c62ec0bf606bf216ae21"
 }
 ```
 {% endtab %}
