@@ -172,82 +172,213 @@ If you find it technically challenging to submit all components of the sender’
 The date of birth (`dob`) is not mandatory. However, if it is not provided, your transactions may undergo additional compliance reviews, which can lead to longer processing times—potentially several hours or days instead of seconds. Please also be aware that this may result in additional fees to cover the extra effort involved.
 {% endhint %}
 
+#### Create an Individual sender
+
 {% tabs %}
-{% tab title="Individual" %}
-<pre class="language-graphql"><code class="lang-graphql"><strong>mutation {
-</strong>  createSender(
+{% tab title="JavaScript" %}
+```graphql
+const bodyJSON = {
+  variables: {
     input: {
-      firstName: "Malcolm"
-      lastName: "Jez"
-      dob: "2000-01-01"
-      email: "malcolm@example.com"
-      mobile: "+61 4123456789"
+      firstName:"Malcolm",
+      lastName:"Jez",
+      dob:"2000-01-01",
+      email:"malcolm@example.com",
+      mobile:"+61 4123456789",
       address: {
-        street: "1 Test St"
-        suburb: "London"
-        state: "TST"
-        country: GB
-        postcode: "2000"
-      }
+        street:"1 Test St",
+        suburb:"London",
+        state:"TST",
+        country:"GB",
+        postcode:"2000",
+      },
       idDoc: {
-        type: passport
-        docNumber: "GB1234321"
-        issuer: "His Majesty’s Passport Office (HMPO)"
-        issueDate: "1990-01-01"
-        expiryDate: "2045-01-01"
-        country: GB
-      }
-    }
-  ) {
-    success
-    code
-    message
+        type:"passport",
+        docNumber:"GB1234321",
+        issuer:"His Majesty’s Passport Office (HMPO)",
+        issueDate:"1990-01-01",
+        expiryDate:"2045-01-01",
+        country:"GB",
+      },
+    },
+  },
+  query: `
+mutation ($input: SenderInput!) {
+  createSender(input: $input) {
+    success code message
     sender {
-      id
-      nickName
-      # there are many other properties
+      id nickName
     }
   }
-}
-</code></pre>
+}`,
+};
+```
 {% endtab %}
 
-{% tab title="Company/Corporate" %}
-<pre class="language-graphql"><code class="lang-graphql"><strong>mutation {
-</strong>  createSender(
-    input: {
-      companyName: "Acme Pte Ltd"
-      businessNumber: "12345678912"
-      email: "acme@example.com"
-      mobile: "+61 4123456789"
-      address: {
-        street: "1 Test St"
-        suburb: "London"
-        state: "TST"
-        country: GB
-        postcode: "2000"
-      }
-      idDoc: {
-        type: certificateOfRegistration
-        docNumber: "GB-REG-987654321"
-        issuer: "Companies House"
-        issueDate: "1990-01-01"
-        expiryDate: "2100-01-01"
-        country: GB
-      }
-    }
-  ) {
-    success
-    code
-    message
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($input: SenderInput!) {
+  createSender(input: $input) {
+    success code message
     sender {
-      id
+      id 
       nickName
       # there are many other properties
     }
   }
 }
-</code></pre>
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "input": {
+    "firstName": "Malcolm",
+    "lastName": "Jez",
+    "dob": "2000-01-01",
+    "email": "malcolm@example.com",
+    "mobile": "+61 4123456789", 
+    "address": {
+      "street": "1 Test St", 
+      "suburb": "London", 
+      "state": "TST", 
+      "country": "GB", 
+      "postcode": "2000"
+    },
+    "idDoc": {
+      "type": "passport", 
+      "docNumber": "GB1234321", 
+      "issuer": "His Majesty’s Passport Office (HMPO)", 
+      "issueDate": "1990-01-01", 
+      "expiryDate": "2045-01-01", 
+      "country": "GB"
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "createSender": {
+      "success": true,
+      "code": "CREATED",
+      "message": "New sender created",
+      "sender": {
+        "id": "686393e689c1fb1b255cac5c",
+        "nickName": "MalcolmJez"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### Create a Company  sender
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      companyName: "Acme Pte Ltd",
+      businessNumber: "12345678912",
+      email: "acme@example.com",
+      mobile: "+61 4123456789",
+      address: {
+        street: "1 Test St",
+        suburb: "London",
+        state: "TST",
+        country: "GB",
+        postcode: "2000",
+      },
+      idDoc: {
+        type: "certificateOfRegistration",
+        docNumber: "GB-REG-987654321",
+        issuer: "Companies House",
+        issueDate: "1990-01-01",
+        expiryDate: "2100-01-01",
+        country: "GB",
+      },
+    },
+  },
+  query: `
+mutation ($input: SenderInput!) {
+  createSender(input: $input) {
+    success code message 
+    sender { 
+      id nickName    
+    }  
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($input: SenderInput!) {
+  createSender(input: $input) {
+    success code message
+    sender {
+      id 
+      nickName
+      # there are many other properties
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "input": {
+    "companyName": "Acme Pte Ltd", 
+    "businessNumber": "12345678912", 
+    "email": "acme@example.com", 
+    "mobile": "+61 4123456789", 
+    "address": {
+      "street": "1 Test St", 
+      "suburb": "London", 
+      "state": "TST", 
+      "country": "GB", 
+      "postcode": "2000"
+    },
+    "idDoc": {
+      "type": "certificateOfRegistration", 
+      "docNumber": "GB-REG-987654321", 
+      "issuer": "Companies House", 
+      "issueDate": "1990-01-01", 
+      "expiryDate": "2100-01-01", 
+      "country": "GB"
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+{
+  "data": {
+    "createSender": {
+      "success": true,
+      "code": "CREATED",
+      "message": "New sender created",
+      "sender": {
+        "id": "68638e6989c1fb1b255ca9c3",
+        "nickName": "Acme Pte L"
+      }
+    }
+  }
+}
+```
 {% endtab %}
 {% endtabs %}
 
