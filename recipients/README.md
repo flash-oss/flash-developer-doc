@@ -461,10 +461,10 @@ mutation ($input: ID) {
 ```graphql
 mutation($input: ID) {
   deleteRecipient(id: $input) {
-  success 
-  code 
-  message
-  # there are many other properties
+    success 
+    code 
+    message
+    # there are many other properties
   }
 }
 ```

@@ -476,13 +476,41 @@ mutation($id: ID, $input: SenderInput!) {
 #### Delete sender
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  deleteSender(id: "5ca18d25ace1db0af5784893") {
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input:"686393e689c1fb1b255cac5c",
+  },
+  query: `
+mutation ($input: ID) {
+  deleteSender(id: $input) {
     success code message
   }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($input: ID) {
+  deleteSender(id: $input) {
+    success 
+    code 
+    message
+    # there are many other properties
+  }
 }
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```
+{
+  "input": "686393e689c1fb1b255cac5c"
+}
+
 ```
 {% endtab %}
 
