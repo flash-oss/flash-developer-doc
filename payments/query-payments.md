@@ -73,7 +73,7 @@ query ($input: PaymentQueryInput!) {
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```graphql
+```javascript
 const bodyJSON = {
   variables: {
     input: {
@@ -105,7 +105,7 @@ query ($input: PaymentQueryInput!) {
 {% endtab %}
 
 {% tab title="Variables" %}
-```javascript
+```graphql
  {
   # there are more query parameters available, see the API schema
   "input": { 
@@ -142,7 +142,7 @@ query ($input: PaymentQueryInput!) {
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```graphql
+```javascript
 const bodyJSON = {
   variables:{
     input: "5b04c62ec0bf606bf216ae21",
@@ -171,7 +171,7 @@ query($input: ID) {
 {% endtab %}
 
 {% tab title="Variables" %}
-```javascript
+```graphql
 {
   # there are more query parameters available, see the API schema
   "input": "5b04c62ec0bf606bf216ae21"
