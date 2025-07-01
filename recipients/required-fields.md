@@ -11,17 +11,42 @@ Please verify that you have all required data to initiate a successful payment t
 #### List all the available payment delivery methods
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables:{
+    input:{
+    },
+  }, 
+  query: `
+query ($input: AvailableDeliveryMethodsInput!) {
+  availableDeliveryMethods(input: $input) {
+    country currency method requiredFields
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  availableDeliveryMethods {
+query($input: AvailableDeliveryMethodsInput!) {
+  availableDeliveryMethods(input: $input) {
     country
     currency
     method
     requiredFields
   }
 }
+```
+{% endtab %}
 
+{% tab title="Variables" %}
+```javascript
+{ 
+  "input": {
+  }
+}
 ```
 {% endtab %}
 
@@ -53,19 +78,49 @@ Please verify that you have all required data to initiate a successful payment t
 {% endtab %}
 {% endtabs %}
 
-The response above means that if you want to send euros to Austria \(AT\) then you'd need a BIC \(aka SWIFT\) code **and** an IBAN.
+The response above means that if you want to send euros to Austria (AT) then you'd need a BIC (aka SWIFT) code **and** an IBAN.
 
 #### List some of the delivery methods
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
 ```graphql
-{
-  availableDeliveryMethods(input: { country: FR, currency: EUR }) {
+const bodyJSON = {
+  variables:{
+    input:{
+      country: "FR",
+      currency: "EUR",
+    },
+  }, 
+  query: `
+query ($input: AvailableDeliveryMethodsInput!) {
+  availableDeliveryMethods(input: $input) {
+    country currency method requiredFields
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: AvailableDeliveryMethodsInput!) {
+  availableDeliveryMethods(input: $input) {
     country
     currency
     method
     requiredFields
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```
+{
+  "input": {
+    "country": "FR", 
+    "currency": "EUR" 
   }
 }
 ```
@@ -101,10 +156,7 @@ The response above means that if you want to send euros to Austria \(AT\) then y
 {% endtab %}
 {% endtabs %}
 
-The response above means that to send euros to France \(FR\) you have to have ether of:
+The response above means that to send euros to France (FR) you have to have ether of:
 
 * BIC and an account number, or
 * BIC and an IBAN.
-
-
-

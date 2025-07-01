@@ -24,7 +24,7 @@ query ($input: StatementQueryInput!) {
         debit credit
     }
   }  
-<strong>  }`,
+<strong>}`,
 </strong>};
 </code></pre>
 {% endtab %}

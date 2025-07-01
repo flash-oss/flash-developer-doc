@@ -66,7 +66,7 @@ mutation ($input: LoginInput!) {
   login(input: $input) {
     token message code success
   }
-  }`,
+}`,
 };
 </code></pre>
 {% endtab %}

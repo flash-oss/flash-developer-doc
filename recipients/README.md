@@ -27,7 +27,7 @@ query ($input: ID) {
   recipient(id: $input) {
     accountIdType currency country email
   }
-  }`,
+}`,
 };
 ```
 {% endtab %}
@@ -85,7 +85,7 @@ query ($input: RecipientQueryInput!) {
   recipients(input: $input) {
     accountIdType currency country email
   } 
-<strong>  }`,
+<strong>}`,
 </strong>};
 </code></pre>
 {% endtab %}
@@ -175,7 +175,7 @@ mutation ($input: RecipientInput!) {
       id nickName accountIdType currency email
     }
   }
-  }`,
+}`,
 };
 ```
 {% endtab %}
@@ -271,7 +271,7 @@ mutation ($input: RecipientInput!) {
       id nickName accountIdType currency email
     }
   }
-  }`,
+}`,
 };
 ```
 {% endtab %}
@@ -341,30 +341,46 @@ Please note the recipient's`accountIdType`can't be changed
 {% endhint %}
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  updateRecipient(
-    id: "5ba89a6b35a2b327b81ffc3b",
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    id:"5ba89a6b35a2b327b81ffc3b",
     input: {
-      nickName: "JohnM"
-    
-      firstName: "John"
-      lastName: "Malkovich"
-      accountIdType: BSB
-      currency: AUD
-      bsb: "370370"
-      accountNo: "12341234"
-      email: "john@example.com"
+      nickName: "JohnM",
+      firstName: "John",
+      lastName: "Malkovich",
+      accountIdType: "BSB",
+      currency: "AUD",
+      bsb: "370370",
+      accountNo: "12341234",
+      email: "john@example.com",
       address: {
-        street: "22 Woolooware Rd"
-        suburb: "Woolooware"
-        state: "NSW"
-        country: AU
-        postcode: "2230"
-      }
+        street: "22 Woolooware Rd",
+        suburb: "Woolooware",
+        state: "NSW",
+        country: "AU",
+        postcode: "2230",
+      },
+    },
+  },
+  query: `
+mutation ($id: ID, $input: RecipientInput!) {
+  updateRecipient(id: $id, input: $input) {
+    success code message  
+    recipient {
+      id nickName    
     }
-  ) {
+  }
+}`,
+};  
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($id: ID, $input: RecipientInput!) {
+  updateRecipient(id: $id, input: $input) {
     success
     code
     message
@@ -372,6 +388,31 @@ mutation {
       id
       nickName
       # there are many other properties
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "id": "5ba89a6b35a2b327b81ffc3b",
+  "input":{
+    "nickName": "JohnM",
+    "firstName": "John",
+    "lastName": "Malkovich",
+    "accountIdType": "BSB",
+    "currency": "AUD",
+    "bsb": "370370",
+    "accountNo": "12341234",
+    "email": "john@example.com",
+    "address": {
+      "street": "22 Woolooware Rd",
+      "suburb" : "Woolooware",
+      "state": "NSW",
+      "country": "AU",
+      "postcode": "2230"
     }
   }
 }

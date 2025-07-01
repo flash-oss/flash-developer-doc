@@ -31,7 +31,7 @@ query ($input: QuoteInput!) {
   quote(input: $input) {
     id bid ask symbol timestamp inverted expireAt
   }
-  }`,
+}`,
 };
 ```
 {% endtab %}
@@ -109,7 +109,7 @@ mutation ($input: ConversionInput!) {
       status statusMessage callbackUri externalId createdAt updatedAt 
     }
   }
-  }`,
+}`,
 };
 ```
 {% endtab %}
