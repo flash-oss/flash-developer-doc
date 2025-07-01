@@ -29,8 +29,8 @@ const bodyJSON = {
 mutation ($input: PaymentInput!) {
   createPayment(input: $input) {
     success code message
-      payment {
-        id status size
+    payment {
+      id status size
     }
   }
 }`,
@@ -130,16 +130,16 @@ const bodyJSON = {
       externalReference:"my ref 221b",
       subClientId:"6092360bf40f2dgc52f85cf1",
       recipientId:"5ba89a6b35a2b327b81ffc3b",
-      externalId:"12344321",
-      idempotencyKey:"12344321",
+      externalId:"123443212",
+      idempotencyKey:"123443212",
     },
   },
   query: ` 
 mutation ($input: PaymentInput!) {
   createPayment(input: $input) {
     success code message
-      payment {
-        id status size
+    payment {
+      id status size
     }
   }
 }`,
@@ -209,36 +209,75 @@ If your company is the ultimate sender for an FX payment, you can skip both the 
 Please execute the following `createPayment` mutation to use your company's Flash account details as sender.
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createPayment(
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
     input: {
-      fromCurrency: AUD
-      toCurrency: EUR
-      size: 1000
-      currency: AUD
-      reason: BUSINESS
-      sourceOfFunds: BUSINESS_FUNDS
-      externalReference: "my ref 234"
-      recipientId: "67d7d75ab8db0fdfccfb16b2"
-      externalId: "0123443210"
-      idempotencyKey: "0000012344321000"
+      fromCurrency:"AUD",
+      toCurrency:"USD",
+      size:1000,
+      currency:"AUD",
+      reason:"BUSINESS",
+      sourceOfFunds:"BUSINESS_FUNDS",
+      externalReference:"my ref 2234",
+      recipientId:"5ba89a6b35a2b327b81ffc3b",
+      externalId:"0123443210",
+      idempotencyKey:"0000012344321000",
+    },
+  },
+  query: ` 
+mutation ($input: PaymentInput!) {
+  createPayment(input: $input) {
+    success code message
+    payment {
+      id status size
+      sender {
+        firstName lastName companyName
+      }
     }
-  ) {
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+ mutation($input: PaymentInput!) {
+  createPayment(input: $input) {
     success
     code
     message
     payment {
       id
       status
-      size
+      size   
       sender {
-         firstName
-         lastName
-         companyName
+        firstName 
+        lastName 
+        companyName
       }
     }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "input": { 
+    "fromCurrency": "AUD",
+    "toCurrency": "USD",
+    "size": 1000,
+    "currency": "AUD",
+    "reason": "BUSINESS",
+    "sourceOfFunds": "BUSINESS_FUNDS",
+    "externalReference": "my ref 2234",
+    "recipientId": "5ba89a6b35a2b327b81ffc3b",
+    "externalId": "0123443210",
+    "idempotencyKey": "0000012344321000"
   }
 }
 ```
