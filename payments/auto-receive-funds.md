@@ -123,13 +123,37 @@ query ($input: FundingAccountQueryInput!) {
 Your [sub-clients](../sub-clients.md) should deposit their foreign currency to:
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    sc: {
+      externalId: "991188227733",
+    },
+    fa: {
+      currencies: ["EUR","USD","CNY"],
+    },
+  },
+  query: `
+query ($sc: SubClientQueryInput!, $fa: FundingAccountQueryInput!) {
+  subClients(input: $sc) {
+    id externalId 
+    fundingAccounts(input: $fa) {
+      iban accountNo accountName accountAddress bic currency externalReference
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  subClients(input: { externalId: "991188227733" }) {
+query($sc: SubClientQueryInput!, $fa: FundingAccountQueryInput!) {
+  subClients(input: $sc) {
     id
     externalId
-    fundingAccounts(input: { currencies: [EUR, USD, CNY] }) {
+    fundingAccounts(input: $fa) {
       iban
       accountNo
       accountName
@@ -138,6 +162,19 @@ Your [sub-clients](../sub-clients.md) should deposit their foreign currency to:
       currency
       externalReference
     }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+ {
+  "sc": { 
+    "externalId": "991188227733" 
+  },
+  "fa": {
+    "currencies": ["EUR", "USD", "CNY"] 
   }
 }
 ```
