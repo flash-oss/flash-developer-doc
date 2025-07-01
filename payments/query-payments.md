@@ -141,18 +141,41 @@ query ($input: PaymentQueryInput!) {
 #### Retrieving a single payment
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
 ```graphql
-{
-  # there are more query parameters available, see the API schema
-  payment(id: "5b04c62ec0bf606bf216ae21") {
+const bodyJSON = {
+  variables:{
+    input: "5b04c62ec0bf606bf216ae21",
+  },
+  query: `
+query ($input: ID) {  
+  payment(id: $input) {
+    status createdAt size
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: ID) {
+  payment(id: $input) {
     status
     createdAt
     size
     # there are many other properties
   }
 }
+```
+{% endtab %}
 
+{% tab title="Variables" %}
+```javascript
+{
+  # there are more query parameters available, see the API schema
+  "input": "5b04c62ec0bf606bf216ae21"
+}
 ```
 {% endtab %}
 
