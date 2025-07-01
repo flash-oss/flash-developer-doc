@@ -1,30 +1,47 @@
 # Send funds
 
-To make a payment from AUD to a different currency, you need to execute the `createPayment` mutation as below.&#x20;
+To make a payment from AUD to a different currency, you need to execute the `createPayment` mutation as below.
 
 {% hint style="info" %}
 Note that you must have enough AUD balance to make an outbound AUD payment.
 {% endhint %}
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createPayment(
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
     input: {
-      fromCurrency: AUD
-      toCurrency: USD
-      size: 1000
-      currency: AUD
-      reason: BUSINESS
-      sourceOfFunds: BUSINESS_FUNDS
-      externalReference: "my ref 221b"
-      senderId: "6092360ae40e2cfb52f85be1"
-      recipientId: "5ba89a6b35a2b327b81ffc3b"
-      externalId: "12344321"
-      idempotencyKey: "12344321"
+      fromCurrency:"AUD",
+      toCurrency:"USD",
+      size:1000,
+      currency:"AUD",
+      reason:"BUSINESS",
+      sourceOfFunds:"BUSINESS_FUNDS",
+      externalReference:"my ref 221b",
+      senderId:"6092360ae40e2cfb52f85be1",
+      recipientId:"5ba89a6b35a2b327b81ffc3b",
+      externalId:"12344321",
+      idempotencyKey:"12344321",
+    },
+  },
+  query: ` 
+mutation ($input: PaymentInput!) {
+  createPayment(input: $input) {
+    success code message
+      payment {
+        id status size
     }
-  ) {
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+ mutation($input: PaymentInput!) {
+  createPayment(input: $input) {
     success
     code
     message
@@ -33,6 +50,26 @@ mutation {
       status
       size
     }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "input": { 
+    "fromCurrency": "AUD",
+    "toCurrency": "USD",
+    "size": 1000,
+    "currency": "AUD",
+    "reason": "BUSINESS",
+    "sourceOfFunds": "BUSINESS_FUNDS",
+    "externalReference": "my ref 221b",
+    "senderId": "6092360ae40e2cfb52f85be1",
+    "recipientId": "5ba89a6b35a2b327b81ffc3b",
+    "externalId": "12344321",
+    "idempotencyKey": "12344321"
   }
 }
 ```
@@ -67,7 +104,7 @@ We are legally obliged to collect the actual sender and beneficiary details. Ple
 
 If it is an intermediate, please see [Instiutions](send-funds.md#institutions) instead.
 
-Please always send us the ultimate sender and recipient. If sending funds to yourself,  please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
+Please always send us the ultimate sender and recipient. If sending funds to yourself, please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 
 If sending funds from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the examples below.
 {% endhint %}
@@ -204,7 +241,7 @@ The optional `callbackUri` will be invoked several times during the processing o
 Please note that `toAmount` (or `fromAmount`) and other fluctuating payment properties can change during payment execution.
 
 {% hint style="danger" %}
-#### Security note
+**Security note**
 
 The callback (aka [webhook](../webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
 {% endhint %}
