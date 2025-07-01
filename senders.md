@@ -16,10 +16,29 @@ If you want to receive funds from yourself then please provide your own details.
 #### Query single sender
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: "59f2733f2519e236edab0efe",
+  },
+  query: `
+query ($input: ID) {
+  sender(id: $input) {
+    email firstName lastName companyName
+    address {
+      country
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  sender(id: "59f2733f2519e236edab0efe") {
+query($input: ID) {
+  sender(id: $input) {
     email
     firstName
     lastName
@@ -27,7 +46,16 @@ If you want to receive funds from yourself then please provide your own details.
     address {
       country
     }
+    # there are many other properties
   }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "input": "59f2733f2519e236edab0efe"
 }
 ```
 {% endtab %}
@@ -54,10 +82,31 @@ If you want to receive funds from yourself then please provide your own details.
 #### Query multiple senders
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      email: "john@example.com",
+    },
+  },
+  query: `
+query ($input: RecipientQueryInput!) {
+  senders(input: $input) {
+    email firstName lastName companyName
+    address {
+      country
+    } 
+  } 
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  senders(input: { email: "john@example.com" }) {
+query($input: SenderQueryInput!) {
+  senders(input: $input) {
     email
     firstName
     lastName
@@ -65,7 +114,17 @@ If you want to receive funds from yourself then please provide your own details.
     address {
       country
     }
-    # there are other properties
+    # there are many other properties
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "input": {
+    "email": "john@example.com" 
   }
 }
 ```
@@ -106,11 +165,12 @@ If you want to receive funds from yourself then please provide your own details.
 {% hint style="info" %}
 In addresses the`suburb`field is an Australian suburb. For other countries you should put the city (e.g. Manila or London) or any other small administrative area name.
 
-If you find it technically challenging to submit all components of the sender’s address, we would appreciate it if you could at least collect the sender’s country along with a complete address string that includes the postcode and put them into the `country` and `street` fields, respectively. In this case, you can skip the `postcode`, `suburb`, and `state` fields, and the sender record will still be created.&#x20;
+If you find it technically challenging to submit all components of the sender’s address, we would appreciate it if you could at least collect the sender’s country along with a complete address string that includes the postcode and put them into the `country` and `street` fields, respectively. In this case, you can skip the `postcode`, `suburb`, and `state` fields, and the sender record will still be created.
 {% endhint %}
 
 {% hint style="info" %}
-The date of birth (`dob`) is not mandatory. However, if it is not provided, your transactions may undergo additional compliance reviews, which can lead to longer processing times—potentially several hours or days instead of seconds. Please also be aware that this may result in additional fees to cover the extra effort involved.{% endhint %}
+The date of birth (`dob`) is not mandatory. However, if it is not provided, your transactions may undergo additional compliance reviews, which can lead to longer processing times—potentially several hours or days instead of seconds. Please also be aware that this may result in additional fees to cover the extra effort involved.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Individual" %}
@@ -279,4 +339,3 @@ mutation {
 ```
 {% endtab %}
 {% endtabs %}
-

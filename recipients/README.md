@@ -78,7 +78,7 @@ query($input: ID) {
   variables: {
     input: {
       currency:"USD",
-    }
+    },
   },
   query: `
 query ($input: RecipientQueryInput!) {
