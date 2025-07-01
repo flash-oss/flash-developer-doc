@@ -176,7 +176,7 @@ The date of birth (`dob`) is not mandatory. However, if it is not provided, your
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```graphql
+```javascript
 const bodyJSON = {
   variables: {
     input: {
