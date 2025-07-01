@@ -72,15 +72,45 @@ query ($input: PaymentQueryInput!) {
 #### Retrieving some of your payments
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
 ```graphql
-{
-  # there are more query parameters available, see the API schema
-  payments(input: { statuses: CLOSED, toCurrencies: [EUR USD] }) {
+const bodyJSON = {
+  variables: {
+    input: {
+      statuses: "CLOSED",
+      toCurrencies: ["EUR","USD"], 
+    },
+  },
+  query: `
+query ($input: PaymentQueryInput!) {
+  payments(input: $input) {   
+    id fromCurrency toCurrency 
+  }
+}`,
+};    
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+  query($input: PaymentQueryInput!) {
+  payments(input: $input) {
     id
     fromCurrency
     toCurrency
     # there are many other properties
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+ {
+  # there are more query parameters available, see the API schema
+  "input": { 
+    "statuses": "CLOSED",
+    "toCurrencies": ["EUR","USD"]
   }
 }
 ```
