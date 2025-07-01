@@ -385,40 +385,69 @@ mutation($input: SenderInput!) {
 #### Update sender
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  updateSender(
-    id: "5ca18312ace1db0af5784826"
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
     input: {
-      firstName: "Malcolm"
-      lastName: "Jez The Seconds"
-      dob: "2000-01-01"
-      email: "malcolm@example.com"
-      mobile: "+61 4123456789"
+      firstName:"Malcolm",
+      lastName:"Jez The Second",
+      dob:"2000-01-01",
+      email:"malcolm@example.com",
+      mobile:"+61 4123456789",
       address: {
-        street: "1 Test St"
-        suburb: "London"
-        state: "TST"
-        country: GB
-        postcode: "2001"
-      }
-      idDoc: {
-        type: passport
-        docNumber: "GB1234321"
-        issuer: "His Majesty’s Passport Office (HMPO)"
-        issueDate: "1990-01-01"
-        expiryDate: "2045-01-01"
-        country: GB
-      }
-    }
-  ) {
-    success
-    code
-    message
+        street:"1 Test St",
+        suburb:"London",
+        state:"TST",
+        country:"GB",
+        postcode:"2000",
+      },
+    },
+  },
+  query: `
+mutation ($input: SenderInput!) {
+  updateSender(input: $input) {
+    success code message
     sender {
-      id
+      id lastName
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($id: ID, $input: SenderInput!) {
+  updateSender(id: $id, input: $input) {
+    success code message
+    sender {
+      id 
+      lastName
       # there are many other properties
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "id": "686393e689c1fb1b255cac5c",
+  "input": {
+    "firstName": "Malcolm",
+    "lastName": "Jez The Second",
+    "dob": "2000-01-01",
+    "email": "malcolm@example.com",
+    "mobile": "+61 4123456789", 
+    "address": {
+      "street": "1 Test St", 
+      "suburb": "London", 
+      "state": "TST", 
+      "country": "GB", 
+      "postcode": "2000"
     }
   }
 }
@@ -431,10 +460,11 @@ mutation {
   "data": {
     "updateSender": {
       "success": true,
-      "code": "SUCCESS",
-      "message": "Sender updated",
+      "code": "UPDATED",
+      "message": "Sender 686393e689c1fb1b255cac5c updated.",
       "sender": {
-        "id": "5ca18312ace1db0af5784826"
+        "id": "686393e689c1fb1b255cac5c",
+        "lastName": "Jez The Second"
       }
     }
   }
