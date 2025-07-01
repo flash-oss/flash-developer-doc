@@ -8,8 +8,8 @@ Some customers can automatically receive funds from overseas. Meaning, if we det
 
 {% hint style="warning" %}
 Note!\
-For sub-clients, a complete real-world address is mandatory. All address fields must be provided when creating a sub-client in our system.
-Additionally, funds must be sent from a bank account registered under your name or your sub-client’s name.
+For sub-clients, a complete real-world address is mandatory. All address fields must be provided when creating a sub-client in our system.\
+Additionally, funds must be sent from a bank account registered under your name or your sub-client’s name.\
 In some cases, but not always, the payment must include the specific payment reference we provide. See below for more details.
 {% endhint %}
 
@@ -36,10 +36,28 @@ To find out the Funding Accounts via API please use the `fundingAccounts` query.
 You should deposit your foreign currency to:
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
 ```graphql
-{
-  fundingAccounts(input: { currencies: [EUR, USD, HKD, CNY] }) {
+const bodyJSON = {
+  variables: {
+    input: {
+      currencies: ["EUR","USD","HKD","CNY"],
+      },
+  },
+  query: `
+query ($input: FundingAccountQueryInput!) {
+  fundingAccounts(input: $input) {
+    iban accountNo accountName accountAddress bic currency externalReference
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+  query($input: FundingAccountQueryInput!) {
+  fundingAccounts(input: $input) {
     iban
     accountNo
     accountName
@@ -47,6 +65,16 @@ You should deposit your foreign currency to:
     bic
     currency
     externalReference
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+ {
+  "input": { 
+    "currencies": ["EUR", "USD", "HKD", "CNY"] 
   }
 }
 ```
@@ -153,4 +181,3 @@ Your [sub-clients](../sub-clients.md) should deposit their foreign currency to:
 ```
 {% endtab %}
 {% endtabs %}
-
