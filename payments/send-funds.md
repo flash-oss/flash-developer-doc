@@ -116,24 +116,41 @@ In the above `createPayment` example, you had to [pre-create a sender](https://d
 To use `subClientId` as the sender for your payments, please execute the `createPayment` mutation as below.
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createPayment(
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
     input: {
-      fromCurrency: AUD
-      toCurrency: USD
-      size: 1000
-      currency: AUD
-      reason: BUSINESS
-      sourceOfFunds: BUSINESS_FUNDS
-      externalReference: "my ref 221c"
-      subClientId: "6092360bf40f2dgc52f85cf1"
-      recipientId: "5ba89a6b35a2b327b81ffc3b"
-      externalId: "12344321"
-      idempotencyKey: "12344321"
+      fromCurrency:"AUD",
+      toCurrency:"USD",
+      size:1000,
+      currency:"AUD",
+      reason:"BUSINESS",
+      sourceOfFunds:"BUSINESS_FUNDS",
+      externalReference:"my ref 221b",
+      subClientId:"6092360bf40f2dgc52f85cf1",
+      recipientId:"5ba89a6b35a2b327b81ffc3b",
+      externalId:"12344321",
+      idempotencyKey:"12344321",
+    },
+  },
+  query: ` 
+mutation ($input: PaymentInput!) {
+  createPayment(input: $input) {
+    success code message
+      payment {
+        id status size
     }
-  ) {
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+ mutation($input: PaymentInput!) {
+  createPayment(input: $input) {
     success
     code
     message
@@ -142,6 +159,26 @@ mutation {
       status
       size
     }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "input": { 
+    "fromCurrency": "AUD",
+    "toCurrency": "USD",
+    "size": 1000,
+    "currency": "AUD",
+    "reason": "BUSINESS",
+    "sourceOfFunds": "BUSINESS_FUNDS",
+    "externalReference": "my ref 221b",
+    "subClientId": "6092360bf40f2dgc52f85cf1",
+    "recipientId": "5ba89a6b35a2b327b81ffc3b",
+    "externalId": "12344321",
+    "idempotencyKey": "12344321"
   }
 }
 ```
