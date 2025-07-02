@@ -3,13 +3,44 @@
 #### Retrieving all your withdrawals
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-{
-  withdrawals {
+{% tab title="JavaScript" %}
+<pre class="language-javascript"><code class="lang-javascript">const bodyJSON = {
+<strong>  variables: {
+</strong>    input: {
+    },
+  },
+  query: `
+query ($input: WithdrawalQueryInput!) {
+  withdrawals(input: $input) {   
     id
-    recipient { firstName lastName }
+    recipient {
+     firstName lastName
+    }
+  }
+}`,
+};  
+</code></pre>
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: WithdrawalQueryInput!) {
+  withdrawals(input: $input) {
+    id
+    recipient {
+      firstName
+      lastName
+    } 
     # there are many other properties
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{ 
+  "input": {
   }
 }
 ```
@@ -51,15 +82,45 @@
 #### Retrieving some of your withdrawals
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      statuses: "CONFIRMED",
+      maxCreatedAt: "2020-01-29",
+    },
+  },
+  query: `
+query ($input: WithdrawalQueryInput!) {
+  withdrawals(input: $input) {   
+    id createdAt 
+  }
+}`,
+};  
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  # there are more query parameters available, see the API schema
-  withdrawals(input: { statuses: CONFIRMED, maxCreatedAt: "2020-01-29" }) {
+query($input: WithdrawalQueryInput!) {
+  withdrawals(input: $input) {
     id
-    createdAt
+    createdAt 
     # there are many other properties
   }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```graphql
+{    
+  # there are more query parameters available, see the API schema
+  "input": {
+    "statuses": "CONFIRMED",
+    "maxCreatedAt": "2020-01-29"
+  }  
 }
 ```
 {% endtab %}
@@ -87,18 +148,41 @@
 #### Retrieving a single withdrawal
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
 ```graphql
-{
-  # there are more query parameters available, see the API schema
-  withdrawal(id: "5b04c62ec0bf606bf216ae21") {
+const bodyJSON = {
+  variables:{
+    input: "5b04c62ec0bf606bf216ae21",
+  },
+  query: `
+query ($input: ID) {  
+  withdrawal(id: $input) {
+    status createdAt amount
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: ID) {
+  withdrawal(id: $input) {
     status
     createdAt
     amount
     # there are many other properties
   }
 }
+```
+{% endtab %}
 
+{% tab title="Variables" %}
+```graphql
+{
+  # there are more query parameters available, see the API schema
+  "input": "5b04c62ec0bf606bf216ae21"
+}
 ```
 {% endtab %}
 
@@ -116,4 +200,3 @@
 ```
 {% endtab %}
 {% endtabs %}
-
