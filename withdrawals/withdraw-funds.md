@@ -228,7 +228,8 @@ mutation ($input: CreateWithdrawalInput!) {
       id status amount currency
       sender {
         firstName lastName companyName    
-    }  
+      }  
+    }
   }
 }`,
 };
