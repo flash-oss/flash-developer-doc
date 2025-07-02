@@ -110,20 +110,37 @@ In the above `createWithdrawal` example, you had to first [pre-create a sender](
 To use `subClientId` as the sender for your withdrawal, please execute the `createWithdrawal` mutation as below.
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createWithdrawal(
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
     input: {
-      amount: 1000
-      currency: AUD
-      externalReference: "invoice #1234"
-      recipientId: "5ba89a6b35a2b327b81ffc3b"
-      subClientId: "3fbj71b1dc328d56g94g9375"
-      externalId: "12344321"
-      idempotencyKey: "12344321"
-    }
-  ) {
+      amount: 1000, 
+      currency: "AUD",
+      externalReference: "invoice #1234",
+      recipientId: "5ba89a6b35a2b327b81ffc3b",
+      subClientId: "3fbj71b1dc328d56g94g9375",
+      externalId: "123443212",
+      idempotencyKey: "123443212",
+    },
+  }, 
+  query: ` 
+mutation ($input: CreateWithdrawalInput!) {
+  createWithdrawal(input: $input) {
+    success code message    
+    withdrawal {
+      id status amount currency    
+    }  
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+ mutation($input: CreateWithdrawalInput!) {
+  createWithdrawal(input: $input) {
     success
     code
     message
@@ -138,8 +155,24 @@ mutation {
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Variables" %}
+```javascript
+ { 
+    "input": {
+      "amount": 1000,
+      "currency": "AUD",
+      "externalReference": "invoice #1234",
+      "recipientId": "5ba89a6b35a2b327b81ffc3b",
+      subClientId: "3fbj71b1dc328d56g94g9375",
+      "externalId": "123443212",
+      "idempotencyKey": "123443212"
+    }
+}
 ```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
  {
   "data": {
     "createWithdrawal": {
@@ -150,7 +183,7 @@ mutation {
         "id": "60711af8c078ba061f623531",
         "status": "PENDING",
         "amount": 1000,
-        "currency: AUD
+        "currency": AUD
       }
     }
   }
