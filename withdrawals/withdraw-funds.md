@@ -207,19 +207,38 @@ If your company is the ultimate sender for a withdrawal, you can skip both the `
 Please execute the following `createWithdrawal` mutation to use your company's Flash account details as sender.
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createWithdrawal(
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
     input: {
-      amount: 500
-      currency: AUD
-      externalReference: "invoice #123"
-      recipientId: "661e293b14a0e678c37fa327"
-      externalId: "1234567890"
-      idempotencyKey: "0987654321"
-    }
-  ) {
+      amount: 500, 
+      currency: "AUD",
+      externalReference: "invoice #123",
+      recipientId: "661e293b14a0e678c37fa327",
+      externalId: "1234567890",
+      idempotencyKey: "0987654321",
+    },
+  }, 
+  query: ` 
+mutation ($input: CreateWithdrawalInput!) {
+  createWithdrawal(input: $input) {
+    success code message    
+    withdrawal {
+      id status amount currency
+      sender {
+        firstName lastName companyName    
+    }  
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+ mutation($input: CreateWithdrawalInput!) {
+  createWithdrawal(input: $input) {
     success
     code
     message
@@ -229,9 +248,9 @@ mutation {
       amount
       currency
       sender {
-      firstName
-      lastName
-      companyName
+        firstName 
+        lastName 
+        companyName    
       }
     }
   }
@@ -239,8 +258,23 @@ mutation {
 ```
 {% endtab %}
 
-{% tab title="Response" %}
+{% tab title="Variables" %}
+```javascript
+ { 
+    "input": {
+      "amount": 500,
+      "currency": "AUD",
+      "externalReference": "invoice #123",
+      "recipientId": "661e293b14a0e678c37fa327",
+      "externalId": "1234567890",
+      "idempotencyKey": "0987654321"
+    }
+}
 ```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
 {
   "data": {
     "createWithdrawal": {
