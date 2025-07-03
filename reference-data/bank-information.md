@@ -4,7 +4,7 @@ description: Ensuring bank details are correct
 
 # Bank information
 
-To validate BSB, BIC \(aka SWIFT code\) or IBAN use the bankInfo query.
+To validate BSB, BIC (aka SWIFT code) or IBAN use the bankInfo query.
 
 {% hint style="info" %}
 The `bankInfo` query accepts only one of `bsb`, `bic`, or `iban` arguments. Otherwise, it will return an error.
@@ -12,77 +12,217 @@ The `bankInfo` query accepts only one of `bsb`, `bic`, or `iban` arguments. Othe
 
 The below sample queries will return `null` if the BSB, BIC, IBAN is not found.
 
+Validate BSB
+
 {% tabs %}
-{% tab title="Query BSB" %}
-```graphql
-{
-    bankInfo(input: { bsb: "012622" }) {
-        name
-        address {
-            building
-            street
-            suburb
-            state
-            country
-            postcode
-        }
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      bsb: "012622",
+    },
+  }, 
+  query: `
+query ($input: BankInfoQueryInput!) {
+  bankInfo(input: $input) {
+    name 
+    address {
+      building street suburb state country postcode
     }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: BankInfoQueryInput!){
+  bankInfo(input: $input) {
+    name
+    address {
+      building
+      street
+      suburb
+      state
+      country
+      postcode
+    }
+  }
 }
 ```
 {% endtab %}
 
-{% tab title="Query BIC" %}
-```graphql
-{
-    bankInfo(input: { bic: "BARCGB22" }) {
-        name
-        address {
-            building
-            street
-            suburb
-            state
-            country
-            postcode
-        }
-    }
-}
-
-```
-{% endtab %}
-
-{% tab title="Query IBAN" %}
-```graphql
-{
-    bankInfo(input: { iban: "DE59500105178646768962" }) {
-        name
-        bic
-        address {
-            building
-            street
-            suburb
-            state
-            country
-            postcode
-        }
-    }
+{% tab title="Variables" %}
+```javascript
+ {
+  "input": {
+    "bsb": "012622"
+  }
 }
 ```
 {% endtab %}
 
-{% tab title="Response IBAN" %}
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "bankInfo": {
+      "name": "ANZ",
+      "address": {
+        "building": null,
+        "street": "Shop 1  Westfield Shopping Ctr",
+        "suburb": "Figtree",
+        "state": "NSW",
+        "country": "AU",
+        "postcode": "2525"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Validate BIC
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      bic: "BARCGB22",
+    },
+  }, 
+  query: `
+query ($input: BankInfoQueryInput!) {
+  bankInfo(input: $input) {
+    name 
+    address {
+      building street suburb state country postcode
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: BankInfoQueryInput!){
+  bankInfo(input: $input) {
+    name
+    address {
+      building
+      street
+      suburb
+      state
+      country
+      postcode
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```graphql
+ {
+  "input": {
+    "bic": "BARCGB22"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
 ```javascript
 {
   "data": {
     "bankInfo": {
       "name": "BARCLAYS BANK PLC",
-      "bic": "BARCGB22",
       "address": {
         "building": null,
-        "street": "1 CHURCHILL PLACE",
-        "suburb": "LONDON",
+        "street": "1 CHURCHILL PLACE, CANARY WHARF London",
+        "suburb": "London",
         "state": null,
         "country": "GB",
         "postcode": "E14 5HP"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Validate IBAN
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```graphql
+const bodyJSON = {
+  variables: {
+    input: {
+      iban: "DE59500105178646768962",
+    },
+  }, 
+  query: `
+query ($input: BankInfoQueryInput!) {
+  bankInfo(input: $input) {
+    name 
+    address {
+      building street suburb state country postcode
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: BankInfoQueryInput!){
+  bankInfo(input: $input) {
+    name
+    address {
+      building
+      street
+      suburb
+      state
+      country
+      postcode
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+ {
+  "input": {
+    "iban": "DE59500105178646768962"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+{
+  "data": {
+    "bankInfo": {
+      "name": "ING-DIBA AG (RETAIL BANKING)",
+      "address": {
+        "building": null,
+        "street": "THEODOR-HEUSS-ALLEE 2 Frankfurt Am Main",
+        "suburb": "Frankfurt Am Main",
+        "state": null,
+        "country": "DE",
+        "postcode": "60486"
       }
     }
   }
