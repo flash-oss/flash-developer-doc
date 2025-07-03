@@ -5,10 +5,29 @@ You can disable and activate sub-clients. Deposits sent to a disabled sub-client
 #### Disabling a sub-client
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: "606128f24bf29139b2cf74ef"
+  },
+  query: `
+mutation ($input: ID!) {
+  disableSubClient(id: $input) {
+    success code message 
+    subClient {
+      id status
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-mutation {
-  disableSubClient(id: "606128f24bf29139b2cf74ef") {
+mutation($input: ID!) {
+  disableSubClient(id: $input) {
     success
     code
     message
@@ -17,6 +36,14 @@ mutation {
       status
     }
   }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{ 
+   "input": "606128f24bf29139b2cf74ef"
 }
 ```
 {% endtab %}
