@@ -29,38 +29,61 @@ The above personal data submission requirements should be as equally followed fo
 To create a sub-client, you need to execute the `createSubClient` mutation as below. You can find the description of each field in the GraphQL API schema.
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  createSubClient(
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: { 
     input: {
-      legalName: "Chineese Tradings"
-      businessNumber: "330782000329701"
-      firstName: "John"
-      lastName: "Smith"
-      email: "john.smith@example.com"
-      mobile: "+61422832849"
-      dob: "1979-05-12"
+      legalName: "Chineese Tradings", 
+      businessNumber: "330782000329701", 
+      firstName: "John", 
+      lastName: "Smith", 
+      email: "john.smith@example.com",
+      mobile: "+61422832849",
+      dob: "1979-05-12",
       address: {
-        building: "25"
-        street: "Xihu Road, Yuexiu District"
-        suburb: "Guangzhou City"
-        state: "Guangdong Province"
-        postcode: "510030"
-        country: CN
-      }
+        building: "25",
+        street: "Xihu Road, Yuexiu District",
+        suburb: "Guangzhou City",
+        state: "Guangdong Province",
+        postcode: "510030",
+        country: "CN",
+      },
       idDoc: {
-        type: passport
-        docNumber: "FF1948394"
-        issuer: "Australian Passport Office (APO)"
-        issueDate: "2000-01-01"
-        expiryDate: "2045-01-01"
-        country: AU
-        
+        type: "passport",
+        docNumber: "FF1948394",
+        issuer: "Australian Passport Office (APO)",
+        issueDate: "2000-01-01",
+        expiryDate: "2045-01-01",
+        country: "AU",
+      },
+      externalId: "991188227733",
+    },
+  },
+  query: `
+mutation ($input: CreateSubClientInput!) {
+  createSubClient(input: $input) {
+    success code message
+    subClient {
+      id legalName businessNumber fullName clientType status
+      primaryContact {
+        firstName lastName email mobile dob
       }
-      externalId: "991188227733"
+      address {
+        country
+      }      
+      bsb accountNo externalId
     }
-  ) {
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($input: CreateSubClientInput!) {
+  createSubClient(input: $input) {
     success
     code
     message
@@ -88,7 +111,39 @@ mutation {
     }
   }
 }
+```
+{% endtab %}
 
+{% tab title="Variables" %}
+```javascript
+{ 
+  "input": {
+    "legalName": "Chineese Tradings",
+    "businessNumber": "330782000329701",
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john.smith@example.com",
+    "mobile": "+61422832849",
+    "dob": "1979-05-12",
+    "address": {
+      "building": "25",
+      "street": "Xihu Road, Yuexiu District",
+      "suburb": "Guangzhou City",
+      "state": "Guangdong Province",
+      "postcode": "510030",
+      "country": "CN"
+    },
+    "idDoc": {
+      "type": "passport",
+      "docNumber": "FF1948394",
+      "issuer": "Australian Passport Office (APO)",
+      "issueDate": "2000-01-01",
+      "expiryDate": "2045-01-01",
+      "country": "AU"     
+    },
+    "externalId": "991188227733"
+  }
+}
 ```
 {% endtab %}
 
