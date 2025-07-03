@@ -153,7 +153,7 @@ mutation ($id: ID!, $input: UpdateSubClientInput!) {
     subClient {
       id status externalId
     }
- }
+  }
 }`,
 };
 ```
