@@ -137,15 +137,32 @@ mutation($input: ID!) {
 At this point, you can update the `externalId` property only because each sub-client has a set of linked domestic and international Virtual Account Numbers to send and receive funds.
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-mutation {
-  updateSubClient(
-     id: "660fef8e1f3b5452bd6945ec"
-     input: {
-      externalId: "my_system_id_29f-ae0978b00d09e"
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = { 
+  variables: {
+    id: "660fef8e1f3b5452bd6945ec",
+    input: {
+      externalId: "my_system_id_29f-ae0978b00d09e",
+    },
+  }, 
+  query: `
+mutation ($id: ID!, $input: UpdateSubClientInput!) {
+  updateSubClient(id: $id, input: $input) {
+    success code message
+    subClient {
+      id status externalId
     }
-  ) {
+ }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($id: ID!, $input: UpdateSubClientInput!) {
+  updateSubClient(id: $id, input: $input) {
     success
     code
     message
@@ -154,6 +171,17 @@ mutation {
       status
       externalId
     }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{ 
+  "id": "660fef8e1f3b5452bd6945ec", 
+  "input": {
+    "externalId": "my_system_id_29f-ae0978b00d09e"
   }
 }
 ```
