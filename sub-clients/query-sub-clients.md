@@ -5,10 +5,42 @@
 #### Query for a single sub-client
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    id: "606d28675a2d931bc925fec2",
+      input: {
+        currencies: ["EUR","USD","HKD","CNY"],
+      },
+  },
+  query: `
+query ($id: ID!, $input: FundingAccountQueryInput!) {
+  subClient(id: $id) {
+    id fullName legalName tradingAsNam clientType status 
+    primaryContact {
+      firstName middleName lastName email dob mobile
+    }
+    address {
+      building street suburb state country postcode
+    }
+    postalAddress {
+      building street suburb state country postcode
+    } 
+    businessNumber bsb accountNo externalId
+    fundingAccounts(input: $input) {
+      iban accountNo bic currency externalReference
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  subClient(id: "606d28675a2d931bc925fec2") {
+query($id: ID!, $input: FundingAccountQueryInput!) {
+  subClient(id: $id) {
     id
     fullName
     legalName
@@ -43,7 +75,7 @@
     bsb
     accountNo
   	externalId
-    fundingAccounts(input: { currencies: [EUR, USD, HKD, CNY] }) {
+    fundingAccounts(input: $input) {
       iban
       accountNo
       bic
@@ -52,7 +84,17 @@
     }
   }
 }
+```
+{% endtab %}
 
+{% tab title="Variables" %}
+```javascript
+{ 
+  "id": "606d28675a2d931bc925fec2",
+  "input": {
+    "currencies": ["EUR", "USD", "HKD", "CNY"] 
+  }
+}
 ```
 {% endtab %}
 
