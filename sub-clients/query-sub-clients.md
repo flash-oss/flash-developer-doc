@@ -230,23 +230,44 @@ query($input: SubClientQueryInput!){
 #### Query for multiple sub-clients with filters
 
 {% tabs %}
-{% tab title="Query" %}
-```graphql
-{
-  # more filters available, see SubClientQueryInput in API schema
-  subClients(
-    input: {
-      clientType: INDIVIDUAL
-      status: ACTIVE
-      firstName: "John"
-      lastName: "Smith"
-      address: { country: AU }
+{% tab title="JavaSscript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input": {
+      clientType: "INDIVIDUAL",
+      status: "ACTIVE",
+      firstName: "John",
+      lastName: "Smith",
+      address: { 
+        country: "AU", 
+      },
+    },
+  },
+  query: `
+query ($input: SubClientQueryInput!) {
+  subClients(input: $input) {   
+    id fullName clientType status 
+    primaryContact {
+      firstName lastName
     }
-  ) {
+    address {
+      country
+    }
+  }
+}`,
+};  
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query($input: SubClientQueryInput!){
+  subClients(input: $input) {
     id
     fullName
     clientType
-    status
+    status   
     primaryContact {
       firstName
       lastName
@@ -254,10 +275,26 @@ query($input: SubClientQueryInput!){
     address {
       country
     }
+    # any other set of properties
   }
 }
-
 ```
+{% endtab %}
+
+{% tab title="Variables" %}
+<pre class="language-graphql"><code class="lang-graphql">{   
+# more filters available, see SubClientQueryInput in API schema
+<strong>  "input": {
+</strong>    "clientType": "INDIVIDUAL",
+    "status": "ACTIVE",
+    "firstName": "John",
+    "lastName": "Smith",
+    "address": { 
+      "country": "AU" 
+    }
+  }
+}
+</code></pre>
 {% endtab %}
 
 {% tab title="Response" %}
