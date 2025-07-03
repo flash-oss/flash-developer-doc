@@ -3,10 +3,31 @@
 #### Query all deposits
 
 {% tabs %}
-{% tab title="Request" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+    }
+  },
+  query: `
+query ($input: DepositQueryInput!) {
+  deposits(input: $input) {
+    id amount currency status statusMessage externalId externalReference
+    subClient {
+      id fullName status clientType
+    }    
+    createdAt
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  deposits {
+query($input: DepositQueryInput!) {
+  deposits(input: $input) {
     id
     amount
     currency
@@ -22,6 +43,15 @@
     }
     createdAt
     # more fields available, see API schema
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{ 
+  "input": {
   }
 }
 ```
