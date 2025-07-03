@@ -99,10 +99,27 @@ query($input: DepositQueryInput!) {
 #### Query deposit by ID
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables:{
+    input: "6053d4e0e3bc655e0598a742",
+  },
+  query: `
+query ($input: ID) {  
+  deposit(id: $input) {
+    id 
+    amount currency status statusMessage externalId externalReference createdAt
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  deposit(id: "6053d4e0e3bc655e0598a742") {
+query($input: ID) {
+  deposit(id: $input) {
     id
     amount
     currency
@@ -113,6 +130,15 @@ query($input: DepositQueryInput!) {
     createdAt
     # more fields available, see API schema
   }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```graphql
+{
+  # there are more query parameters available, see the API schema
+  "input": "6053d4e0e3bc655e0598a742"
 }
 ```
 {% endtab %}
