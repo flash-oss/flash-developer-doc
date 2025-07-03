@@ -147,10 +147,28 @@ query($id: ID!, $input: FundingAccountQueryInput!) {
 #### Query for multiple sub-clients
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+    },
+  },
+  query: `
+query ($input: SubClientQueryInput!) {
+  subClients(input: $input) {   
+    id fullName legalName clientType status businessNumber
+    bsb accountNo externalId
+  }
+}`,
+};  
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
 ```graphql
-{
-  subClients {
+query($input: SubClientQueryInput!){
+  subClients(input: $input) {
     id
     fullName
     legalName
@@ -159,11 +177,19 @@ query($id: ID!, $input: FundingAccountQueryInput!) {
     businessNumber
     bsb
     accountNo
-  	externalId
+    externalId
     # any other set of properties
   }
 }
+```
+{% endtab %}
 
+{% tab title="Variables" %}
+```javascript
+ {
+ "input": {
+  }
+}
 ```
 {% endtab %}
 
