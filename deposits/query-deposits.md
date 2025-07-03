@@ -8,7 +8,7 @@
 const bodyJSON = {
   variables: {
     input: {
-    }
+    },
   },
   query: `
 query ($input: DepositQueryInput!) {

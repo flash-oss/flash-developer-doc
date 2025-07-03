@@ -9,7 +9,7 @@ You can disable and activate sub-clients. Deposits sent to a disabled sub-client
 ```javascript
 const bodyJSON = {
   variables: {
-    input: "606128f24bf29139b2cf74ef"
+    input: "606128f24bf29139b2cf74ef",
   },
   query: `
 mutation ($input: ID!) {
@@ -70,10 +70,29 @@ mutation($input: ID!) {
 #### Activating a sub-client
 
 {% tabs %}
-{% tab title="Query" %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: "606128f24bf29139b2cf74ef",
+  },
+  query: `
+mutation ($input: ID!) {
+  activateSubClient(id: $input) {
+    success code message 
+    subClient {
+      id status
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GrraphQL Query" %}
 ```graphql
-mutation {
-  activateSubClient(id: "606128f24bf29139b2cf74ef") {
+mutation($input: ID!) {
+  activateSubClient(id: $input) {
     success
     code
     message
@@ -82,6 +101,14 @@ mutation {
       status
     }
   }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{ 
+   "input": "606128f24bf29139b2cf74ef"
 }
 ```
 {% endtab %}
