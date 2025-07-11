@@ -10,7 +10,7 @@ The sub-client (aka _merchant_) feature allows you to create client accounts for
 Note: This feature is **disabled** by default. Contact us if you want it.
 {% endhint %}
 
-Each sub-client will receive a dedicated **BSB** and virtual **account number** (VAN) that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
+Each sub-client will receive a dedicated **BSB** and **Vitrual Account Number** (VAN) that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
 
 {% hint style="warning" %}
 IMPORTANT: Your Australian VAN will be restricted to local Australian transfers. For international payments (aka FX payments), we offer different solutions.
