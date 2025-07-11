@@ -13,9 +13,7 @@ Note: This feature is **disabled** by default. Contact us if you want it.
 Each sub-client will receive a dedicated **BSB** and virtual **account number** (VAN) that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
 
 {% hint style="warning" %}
-Warning: This local account number can only process local transfers, **no SWIFT/RTGS**.
 IMPORTANT: Your Australian VAN will be restricted to local Australian transfers. For international payments (aka FX payments), we offer different solutions.
-
 {% endhint %}
 
 The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).
@@ -27,4 +25,3 @@ All [deposits](https://developer.flash-payments.com/deposits) sent to your sub-c
 You can[ disburse funds](https://developer.flash-payments.com/withdrawals/withdraw-funds) and [make FX payments](https://developer.flash-payments.com/payments/send-funds) on behalf of your sub-clients by providing the sub-client ID when you create withdrawals or payments. This sub-client record will then be used as the sender, linked to the transaction, and reported to the government.
 
 Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
-
