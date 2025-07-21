@@ -128,7 +128,7 @@ query($input: BankInfoQueryInput!){
 {% endtab %}
 
 {% tab title="Variables" %}
-```graphql
+```javascript
  {
   "input": {
     "bic": "BARCGB22"
@@ -162,7 +162,7 @@ Validate IBAN
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```graphql
+```javascript
 const bodyJSON = {
   variables: {
     input: {
@@ -211,7 +211,7 @@ query($input: BankInfoQueryInput!){
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```javascript
 {
   "data": {
     "bankInfo": {
