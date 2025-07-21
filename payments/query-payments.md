@@ -144,7 +144,7 @@ query ($input: PaymentQueryInput!) {
 {% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
-  variables:{
+  variables: {
     input: "5b04c62ec0bf606bf216ae21",
   },
   query: `

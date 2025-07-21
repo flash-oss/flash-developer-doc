@@ -14,8 +14,8 @@ Please verify that you have all the required data to initiate a successful payme
 {% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
-  variables:{
-    input:{
+  variables: {
+    input: {
     },
   }, 
   query: `
@@ -86,8 +86,8 @@ The response above means that if you want to send euros to Austria (AT) then you
 {% tab title="JavaScript" %}
 ```graphql
 const bodyJSON = {
-  variables:{
-    input:{
+  variables: {
+    input: {
       country: "FR",
       currency: "EUR",
     },

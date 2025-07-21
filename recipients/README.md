@@ -155,7 +155,7 @@ const bodyJSON = {
       dob: "1987-06-05",
       accountIdType: "BSB",
       currency: "AUD",
-      bsb:"370370",
+      bsb: "370370",
       accountNo: "12341234",
       email: "john@example.com",
       address: {
@@ -345,7 +345,7 @@ Please note the recipient's`accountIdType`can't be changed
 ```javascript
 const bodyJSON = {
   variables: {
-    id:"5ba89a6b35a2b327b81ffc3b",
+    id: "5ba89a6b35a2b327b81ffc3b",
     input: {
       nickName: "JohnM",
       firstName: "John",

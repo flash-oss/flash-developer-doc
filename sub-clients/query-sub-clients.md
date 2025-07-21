@@ -234,7 +234,7 @@ query($input: SubClientQueryInput!){
 ```javascript
 const bodyJSON = {
   variables: {
-    input": {
+    input: {
       clientType: "INDIVIDUAL",
       status: "ACTIVE",
       firstName: "John",
