@@ -20,8 +20,7 @@ description: Withdrawal processing statuses
      * `REFUNDED` - see step 4 below.
      * `CANCELLED` - manual action. Your **balance goes up** by the amount, Flash Payments keeps the fee. _**FINAL status.**_
      * `PENDING` - rare case - retrying. Sometimes it might work. Go to item 3.
-4. The recipient bank decided to return this transaction back to Flash Payments.
-   `CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, Flash Payments keeps the fee. _**FINAL status**_.
+4. The recipient bank decided to return this transaction back to Flash Payments.`CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, Flash Payments keeps the fee. _**FINAL status**_.
 
 {% hint style="warning" %}
 The <mark style="color:orange;">REVIEWING</mark> is an **optional** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.
@@ -58,7 +57,7 @@ If your withdrawal is in this status this means that we are doing an internal re
 {% hint style="info" %}
 Please always provide accurate [sender](https://developer.flash-payments.com/senders#create-a-sender) and [recipient](https://developer.flash-payments.com/recipients#create-a-recipient) information, including the full address, to prevent delays associated with internal compliance reviews on our side.
 
-Sender and recipient addresses are automatically validated when a transaction is created. If the address cannot be verified, the transaction will be flagged for review by our Compliance team, resulting in processing delays.
+Sender and recipient addresses are automatically validated when a transaction is created. If the address cannot be verified, the transaction will be flagged for review by our Compliance team, resulting in processing delays.\
 To help ensure smooth and timely processing, please provide complete and accurate address details.
 {% endhint %}
 
