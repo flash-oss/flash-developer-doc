@@ -6,7 +6,7 @@ description: >-
 
 # Required fields
 
-Most documentation examples utilise typical GraphQL input data that is necessary for successfully executing queries.
+Most documentation examples utilise typical GraphQL input data for successfully executing queries.
 
 It's strongly encouraged that you always submit complete and accurate data, as this reduces our compliance team's reviewing efforts and, as a result, speeds up transactions and provides a great experience for your customers.
 
