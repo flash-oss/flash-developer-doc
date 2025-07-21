@@ -180,25 +180,25 @@ The date of birth (`dob`) is not mandatory. However, if it is not provided, your
 const bodyJSON = {
   variables: {
     input: {
-      firstName:"Malcolm",
-      lastName:"Jez",
-      dob:"2000-01-01",
-      email:"malcolm@example.com",
-      mobile:"+61 4123456789",
+      firstName: "Malcolm",
+      lastName: "Jez",
+      dob: "2000-01-01",
+      email: "malcolm@example.com",
+      mobile: "+61 4123456789",
       address: {
-        street:"1 Test St",
-        suburb:"London",
-        state:"TST",
-        country:"GB",
-        postcode:"2000",
+        street: "1 Test St",
+        suburb: "London",
+        state: "TST",
+        country: "GB",
+        postcode: "2000",
       },
       idDoc: {
-        type:"passport",
-        docNumber:"GB1234321",
-        issuer:"His Majesty’s Passport Office (HMPO)",
-        issueDate:"1990-01-01",
-        expiryDate:"2045-01-01",
-        country:"GB",
+        type: "passport",
+        docNumber: "GB1234321",
+        issuer: "His Majesty’s Passport Office (HMPO)",
+        issueDate: "1990-01-01",
+        expiryDate: "2045-01-01",
+        country: "GB",
       },
     },
   },
@@ -390,17 +390,17 @@ mutation($input: SenderInput!) {
 const bodyJSON = {
   variables: {
     input: {
-      firstName:"Malcolm",
-      lastName:"Jez The Second",
-      dob:"2000-01-01",
-      email:"malcolm@example.com",
-      mobile:"+61 4123456789",
+      firstName: "Malcolm",
+      lastName: "Jez The Second",
+      dob: "2000-01-01",
+      email: "malcolm@example.com",
+      mobile: "+61 4123456789",
       address: {
-        street:"1 Test St",
-        suburb:"London",
-        state:"TST",
-        country:"GB",
-        postcode:"2000",
+        street: "1 Test St",
+        suburb: "London",
+        state: "TST",
+        country: "GB",
+        postcode: "2000",
       },
     },
   },
@@ -480,7 +480,7 @@ mutation($id: ID, $input: SenderInput!) {
 ```javascript
 const bodyJSON = {
   variables: {
-    input:"686393e689c1fb1b255cac5c",
+    input: "686393e689c1fb1b255cac5c",
   },
   query: `
 mutation ($input: ID) {
