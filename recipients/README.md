@@ -77,7 +77,7 @@ query($input: ID) {
 <pre class="language-javascript"><code class="lang-javascript">const bodyJSON = {
   variables: {
     input: {
-      currency:"USD",
+      currency: "USD",
     },
   },
   query: `
@@ -251,7 +251,7 @@ const bodyJSON = {
       companyName: "Acme Pty Ltd",
       accountIdType: "BSB",
       currency: "AUD",
-      bsb:"370370",
+      bsb: "370370",
       accountNo: "12341234",
       email: "john@example.com",
       address: {
@@ -445,7 +445,7 @@ mutation($id: ID, $input: RecipientInput!) {
 ```javascript
 const bodyJSON = {
   variables: {
-    input:"6b04c62ec0bf606bf216ae21",
+    input: "6b04c62ec0bf606bf216ae21",
   },
   query: `
 mutation ($input: ID) {
