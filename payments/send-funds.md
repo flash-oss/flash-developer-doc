@@ -12,17 +12,17 @@ Note that you must have enough AUD balance to make an outbound AUD payment.
 const bodyJSON = {
   variables: {
     input: {
-      fromCurrency:"AUD",
-      toCurrency:"USD",
-      size:1000,
-      currency:"AUD",
-      reason:"BUSINESS",
-      sourceOfFunds:"BUSINESS_FUNDS",
-      externalReference:"my ref 221b",
-      senderId:"6092360ae40e2cfb52f85be1",
-      recipientId:"5ba89a6b35a2b327b81ffc3b",
-      externalId:"12344321",
-      idempotencyKey:"12344321",
+      fromCurrency: "AUD",
+      toCurrency: "USD",
+      size: 1000,
+      currency: "AUD",
+      reason: "BUSINESS",
+      sourceOfFunds: "BUSINESS_FUNDS",
+      externalReference: "my ref 221b",
+      senderId: "6092360ae40e2cfb52f85be1",
+      recipientId: "5ba89a6b35a2b327b81ffc3b",
+      externalId: "12344321",
+      idempotencyKey: "12344321",
     },
   },
   query: ` 
