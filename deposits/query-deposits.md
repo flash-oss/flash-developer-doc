@@ -102,7 +102,7 @@ query($input: DepositQueryInput!) {
 {% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
-  variables:{
+  variables: {
     input: "6053d4e0e3bc655e0598a742",
   },
   query: `

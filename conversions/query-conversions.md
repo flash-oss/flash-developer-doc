@@ -151,7 +151,7 @@ query($input: ConversionQueryInput!) {
 {% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
-  variables:{
+  variables: {
     input: "6b04c62ec0bf606bf216ae21",
   },
   query: `
