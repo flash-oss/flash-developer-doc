@@ -88,8 +88,8 @@ mutation($input: LoginInput!) {
 ```javascript
 {
   "input": { 
-  "email": "you@example.com", 
-  "password": "12345678" 
+    "email": "you@example.com", 
+    "password": "12345678" 
   }
 }
 ```
@@ -128,9 +128,13 @@ The `affiliation` field accepts one of two constant values - `FP_AUS` or `FP_LUX
 ```
 {
   "input": { 
-  "email": "you@example.com", 
-  "password": "12345678",
-  "affiliation": FP_AUS 
+    "email": "you@example.com", 
+    "password": "12345678",
+    "affiliation": FP_AUS 
   }
 }
 ```
+
+If the `affiliation` value does not correspond to an existent account, authentication will fail with code `UNREGISTERED` even if an account exists with another affiliation and the credentials are correct.
+
+If the user has multiple affiliations and the field `affiliation` is omitted, authentication will fail with code `NEED_AFFILIATION`.
