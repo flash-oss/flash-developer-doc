@@ -119,3 +119,18 @@ If using [API Playground](https://api.uat.flash-payments.com.au/) then click the
 }
 ```
 
+### Affiliation
+
+Clients that have contractual agreements with more than one subsidiary of Flash Payments, can use the optional field `affiliation` to control which account to log into.
+
+The `affiliation` field accepts one of two constant values - `FP_AUS` or `FP_LUX` -  which are passed unquoted.
+
+```
+{
+  "input": { 
+  "email": "you@example.com", 
+  "password": "12345678",
+  "affiliation": FP_AUS 
+  }
+}
+```
