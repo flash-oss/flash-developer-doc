@@ -4,12 +4,20 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2025-07-25
+
+### Added
+
+The new optional field called `reason` was added to the `createWithdrawal`  mutation and `Withdrawal`  type.
+
+If you have a payment/transaction/payout **purpose** - you must submit it to us via the API. See all the possible purpose codes (aka reason values) in the [GraphQL playground](https://api.flash-payments.com) (click the link in the header of this website), look inside the "docs" by the word "reason". You need to find the GraphQL enum called `WithdrawalReason`.
+
 ## 2025-07-24
 
 ### Added
 
-An optional `affiliation` field has been added to the login mutation.\
-This field accepts the constant values `FP_AUS` or `FP_LUX`, allowing users to specify which Flash Payments subsidiary account to access when multiple contractual agreements exist. It is only required in such cases and can be omitted otherwise.
+An optional `affiliation` field has been added to the `login` mutation.\
+This field accepts the `Affiliation` enum values `FP_AUS` or `FP_LUX`, allowing users to specify which Flash Payments subsidiary account to access when multiple contractual agreements exist. It is only required if your have more than one such agreement with us.
 
 ## 2025-05-02
 
