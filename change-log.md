@@ -4,6 +4,16 @@ description: History of changes to this API schema
 
 # Change log
 
+## 2025-07-26
+
+### Added
+
+Three new fields to the `Withdrawal` type:
+
+* `clearedAt` - the timestamp when the withdrawal become `CONFIRMED`.
+* `rejectedAt` - the timestamp when the it was rejected by Flash Payments. See the `rejectCode` and `statusMessage` fields to understand the rejection reason.
+* `refundedAt` - the timestamp when it was refunded. Very rare situation.
+
 ## 2025-07-25
 
 ### Added
