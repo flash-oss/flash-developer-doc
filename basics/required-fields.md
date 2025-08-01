@@ -1,7 +1,7 @@
 ---
 description: >-
-  Here is how to identify the required input fields for your GraphQL queries and
-  mutations.
+  Here is how to identify the mandatory input fields for your GraphQL queries
+  and mutations.
 ---
 
 # Required fields
