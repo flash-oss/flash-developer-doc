@@ -9,7 +9,7 @@
 * [Conversions](conversions/README.md)
   * [Convert funds](conversions/convert-funds.md)
   * [Query conversions](conversions/query-conversions.md)
-  * [Conversion statuses](conversions/payment-statuses.md)
+  * [Conversion statuses](conversions/conversion-statuses.md)
 * [Balance](balance/README.md)
   * [Statement](balance/statement.md)
 * [Recipients](recipients/README.md)
