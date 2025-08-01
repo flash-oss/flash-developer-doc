@@ -12,7 +12,7 @@ IMPORTANT: Your Australian VAN will be restricted to local Australian transfers.
 
 Every deposit to your VAN would increase your Flash Payments balance.
 
-Every deposit can trigger a [Webhooks](../webhooks/webhooks.md) notification, keeping you informed in real time
+Every deposit can trigger a [Webhooks](../webhooks/regular-webhooks.md) notification, keeping you informed in real time
 
 The deposit data includes the payment reference (we call it `externalReference` in this API).
 

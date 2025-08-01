@@ -24,4 +24,4 @@ All [deposits](https://developer.flash-payments.com/deposits) sent to your sub-c
 
 You can[ disburse funds](https://developer.flash-payments.com/withdrawals/withdraw-funds) and [make FX payments](https://developer.flash-payments.com/payments/send-funds) on behalf of your sub-clients by providing the sub-client ID when you create withdrawals or payments. This sub-client record will then be used as the sender, linked to the transaction, and reported to the government.
 
-Notifications via [webhooks](webhooks/webhooks.md) will provide important sub-client information as well.
+Notifications via [webhooks](webhooks/regular-webhooks.md) will provide important sub-client information as well.

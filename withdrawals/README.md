@@ -11,6 +11,6 @@ You can [create withdrawals](withdraw-funds.md). By default you can withdraw onl
 If you are a fully verified customer you can payout to any bank account number in Australia. You'd need to:
 
 * have a recipient ID (see [Recipients](../recipients/) to query your address book); otherwise
-* understand the supported delivery methods using the [availableDeliveryMethods](../recipients/required-fields.md) query and [create a new recipient](../recipients/#create-a-recipient)
+* understand the supported delivery methods using the [availableDeliveryMethods](../recipients/delivery-methods.md) query and [create a new recipient](../recipients/#create-a-recipient)
 
 Once you have the recipient ID, you can initiate a withdrawal.

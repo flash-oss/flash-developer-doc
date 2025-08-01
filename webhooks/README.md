@@ -8,7 +8,7 @@ The primary triggers for all webhooks are **status** changes in payments, withdr
 
 There are two types of webhooks in Flash Payments.
 
-* [Regular webhooks](webhooks.md) - a URL would need to be saved to your [FlashConnect](https://connect.uat.flash-payments.com.au/) settings. All types of events.
+* [Regular webhooks](regular-webhooks.md) - a URL would need to be saved to your [FlashConnect](https://connect.uat.flash-payments.com.au/) settings. All types of events.
   * You can lookup the history of all the HTTP requests and responses, their JSON bodies and headers.
   * If there is no response we will show you what exactly the problem is: DNS issue, networking issue, 5XX response, etc.
   * You can receive webhooks when a deposit lands to your Virtual Account Number (VAN).
@@ -21,7 +21,7 @@ The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https
 
 #### Cryptographic signature
 
-All webhook HTTP requests carry a cryptographic signature. [Ad hoc](adhoc-webhooks.md) and [regular webhooks](webhooks.md) do it slightly different though.
+All webhook HTTP requests carry a cryptographic signature. [Ad hoc](adhoc-webhooks.md) and [regular webhooks](regular-webhooks.md) do it slightly different though.
 
 #### Flash Payments webhook request IP address
 
