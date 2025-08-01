@@ -3,7 +3,7 @@
 * [Overview](README.md)
 * [Basics](basics/README.md)
   * [Sending data as JSON](basics/sending-data-as-json.md)
-  * [Required fields](basics/sending-data-as-json-1.md)
+  * [Required fields](basics/required-fields.md)
 * [Authentication](authentication.md)
 * [Quote](quote.md)
 * [Conversions](conversions/README.md)
