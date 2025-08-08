@@ -8,10 +8,10 @@ description: History of changes to this API schema
 
 ### Changed
 
-The validation logic for the `bic` field in the `createRecipient` mutation has been updated:
+The validation logic for the `bic` field in the `createRecipient` mutation has been relaxed:
 
-* When `accountIdType` is set to `IBAN`, `BSB`, or `PAYID`, the `bic` field is **not required**.
-* When `accountIdType` is set to `ABA`, `CLABE`, `IFSC`, `CNAPS`, `SORT_CODE`, or `ACC_NO`, the `bic` field is **required**.
+* When `accountIdType` is set to `IBAN`, `BSB`, or `PAYID`, the `bic` field is **not required** any more.
+* When `accountIdType` is set to `ABA`, `CLABE`, `IFSC`, `CNAPS`, `SORT_CODE`, or `ACC_NO`, the `bic` field is still **required**.
 
 ## 2025-07-26
 
