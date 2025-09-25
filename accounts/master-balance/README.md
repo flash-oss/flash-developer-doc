@@ -1,8 +1,8 @@
 ---
-description: Query your account balances
+description: Query your master account balances
 ---
 
-# Balance
+# Master Balance
 
 Paste this query to the GraphQL Playground
 

@@ -9,7 +9,7 @@ description: >-
 To make a withdrawal, you need to execute the `createWithdrawal` mutation as below.
 
 {% hint style="info" %}
-You must have enough [balance](../balance/) in your account for the chosen `currency` to make a withdrawal.
+You must have enough [balance](../../accounts/master-balance/) in your account for the chosen `currency` to make a withdrawal.
 {% endhint %}
 
 {% tabs %}
@@ -318,14 +318,14 @@ Optional field that allows you to provide [Institution](../institutions.md) deta
 * By `instructingInstitution.externalId` if present.
 * By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
 
-### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
+### Callback (aka [Webhook](../../basics/webhooks/adhoc-webhooks.md)) URI
 
 We recommend against continuous polling for withdrawal status changes. Instead, please use `callbackUri`.
 
-The optional `callbackUri` will be invoked several times during the processing of a withdrawal. These callbacks will usually occur soon (within several seconds) after the initial create withdrawal call - but may be delayed in some cases. The example JSON payloads can be found on the [Webhooks page](../webhooks/#example-payloads).
+The optional `callbackUri` will be invoked several times during the processing of a withdrawal. These callbacks will usually occur soon (within several seconds) after the initial create withdrawal call - but may be delayed in some cases. The example JSON payloads can be found on the [Webhooks page](../../basics/webhooks/#example-payloads).
 
 {% hint style="danger" %}
 **Security note**
 
-The callback (aka [webhook](../webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone on the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
+The callback (aka [webhook](../../basics/webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone on the internet. Thus opening up a potential attack vector. See [Webhooks](../../basics/webhooks/adhoc-webhooks.md) page to secure your data properly.
 {% endhint %}

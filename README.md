@@ -23,7 +23,7 @@ You can search, visualise, or extract your data using our [FlashConnect](https:/
 Once registration is complete, a dedicated BSB and Virtual Account Number (VAN) for use within Australia will be assigned to you.
 
 {% hint style="warning" %}
-IMPORTANT: Your Australian VAN will be restricted to local Australian transfers. For international payments (aka FX payments), we offer different solutions. 
+IMPORTANT: Your Australian VAN will be restricted to local Australian transfers. For international payments (aka FX payments), we offer different solutions.
 {% endhint %}
 
 Any funds deposited to your VAN would increase your Flash Payments balance. We store and retain the reference attached to each deposit (e.g., an invoice number) to support your reconciliation or reporting needs.
@@ -80,11 +80,10 @@ API rate limiting is in place to ensure stable performance of our service and pr
 2. Explain what kind of services you are looking from Flash Payments.
 3. We will examine your needs and explain how to get access to our UAT environment.
 
-For more detailed instructions head to the [Basics](basics/) page.
+For more detailed instructions head to the [Basics](basics/why-graphql.md) page.
 
 ## Important notes
 
 ### Breaking changes
 
 While we will endeavour to not introduce any breaking changes they might still occur in the future. In that case we will communicate about the upcoming changes via your registered email.
-

@@ -16,9 +16,9 @@ In some cases, but not always, the payment must include the specific payment ref
 Here is how it looks step by step.
 
 1. We would need to enable the foreign currency auto-receiving feature for you.
-2. You, or your [Sub-client](../sub-clients.md), would have a special bank account in, say, SEPA zone. Find the details below.
+2. You, or your [Sub-client](../../accounts/virtual-account-numbers/), would have a special bank account in, say, SEPA zone. Find the details below.
    * The account number and **payment reference** depends on the currency and country you wish to deposit to. E.g. the EUR currency account is usually a British IBAN (starts with "GB").
-3. You, or your [Sub-client](../sub-clients.md), would deposit money to it. Make sure to submit the exact **payment reference** we told you! Otherwise, your funds will be returned.
+3. You, or your [Sub-client](../../accounts/virtual-account-numbers/), would deposit money to it. Make sure to submit the exact **payment reference** we told you! Otherwise, your funds will be returned.
 4. The Flash Payments would detect the account funding event and automatically create a EUR->AUD payment for you.
 5. You would receive at least two webhook notifications - `payment_created` and `payment_complete`.
 6. Your Flash Payments AUD balance would increase accordingly.
@@ -28,7 +28,7 @@ To find which foreign currency bank account you would need to deposit to, please
 {% hint style="info" %}
 Tip. You can simulate and test an international inbound payment with the FlashConnect tool in the UAT environment. Just go to the _FX Payments_ page and click "SEND TEST INBOUND PAYMENT".\
 \
-Additionally, you can test an international inbound payment sent by your [sub-client](../sub-clients.md) in the UAT. Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST INBOUND PAYMENT".
+Additionally, you can test an international inbound payment sent by your [sub-client](../../accounts/virtual-account-numbers/) in the UAT. Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST INBOUND PAYMENT".
 {% endhint %}
 
 To find out the Funding Accounts via API please use the `fundingAccounts` query.
@@ -120,7 +120,7 @@ query ($input: FundingAccountQueryInput!) {
 {% endtab %}
 {% endtabs %}
 
-Your [sub-clients](../sub-clients.md) should deposit their foreign currency to:
+Your [sub-clients](../../accounts/virtual-account-numbers/) should deposit their foreign currency to:
 
 {% tabs %}
 {% tab title="JavaScript" %}

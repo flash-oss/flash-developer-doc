@@ -2,7 +2,7 @@
 description: History of changes to this API schema
 ---
 
-# Change log
+# API change log
 
 ## 2025-08-07
 
@@ -48,7 +48,7 @@ Removed `depositDetails` query as deprecated and non-functioning since March 202
 
 ### Changed
 
-Improved validation rules for the following mutations: [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), [createInstitution](institutions.md#creating-institutions), [createSubClient](sub-clients.md#creating-a-sub-client), [createWithdrawal](withdrawals/withdraw-funds.md), and [createPayment](payments/send-funds.md)\
+Improved validation rules for the following mutations: [createSender](../moving-funds/senders.md#create-a-sender), [updateSender](../moving-funds/senders.md#update-sender), [createInstitution](../moving-funds/institutions.md#creating-institutions), [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client), [createWithdrawal](../moving-funds/payouts/withdraw-funds.md), and [createPayment](../fx/payments/send-funds.md)\
 Affected fields: `idDoc.docNumber` `idDoc.issuer` `legalName` `businessNumber` `legalName` `externalId`. These fields allow only the ASCII characters now.
 
 Also, the first, last, and middle names are limited to 75 chars now.
@@ -59,20 +59,20 @@ Also, FQDN-like names will be rejected. Examples: "Aaron x.com", "Ben.eu", "Visi
 
 ### Added
 
-New fields have been added to the [createSender](senders.md#create-a-sender), [updateSender](senders.md#update-sender), and [createSubClient](sub-clients.md#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document.\
+New fields have been added to the [createSender](../moving-funds/senders.md#create-a-sender), [updateSender](../moving-funds/senders.md#update-sender), and [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document.\
 To avoid creating a breaking change, we currently allow you to provide `idDoc.country` and/or `idDoc.issuer`. In the future, we plan to make `idDoc.country` a **required** field.
 
 ## 2024-12-09
 
 ### Added
 
-New [updateSubClient](sub-clients.md#update-sub-clients) mutation. You can change a sub-client's `externalId` now, but nothing else.
+New [updateSubClient](../accounts/virtual-account-numbers/#update-sub-clients) mutation. You can change a sub-client's `externalId` now, but nothing else.
 
 ## 2024-10-22
 
 ### Added
 
-New the [Conversions](conversions/) feature.
+New the [Conversions](../fx/conversions/) feature.
 
 * New mutation `createConversion`. New queries `conversion` and `conversions`.
 * The `FromCurrency` enum used to have only one item `AUD`. Now there are 8: `AUD CAD CHF EUR GBP NZD SGD USD`.
@@ -124,7 +124,7 @@ Improved [`updateRecipient`](https://developer.flash-payments.com/recipients#upd
 
 ### Added
 
-Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-institutions) to the `CreateWithdrawalInput.`
+Added [`instructingInstitution`](../moving-funds/payouts/withdraw-funds.md#instructing-institutions) to the `CreateWithdrawalInput.`
 
 ## 2023-10-25
 
@@ -140,7 +140,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 
 ### Added
 
-* [`statement`](balance/statement.md) query.
+* [`statement`](../accounts/master-balance/statement.md) query.
   * This query returns the same data as the Download CSV button on the Account Statement page of the [Flash Connect](https://connect.flash-payments.com). It explains every change of you primary balance.
   * Currently it returns exactly 1 day of data. We plan to make date range selection more flexible in the future.
 
@@ -180,7 +180,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 
 * `idempotencyKey` to `createPayment` input.
 * `idempotencyKey` to `createWithdrawal` input.
-* New [sub-client](sub-clients.md) status - `UNAPPROVED`.
+* New [sub-client](../accounts/virtual-account-numbers/) status - `UNAPPROVED`.
 
 ## 2023-02-23
 
@@ -253,7 +253,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 
 ### Changes
 
-* Additional validation for `lastName`, `middleName` and `firstName` introduced allowing only for latin alphabetical characters and special symbols: <img src=".gitbook/assets/Screenshot 2022-02-14 at 14.51.52.png" alt="" data-size="line">
+* Additional validation for `lastName`, `middleName` and `firstName` introduced allowing only for latin alphabetical characters and special symbols: <img src="../.gitbook/assets/Screenshot 2022-02-14 at 14.51.52.png" alt="" data-size="line">
 
 ## 2022-02-09
 
@@ -315,7 +315,7 @@ Added [`instructingInstitution`](withdrawals/withdraw-funds.md#instructing-insti
 
 ### Added
 
-* The `fundingAccounts` and `SubClient.fundingAccounts` queries. It returns international bank account numbers you can deposit in order to bring money to Australia. See [Auto receive funds](payments/auto-receive-funds.md) for more details.
+* The `fundingAccounts` and `SubClient.fundingAccounts` queries. It returns international bank account numbers you can deposit in order to bring money to Australia. See [Auto receive funds](../fx/payments/auto-receive-funds.md) for more details.
 
 ## 2021-05-25
 
@@ -460,5 +460,5 @@ These types and fields were never used by anyone for couple of years.
 
 * Removed the unused enum `PaymentType`. It has no sense and was deprecated a year ago.
   * Simultaneously removed properties `Payment.paymentType`, `PaymentQueryInput.paymentTypes`, `PaymentInput.paymentType`.
-* Removed the long deprecated `PaymentInput.recipient` object. The only way to provide a recipient for a payment is via `PaymentInput.recipientId`. You would need to [pre-create the recipient](recipients/#create-a-recipient) beforehand.
+* Removed the long deprecated `PaymentInput.recipient` object. The only way to provide a recipient for a payment is via `PaymentInput.recipientId`. You would need to [pre-create the recipient](../moving-funds/recipients/#create-a-recipient) beforehand.
 * Removed the never used `AccountIdType` enum values: `BPAY`, `FIN_BTN`, `INTERAC`.

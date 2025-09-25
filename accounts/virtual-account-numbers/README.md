@@ -1,8 +1,10 @@
 ---
-description: Generate Virtual Account Numbers for your clients for collection
+description: >-
+  Generate named Virtual Account Numbers (aka sub-clients) for your clients' for
+  collection
 ---
 
-# Sub-clients
+# Virtual account numbers
 
 The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, companies, or other organisations.
 
@@ -24,4 +26,4 @@ All [deposits](https://developer.flash-payments.com/deposits) sent to your sub-c
 
 You can[ disburse funds](https://developer.flash-payments.com/withdrawals/withdraw-funds) and [make FX payments](https://developer.flash-payments.com/payments/send-funds) on behalf of your sub-clients by providing the sub-client ID when you create withdrawals or payments. This sub-client record will then be used as the sender, linked to the transaction, and reported to the government.
 
-Notifications via [webhooks](webhooks/regular-webhooks.md) will provide important sub-client information as well.
+Notifications via [webhooks](../../basics/webhooks/regular-webhooks.md) will provide important sub-client information as well.

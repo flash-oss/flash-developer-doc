@@ -4,7 +4,7 @@ description: Quote the current bid and ask for a currency pair and size.
 
 # Quote
 
-Consider requesting an **indicative** quote to understand the current currency trading rates before deciding to take action. Please be aware that market makers are not required to honor indicative quotes.
+Consider requesting an **indicative/reference** quote to understand the current currency trading rates before deciding to take action. Please be aware that market makers are not required to honor indicative quotes.
 
 Paste this query to the API Playground to request an indicative quote.
 

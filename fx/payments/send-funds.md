@@ -97,7 +97,7 @@ mutation ($input: PaymentInput!) {
 
 ### Recipient - `recipientId`
 
-You should [pre-create recipients](../recipients/#create-a-recipient) and send us their ID.
+You should [pre-create recipients](../../moving-funds/recipients/#create-a-recipient) and send us their ID.
 
 {% hint style="warning" %}
 We are legally obliged to collect the actual sender and beneficiary details. Please do not send us intermediate organisation details such as exchanges, banks, gateways, etc.
@@ -308,16 +308,16 @@ mutation ($input: PaymentInput!) {
 {% endtab %}
 {% endtabs %}
 
-### Callback (aka [Webhook](../webhooks/adhoc-webhooks.md)) URI
+### Callback (aka [Webhook](../../basics/webhooks/adhoc-webhooks.md)) URI
 
 We recommend against continuous polling for payment status changes. Instead, please use `callbackUri`.
 
-The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon (within several seconds) after the initial create payment call - but may be delayed in some cases. The example JSON payloads can be found on the [Webhooks page](../webhooks/#example-payloads).
+The optional `callbackUri` will be invoked several times during the processing of a payment. These callbacks will usually occur soon (within several seconds) after the initial create payment call - but may be delayed in some cases. The example JSON payloads can be found on the [Webhooks page](../../basics/webhooks/#example-payloads).
 
 Please note that `toAmount` (or `fromAmount`) and other fluctuating payment properties can change during payment execution.
 
 {% hint style="danger" %}
 **Security note**
 
-The callback (aka [webhook](../webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../webhooks/adhoc-webhooks.md) page to secure your data properly.
+The callback (aka [webhook](../../basics/webhooks/adhoc-webhooks.md)) endpoint URI can be invoked by anyone in the internet. Thus opening up a potential attack vector. See [Webhooks](../../basics/webhooks/adhoc-webhooks.md) page to secure your data properly.
 {% endhint %}
