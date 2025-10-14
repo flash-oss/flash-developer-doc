@@ -6,7 +6,9 @@ description: How to avoid and resolve HTTP 429 Too Many Requests
 
 ## Limits
 
-Various limits apply depending on the type of HTTP request or GraphQL query being executed, as well as the number of such requests. The rate-limiting mechanism is quite dynamic and is based on the IP address(es), error rates, HTTP headers, and the GraphQL queries.
+This API apply various rate limits depending on the type of HTTP request or GraphQL query being executed, as well as the number of such requests. The rate-limiting mechanism is quite dynamic and is based on the IP address(es), error rates, HTTP headers, and the GraphQL queries.
+
+We do not share the exact limits because their nature is complex and against our security policy. However, it's nearly impossible to reach the limits if your requests are properly formed.
 
 When one of the numerous limits exceeds the API typically responds with
 
@@ -33,11 +35,11 @@ When one of the numerous limits exceeds the API typically responds with
 
 Here are the common situations when you might get yourself temporarily blocked:
 
-* When your requests produce numerous errors, e.g., malformed header, JSON body, or a GraphQL query.
+* When your requests produce numerous errors, e.g. malformed header, JSON body, or a GraphQL query.
 * When you send too many requests without a valid `Authorization` header.
-* When you send too requests within a very short period.
-  * Most often reason - when you collect reference prices/quotes using the `quote` query. To avoid the issue you must [send multiple GraphQL queries within a single HTTP request](../fx/quote.md#multiple-reference-indicative-quotes-with-a-single-http-request).
+* When you send too many requests within a very short period.
+  * Most often reason - when you collect reference prices/quotes using the `quote` query for multiple currency pairs. To avoid the issue you must [send multiple GraphQL queries within a single HTTP request](../fx/quote.md#multiple-reference-indicative-quotes-with-a-single-http-request).
 
-## How to reset if you see HTTP 429 responses
+## How to unblock if you see HTTP 429 responses
 
 Please contact our support team via the established communication channels. We will manually reset the counters for you.
