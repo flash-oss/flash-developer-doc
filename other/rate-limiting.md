@@ -8,7 +8,7 @@ description: How to avoid and resolve HTTP 429 Too Many Requests
 
 This API apply various rate limits depending on the type of HTTP request or GraphQL query being executed, as well as the number of such requests. The rate-limiting mechanism is quite dynamic and is based on the IP address(es), error rates, HTTP headers, and the GraphQL queries.
 
-We do not share the exact limits because their nature is complex and against our security policy. However, it's nearly impossible to reach the limits if your requests are properly formed.
+We do not disclose the exact limits due to their complexity and our security policy. However, it's nearly impossible to reach the limits if your requests are properly formed.
 
 When one of the numerous limits exceeds the API typically responds with
 
