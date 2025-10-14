@@ -55,3 +55,4 @@
 
 * [Reference data](other/reference-data.md)
 * [Bank information](other/bank-information.md)
+* [Rate limiting](other/rate-limiting.md)
