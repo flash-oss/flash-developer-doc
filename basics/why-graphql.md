@@ -2,7 +2,7 @@
 description: General information how to start using Flash Payments API
 ---
 
-# Basics
+# Why GraphQL
 
 {% hint style="info" %}
 ### Assumptions
@@ -67,4 +67,4 @@ It is a good idea to always send custom `user-agent` HTTP header value when doin
 
 ### 429 Too many requests
 
-Our API have smart monitoring. It might temporary block your IP address if it thinks you are abusing the system. There are many various scenarios when you can be blocked, but we won't going to disclose them at any point of time due to security reasons.
+Our API have smart monitoring and it may temporarily block your IP if it detects system misuse. For more information, please refer to the [Rate limiting](https://developer.flash-payments.com/other/rate-limiting) page.
