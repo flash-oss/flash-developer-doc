@@ -4,6 +4,14 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2025-10-24
+
+### Changed
+
+Enum `WithdrawalReason` is renamed to `TransactionReason`.
+The `reason` field inside `CreateWithdrawalInput` and `Withdrawal` type now uses `TransactionReason` instead of `WithdrawalReason`.
+
+
 ## 2025-08-07
 
 ### Changed
