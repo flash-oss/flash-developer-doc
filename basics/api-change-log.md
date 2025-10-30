@@ -4,13 +4,50 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2025-10-31 :skull:
+
+### Added
+
+A high demand long awaited feature. You don't need to pre-create senders/recipients before submitting a payout using `createWithdrawal` .
+
+This means that when you need to do a remittance payment (aka payout) you need to submit only one HTTP request (`createWithdrawal`) instead of 3  (`createSender`, `createRecipient`, and `createWithdrawal`).
+
+Example:
+
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      amount: 1000, 
+      recipient: {                  // <- this is new !!!
+        bsb: "370370",
+        accountNo: "123123123",
+        companyName: "Acme Pty Ltd",
+        currency: "AUD",
+        accountIdType: "BSB",
+        address: { street: "1 Test St TEST NSW 2000", country: "AU" },
+      },
+      sender: {                     // <- this is new too !!!
+        companyName: "Acme LLC",
+        address: { street: "1 Jon St PORTLAND VA 54321", country: "US" },
+      },
+    },
+  }, 
+  query: ` 
+mutation ($input: CreateWithdrawalInput!) {
+  createWithdrawal(input: $input) {
+    success code message withdrawal { id }
+  }
+}`,
+};
+
+```
+
 ## 2025-10-24
 
 ### Changed
 
-Enum `WithdrawalReason` is renamed to `TransactionReason`.
-The `reason` field inside `CreateWithdrawalInput` and `Withdrawal` type now uses `TransactionReason` instead of `WithdrawalReason`.
-
+Enum `WithdrawalReason` is renamed to `TransactionReason`. The `reason` field inside `CreateWithdrawalInput` and `Withdrawal` type now uses `TransactionReason` instead of `WithdrawalReason`.
 
 ## 2025-08-07
 
@@ -35,7 +72,7 @@ Three new fields to the `Withdrawal` type:
 
 ### Added
 
-The new optional field called `reason` was added to the `createWithdrawal`  mutation and `Withdrawal`  type.
+The new optional field called `reason` was added to the `createWithdrawal` mutation and `Withdrawal` type.
 
 If you have a payment/transaction/payout **purpose** - you must submit it to us via the API. See all the possible purpose codes (aka reason values) in the [GraphQL playground](https://api.flash-payments.com) (click the link in the header of this website), look inside the "docs" by the word "reason". You need to find the GraphQL enum called `WithdrawalReason`.
 
