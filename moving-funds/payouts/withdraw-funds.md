@@ -9,7 +9,7 @@ description: >-
 To make a withdrawal, you need to execute the `createWithdrawal` mutation as below.
 
 {% hint style="info" %}
-Yu must have enough [balance](../../accounts/master-balance/) in your account for the chosen `currency` to make a withdrawal.
+You must have enough [balance](../../accounts/master-balance/) in your account for the chosen `currency` to make a withdrawal.
 {% endhint %}
 
 {% tabs %}
@@ -129,11 +129,11 @@ mutation($input: CreateWithdrawalInput!) {
 
 Arbitrary text, which will be seen in the ultimate recipient's bank statement. E.g. `"invoice #123"`. Will be eventually truncated to `18` ASCII chars if delivered via Australia's old (DE, Direct Entry) payment system. However, if you choose to use the real-time NPP network, then the maximum length is `280` chars.
 
-### Recipient - `recipientId`
+### Recipient - `recipient` object or  `recipientId`
 
-You should [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID. The recipient's Australian account must be either `BSB` or `PAYID` (coming soon).
+You can either [pre-create recipients](../recipients/#create-a-recipient) and provide us with their ID or submit a valid recipient object directly to `createWithdrawal`  as shown in the above example. The recipient's Australian account must be either `BSB` or `PAYID` (coming soon).
 
-### Sender - `senderId` or `subClientId` , or neither
+### Sender - `sender` object, `senderId`, `subClientId` , or neither
 
 In the above `createWithdrawal` example, you had to first [pre-create a sender](../senders.md#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
 
