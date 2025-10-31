@@ -25,7 +25,7 @@ const bodyJSON = {
         companyName: "Acme Pty Ltd",
         currency: "AUD",
         accountIdType: "BSB",
-        address: { street: "1 Test St TEST NSW 2000", country: "AU" },
+        address: { street: "1 Main St SYDNEY NSW 2000", country: "AU" },
       },
       sender: {                     // <- this is new too !!!
         companyName: "Acme LLC",
