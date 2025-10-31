@@ -9,35 +9,49 @@ description: >-
 To make a withdrawal, you need to execute the `createWithdrawal` mutation as below.
 
 {% hint style="info" %}
-You must have enough [balance](../../accounts/master-balance/) in your account for the chosen `currency` to make a withdrawal.
+Yu must have enough [balance](../../accounts/master-balance/) in your account for the chosen `currency` to make a withdrawal.
 {% endhint %}
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```javascript
-const bodyJSON = {
-  variables: {
+<pre class="language-javascript"><code class="lang-javascript"><strong>const bodyJSON = {
+</strong>  variables: {
     input: {
-      amount: 1000, 
+      amount: 1000,
       currency: "AUD",
+      sender: {
+        companyName: "Acme LLC",
+        address: {
+          street: "1 Jon St PORTLAND VA 54321",
+          country: "US",
+        },
+      },
+      recipient: {
+        bsb: "370370",
+        accountNo: "123123123",
+        companyName: "Acme Pty Ltd",
+        currency: "AUD",
+        accountIdType: "BSB",
+        address: {
+          street: "1 Main St SYDNEY NSW 2000",
+          country: "AU",
+        },
+      },
       externalReference: "invoice #1234",
-      recipientId: "5ba89a6b35a2b327b81ffc3b",
-      senderId: "5eaf71a1cb328c56f94f9375",
       externalId: "12344321",
       idempotencyKey: "12344321",
     },
-  }, 
-  query: ` 
-mutation ($input: CreateWithdrawalInput!) {
-  createWithdrawal(input: $input) {
-    success code message    
-    withdrawal {
-      id status amount currency    
-    }  
-  }
+  },
+  query: `
+ mutation ($input: CreateWithdrawalInput!) { 
+  createWithdrawal(input: $input) { 
+    success code message withdrawal { 
+      id status amount currency 
+    } 
+  } 
 }`,
-};
-```
+ };  
+</code></pre>
 {% endtab %}
 
 {% tab title="GraphQL Query" %}
@@ -60,16 +74,32 @@ mutation($input: CreateWithdrawalInput!) {
 
 {% tab title="Variables" %}
 ```javascript
-{ 
-    "input": {
-      "amount": 1000,
+{
+  "input": {
+    "amount": 1000,
+    "currency": "AUD",
+    "sender": {
+      "companyName": "Acme LLC",
+      "address": {
+        "street": "1 Jon St PORTLAND VA 54321",
+        "country": "US"
+      }
+    },
+    "recipient": {
+      "bsb": "370370",
+      "accountNo": "123123123",
+      "companyName": "Acme Pty Ltd",
       "currency": "AUD",
-      "externalReference": "invoice #1234",
-      "recipientId": "5ba89a6b35a2b327b81ffc3b",
-      "senderId": "5eaf71a1cb328c56f94f9375",
-      "externalId": "12344321",
-      "idempotencyKey": "12344321"
-    }
+      "accountIdType": "BSB",
+      "address": {
+        "street": "1 Main St SYDNEY NSW 2000",
+        "country": "AU"
+      }
+    },
+    "externalReference": "invoice #1234",
+    "externalId": "12344321",
+    "idempotencyKey": "12344321"
+  }
 }
 ```
 {% endtab %}
@@ -80,13 +110,13 @@ mutation($input: CreateWithdrawalInput!) {
   "data": {
     "createWithdrawal": {
       "success": true,
-      "code": "OK",
-      "message": "Scheduled for immediate execution",
+      "code": "SUCCESS",
+      "message": "Withdrawal was created",
       "withdrawal": {
-        "id": "60711af8c078ba061f623531",
-        "status": "PENDING",
+        "id": "6904332f42b934e1954a734e",
+        "status": "INITIALISED",
         "amount": 1000,
-        "currency": AUD
+        "currency": "AUD"
       }
     }
   }
