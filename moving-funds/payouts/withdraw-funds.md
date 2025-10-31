@@ -50,7 +50,7 @@ You must have enough [balance](../../accounts/master-balance/) in your account f
     } 
   } 
 }`,
- };  
+};  
 </code></pre>
 {% endtab %}
 
@@ -131,7 +131,7 @@ Arbitrary text, which will be seen in the ultimate recipient's bank statement. E
 
 ### Recipient - `recipient` object or  `recipientId`
 
-You can either [pre-create recipients](../recipients/#create-a-recipient) and provide us with the `recipientId` or submit a valid `recipient` object directly to `createWithdrawal`  as shown in the above example. We recommend the latter where possible, as you won’t need to send an extra HTTP request.
+You can either [pre-create recipients](../recipients/#create-a-recipient) and provide us with the `recipientId` or submit a valid `recipient` object directly to `createWithdrawal`  as shown in the above example. We recommend the latter where possible, as you won’t need to send an extra HTTP request. Please note that a new recipient record won’t be created in this case.
 
 {% hint style="info" %}
 Please also note that the recipient's Australian `accountIdType` must be either `BSB` or `PAYID` (coming soon).
@@ -139,7 +139,7 @@ Please also note that the recipient's Australian `accountIdType` must be either 
 
 ### Sender - `sender` object, `senderId`, `subClientId` , or neither
 
-Just like submitting recipient information, you can either [pre-create a sender](../senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createWithdrawal` as shown in the above example. \
+Just like submitting recipient information, you can either [pre-create a sender](../senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createWithdrawal` as shown in the above example. Please note that a new sender record won’t be created in the latter case.\
 \
 Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
 
