@@ -131,13 +131,17 @@ Arbitrary text, which will be seen in the ultimate recipient's bank statement. E
 
 ### Recipient - `recipient` object or  `recipientId`
 
-You can either [pre-create recipients](../recipients/#create-a-recipient) and provide us with the `recipientId` or submit a valid `recipient` object directly to `createWithdrawal`  as shown in the above example. We recommend the latter where possible, as you won’t need to send an extra HTTP request.\
-\
+You can either [pre-create recipients](../recipients/#create-a-recipient) and provide us with the `recipientId` or submit a valid `recipient` object directly to `createWithdrawal`  as shown in the above example. We recommend the latter where possible, as you won’t need to send an extra HTTP request.
+
+{% hint style="info" %}
 Please also note that the recipient's Australian `accountIdType` must be either `BSB` or `PAYID` (coming soon).
+{% endhint %}
 
 ### Sender - `sender` object, `senderId`, `subClientId` , or neither
 
-In the above `createWithdrawal` example, you had to first [pre-create a sender](../senders.md#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
+Just like submitting recipient information, you can either [pre-create a sender](../senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createWithdrawal` as shown in the above example. \
+\
+Alternatively, if your account is configured to disburse funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the withdrawal created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
 
 To use `subClientId` as the sender for your withdrawal, please execute the `createWithdrawal` mutation as below.
 
@@ -150,7 +154,17 @@ const bodyJSON = {
       amount: 1000, 
       currency: "AUD",
       externalReference: "invoice #1234",
-      recipientId: "5ba89a6b35a2b327b81ffc3b",
+      recipient: {
+        bsb: "370370",
+        accountNo: "123123123",
+        companyName: "Acme Pty Ltd",
+        currency: "AUD",
+        accountIdType: "BSB",
+        address: {
+          street: "1 Main St SYDNEY NSW 2000",
+          country: "AU",
+        },
+      },
       subClientId: "3fbj71b1dc328d56g94g9375",
       externalId: "123443212",
       idempotencyKey: "123443212",
@@ -194,8 +208,18 @@ mutation ($input: CreateWithdrawalInput!) {
       "amount": 1000,
       "currency": "AUD",
       "externalReference": "invoice #1234",
-      "recipientId": "5ba89a6b35a2b327b81ffc3b",
-      subClientId: "3fbj71b1dc328d56g94g9375",
+      "recipient": {
+        "bsb": "370370",
+        "accountNo": "123123123",
+        "companyName": "Acme Pty Ltd",
+        "currency": "AUD",
+        "accountIdType": "BSB",
+          "address": {
+            "street": "1 Main St SYDNEY NSW 2000",
+            "country": "AU"
+          }
+       },
+      "subClientId": "3fbj71b1dc328d56g94g9375",
       "externalId": "123443212",
       "idempotencyKey": "123443212"
     }
@@ -205,17 +229,17 @@ mutation ($input: CreateWithdrawalInput!) {
 
 {% tab title="Response" %}
 ```javascript
- {
+{
   "data": {
     "createWithdrawal": {
       "success": true,
-      "code": "OK",
-      "message": "Scheduled for immediate execution",
+      "code": "SUCCESS",
+      "message": "Withdrawal was created",
       "withdrawal": {
         "id": "60711af8c078ba061f623531",
-        "status": "PENDING",
+        "status": "INITIALISED",
         "amount": 1000,
-        "currency": AUD
+        "currency": "AUD"
       }
     }
   }
@@ -234,7 +258,7 @@ Please always send us the ultimate sender and recipient. If sending funds to you
 If sending funds from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the example below.
 {% endhint %}
 
-If your company is the ultimate sender for a withdrawal, you can skip both the `senderId` and `subClientId`. In this situation, we will use your company’s Flash account as the sender for the transaction. Please note that a new sender record will not be created in this case.
+If your company is the ultimate sender for a withdrawal, you can skip both the `senderId` (or `sender` object) and `subClientId`. In this situation, we will use your company’s Flash account as the sender for the transaction. Please note that a new sender record will not be created in this case.
 
 Please execute the following `createWithdrawal` mutation to use your company's Flash account details as sender.
 
@@ -247,7 +271,17 @@ const bodyJSON = {
       amount: 500, 
       currency: "AUD",
       externalReference: "invoice #123",
-      recipientId: "661e293b14a0e678c37fa327",
+      recipient: {
+        bsb: "370370",
+        accountNo: "123123123",
+        companyName: "Acme Pty Ltd",
+        currency: "AUD",
+        accountIdType: "BSB",
+        address: {
+          street: "1 Main St SYDNEY NSW 2000",
+          country: "AU",
+        },
+      },
       externalId: "1234567890",
       idempotencyKey: "0987654321",
     },
@@ -298,7 +332,17 @@ mutation ($input: CreateWithdrawalInput!) {
       "amount": 500,
       "currency": "AUD",
       "externalReference": "invoice #123",
-      "recipientId": "661e293b14a0e678c37fa327",
+      "recipient": {
+        "bsb": "370370",
+        "accountNo": "123123123",
+        "companyName": "Acme Pty Ltd",
+        "currency": "AUD",
+        "accountIdType": "BSB",
+          "address": {
+            "street": "1 Main St SYDNEY NSW 2000",
+            "country": "AU"
+          }
+       },
       "externalId": "1234567890",
       "idempotencyKey": "0987654321"
     }
