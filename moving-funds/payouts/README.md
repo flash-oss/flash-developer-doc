@@ -1,16 +1,14 @@
 ---
-description: Disburse your money to Australian bank account(s)
+description: Disburse your money to a third party bank account
 ---
 
-# Withdrawals
+# Payouts
 
-You can [retrieve](query-withdrawals.md) all or some of your withdrawals.
+You can [create payouts](withdraw-funds.md) via the `createWithdrawal` mutation.
 
-You can [create withdrawals](withdraw-funds.md). By default you can withdraw only to your personal Virtual Account Number (VAN).
+You can [retrieve](query-withdrawals.md) your payouts via the `withdrawals` query.
 
-If you are a fully verified customer you can payout to any bank account number in Australia. You'd need to:
+Sometimes you'd need to understand the supported delivery methods using the [availableDeliveryMethods](../recipients/delivery-methods.md) query.
 
-* have a recipient ID (see [Recipients](../recipients/) to query your address book); otherwise
-* understand the supported delivery methods using the [availableDeliveryMethods](../recipients/delivery-methods.md) query and [create a new recipient](../recipients/#create-a-recipient)
+If the payouts didn't pass compliance we would reject it with a proper rejection code and descriptive message.
 
-Once you have the recipient ID, you can initiate a withdrawal.
