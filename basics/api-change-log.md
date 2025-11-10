@@ -4,7 +4,15 @@ description: History of changes to this API schema
 
 # API change log
 
-## 2025-10-31 :skull:
+## 2025-11-10
+
+### Added
+
+The FX Payments `createPayment` can accept sender and recipient as JSON objects now too.
+
+This means that when you need to do an orchestrated FX payment you need to submit only one HTTP request (`createPayment`) instead of 3  (`createSender`, `createRecipient`, and `createPayment`).
+
+## 2025-10-31
 
 ### Added
 
