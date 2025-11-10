@@ -46,9 +46,9 @@
   * [Query conversions](fx/conversions/query-conversions.md)
   * [Conversion statuses](fx/conversions/conversion-statuses.md)
 * [FX Payments](fx/payments/README.md)
+  * [Send funds](fx/payments/send-funds.md)
   * [Payment statuses](fx/payments/payment-statuses.md)
   * [Query payments](fx/payments/query-payments.md)
-  * [Send funds](fx/payments/send-funds.md)
   * [Auto receive funds](fx/payments/auto-receive-funds.md)
 
 ## Other

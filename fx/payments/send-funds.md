@@ -1,3 +1,7 @@
+---
+description: How to send orchestrated account-to-account payments which include FX
+---
+
 # Send funds
 
 To make a payment from AUD to a different currency, you need to execute the `createPayment` mutation as below.
@@ -19,8 +23,17 @@ const bodyJSON = {
       reason: "BUSINESS",
       sourceOfFunds: "BUSINESS_FUNDS",
       externalReference: "my ref 221b",
-      senderId: "6092360ae40e2cfb52f85be1",
-      recipientId: "5ba89a6b35a2b327b81ffc3b",
+      recipient: {
+        iban: "GB33BARC20001234567890",
+        companyName: "Acme Ltd",
+        currency: "GBP",
+        accountIdType: "IBAN",
+        address: {
+          street: "1 Main St LONDON SW1A 1AA",
+          country: "GB",
+        },
+      },
+      subClientId: "6092360ae40e2cfb52f85be1",
       externalId: "12344321",
       idempotencyKey: "12344321",
     },
@@ -95,9 +108,9 @@ mutation ($input: PaymentInput!) {
 {% endtab %}
 {% endtabs %}
 
-### Recipient - `recipientId`
+### Recipient - `recipient` object or `recipientId`
 
-You should [pre-create recipients](../../moving-funds/recipients/#create-a-recipient) and send us their ID.
+You can either [pre-create recipients](https://developer.flash-payments.com/moving-funds/recipients#create-a-recipient) and provide us with the `recipientId` or submit a valid `recipient` object directly to `createPayment` as shown in the above example. We recommend the latter where possible, as you won’t need to send an extra HTTP request. Please note that a new recipient record won’t be created in this case.
 
 {% hint style="warning" %}
 We are legally obliged to collect the actual sender and beneficiary details. Please do not send us intermediate organisation details such as exchanges, banks, gateways, etc.
@@ -109,11 +122,13 @@ Please always send us the ultimate sender and recipient. If sending funds to you
 If sending funds from yourself, there's an option to use your company's Flash account details as sender by default. Please consider the examples below.
 {% endhint %}
 
-### Sender - `senderId` or `subClientId` , or neither <a href="#sender-senderid-or-subclientid-or-neither" id="sender-senderid-or-subclientid-or-neither"></a>
+### Sender - `sender` object, `senderId`, `subClientId` , or neither <a href="#sender-senderid-or-subclientid-or-neither" id="sender-senderid-or-subclientid-or-neither"></a>
 
-In the above `createPayment` example, you had to [pre-create a sender](https://developer.flash-payments.com/senders#create-a-sender) and use `senderId` as an input. Alternatively, if your account is configured to make FX payments **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the sub-client ID, and the FX payment created will be linked to that sub-client. In this case, the `subClientId` will be used as the sender and will be reported to the government.
+Just like submitting recipient information, you can either [pre-create a sender](../../moving-funds/senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createPayment` as shown in the above example. Please note that a new sender record won’t be created in the latter case.\
+\
+Alternatively, if your account is configured to send funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the `subClientId` and the FX payment created will be linked to that sub-client. In this case the sub-client will be used as the sender and reported to the government.
 
-To use `subClientId` as the sender for your payments, please execute the `createPayment` mutation as below.
+To use `subClientId` as the sender for your withdrawal, please execute the `createPayment` mutation as below.
 
 {% tabs %}
 {% tab title="JavaScript" %}
