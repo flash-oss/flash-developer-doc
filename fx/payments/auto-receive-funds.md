@@ -7,9 +7,10 @@ description: Automatically receive and convert funds from other countries and cu
 Some customers can automatically receive funds from overseas. Meaning, if we detect an overseas deposit to the Flash Payments controlled bank account(s) then we can automatically create an inbound payment, convert funds, and top up your Flash Payments balance with AUD.
 
 {% hint style="warning" %}
-Note!\
-For sub-clients, a complete real-world address is mandatory. All address fields must be provided when creating a sub-client in our system.\
-Additionally, funds must be sent from a bank account registered under your name or your sub-client’s name.\
+Please note that funds must be transferred from a bank account registered under your company name. If a virtual Flash sub-account is used as the beneficiary, the transfer should be made from an account in your sub-client’s name.\
+\
+Whenever a sub-client record is involved in the transaction, their full real-world address is always required. For your local Australian sub-clients, please ensure all address components are provided when adding a sub-client to our system.\
+\
 In some cases, but not always, the payment must include the specific payment reference we provide. See below for more details.
 {% endhint %}
 
@@ -23,17 +24,20 @@ Here is how it looks step by step.
 5. You would receive at least two webhook notifications - `payment_created` and `payment_complete`.
 6. Your Flash Payments AUD balance would increase accordingly.
 
-To find which foreign currency bank account you would need to deposit to, please go to the [FlashConnect](https://connect.uat.flash-payments.com.au/) and find there the list of inbound currencies we support and the corresponding bank account numbers. It's called the **"Funding Accounts"** throughout the user interface.
+### &#x20;Funding Accounts&#x20;
+
+\
+To find which foreign currency bank account you need to deposit into, please visit [FlashConnect](https://connect.uat.flash-payments.com.au/) and locate the list of supported inbound currencies and their corresponding bank account numbers. It is referred to as the **“Funding Accounts”** throughout the user interface.
 
 {% hint style="info" %}
-Tip. You can simulate and test an international inbound payment with the FlashConnect tool in the UAT environment. Just go to the _FX Payments_ page and click "SEND TEST INBOUND PAYMENT".\
+You can simulate and test an international inbound payment with the FlashConnect tool in the UAT environment. Just go to the _FX Payments_ page and click "SEND TEST INBOUND PAYMENT".\
 \
 Additionally, you can test an international inbound payment sent by your [sub-client](../../accounts/virtual-account-numbers/) in the UAT. Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST INBOUND PAYMENT".
 {% endhint %}
 
 To find out the Funding Accounts via API please use the `fundingAccounts` query.
 
-You should deposit your foreign currency to:
+You should deposit your foreign currency to one of the following master accounts:
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -120,7 +124,7 @@ query ($input: FundingAccountQueryInput!) {
 {% endtab %}
 {% endtabs %}
 
-Your [sub-clients](../../accounts/virtual-account-numbers/) should deposit their foreign currency to:
+Your [sub-clients](../../accounts/virtual-account-numbers/) should deposit their foreign currency to one of the follwing virtual sub-accounts:
 
 {% tabs %}
 {% tab title="JavaScript" %}

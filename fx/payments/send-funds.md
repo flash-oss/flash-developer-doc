@@ -17,15 +17,22 @@ const bodyJSON = {
   variables: {
     input: {
       fromCurrency: "AUD",
-      toCurrency: "USD",
+      toCurrency: "GBP",
       size: 1000,
       currency: "AUD",
       reason: "BUSINESS",
       sourceOfFunds: "BUSINESS_FUNDS",
       externalReference: "my ref 221b",
+      sender: {
+        companyName: "Acme AU Ltd",
+        address: {
+          street: "1 Hay St SYDNEY NSW 2000",
+          country: "AU",
+        },
+      },
       recipient: {
         iban: "GB33BARC20001234567890",
-        companyName: "Acme Ltd",
+        companyName: "Acme GB Ltd",
         currency: "GBP",
         accountIdType: "IBAN",
         address: {
@@ -33,7 +40,6 @@ const bodyJSON = {
           country: "GB",
         },
       },
-      subClientId: "6092360ae40e2cfb52f85be1",
       externalId: "12344321",
       idempotencyKey: "12344321",
     },
@@ -73,14 +79,12 @@ mutation ($input: PaymentInput!) {
 {
   "input": { 
     "fromCurrency": "AUD",
-    "toCurrency": "USD",
+    "toCurrency": "GBP",
     "size": 1000,
     "currency": "AUD",
     "reason": "BUSINESS",
     "sourceOfFunds": "BUSINESS_FUNDS",
     "externalReference": "my ref 221b",
-    "senderId": "6092360ae40e2cfb52f85be1",
-    "recipientId": "5ba89a6b35a2b327b81ffc3b",
     "externalId": "12344321",
     "idempotencyKey": "12344321"
   }
@@ -137,14 +141,23 @@ const bodyJSON = {
   variables: {
     input: {
       fromCurrency: "AUD",
-      toCurrency: "USD",
+      toCurrency: "GBP",
       size: 1000,
       currency: "AUD",
       reason: "BUSINESS",
       sourceOfFunds: "BUSINESS_FUNDS",
       externalReference: "my ref 221b",
       subClientId: "6092360bf40f2dgc52f85cf1",
-      recipientId: "5ba89a6b35a2b327b81ffc3b",
+      recipient: {
+        iban: "GB33BARC20001234567890",
+        companyName: "Acme GB Ltd",
+        currency: "GBP",
+        accountIdType: "IBAN",
+        address: {
+          street: "1 Main St LONDON SW1A 1AA",
+          country: "GB",
+        },
+      },
       externalId: "123443212",
       idempotencyKey: "123443212",
     },
@@ -184,14 +197,13 @@ mutation ($input: PaymentInput!) {
 {
   "input": { 
     "fromCurrency": "AUD",
-    "toCurrency": "USD",
+    "toCurrency": "GBP",
     "size": 1000,
     "currency": "AUD",
     "reason": "BUSINESS",
     "sourceOfFunds": "BUSINESS_FUNDS",
     "externalReference": "my ref 221b",
     "subClientId": "6092360bf40f2dgc52f85cf1",
-    "recipientId": "5ba89a6b35a2b327b81ffc3b",
     "externalId": "12344321",
     "idempotencyKey": "12344321"
   }
@@ -230,13 +242,22 @@ const bodyJSON = {
   variables: {
     input: {
       fromCurrency: "AUD",
-      toCurrency: "USD",
+      toCurrency: "GBP",
       size: 1000,
       currency: "AUD",
       reason: "BUSINESS",
       sourceOfFunds: "BUSINESS_FUNDS",
       externalReference: "my ref 2234",
-      recipientId: "5ba89a6b35a2b327b81ffc3b",
+      recipient: {
+        iban: "GB33BARC20001234567890",
+        companyName: "Acme GB Ltd",
+        currency: "GBP",
+        accountIdType: "IBAN",
+        address: {
+          street: "1 Main St LONDON SW1A 1AA",
+          country: "GB",
+        },
+      },
       externalId: "0123443210",
       idempotencyKey: "0000012344321000",
     },
@@ -284,13 +305,12 @@ mutation ($input: PaymentInput!) {
 {
   "input": { 
     "fromCurrency": "AUD",
-    "toCurrency": "USD",
+    "toCurrency": "GBP",
     "size": 1000,
     "currency": "AUD",
     "reason": "BUSINESS",
     "sourceOfFunds": "BUSINESS_FUNDS",
     "externalReference": "my ref 2234",
-    "recipientId": "5ba89a6b35a2b327b81ffc3b",
     "externalId": "0123443210",
     "idempotencyKey": "0000012344321000"
   }
