@@ -1,20 +1,42 @@
 ---
-description: Examples of transaction cancellation static codes and standard status messages
+description: How to handle a payout rejection
 ---
 
-# Rejection codes examples
+# Rejection codes
 
-If your transaction is canceled by our Compliance team, the unique `rejectCode` and a corresponding standard `statusMessage` will be assigned to this transaction and sent to your application via proper webhook such as [withdrawal\_canceled](https://developer.flash-payments.com/webhooks#withdrawal_cancelled) to be used for a subsequent integration action such as field mapping or reconciliation.&#x20;
+If your withdrawal is canceled (aka rejected) by our AML and Compliance team, you'll receive the  [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal_cancelled) webhook containing both a rejection code (`rejectCode`) and a manually written rejection reason (`statusMessage`). You can find the same two properties within the [`withdrawal`](query-withdrawals.md) GraphQL type.
 
-Below is a short list of the most frequently used rejection codes and standard status messages. Please note that this list is incomplete and is provided for your information only, so you know what feedback to expect from the system. \
-\
-Please also note that while the rejection codes are unique, you might see the corresponding free text status messages customised by our Compliance team on a case-by-case basis for more accuracy and clarity of the information exchange.&#x20;
+Here is a curent list of all possible `rejectCode`s, but please note this list **can be extended with time**.
 
-<table><thead><tr><th width="441">rejectCode</th><th width="648">statusMessage</th></tr></thead><tbody><tr><td><code>CANCELLATION_REQUESTED_BY_PARTICIPANT</code></td><td>The transaction is rejected upon request.</td></tr><tr><td><code>COMPLIANCE_DECLINED</code></td><td>The transaction is rejected as it doesn't meet our compliance requirements.</td></tr><tr><td><code>RECIPIENT_ACCOUNT_CLOSED</code></td><td>The transaction is declined due to blocked or closed account.</td></tr><tr><td><code>DATA_ENQUIRY_TIME_ELAPSED</code></td><td>The transaction is rejected due to no response received within the specified time.</td></tr><tr><td><code>DATA_ENQUIRY_RESPONSE_INADEQUATE</code></td><td>The transaction is rejected because the response was received with incomplete or poor-quality data.</td></tr></tbody></table>
+```
+CANCELLATION_REQUESTED_BY_PARTICIPANT
+CANCELLATION_BY_RECIPIENT_FI
+COMPLIANCE_DECLINED
+COMPLIANCE_DECLINED_EXTERNAL
+SENDER_INADEQUATE_DATA
+SENDER_INVALID_ADDRESS
+SENDER_INCOMPLETE_ADDRESS
+RECIPIENT_INADEQUATE_DATA
+RECIPIENT_INVALID_ADDRESS
+RECIPIENT_INCOMPLETE_ADDRESS
+DATA_ENQUIRY_TIME_ELAPSED
+DATA_ENQUIRY_RESPONSE_INADEQUATE
+DUPLICATE_TRANSACTION
+TECHNICAL_ISSUE
+RECIPIENT_ACCOUNT_CLOSED
+RECIPIENT_INVALID_ACCOUNT_NUMBER
+RECIPIENT_INVALID_BANK_CODE
+RECIPIENT_INVALID_ACCOUNT
+RECIPIENT_COUNTRY_NOT_SUPPORTED
+RECIPIENT_CURRENCY_NOT_SUPPORTED
+EXPIRED
+```
 
 {% hint style="danger" %}
-**Please note**: status `CANCELLED` is a **final** status for **any** withdrawal. \
+**Please note**: `CANCELLED` is a **final** status for **any** withdrawal. \
 Please do not retry a withdrawal if it was rejected by our Compliance team or by a beneficiary financial institution.
 
 Only those withdrawals rejected with code `TECHNICAL_ISSUE` may be re-submitted as new transactions.
 {% endhint %}
+
+Please also note that while the rejection codes are set, the corresponding free text `statusMessage` will have a case-by-case human written text explaining the root cause of the cancellation. We'll try to be as descriprive as possible taking into account the legal bounds (we are not allowed by the law to disclose certain information).

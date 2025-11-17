@@ -4,6 +4,14 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2025-11-14
+
+### Added
+
+A new `rejectCode` when we [cancel](../moving-funds/payouts/rejection-codes.md) your payout - `DATA_ENQUIRY_RESPONSE_INADEQUATE`. You'll receive it if we sent you an RFI (request for information) but your response contained a low quality data.
+
+Please note, that a sibling property `statusMessage` will be hand crafted so that you know what exactly is wrong with your RFI reply (within the legal bounds). Please use the text to improve your KYC processes.
+
 ## 2025-11-10
 
 ### Added
