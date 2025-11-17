@@ -16,5 +16,5 @@ Please also note that while the rejection codes are unique, you might see the co
 **Please note**: status `CANCELLED` is a **final** status for **any** withdrawal. \
 Please do not retry a withdrawal if it was rejected by our Compliance team or by a beneficiary financial institution.
 
-Only those withdrawals rejected with codes`TECHNICAL_ISSUE` may be re-submitted as new transactions.
+Only those withdrawals rejected with code `TECHNICAL_ISSUE` may be re-submitted as new transactions.
 {% endhint %}
