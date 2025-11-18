@@ -41,7 +41,7 @@ Here is a Node.js pseudo code to generate and compare signatures
 ```javascript
 const secret = "my-webhook-secret";
 function generateSignature(string) {
-  return require("crypto")
+  return require("node:crypto")
     .createHmac("sha256", secret) // your secret key
     .update(string)
     .digest("base64");
