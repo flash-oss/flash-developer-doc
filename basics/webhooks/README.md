@@ -8,12 +8,11 @@ The primary triggers for all webhooks are **status** changes in payments, withdr
 
 There are two types of webhooks in Flash Payments.
 
-* [Regular webhooks](regular-webhooks.md) - a URL would need to be saved to your [FlashConnect](https://connect.uat.flash-payments.com.au/) settings. All types of events.
-  * You can lookup the history of all the HTTP requests and responses, their JSON bodies and headers.
+* [Regular webhooks](regular-webhooks.md) - a URL would need to be saved to your [FlashConnect](https://connect.uat.flash-payments.com.au/) settings. Supports all types of events.
+  * You can browse the history of all the webhook HTTP requests and your server responses, their JSON bodies and headers.
   * If there is no response we will show you what exactly the problem is: DNS issue, networking issue, 5XX response, etc.
   * You can receive webhooks when a deposit lands to your Virtual Account Number (VAN).
-* [Ad hoc webhooks](adhoc-webhooks.md) - you would need to provide a callback URL per payment/withdrawal while creating them. Only "payment", "withdrawal", and\
-  "conversion" events are supported.
+* [Ad hoc webhooks](adhoc-webhooks.md) - you would need to provide a callback URL per each payment/withdrawal/conversion while creating them.
 
 The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections) (3XX codes).
 
@@ -23,11 +22,21 @@ The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https
 
 All webhook HTTP requests carry a cryptographic signature. [Ad hoc](adhoc-webhooks.md) and [regular webhooks](regular-webhooks.md) do it slightly different though.
 
+#### Headers
+
+Each request will contain at least these 4 headers:
+
+```
+content-ype: application/json
+user-agent: FlashFX
+flashfx-request-id: [A unique ID of this particuar event]
+flashfx-signature: [The cryptographic signature]
+```
+
 #### Flash Payments webhook request IP address
 
 All webhook HTTP requests would be coming from these IP addresses:
 
-* Development environment: 52.62.195.119
 * UAT environment: 52.64.185.170 and 13.210.129.208
 * Production environment: 52.62.138.234 and 52.65.3.195
 

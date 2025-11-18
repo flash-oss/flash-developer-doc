@@ -27,15 +27,15 @@ You would need to implement two functions.
 
 ### Generating signatures
 
-Node.js pseudo code for creating transfers in Flash Payments API.
+Node.js pseudo code to generate a signature in your integration code.
 
 ```javascript
-const secret = 'abcdefg';
+const secret = "abcdefg";
 function generateSignature(string) {
-  return require('crypto')
-    .createHmac('sha256', secret)
+  return require("node:crypto")
+    .createHmac("sha256", secret) // your secret key
     .update(string)
-    .digest('base64');
+    .digest("base64");
 }
 
 const signature = generateSignature(stringIdFromMyDatabase);
@@ -50,7 +50,7 @@ The code above creates a `callbackUri` and `externalId` variables. Use both of t
 
 ### Verifying signatures
 
-Node.js pseudo code of the webhook endpoint HTTP request handler.
+Node.js pseudo code of your webhook HTTP request handler.
 
 ```javascript
 function myCallbackEndpointHandler(req, res) {
@@ -63,6 +63,6 @@ function myCallbackEndpointHandler(req, res) {
     return;
   }
   
-  // proceed with the webhook processing
+  // continue with the webhook processing
 }
 ```

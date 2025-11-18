@@ -39,12 +39,12 @@ Before you can verify a signature, you need to retrieve your endpoint’s secret
 Here is a Node.js pseudo code to generate and compare signatures
 
 ```javascript
-const secret = 'my-webhook-secret';
+const secret = "my-webhook-secret";
 function generateSignature(string) {
-  return require('crypto')
-    .createHmac('sha256', secret)
+  return require("crypto")
+    .createHmac("sha256", secret) // your secret key
     .update(string)
-    .digest('base64');
+    .digest("base64");
 }
 ```
 
@@ -52,7 +52,7 @@ And verifying signature
 
 ```javascript
 function myCallbackEndpointHandler(req, res) {
-  const signature = req.headers['flashfx-signature'];
+  const signature = req.headers["flashfx-signature"];
   const payload = req.body;
   
   if (generateSignature(payload) !== signature) {
@@ -68,6 +68,8 @@ function myCallbackEndpointHandler(req, res) {
 **Testing your endpoint**
 
 To make sure your webhook endpoint is setup correctly, you can make a test HTTP request from the [FlashConnect](https://connect.uat.flash-payments.com.au/) webhook settings. Click the **"Send Test”** button. You should receive a dummy request, which will need to be acknowledged the same way as your real webhook requests.
+
+Then go to the history of the webhook requests and find the test request and response there.
 
 ### Subscribing to the events
 
