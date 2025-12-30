@@ -650,3 +650,85 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```
 
 </details>
+
+**Sub-clients**
+
+<details>
+
+<summary>subclient_initiated</summary>
+
+```javascript
+{
+  "event": "subclient_initiated",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "INITIATED",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_active</summary>
+
+```javascript
+{
+  "event": "subclient_active",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "ACTIVE",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_unapproved</summary>
+
+```javascript
+{
+  "event": "subclient_unapproved",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "UNAPPROVED",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_failed_kyc</summary>
+
+```javascript
+{
+  "event": "subclient_failed_kyc",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "FAILED_KYC",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_deactivated</summary>
+
+```javascript
+{
+  "event": "subclient_deactivated",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "DEACTIVATED",
+  "externalId": "123456789"
+}
+```
+
+</details>
