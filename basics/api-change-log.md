@@ -4,6 +4,26 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2025-12-31
+
+### Added
+
+New sub-client (aka Virtual Account Number, VAN) [statuses](../accounts/virtual-account-numbers/sub-client-statuses.md).
+
+Previously a sub-client could be in 2 statuses: `ACTIVE` and `DEACTIVATED`.
+
+Now there are 6: `INITIATED`, `ACTIVE`, <mark style="color:orange;">`UNAPPROVED`</mark>, `DEACTIVATED`, `FAILED_KYC`, `DISABLED`.
+
+A set of new webhook events become available. See [here](webhooks/#subclient_initiated). A webhook is sent when a sub-client status gets changed.
+
+## 2025-12-30
+
+### Added
+
+A new `rejectCode` when we [cancel](../moving-funds/payouts/rejection-codes.md) your payout - `SOURCE_OF_FUNDS_INADEQUATE`. You'll receive it if we sent you an RFI (request for information) but your response contained a low quality data.
+
+Please note, that a sibling property `statusMessage` will be hand crafted so that you know what exactly is wrong with your RFI reply (within the legal bounds). Please use the text to improve your KYC processes.
+
 ## 2025-11-14
 
 ### Added
