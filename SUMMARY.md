@@ -19,6 +19,7 @@
   * [Statement](accounts/master-balance/statement.md)
 * [Virtual account numbers](accounts/virtual-account-numbers/README.md)
   * [Create sub-clients](accounts/virtual-account-numbers/create-sub-clients.md)
+  * [Sub-client statuses](accounts/virtual-account-numbers/sub-client-statuses.md)
   * [Disable, Activate and Update sub-clients](accounts/virtual-account-numbers/disable-activate-and-update-sub-clients.md)
   * [Query sub-clients](accounts/virtual-account-numbers/query-sub-clients.md)
 
