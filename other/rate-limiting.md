@@ -13,14 +13,12 @@ We do not disclose the exact limits due to their complexity and our security pol
 When one of the numerous limits exceeds the API typically responds with
 
 1. the HTTP status `429`&#x20;
-2.  the HTTP header:\
-
+2.  the HTTP header:<br>
 
     ```
     Retry-After: 59
     ```
-3.  and a JSON body:\
-
+3.  and a JSON body:<br>
 
     ```json
     {

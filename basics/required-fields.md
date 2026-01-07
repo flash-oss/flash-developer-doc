@@ -12,8 +12,8 @@ It's strongly encouraged that you always submit complete and accurate data, as t
 
 At the same time, we recognise that gathering complete customer information can be technically challenging, particularly regarding country-specific address details or account information. As a result, our API documentation emphasises the **required** input fields based on the principle of minimal necessity.&#x20;
 
-Please pay attention to the exclamation mark ( `!` ) next to the field type in the API schema specification from the "DOCS" section of our API Playground. Those are the required fields as it's demonstated on the screenshot below:
+Please pay attention to the exclamation mark ( `!` ) next to the field type in the API schema specification from the "Docs" section of our API Playground. Those are the required fields as it's demonstated on the screenshot below:
 
-![](../.gitbook/assets/example.jpg)
+<figure><img src="../.gitbook/assets/Screenshot 2026-01-07 at 17.41.54.png" alt=""><figcaption></figcaption></figure>
 
 Please always verify that you have all required data to initiate a successful mutation or query.
