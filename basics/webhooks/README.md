@@ -732,3 +732,19 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```
 
 </details>
+
+<details>
+
+<summary>subclient_disabled</summary>
+
+```javascript
+{
+  "event": "subclient_disabled",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "DEACTIVATED",
+  "externalId": "123456789"
+}
+```
+
+</details>
