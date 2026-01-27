@@ -600,7 +600,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 ```javascript
 {
-  "event": "conversion_pending",
+  "event": "conversion_converted",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -619,7 +619,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 ```javascript
 {
-  "event": "conversion_pending",
+  "event": "conversion_failed",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -638,7 +638,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 ```javascript
 {
-  "event": "conversion_pending",
+  "event": "conversion_cancelled",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
