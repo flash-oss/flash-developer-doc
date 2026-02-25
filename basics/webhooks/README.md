@@ -27,7 +27,7 @@ All webhook HTTP requests carry a cryptographic signature. [Ad hoc](adhoc-webhoo
 Each request will contain at least these 4 headers:
 
 ```
-content-ype: application/json
+content-type: application/json
 user-agent: FlashFX
 flashfx-request-id: [A unique ID of this particuar event]
 flashfx-signature: [The cryptographic signature]
@@ -37,8 +37,8 @@ flashfx-signature: [The cryptographic signature]
 
 All webhook HTTP requests would be coming from these IP addresses:
 
-* UAT environment: 52.64.185.170 and 13.210.129.208
-* Production environment: 52.62.138.234 and 52.65.3.195
+* UAT environment: `52.64.185.170` and `13.210.129.208`
+* Production environment: `52.62.138.234` and `52.65.3.195`
 
 ### Example payloads
 
