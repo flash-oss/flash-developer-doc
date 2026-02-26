@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-02-26
+
+### Added
+
+New `eventScheduledAt` property to all [webhook](webhooks/) payloads.
+
 ## 2025-12-31
 
 ### Added
