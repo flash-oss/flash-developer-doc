@@ -50,12 +50,13 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <pre class="language-json"><code class="lang-json"><strong>{
 </strong>  "event": "deposit_initiated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "603f0198770d6595e3c83e0d",
   "amount": 100,
   "totalFee": 1,
   "currency": "AUD",
   "externalReference": "2233445566",
-  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
   "statusMessage": "Deposit initiated",
   "recipient": {
     "accountName": "ACME Inc",
@@ -86,12 +87,13 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <pre class="language-json"><code class="lang-json"><strong>{
 </strong>  "event": "deposit_reviewing",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "603f0198770d6595e3c83e0d",
   "amount": 100,
   "totalFee": 1,
   "currency": "AUD",
   "externalReference": "2233445566",
-  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
   "statusMessage": "Awaiting manual compliance",
   "recipient": {
     "accountName": "ACME Inc",
@@ -122,12 +124,13 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <pre class="language-json"><code class="lang-json"><strong>{
 </strong>  "event": "deposit_cleared",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "603f0198770d6595e3c83e0d",
   "amount": 100,
   "totalFee": 1,
   "currency": "AUD",
   "externalReference": "2233445566",
-  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
   "statusMessage": "Deposit cleared",
   "recipient": {
     "accountName": "ACME Inc",
@@ -159,12 +162,13 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "deposit_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "603f0198770d6595e3c83e0d",
   "amount": 100,
   "totalFee": 1,
   "currency": "AUD",
   "externalReference": "2233445566",
-  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
   "statusMessage": "Cancelled by: john@example.com : ",
   "recipient": {
     "accountName": "ACME Inc",
@@ -196,6 +200,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "deposit_refunding",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "603f0198770d6595e3c83e0d",
   "amount": 100,
   "totalFee": 1,
@@ -204,8 +209,8 @@ All webhook HTTP requests would be coming from these IP addresses:
   "externalReference": "2233445566",
   "refundReason": "Client refund request",
   "statusMessage": "Deposit refunded",
-  "refundedAt": "2021-03-03T03:28:43.936Z",
-  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "refundedAt": "2026-03-03T03:28:43.936Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
   "recipient": {
     "accountName": "ACME Inc",
     "accountNo": "1839394",
@@ -236,6 +241,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "deposit_refunded",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "603f0198770d6595e3c83e0d",
   "amount": 100,
   "totalFee": 1,
@@ -244,8 +250,8 @@ All webhook HTTP requests would be coming from these IP addresses:
   "externalReference": "2233445566",
   "refundReason": "Client refund request",
   "statusMessage": "Deposit refunded",
-  "refundedAt": "2021-03-03T03:28:43.936Z",
-  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "refundedAt": "2026-03-03T03:28:43.936Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
   "recipient": {
     "accountName": "ACME Inc",
     "accountNo": "1839394",
@@ -278,6 +284,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "withdrawal_initiated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "totalFee": 1,
@@ -302,6 +309,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "withdrawal_reviewing",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "totalFee": 1,
@@ -327,6 +335,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "withdrawal_pending",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "totalFee": 1,
@@ -352,6 +361,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "withdrawal_completed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "totalFee": 1,
@@ -378,6 +388,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "withdrawal_failed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "totalFee": 1,
@@ -402,6 +413,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "withdrawal_refunded",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "totalFee": 1,
@@ -410,8 +422,8 @@ All webhook HTTP requests would be coming from these IP addresses:
   "externalId": "12344321",
   "refundReason": "No account or incorrect account number",
   "statusMessage": "Payout reversal",
-  "refundedAt": "2021-03-04T15:21:11.920Z",
-  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "refundedAt": "2026-03-04T15:21:11.920Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
   "recipient": {
     "displayName": "John Smith",
     "bsb": "012620",
@@ -436,6 +448,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```json
 {
   "event": "withdrawal_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
   "amount": 2000,
   "totalFee": 1,
@@ -462,9 +475,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>currency_converted</summary>
 
-```javascript
+```json
 {
   "event": "currency_converted",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -480,9 +494,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>payment_complete</summary>
 
-```javascript
+```json
 {
   "event": "payment_complete",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -498,9 +513,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>payment_failed</summary>
 
-```javascript
+```json
 {
   "event": "payment_failed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -516,9 +532,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>payment_cancelled</summary>
 
-```javascript
+```json
 {
   "event": "payment_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -534,9 +551,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>payment_created</summary>
 
-```javascript
+```json
 {
   "event": "payment_created",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 3500,
   "fromCurrency": "EUR",
@@ -560,9 +578,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>conversion_initialised</summary>
 
-```javascript
+```json
 {
   "event": "conversion_initialised",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -579,9 +598,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>conversion_pending</summary>
 
-```javascript
+```json
 {
   "event": "conversion_pending",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -598,9 +618,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>conversion_converted</summary>
 
-```javascript
+```json
 {
   "event": "conversion_converted",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -617,9 +638,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>conversion_failed</summary>
 
-```javascript
+```json
 {
   "event": "conversion_failed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -636,9 +658,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>conversion_cancelled</summary>
 
-```javascript
+```json
 {
   "event": "conversion_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "60711af8c078ba061f623531",
   "fromAmount": 1000,
   "fromCurrency": "AUD",
@@ -657,9 +680,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>subclient_initiated</summary>
 
-```javascript
+```json
 {
   "event": "subclient_initiated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "695257f8c8754a74ad671c48",
   "fullName": "John Doe",
   "status": "INITIATED",
@@ -673,9 +697,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>subclient_active</summary>
 
-```javascript
+```json
 {
   "event": "subclient_active",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "695257f8c8754a74ad671c48",
   "fullName": "John Doe",
   "status": "ACTIVE",
@@ -689,9 +714,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>subclient_unapproved</summary>
 
-```javascript
+```json
 {
   "event": "subclient_unapproved",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "695257f8c8754a74ad671c48",
   "fullName": "John Doe",
   "status": "UNAPPROVED",
@@ -705,9 +731,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>subclient_failed_kyc</summary>
 
-```javascript
+```json
 {
   "event": "subclient_failed_kyc",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "695257f8c8754a74ad671c48",
   "fullName": "John Doe",
   "status": "FAILED_KYC",
@@ -721,9 +748,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>subclient_deactivated</summary>
 
-```javascript
+```json
 {
   "event": "subclient_deactivated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "695257f8c8754a74ad671c48",
   "fullName": "John Doe",
   "status": "DEACTIVATED",
@@ -737,9 +765,10 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>subclient_disabled</summary>
 
-```javascript
+```json
 {
   "event": "subclient_disabled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "695257f8c8754a74ad671c48",
   "fullName": "John Doe",
   "status": "DEACTIVATED",
