@@ -14,6 +14,7 @@ The dates must be any ISO 8601 formatted dates.
   variables: {
     input: {
         fromDate: "2023-08-28T00:00:00+03:00",
+        currency: "USD",
     },
   },
   query: `

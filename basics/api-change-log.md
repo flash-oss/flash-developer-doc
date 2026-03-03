@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-03-03
+
+### Added
+
+New `currnecy` property to the `StatementQueryInput`, which allows you to retrieve any currency balance, not just the default `AUD`.
+
 ## 2026-02-26
 
 ### Added
