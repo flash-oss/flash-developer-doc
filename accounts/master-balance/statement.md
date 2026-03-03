@@ -52,7 +52,8 @@ query($input: StatementQueryInput!) {
 {% tab title="Variables" %}
 <pre class="language-javascript"><code class="lang-javascript">{
 <strong>  "input": {
-</strong>    "fromDate": "2023-08-28T00:00:00+03:00"
+</strong>    "fromDate": "2023-08-28T00:00:00+03:00",
+    "currency": "USD"
   }
 }
 </code></pre>
