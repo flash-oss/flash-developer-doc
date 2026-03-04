@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added
 
-New `rail` and `railService` properties to deposit and withdrawal payloads. You can now see exactly which payment infrastructure (such as NPP or BECS) and specific schemes (such as NPP IFTI) are used to route your transactions.
+New `rail` and `railService` properties to payout and deposit payloads. You can now see exactly which payment infrastructure (such as NPP or BECS) and specific schemes (such as NPP IFTI) are used to route your transactions.
 
 ## 2026-03-03
 
