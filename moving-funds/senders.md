@@ -163,9 +163,11 @@ query($input: SenderQueryInput!) {
 #### Create a sender
 
 {% hint style="info" %}
-In addresses the`suburb`field is an Australian suburb. For other countries you should put the city (e.g. Manila or London) or any other small administrative area name.
+In addresses the `suburb` field is an Australian suburb. For other countries you should put the city (e.g. Manila or London) or any other small administrative area name.
 
-If you find it technically challenging to submit all components of the sender’s address, we would appreciate it if you could at least collect the sender’s country along with a complete address string that includes the postcode and put them into the `country` and `street` fields, respectively. In this case, you can skip the `postcode`, `suburb`, and `state` fields, and the sender record will still be created.
+If you find it technically challenging to submit all components of the sender’s address, we would appreciate it if you could at least collect the sender’s country along with a complete address string that includes the postcode and put them into the `country` and `street` fields, respectively. In this case, you can skip the `postcode`, `suburb`, and `state` fields, and the sender record will still be created.\
+\
+Please note that the `street` field is mandatory for Australian addresses.
 {% endhint %}
 
 {% hint style="info" %}
