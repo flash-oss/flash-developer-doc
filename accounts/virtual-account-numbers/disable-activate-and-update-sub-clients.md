@@ -134,7 +134,11 @@ mutation($input: ID!) {
 
 #### Updating sub-clients
 
-At this point, you can update the `externalId` property only because each sub-client has a set of linked domestic and international Virtual Account Numbers to send and receive funds.
+At this point, you can only update the `externalId` , `address` and `postalAddress` properties because each sub-client has a set of linked domestic and international Virtual Account Numbers to send and receive funds.
+
+{% hint style="info" %}
+Please note, that the updated address will be re-verified, so make sure to include all its components, even if some fields, like the `country`, remain unchanged.
+{% endhint %}
 
 {% tabs %}
 {% tab title="JavaScript" %}
