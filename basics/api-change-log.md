@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added
 
-Two new objects to [updateSubClient](https://developer.flash-payments.com/accounts/virtual-account-numbers/disable-activate-and-update-sub-clients#updating-sub-clients) mutation. You can change a sub-client's `address` and `postalAddress`. The updated address will be re-verified, so please make sure to include all its components, even if some fields, like the `country`, remain unchanged.
+Two new objects to [`updateSubClient`](../accounts/virtual-account-numbers/disable-activate-and-update-sub-clients.md) mutation. You can change a sub-client's `address` and `postalAddress`. The updated address will be re-verified, so please make sure to include all its components, even if some fields, like the `country`, remain unchanged.
 
 ## 2026-03-05
 

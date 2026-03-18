@@ -137,8 +137,10 @@ mutation($input: ID!) {
 At this point, you can only update the `externalId` , `address` and `postalAddress` properties because each sub-client has a set of linked domestic and international Virtual Account Numbers to send and receive funds.
 
 {% hint style="info" %}
-Please note, that the updated address will be re-verified, so make sure to include all its components, even if some fields, like the `country`, remain unchanged.
+Please note, that the updated address will be re-verified, so make sure to include all its components, even if some fields, like the `country`, remain unchanged.<br>
 {% endhint %}
+
+#### Updating sub-client externalId
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -203,6 +205,105 @@ mutation($id: ID!, $input: UpdateSubClientInput!) {
         "id": "660fef8e1f3b5452bd6945ec",
         "status": "ACTIVE",
         "externalId": "my_system_id_29f-ae0978b00d09e"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### Updating sub-client address
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = { 
+  variables: {
+    id: "660fef8e1f3b5452bd6945ec",
+    input: {
+     "street": "456 New St",
+     "suburb": "Newtow",
+     "state": "VIC",
+     "postcode": "3220", 
+     "country": "AU",
+    },
+  }, 
+  query: `
+mutation ($id: ID!, $input: UpdateSubClientInput!) {
+  updateSubClient(id: $id, input: $input) {
+    success code message
+    subClient {
+      id status externalId address {building street suburb state postcode country}
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($id: ID!, $input: UpdateSubClientInput!) {
+  updateSubClient(id: $id, input: $input) {
+    success
+    code
+    message
+    subClient {
+      id
+      status
+      externalId
+      address {
+        building 
+        street
+        suburb
+        state
+        postcode
+        country
+      }
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{ 
+  "id": "660fef8e1f3b5452bd6945ec", 
+  "input": {
+    "address": {
+        "street": "456 New St",
+        "suburb": "Newtow",
+        "state": "VIC",
+        "postcode": "3220",
+        "country": "AU"
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "updateSubClient": {
+      "success": true,
+      "code": "SUCCESS",
+      "message": "Sub-client was successfully updated",
+      "subClient": {
+        "id": "660fef8e1f3b5452bd6945ec",
+        "status": "ACTIVE",
+        "externalId": "my_system_id_29f-ae0978b00d09e",
+        "address": {
+          "building": null,
+          "street": "456 New St",
+          "suburb": "Newtow",
+          "state": "VIC",
+          "postcode": "3220",
+          "country": "AU"
+        }
       }
     }
   }
