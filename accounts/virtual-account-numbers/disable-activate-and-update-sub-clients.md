@@ -222,11 +222,13 @@ const bodyJSON = {
   variables: {
     id: "660fef8e1f3b5452bd6945ec",
     input: {
-     "street": "456 New St",
-     "suburb": "Newtow",
-     "state": "VIC",
-     "postcode": "3220", 
-     "country": "AU",
+      adddress: {
+        street: "456 New St",
+        suburb: "Newtow",
+        state: "VIC",
+        postcode: "3220", 
+        country: "AU",
+      },
     },
   }, 
   query: `
