@@ -16,8 +16,8 @@ Please add all possible precautions, processes, staff training, warning messages
 
 Please follow our latest requirements for the proper sub-client data submission:
 
-1. Provide proper`firstName`and`lastName`
-2. Provide proper`mobile`number
+1. Provide proper `firstName` , `middleName`, and `lastName` Please note that including the accurate `middleName`  is essential for the account name matching capability of the Australian New Payments Platform (NPP) real-time digital payment network.
+2. Provide proper `mobile` number
 3. Provide proper `dob` : **the person must be under 65 years of age**&#x20;
 4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract agreement. By default, you can only create local Australian sub-clients with an adequate `address.street` field provided. **Any non-Australian entities will undergo extended due diligence based on their location and industry relevance for Flash Payments.**  &#x20;
 5. Provide proper `idDoc` (`type`, `docNumber`, `issuer` (optional), `issueDate` (optional), `expiryDate` (optional), and `country` ) based on the sub-client contact person's address. For Australian residents, either a driver’s license or a passport is accepted. For non-Australian residents, only a passport is accepted as a document type.
