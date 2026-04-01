@@ -69,7 +69,15 @@ We checked the data you sent us for withdrawal. We didn't like it. So we cancel 
 
 You can simulate the behaviour. Your `externalReference` must include this text: `FAIL_AML`. For example: `"testing FAIL_AML attempt 4"`. The withdrawal will be cancelled next moment after you submit it.
 
-#### 3. Recipient bank rejects the money
+#### 3. Passes AML and gets processed&#x20;
+
+If our smart AML/TM checks stop your withdrawal for manual review, you can have it automatically pushed forward by including `PUSH_AML` in the `externalReference`. For example: `"testing PUSH_AML attempt 5"`.\
+\
+This enables the transaction to continue as if it were approved by the compliance analyst. It can be particularly useful during your integration testing activities and also help with UAT regression testing later.
+
+Please note that the <mark style="color:orange;">`REVIEWING`</mark> status for this payout will be recorded on our end, and a `withdrawal_reviewing` webhook will be sent.
+
+#### 4. Recipient bank rejects the money
 
 A common scenario in the Australian domestic payment system involves a transaction that appears successful initially, but is later reversed by the recipient’s bank—sometimes days after processing. This can happen for various reasons, such as an invalid or closed account number, an account in the wrong currency, or other account-related issues.
 
