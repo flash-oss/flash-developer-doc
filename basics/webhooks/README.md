@@ -4,7 +4,7 @@ description: Two types of the webhooks
 
 # Webhooks
 
-The primary triggers for all webhooks are **status** changes in payments, withdrawals, deposits, or conversions. For example, a webhook is sent when a withdrawal status changes from `PENDING` to `CONFIRMED`.
+The primary triggers for all webhooks are **status** changes in payments, withdrawals, deposits, conversions, or adverse media search requests. For example, a webhook is sent when a withdrawal status changes from `PENDING` to `CONFIRMED`.
 
 There are two types of webhooks in Flash Payments.
 
@@ -773,6 +773,76 @@ All webhook HTTP requests would be coming from these IP addresses:
   "fullName": "John Doe",
   "status": "DEACTIVATED",
   "externalId": "123456789"
+}
+```
+
+</details>
+
+**Adverse Media Search**
+
+<details>
+
+<summary>ams_initialised</summary>
+
+```json
+{
+  "event": "ams_initialised",
+  "eventScheduledAt": "2026-03-03T08:23:14.521Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "INITIALISED"
+}
+```
+
+</details>
+
+<details>
+
+<summary>ams_pending</summary>
+
+```json
+{
+  "event": "ams_pending",
+  "eventScheduledAt": "2026-03-03T08:23:15.108Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "PENDING"
+}
+```
+
+</details>
+
+<details>
+
+<summary>ams_completed</summary>
+
+```json
+{
+  "event": "ams_completed",
+  "eventScheduledAt": "2026-03-03T08:26:42.774Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "COMPLETED"
+}
+```
+
+</details>
+
+<details>
+
+<summary>ams_failed</summary>
+
+```json
+{
+  "event": "ams_failed",
+  "eventScheduledAt": "2026-03-03T08:26:42.774Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "FAILED"
 }
 ```
 
