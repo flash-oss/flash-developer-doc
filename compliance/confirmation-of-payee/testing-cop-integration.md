@@ -45,7 +45,7 @@ CoP can be used independently from your payment flows as an account investigatio
 Each CoP request is logged and available in your [FlashConnect](https://connect.flash-payments.com.au/) request history, making it easy to maintain an audit trail of your verification checks.
 {% endhint %}
 
-#### CoP as an part of your payment integration flow
+#### CoP as a part of your payment integration flow
 
 {% hint style="warning" %}
 While CoP is fully functional on our platform, and the adoption among Australian financial institutions is growing, the **Australian CoP coverage is currently limited.**&#x20;
