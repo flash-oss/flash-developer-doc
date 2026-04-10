@@ -23,7 +23,7 @@ Here is a current list of the testing keywords and the most common [response cod
 | `coperror`           | `COP_PLATFORM_ERROR` | -                          |
 
 {% hint style="info" %}
-You can start with testing CoP requests in the [API Playground](https://api.uat.flash-payments.com.au/). Log in with your UAT credentials and use the [`confirmationOfPayee` mutation](https://app.gitbook.com/o/-LJHY9ByTtazrULEMNbl/s/-LJHY9Bz6vzZaIWDYj9o/~/edit/~/changes/500/other/confirmation-of-payee#making-a-cop-request).
+You can start with testing CoP requests in the [API Playground](https://api.uat.flash-payments.com.au/). Log in with your UAT credentials and use the [`confirmationOfPayee` mutation](./#making-a-cop-request).
 {% endhint %}
 
 ### Integration Examples
