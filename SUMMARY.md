@@ -57,14 +57,11 @@
 * [Confirmation of Payee](compliance/confirmation-of-payee/README.md)
   * [Testing CoP integration](compliance/confirmation-of-payee/testing-cop-integration.md)
   * [CoP response codes](compliance/confirmation-of-payee/cop-response-codes.md)
-* [Bank information](compliance/bank-information.md)
-
-## 🔍 Compliance
-
 * [Adverse Media Search](compliance/adverse-media-search/README.md)
   * [Run a search](compliance/adverse-media-search/adverse-media-search.md)
   * [AMS statuses](compliance/adverse-media-search/ams-statuses.md)
   * [Query AMS requests](compliance/adverse-media-search/query-ams-requests.md)
+* [Bank information](compliance/bank-information.md)
 
 ## Other
 
