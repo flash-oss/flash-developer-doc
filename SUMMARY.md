@@ -52,8 +52,14 @@
   * [Query payments](fx/payments/query-payments.md)
   * [Auto receive funds](fx/payments/auto-receive-funds.md)
 
+## 🔍 COMPLIANCE
+
+* [Confirmation of Payee](compliance/confirmation-of-payee/README.md)
+  * [Testing CoP integration](compliance/confirmation-of-payee/testing-cop-integration.md)
+  * [CoP response codes](compliance/confirmation-of-payee/cop-response-codes.md)
+* [Bank information](compliance/bank-information.md)
+
 ## Other
 
 * [Reference data](other/reference-data.md)
-* [Bank information](other/bank-information.md)
 * [Rate limiting](other/rate-limiting.md)

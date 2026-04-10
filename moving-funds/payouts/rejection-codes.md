@@ -6,7 +6,7 @@ description: How to handle a payout rejection
 
 If your withdrawal is canceled (aka rejected) by our AML and Compliance team, you'll receive the  [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal_cancelled) webhook containing both a rejection code (`rejectCode`) and a manually written rejection reason (`statusMessage`). You can find the same two properties within the [`withdrawal`](query-withdrawals.md) GraphQL type.
 
-Here is a curent list of all possible `rejectCode`s, but please note this list **can be extended with time**.
+Here is a current list of all possible `rejectCode`s, but please note this list **can be extended with time**.
 
 ```
 CANCELLATION_REQUESTED_BY_PARTICIPANT
