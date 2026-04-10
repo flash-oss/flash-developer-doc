@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added
 
-New [`confirmationOfPayee` ](https://developer.flash-payments.com/~/revisions/QgC7BSqr5EcIpg3UXC0Y/compliance/confirmation-of-payee)mutation. Confirmation of Payee (CoP) is a name-verification service for Australian domestic accounts. You can use it to check whether the recipient's name matches the account details held by their financial institution. The service currently supports Australian BSB accounts.&#x20;
+New [`confirmationOfPayee` ](https://app.gitbook.com/o/-LJHY9ByTtazrULEMNbl/s/-LJHY9Bz6vzZaIWDYj9o/~/edit/~/changes/503/compliance/confirmation-of-payee)mutation. Confirmation of Payee (CoP) is a name-verification service for Australian domestic accounts. You can use it to check whether the recipient's name matches the account details held by their financial institution. The service currently supports Australian BSB accounts.&#x20;
 
 ## 2026-03-18
 
