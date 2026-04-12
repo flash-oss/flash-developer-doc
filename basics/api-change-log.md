@@ -4,6 +4,18 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-04-14
+
+#### Added
+
+New Adverse Media Search (AMS) API. You can now screen individuals and organisations against web-based adverse media sources directly via the API.
+
+* New [`adverseMediaSearch`](../compliance/adverse-media-search/run-ams-request.md) mutation — submits a search for an individual or organisation. The scan runs in the background; use the returned `id` to track progress.
+* New [`amsRequest`](../compliance/adverse-media-search/query-ams-requests.md#retrieving-a-single-ams-request) and [`amsRequests`](../compliance/adverse-media-search/query-ams-requests.md#retrieving-all-your-ams-requests) queries — retrieves your AMS requests with optional filters by status, date range, name, and country.
+* Four new [webhook events](webhooks/#ams_initialised): `ams_initialised`, `ams_pending`, `ams_completed`, `ams_failed`.
+
+Please contact support to have this API enabled for your account.
+
 ## 2026-04-10
 
 ### Added
