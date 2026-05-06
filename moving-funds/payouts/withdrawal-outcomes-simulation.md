@@ -42,7 +42,7 @@ Please note that the <mark style="color:orange;">`REVIEWING`</mark> status for t
 
 Whenever our Compliance team needs more details about specific withdrawal, you’ll receive an email with a link to the RFI form. The withdrawal will sit in <mark style="color:orange;">`REVIEWING`</mark> until you respond to the RFI via the link in the email and a compliance analyst marks it satisfactory.
 
-You can simulate the behaviour by including `SEND_RFI` text into the `externalReference` For example: `"testing SEND_RFI attempt 3"`.  The withdrawal remains in <mark style="color:orange;">`REVIEWING`</mark> until you respond to the RFI. At that point, we will review your submission and provide feedback, and then manually push the transaction forward. The main purpose of this test is to introduce your team to our RFI process and clarify any questions before you go live.
+You can simulate the behaviour by including `SEND_RFI` text into the `externalReference` For example: `"testing SEND_RFI attempt 3"`.  The withdrawal remains in <mark style="color:orange;">`REVIEWING`</mark> until you respond to the RFI. At that point, we will review your submission and provide feedback, and then manually push the transaction forward. The primary goal of this test is to familiarize your team with our RFI process and address any questions beforehand, ensuring a smooth transition to production.
 
 {% hint style="info" %}
 Requires at least one active member with the `compliance` access role on your account. Otherwise no RFI is created, the withdrawal fails AML and gets cancelled in accordance with the `FAIL_AML` pattern.
