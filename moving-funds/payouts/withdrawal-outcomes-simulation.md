@@ -45,7 +45,7 @@ Whenever our Compliance team needs more details about specific withdrawal, youâ€
 You can simulate the behaviour by including `SEND_RFI` text into the `externalReference` For example: `"testing SEND_RFI attempt 3"`.  The withdrawal remains in <mark style="color:orange;">`REVIEWING`</mark> until you respond to the RFI. At that point, we will review your submission and provide feedback, and then manually push the transaction forward. The primary goal of this test is to familiarize your team with our RFI process and address any questions beforehand, ensuring a smooth transition to production.
 
 {% hint style="info" %}
-Requires at least one active member with the `compliance` access role on your account. Otherwise no RFI is created, the withdrawal fails AML and gets cancelled in accordance with the `FAIL_AML` pattern.
+Requires at least one active member with the `compliance` access role on your account. Otherwise no RFI is created, the withdrawal fails AML and gets cancelled in accordance with the `FAIL_AML` [pattern](withdrawal-outcomes-simulation.md#id-2.-fails-aml-and-gets-cancelled).
 {% endhint %}
 
 #### 5. Recipient bank rejects the money
