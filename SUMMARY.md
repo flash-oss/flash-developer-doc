@@ -28,6 +28,7 @@
 * [Payouts](moving-funds/payouts/README.md)
   * [Withdraw funds](moving-funds/payouts/withdraw-funds.md)
   * [Withdrawal statuses](moving-funds/payouts/withdrawal-statuses.md)
+  * [Withdrawal outcomes simulation](moving-funds/payouts/withdrawal-outcomes-simulation.md)
   * [Query withdrawals](moving-funds/payouts/query-withdrawals.md)
   * [Rejection codes](moving-funds/payouts/rejection-codes.md)
 * [Deposits](moving-funds/deposits/README.md)
