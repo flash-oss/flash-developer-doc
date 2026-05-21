@@ -28,7 +28,15 @@ The <mark style="color:orange;">REVIEWING</mark> is an **optional** action by Fl
 
 ### Most common status transitions
 
+#### The happiest path
+
+The payout passed our automated compliance checks and was processed successfully:
+
+`INITIALISED`→`PENDING`→`CONFIRMED`
+
 #### Happy path
+
+The payout was successfully processed after a manual compliance review:
 
 `INITIALISED`→<mark style="color:orange;">`REVIEWING`</mark><mark style="color:orange;">→</mark>`PENDING`→`CONFIRMED`
 
@@ -44,4 +52,4 @@ Recipient bank rejects the payout:
 
 Flash Payments Compliance team rejects the payout:
 
-`INITIALISED`→`REVIEWING`→`CANCELLED`
+`INITIALISED`→<mark style="color:orange;">`REVIEWING`</mark>→`CANCELLED`
