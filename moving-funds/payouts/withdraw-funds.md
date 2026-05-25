@@ -134,7 +134,7 @@ Arbitrary text, which will be seen in the ultimate recipient's bank statement. E
 You can either [pre-create recipients](../recipients/#create-a-recipient) and provide us with the `recipientId` or submit a valid `recipient` object directly to `createWithdrawal`  as shown in the above example. We recommend the latter where possible, as you won’t need to send an extra HTTP request. Please note that a new recipient record won’t be created in this case.
 
 {% hint style="info" %}
-Please also note that the recipient's Australian `accountIdType` must be either `BSB` or `PAYID` (coming soon).
+Please also note that the recipient's Australian `accountIdType` must be either `BSB` or `PAYID`
 {% endhint %}
 
 ### Sender - `sender` object, `senderId`, `subClientId` , or neither
