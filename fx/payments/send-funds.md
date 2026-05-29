@@ -31,7 +31,7 @@ const bodyJSON = {
         },
       },
       recipient: {
-        iban: "GB33BARC20001234567890",
+        iban: "GB26MIDL40051512345674",
         companyName: "Acme GB Ltd",
         currency: "GBP",
         accountIdType: "IBAN",
@@ -86,7 +86,17 @@ mutation ($input: PaymentInput!) {
     "sourceOfFunds": "BUSINESS_FUNDS",
     "externalReference": "my ref 221b",
     "externalId": "12344321",
-    "idempotencyKey": "12344321"
+    "idempotencyKey": "12344321",
+    "recipient": {
+      "iban": "GB26MIDL40051512345674",
+      "companyName": "Acme GB Ltd",
+      "currency": "GBP",
+      "accountIdType": "IBAN",
+      "address": {
+        "street": "1 Main St LONDON SW1A 1AA",
+        "country": "GB"
+      }
+    }
   }
 }
 ```
@@ -149,7 +159,7 @@ const bodyJSON = {
       externalReference: "my ref 221b",
       subClientId: "6092360bf40f2dgc52f85cf1",
       recipient: {
-        iban: "GB33BARC20001234567890",
+        iban: "GB26MIDL40051512345674",
         companyName: "Acme GB Ltd",
         currency: "GBP",
         accountIdType: "IBAN",
@@ -205,7 +215,17 @@ mutation ($input: PaymentInput!) {
     "externalReference": "my ref 221b",
     "subClientId": "6092360bf40f2dgc52f85cf1",
     "externalId": "12344321",
-    "idempotencyKey": "12344321"
+    "idempotencyKey": "12344321",
+    "recipient": {
+      "iban": "GB26MIDL40051512345674",
+      "companyName": "Acme GB Ltd",
+      "currency": "GBP",
+      "accountIdType": "IBAN",
+      "address": {
+        "street": "1 Main St LONDON SW1A 1AA",
+        "country": "GB"
+      }
+    }
   }
 }
 ```
@@ -249,7 +269,7 @@ const bodyJSON = {
       sourceOfFunds: "BUSINESS_FUNDS",
       externalReference: "my ref 2234",
       recipient: {
-        iban: "GB33BARC20001234567890",
+        iban: "GB26MIDL40051512345674",
         companyName: "Acme GB Ltd",
         currency: "GBP",
         accountIdType: "IBAN",
@@ -312,7 +332,17 @@ mutation ($input: PaymentInput!) {
     "sourceOfFunds": "BUSINESS_FUNDS",
     "externalReference": "my ref 2234",
     "externalId": "0123443210",
-    "idempotencyKey": "0000012344321000"
+    "idempotencyKey": "0000012344321000",
+    "recipient": {
+      "iban": "GB26MIDL40051512345674",
+      "companyName": "Acme GB Ltd",
+      "currency": "GBP",
+      "accountIdType": "IBAN",
+      "address": {
+        "street": "1 Main St LONDON SW1A 1AA",
+        "country": "GB"
+      }
+    }
   }
 }
 ```
