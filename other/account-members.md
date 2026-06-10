@@ -63,7 +63,9 @@ query ($input: MembersQueryInput) {
 
 {% tab title="Variables" %}
 ```javascript
- {
+{
+  "input": {}
+}
 ```
 {% endtab %}
 
