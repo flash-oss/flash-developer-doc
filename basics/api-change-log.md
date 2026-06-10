@@ -4,6 +4,15 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-06-10
+
+#### Added
+
+New [`members`](../other/account-members.md) query. You can now programmatically retrieve the users registered on your client account — their contact details, roles, access controls and statuses — information previously only available via the Flash Connect portal.
+
+* Optional [`MembersQueryInput`](../other/account-members.md#filtering-members) filters: `status`, `roles`, `access`. A member matches if it holds at least one of the listed values.
+* Results are always scoped to your own client account.
+
 ## 2026-04-14
 
 #### Added
