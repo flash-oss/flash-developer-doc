@@ -185,7 +185,7 @@ query ($input: MembersQueryInput) {
 | `UNAPPROVED`        | Has finished registration and is waiting to be verified.                                              |
 | `SUSPENDED`         | Cannot log in or transact. Covers accounts that are inactive, locked, failed verification or deleted. |
 
-### Member Roles
+### Member roles
 
 The roles are descriptive and identify a member’s position within the client organisation. They do not, by themselves, grant access (access is regulated by the access controls below). One member can hold several roles.
 
@@ -200,7 +200,7 @@ The roles are descriptive and identify a member’s position within the client o
 | `support`     | A support contact for day-to-day queries.                    |
 | `compliance`  | A compliance contact for the client.                         |
 
-### Member Access
+### Member access
 
 The Access Control Levels (ACLs) define what a member is permitted to do on the account. A member can hold several ACLs.
 
