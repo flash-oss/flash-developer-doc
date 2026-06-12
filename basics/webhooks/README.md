@@ -850,8 +850,6 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 **Request for Information (RFI)**
 
-[RFI](../../compliance/request-for-information/) lifecycle events. The payload carries identifiers only — to read the questions, status, or linked transaction details, follow up with the authenticated [`rfi`](https://developer.flash-payments.com/compliance/request-for-information/query-rfis) query. The `depositIds` / `withdrawalIds` / `paymentIds` arrays list the transactions this RFI is gating, split by type, and any of them may be empty.
-
 <details>
 
 <summary>rfi_created</summary>
