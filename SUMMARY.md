@@ -55,6 +55,12 @@
 
 ## 🔍 COMPLIANCE
 
+* [Request for Information](compliance/request-for-information/README.md)
+  * [RFI statuses](compliance/request-for-information/rfi-statuses.md)
+  * [Query RFIs](compliance/request-for-information/query-rfis.md)
+  * [Answer RFI questions](compliance/request-for-information/answer-rfi-questions.md)
+  * [Decline an RFI](compliance/request-for-information/decline-an-rfi.md)
+  * [RFI response codes](compliance/request-for-information/rfi-response-codes.md)
 * [Confirmation of Payee](compliance/confirmation-of-payee/README.md)
   * [Testing CoP integration](compliance/confirmation-of-payee/testing-cop-integration.md)
   * [CoP response codes](compliance/confirmation-of-payee/cop-response-codes.md)

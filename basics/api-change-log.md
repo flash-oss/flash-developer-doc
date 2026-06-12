@@ -4,6 +4,19 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-06-12
+
+#### **Added**
+
+New [Request for Information (RFI)](../compliance/request-for-information/) API. When our compliance review flags one of your transactions, we raise an RFI — you can now receive, answer, and decline RFIs programmatically instead of (or alongside) the secure form sent by email.&#x20;
+
+* New [`rfi`](../compliance/request-for-information/query-rfis.md#retrieving-a-single-rfi) and [`rfis`](../compliance/request-for-information/query-rfis.md#retrieving-all-rfis) queries — retrieve your RFIs with optional filters by status and date range.
+* New [`answerRfiQuestion`](../compliance/request-for-information/answer-rfi-questions.md) mutation — answers a single RFI question with text and/or documents. Files are sent inline as base64; no separate upload step.
+* New [`declineRfi`](../compliance/request-for-information/decline-an-rfi.md) mutation — declines an RFI when you cannot provide the requested information.
+* Three new [webhook events](webhooks/#rfi_created): `rfi_created`, `rfi_assessing`, `rfi_closed`. Dispatched for every RFI regardless of whether it is answered via the API or via the email form.
+
+The RFI API is available to all clients — no enablement step is required.
+
 ## 2026-06-10
 
 #### Added

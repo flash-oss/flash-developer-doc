@@ -847,3 +847,70 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```
 
 </details>
+
+**Request for Information (RFI)**
+
+[RFI](../../compliance/request-for-information/) lifecycle events. The payload carries identifiers only — to read the questions, status, or linked transaction details, follow up with the authenticated [`rfi`](https://developer.flash-payments.com/compliance/request-for-information/query-rfis) query. The `depositIds` / `withdrawalIds` / `paymentIds` arrays list the transactions this RFI is gating, split by type, and any of them may be empty.
+
+<details>
+
+<summary>rfi_created</summary>
+
+```json
+{
+  "event": "rfi_created",
+  "eventScheduledAt": "2026-05-28T09:00:01.115Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "We are waiting for your replies",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-28T09:00:00.000Z"
+}
+```
+
+</details>
+
+<details>
+
+<summary>rfi_assessing</summary>
+
+```json
+{
+  "event": "rfi_assessing",
+  "eventScheduledAt": "2026-05-28T11:42:13.512Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "We are assessing the information you provided",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-28T11:42:13.512Z"
+}
+```
+
+</details>
+
+<details>
+
+<summary>rfi_closed</summary>
+
+```json
+{
+  "event": "rfi_closed",
+  "eventScheduledAt": "2026-05-29T02:10:44.901Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "We assessed the information you provided",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-29T02:10:44.890Z"
+}
+```
+
+</details>
