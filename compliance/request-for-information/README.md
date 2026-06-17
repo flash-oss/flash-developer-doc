@@ -27,14 +27,18 @@ The RFI API is available to every client. There is no separate enablement step. 
 
 ### Recommended integration flow
 
-1. Subscribe to the `rfi_created`, `rfi_assessing`, and `rfi_closed` [webhook events](../../basics/webhooks/#rfi_created) in your Flash Connect webhook settings.
+1. Subscribe to the `rfi_created`, `rfi_assessing`, `rfi_closed` and `rfi_canceled` [webhook events](../../basics/webhooks/#rfi_created) in your Flash Connect webhook settings.
 2. On `rfi_created`, call the [`rfi`](query-rfis.md#retrieving-a-single-rfi) query to load the questions and the linked deposits, withdrawals, or payments.
 3. For each question with `answered: false`, call [`answerRfiQuestion`](answer-rfi-questions.md) with text or files, according to the question's `fileUploadOption`.
 4. When the last question is answered, the RFI moves to `ASSESSING` — you will receive `rfi_assessing`. No further action is required.
 5. When the review is completed, the RFI moves to `CLOSED` and you will receive `rfi_closed`. The linked transactions are then released, or rejected with an explanatory `rejectCode`.
 6. If you cannot supply the requested information, call [`declineRfi`](decline-an-rfi.md) while the RFI is still `PENDING`. This will cancel the linked transactions being still under review.
+7. Separately from your responses, we may withdraw an RFI if it is no longer needed. If that happens the RFI moves to `CANCELLED` and you receive the `rfi_cancelled` webhook — no response is required, and any linked deposits, withdrawals, or payments are left unaffected.
+
+{% hint style="info" %}
+`CANCELLED` is initiated by us, not by you — it means we withdrew the request. It is different from declining (which you initiate, and which closes the RFI as `CLOSED` and cancels the linked transactions).&#x20;
+{% endhint %}
 
 {% hint style="warning" %}
 Respond before the RFI's `deadline`. If the deadline passes without a complete response, the RFI is closed and the linked transactions may be rejected.
 {% endhint %}
-
