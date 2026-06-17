@@ -29,7 +29,7 @@ Most common RFI status transitions follow one of these paths
 An RFI can also move to `CLOSED` directly from `PENDING` when you [decline it](decline-an-rfi.md), or when the deadline passes without a complete response from your end.
 
 \
-**Canceled path**
+**Cancelled path**
 
 `PENDING` → `CANCELLED`  or  `ASSESSING` → `CANCELLED`&#x20;
 
