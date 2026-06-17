@@ -4,13 +4,22 @@ description: History of changes to this API schema
 
 # API change log
 
+
+
 ## 2026-06-17
 
 ### Added
 
 New RFI status `CANCELLED` and a new [`rfi_cancelled`](webhooks/#rfi_cancelled) webhook event.&#x20;
 
-Our compliance team can now withdraw their request for information when it is no longer needed — the RFI moves to `CANCELLED`, you are notified by email and webhook, no response is required, and any linked deposits, withdrawals, or payments are left unaffected.
+Our compliance team can now withdraw their request for information when it is no longer needed — the RFI moves to `CANCELLED`, you are notified by email and webhook, no response is required, and any linked deposits, withdrawals, or payments are left unaffected.<br>
+
+New [Address Cleanser API](../compliance/address-cleanser/). You can now validate and standardise physical addresses against multiple geocoding providers directly via the API — useful before processing payments and for keeping your address data consistent.
+
+* New [`cleanseAddress`](../compliance/address-cleanser/cleanse-an-address.md) mutation — submits an address for cleansing. The result is returned synchronously with a suggested recommendation (`approve`, `review`, `reject`) and a score.
+* New [`addressCleanserRequest`](../compliance/address-cleanser/query-address-cleanser-requests.md) and [`addressCleanserRequests`](../compliance/address-cleanser/query-address-cleanser-requests.md) queries — retrieve your past requests with optional filters by recommendation and date range.
+
+Charged per request — 1,000 requests per month are free. Please contact support to have this API enabled for your account.
 
 ## 2026-06-12
 

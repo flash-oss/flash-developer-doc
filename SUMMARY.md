@@ -69,6 +69,9 @@
   * [AMS statuses](compliance/adverse-media-search/ams-statuses.md)
   * [Query AMS requests](compliance/adverse-media-search/query-ams-requests.md)
 * [Bank information](compliance/bank-information.md)
+* [Address Cleanser](compliance/address-cleanser/README.md)
+  * [Cleanse an address](compliance/address-cleanser/cleanse-an-address.md)
+  * [Query Address Cleanser requests](compliance/address-cleanser/query-address-cleanser-requests.md)
 
 ## Other
 
