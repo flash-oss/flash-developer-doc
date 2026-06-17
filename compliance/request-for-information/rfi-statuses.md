@@ -46,7 +46,7 @@ Each transition emits a [webhook event](../../basics/webhooks/#rfi_created):
 | `rfi_created`   | `PENDING`   |
 | `rfi_assessing` | `ASSESSING` |
 | `rfi_closed`    | `CLOSED`    |
-| `rfi_canceled`  | `CANCELED`  |
+| `rfi_cancelled` | `CANCELLED` |
 
 **Status message**
 

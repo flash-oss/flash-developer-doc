@@ -19,7 +19,7 @@ The RFI API is available to every client. There is no separate enablement step. 
 
 ### What's in this section
 
-* [RFI statuses ](rfi-statuses.md)— the `PENDING` → `ASSESSING` → `CLOSED` lifecycle.
+* [RFI statuses ](rfi-statuses.md)— the `PENDING` → `ASSESSING` → `CLOSED`  lifecycle and a `CANCELLED` case.
 * [Query RFIs](query-rfis.md) — the `rfi` and `rfis` queries.
 * [Answer RFI questions](answer-rfi-questions.md) — the `answerRfiQuestion` mutation, including file uploads.
 * [Decline an RFI](decline-an-rfi.md) — the `declineRfi` mutation.
