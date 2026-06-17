@@ -4,9 +4,17 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-06-17
+
+### Added
+
+New RFI status `CANCELLED` and a new [`rfi_cancelled`](webhooks/#rfi_cancelled) webhook event.&#x20;
+
+Our compliance team can now withdraw their request for information when it is no longer needed — the RFI moves to `CANCELLED`, you are notified by email and webhook, no response is required, and any linked deposits, withdrawals, or payments are left unaffected.
+
 ## 2026-06-12
 
-#### **Added**
+### Added
 
 New [Request for Information (RFI)](../compliance/request-for-information/) API. When our compliance review flags one of your transactions, we raise an RFI — you can now receive, answer, and decline RFIs programmatically instead of (or alongside) the secure form sent by email.&#x20;
 
@@ -19,7 +27,7 @@ The RFI API is available to all clients — no enablement step is required.
 
 ## 2026-06-10
 
-#### Added
+### Added
 
 New [`members`](../other/account-members.md) query. You can now programmatically retrieve the users registered on your client account — their contact details, roles, access controls and statuses — information previously only available via the Flash Connect portal.
 
@@ -28,7 +36,7 @@ New [`members`](../other/account-members.md) query. You can now programmatically
 
 ## 2026-04-14
 
-#### Added
+### Added
 
 New Adverse Media Search (AMS) API. You can now screen individuals and organisations against web-based adverse media sources directly via the API.
 
