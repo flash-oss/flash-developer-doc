@@ -912,3 +912,24 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```
 
 </details>
+
+<details>
+
+<summary>rfi_cancelled</summary>
+
+```json
+{
+  "event": "rfi_cancelled",
+  "eventScheduledAt": "2026-05-28T14:05:09.220Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "This request has been withdrawn and no longer needs a response",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-28T14:05:09.210Z"
+}
+```
+
+</details>
