@@ -28,6 +28,17 @@ Most common RFI status transitions follow one of these paths
 
 An RFI can also move to `CLOSED` directly from `PENDING` when you [decline it](decline-an-rfi.md), or when the deadline passes without a complete response from your end.
 
+\
+**Canceled path**
+
+`PENDING` → `CANCELLED`  or  `ASSESSING` → `CANCELLED`&#x20;
+
+Separately from your responses, our compliance team can withdraw an RFI when the information is no longer needed — for example the underlying transaction question was resolved another way. The RFI moves to `CANCELLED`, no further answers are accepted, and any linked deposits, withdrawals, or payments are left untouched and continue on their own lifecycle. You don't need to do anything — we notify you by email and via the `rfi_cancelled` webhook. _**Final status.**_
+
+{% hint style="info" %}
+`CANCELLED` status is different from `CLOSED`. The status `CLOSED` is the outcome of a review (the linked transactions are then released or rejected). `CANCELLED` means we withdrew the request itself — the linked transactions are not affected by the cancellation.
+{% endhint %}
+
 Each transition emits a [webhook event](../../basics/webhooks/#rfi_created):
 
 | Event           | Status      |
@@ -35,6 +46,7 @@ Each transition emits a [webhook event](../../basics/webhooks/#rfi_created):
 | `rfi_created`   | `PENDING`   |
 | `rfi_assessing` | `ASSESSING` |
 | `rfi_closed`    | `CLOSED`    |
+| `rfi_canceled`  | `CANCELED`  |
 
 **Status message**
 
