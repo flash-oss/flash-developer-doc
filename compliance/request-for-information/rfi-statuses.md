@@ -4,7 +4,7 @@ description: RFI lifecycle statuses
 
 # RFI statuses
 
-Most common RFI status transitions follow one of these paths
+Most common RFI status transitions follow one of these paths.
 
 **Happy path**
 
@@ -12,14 +12,14 @@ Most common RFI status transitions follow one of these paths
 
 1. It starts when our compliance review flags one of your transactions. An RFI is created with a list of questions and a response deadline.\
    \
-   `PENDING` means the RFI is open for your response. \
-   Answer each question via [`answerRfiQuestion`](answer-rfi-questions.md) before `deadline`. The status stays `PENDING` until all answers are received or the deadline passes.
+   Status  `PENDING` means the RFI is open for your response. \
+   Answer each question via [`answerRfiQuestion`](answer-rfi-questions.md) before `deadline`. The status stays `PENDING` until all answers are received or the deadline passes.<br>
 2. The last open question is answered.\
    \
-   `ASSESSING` means that all your answers have been received and are under our review. No action is required from you.
-3. The review completes.\
+   Status `ASSESSING` means that all your answers have been received and are under our review. No action is required from you.<br>
+3. The review is completed.\
    \
-   &#x20;`CLOSED` means that the RFI is finalised. No further answers are accepted. _**Final status.**_
+   Status  `CLOSED` means that the RFI is finalised. No further answers are accepted. _**Final status.**_
 
 \
 **Declined or expired path**
