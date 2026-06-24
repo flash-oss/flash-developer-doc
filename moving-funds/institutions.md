@@ -111,3 +111,103 @@ mutation($input: InstitutionInput!) {
 ```
 {% endtab %}
 {% endtabs %}
+
+**Updating institutions**
+
+You can update an existing institution by invoking the `updateInstitution` mutation with its `id`. The `input` always requires `legalName` and `address`; every other field is optional. Only the fields you send are applied — omitted optional fields keep their current values, and the `address` you provide is merged over the stored one.
+
+Updating an institution resets its compliance (KYB) review status, so the institution will be re-reviewed.
+
+{% hint style="info" %}
+Before updating an institution we check whether a **different** institution already exists with the same:
+
+* `externalId` if present, or
+* `businessNumber` AND `address.country`
+
+If a match is found the update is rejected with the `INSTITUTION_ALREADY_EXISTS` code. If nothing actually changed, you'll get `NO_CHANGES`.
+{% endhint %}
+
+#### Updating institution example
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    id: "65570da4f176682c5e412552",
+    input: {
+      legalName: "Intermediate Institution Ltd",
+      businessNumber: "A39477669937",
+      address: {
+        postcode: "2000",
+        street: "203 Business Street",
+        country: "AU",
+        state: "NSW",
+        suburb: "Sydney",
+    },
+  },
+},
+query: `
+mutation ($id: ID, $input: InstitutionInput!) {
+  updateInstitution(id: $id, input: $input) {
+    success code message    
+    institution {     
+      id    
+    }  
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($id: ID, $input: InstitutionInput!) {
+  updateInstitution(id: $id, input: $input) {
+    success
+    code
+    message
+    institution {
+      id
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{
+  "id": "65570da4f176682c5e412552",
+  "input": {
+    "legalName": "Intermediate Institution Ltd",
+    "businessNumber": "A39477669937",
+    "address": {
+      "postcode": "2000",
+      "street": "203 Business Street",
+      "country": "AU",
+      "state": "NSW",
+      "suburb": "Sydney"
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "updateInstitution": {
+      "success": true,
+      "code": "UPDATED",
+      "message": "Institution 65570da4f176682c5e412552 updated.",
+      "institution": {
+        "id": "65570da4f176682c5e412552"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
