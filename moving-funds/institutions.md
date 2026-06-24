@@ -123,6 +123,7 @@ Before updating an institution we check whether a **different** institution alre
 
 * `externalId` if present, or
 * `businessNumber` AND `address.country`
+* `legalName` AND `address.country`
 
 If a match is found the update is rejected with the `INSTITUTION_ALREADY_EXISTS` code. If nothing actually changed, you'll get `NO_CHANGES`.
 {% endhint %}
