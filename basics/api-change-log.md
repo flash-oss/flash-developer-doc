@@ -6,6 +6,12 @@ description: History of changes to this API schema
 
 
 
+## 2026-06-24
+
+### Changes
+
+Improved validation of the company name fields `legalName`, `tradingAsName`, and `companyName` in the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients.md), [createSender](../moving-funds/senders.md#create-an-individual-sender), [updateSender](../moving-funds/senders.md#update-sender), [createRecipient](../moving-funds/recipients/#create-an-individual-recipient), [updateRecipient](../moving-funds/recipients/#update-recipient), [createInstitution](../moving-funds/institutions.md#creating-institutions), and [updateInstitution](../moving-funds/institutions.md) mutations. These fields must now be 2–256 characters long and can no longer contain the `<`, `=`, or `>` characters.
+
 ## 2026-06-17
 
 ### Added
