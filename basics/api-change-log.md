@@ -4,7 +4,11 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-06-25
 
+### Added
+
+New `sender.bsb` and  `sender.accountNo` properties to all [deposit webhook](webhooks/#deposit_initiated) payloads.
 
 ## 2026-06-24
 

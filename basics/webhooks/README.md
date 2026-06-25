@@ -67,8 +67,10 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
-    "bankCountry": "AU"
-  },
+    "bankCountry": "AU",
+<strong>    "bsb": "809387",
+</strong><strong>    "accountNo": "1839394"
+</strong>  },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
@@ -104,7 +106,9 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
-    "bankCountry": "AU"
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -141,7 +145,9 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
-    "bankCountry": "AU"
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -179,7 +185,9 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
-    "bankCountry": "AU"
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -220,7 +228,9 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
-    "bankCountry": "AU"
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -261,7 +271,9 @@ All webhook HTTP requests would be coming from these IP addresses:
     "accountName": "ACME Inc",
     "companyName": "ACME Inc",
     "bankName": "Bank ACME",
-    "bankCountry": "AU"
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
   },
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
