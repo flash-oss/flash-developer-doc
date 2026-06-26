@@ -8,6 +8,8 @@ description: History of changes to this API schema
 
 ### Added
 
+New properties `sender.bsb` and  `sender.accountNo` for the `Deposit` type: [deposits](../moving-funds/deposits/) now show the sender's Ausstralian bank account BSB and Acc#.
+
 New `sender.bsb` and  `sender.accountNo` properties to all [deposit webhook](webhooks/#deposit_initiated) payloads.
 
 ## 2026-06-24
