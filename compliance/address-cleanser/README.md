@@ -24,10 +24,10 @@ Unlike Adverse Media Search, address cleansing is synchronous — the result is 
 
 The result is an estimate, not a definitive check. Each cleansed address comes with:
 
-| Field            | Description                                                                                                                                                                                                    |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `recommendation` | <p><code>approve</code> — suggests the result can be accepted as-is. <br><code>review</code> — suggests it should be reviewed before it is used. <br><code>reject</code> — suggests it should be rejected.</p> |
-| `score`          | From 0 to 100. A higher value indicates a closer match. Can be null.                                                                                                                                           |
+| Field            | Description                                                                                                                                                                                                 |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `recommendation` | <p><code>accept</code> — suggests the result can be accepted as-is. <br><code>review</code> — suggests it should be reviewed before it is used. <br><code>flag</code> — suggests it should be rejected.</p> |
+| `score`          | From 0 to 100. A higher value indicates a closer match. Can be null.                                                                                                                                        |
 
 **Pricing**
 
