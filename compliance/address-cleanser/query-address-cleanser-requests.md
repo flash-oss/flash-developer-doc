@@ -107,7 +107,7 @@ query($id: ID!) {
         "postcode": "7249",
         "country": "AU"
       },
-      "recommendation": "approve",
+      "recommendation": "accept",
       "score": 97.1,
       "createdAt": "2026-06-12T08:23:14.521Z",
       "billable": true
@@ -173,7 +173,7 @@ query($input: AddressCleanserQueryInput) {
     "addressCleanserRequests": [
       {
         "id": "6820a4f3e1c2b5d8f0123456",
-        "recommendation": "approve",
+        "recommendation": "accept",
         "score": 98.25,
         "createdAt": "2026-06-12T08:23:14.521Z"
       },
@@ -235,7 +235,7 @@ query($input: AddressCleanserQueryInput) {
 ```json
 {
   "input": {
-    "recommendation": "approve",
+    "recommendation": "accept",
     "minCreatedAt": "2026-06-01T00:00:00.000Z",
     "maxCreatedAt": "2026-07-01T00:00:00.000Z"
   }
@@ -250,7 +250,7 @@ query($input: AddressCleanserQueryInput) {
     "addressCleanserRequests": [
       {
         "id": "6820a4f3e1c2b5d8f0123456",
-        "recommendation": "approve",
+        "recommendation": "accept",
         "score": 98.25,
         "createdAt": "2026-06-12T08:23:14.521Z"
       }
@@ -265,6 +265,6 @@ Available filter fields on `AddressCleanserQueryInput`:
 
 | Field            | Description                                                   |
 | ---------------- | ------------------------------------------------------------- |
-| `recommendation` | Filter by recommendation — `approve`, `review`, or `reject`   |
+| `recommendation` | Filter by recommendation — `accept`, `review`, or `flag`      |
 | `minCreatedAt`   | Return only requests created after this timestamp (ISO 8601)  |
 | `maxCreatedAt`   | Return only requests created before this timestamp (ISO 8601) |
