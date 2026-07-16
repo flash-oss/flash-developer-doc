@@ -200,7 +200,7 @@ Use the `input` parameter to narrow results by recommendation or date range.
 const bodyJSON = {
   variables: {
     input: {
-      recommendation: "approve",
+      recommendation: "accept",
       minCreatedAt: "2026-06-01T00:00:00.000Z",
       maxCreatedAt: "2026-07-01T00:00:00.000Z",
     },
