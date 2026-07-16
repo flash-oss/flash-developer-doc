@@ -95,7 +95,7 @@ mutation($input: AddressInput!) {
           "postcode": "7249",
           "country": "AU"
         },
-        "recommendation": "approve",
+        "recommendation": "accept",
         "score": 97.1
       }
     }
@@ -133,7 +133,7 @@ Either way, `originalAddress` keeps your input exactly as you sent it.
 
 **Result — `recommendation` and `score`**
 
-The result is an estimate, not a definitive check. Inspect `recommendation` (`approve`, `review`, `reject`) and `score` (0 to 100, higher is a closer match) on the returned `addressRequest` to decide how to treat the cleansed address. See the overview for details.
+The result is an estimate, not a definitive check. Inspect `recommendation` (`accept`, `review`, `flag`) and `score` (0 to 100, higher is a closer match) on the returned `addressRequest` to decide how to treat the cleansed address. See the overview for details.
 
 **Response codes**
 
