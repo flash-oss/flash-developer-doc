@@ -289,6 +289,7 @@ const bodyJSON = {
   variables: {
     input: {
       companyName: "Acme Pte Ltd",
+      website: "acme.com",
       businessNumber: "12345678912",
       email: "acme@example.com",
       mobile: "+61 4123456789",
@@ -314,7 +315,7 @@ mutation ($input: SenderInput!) {
   createSender(input: $input) {
     success code message 
     sender { 
-      id nickName    
+      id nickName
     }  
   }
 }`,
@@ -342,6 +343,7 @@ mutation($input: SenderInput!) {
 {
   "input": {
     "companyName": "Acme Pte Ltd", 
+    "website": "acme.com",
     "businessNumber": "12345678912", 
     "email": "acme@example.com", 
     "mobile": "+61 4123456789", 
@@ -375,7 +377,8 @@ mutation($input: SenderInput!) {
       "message": "New sender created",
       "sender": {
         "id": "68638e6989c1fb1b255ca9c3",
-        "nickName": "Acme Pte L"
+        "nickName": "Acme Pte L",
+        "website": "acme.com"
       }
     }
   }

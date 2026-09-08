@@ -39,6 +39,7 @@ const bodyJSON = {
   variables: {
     input: {
       legalName: "Intermediate Institution Ltd",
+      website: "example.com",
       businessNumber: "A39477669937",
       address: {
         postcode: "2000",
@@ -54,7 +55,7 @@ mutation ($input: InstitutionInput!) {
   createInstitution(input: $input) {
     success code message    
     institution {     
-      id    
+      id
     }  
   }
 }`,
@@ -81,6 +82,7 @@ mutation($input: InstitutionInput!) {
 ```javascript
  "input": {
     "legalName": "Intermediate Institution Ltd",
+    "website": "example.com",
     "businessNumber": "A39477669937",
     "address": {
       "postcode": "2000",
@@ -103,7 +105,8 @@ mutation($input: InstitutionInput!) {
       "code": "INSTITUTION_CREATED",
       "message": "Institution created",
       "institution": {
-        "id": "65570da4f176682c5e412552"
+        "id": "65570da4f176682c5e412552",
+        "website": "example.com"
       }
     }
   }

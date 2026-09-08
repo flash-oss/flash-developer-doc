@@ -394,6 +394,41 @@ Optional field that allows you to provide [Institution](../institutions.md) deta
 * By `instructingInstitution.externalId` if present.
 * By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
 
+The `instructingInstitution` object accepts the same fields as [`createInstitution`](../institutions.md#creating-institution-example).
+
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      amount: 1000,
+      currency: "AUD",
+      // ...recipient, sender, and the other withdrawal fields...
+      instructingInstitution: {
+        legalName: "Intermediate Institution Ltd",
+        website: "example.com",
+        businessNumber: "A39477669937",
+        address: {
+          street: "203 Business Street",
+          suburb: "Sydney",
+          state: "NSW",
+          postcode: "2000",
+          country: "AU",
+        },
+      },
+    },
+  },
+  query: `
+mutation ($input: CreateWithdrawalInput!) {
+  createWithdrawal(input: $input) {
+    success code message
+    withdrawal {
+      id status amount currency
+    }
+  }
+}`,
+};
+```
+
 ### Callback (aka [Webhook](../../basics/webhooks/adhoc-webhooks.md)) URI
 
 We recommend against continuous polling for withdrawal status changes. Instead, please use `callbackUri`.

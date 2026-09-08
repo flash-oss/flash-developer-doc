@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-09-08
+
+#### Added
+
+New `website` field on the [Sender](../moving-funds/senders.md). For **company** senders you can now record the ultimate sender's public website. We store it as a canonical bare domain — the scheme, any `www.` prefix, and any path are stripped (so `https://www.example.com/about` is saved as `example.com`).
+
 ## 2026-06-25
 
 ### Added
