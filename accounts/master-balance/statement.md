@@ -8,6 +8,10 @@ This query returns the same data as the Download CSV button on the Account State
 
 The dates must be any ISO 8601 formatted dates.
 
+{% hint style="info" %}
+If you want to see your latest data on the Account Statement output, please allow for about 60 seconds after the most recent transaction is recorded. This ensures the report is always in sync with the ledger and the [Master Balance](./).
+{% endhint %}
+
 {% tabs %}
 {% tab title="JavaScript" %}
 <pre class="language-javascript"><code class="lang-javascript">const bodyJSON = {
