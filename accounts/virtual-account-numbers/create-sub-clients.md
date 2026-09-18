@@ -12,7 +12,7 @@ If `legalName` is not set, the sub-client will be created as `individual` type.
 
 #### Organisation type
 
-Use `orgType` to refine the the `company` type and say what kind of business the sub-client is:
+Use `orgType` to refine the `company` type and specify what kind of business the sub-client is:
 
 * `COMPANY` - a legal entity that is separate from the people who own it.
 * `PARTNERSHIP` - two or more people who run the business together and share its income or losses.
