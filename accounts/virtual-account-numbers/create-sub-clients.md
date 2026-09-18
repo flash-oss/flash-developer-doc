@@ -182,3 +182,26 @@ mutation($input: CreateSubClientInput!) {
 ```
 {% endtab %}
 {% endtabs %}
+
+#### Duplicate sub-clients and externalId
+
+`externalId`  is the identifier of the sub-client in your system. It must be unique across your sub-clients: if you call `createSubClient` with an `externalId` that one of your sub-clients already has, no new sub-client is created and the mutation returns:
+
+```json
+{
+  "data": {
+    "createSubClient": {
+      "success": false,
+      "code": "DUPLICATE_SUBCLIENT",
+      "message": "Sub-client with this externalId already exists",
+      "subClient": null
+    }
+  }
+}
+```
+
+This makes `createSubClient` safe to retry after a timeout or a lost response. Treat `DUPLICATE_SUBCLIENT` as confirmation that the sub-client already exists and retrieve it instead of creating it again.
+
+{% hint style="info" %}
+Always send your own stable identifier as `externalId`. Sub-clients created without an `externalId` are not protected against duplicate submissions.
+{% endhint %}
