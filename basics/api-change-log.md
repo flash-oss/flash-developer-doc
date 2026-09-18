@@ -4,9 +4,16 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-09-18
+
+### Added
+
+New optional `orgType` field on the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients.md) mutation and the `SubClient` type. \
+You can now specify the legal structure of a `company` type sub-client: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`. Existing integrations are unaffected: omitting `orgType` behaves exactly as before.
+
 ## 2026-09-08
 
-#### Added
+### Added
 
 New `website` field on the [Sender](../moving-funds/senders.md). For **company** senders you can now record the ultimate sender's public website. We store it as a canonical bare domain — the scheme, any `www.` prefix, and any path are stripped (so `https://www.example.com/about` is saved as `example.com`).
 
@@ -28,7 +35,7 @@ Improved validation of the company name fields `legalName`, `tradingAsName`, and
 
 ### Added
 
-New RFI status `CANCELLED` and a new [`rfi_cancelled`](webhooks/#rfi_cancelled) webhook event.&#x20;
+New RFI status `CANCELLED` and a new [`rfi_cancelled`](webhooks/#rfi_cancelled) webhook event.
 
 Our compliance team can now withdraw their request for information when it is no longer needed — the RFI moves to `CANCELLED`, you are notified by email and webhook, no response is required, and any linked deposits, withdrawals, or payments are left unaffected.<br>
 
@@ -43,7 +50,7 @@ Charged per request — 1,000 requests per month are free. Please contact suppor
 
 ### Added
 
-New [Request for Information (RFI)](../compliance/request-for-information/) API. When our compliance review flags one of your transactions, we raise an RFI — you can now receive, answer, and decline RFIs programmatically instead of (or alongside) the secure form sent by email.&#x20;
+New [Request for Information (RFI)](../compliance/request-for-information/) API. When our compliance review flags one of your transactions, we raise an RFI — you can now receive, answer, and decline RFIs programmatically instead of (or alongside) the secure form sent by email.
 
 * New [`rfi`](../compliance/request-for-information/query-rfis.md#retrieving-a-single-rfi) and [`rfis`](../compliance/request-for-information/query-rfis.md#retrieving-all-rfis) queries — retrieve your RFIs with optional filters by status and date range.
 * New [`answerRfiQuestion`](../compliance/request-for-information/answer-rfi-questions.md) mutation — answers a single RFI question with text and/or documents. Files are sent inline as base64; no separate upload step.
@@ -77,7 +84,7 @@ Please contact support to have this API enabled for your account.
 
 ### Added
 
-New [`confirmationOfPayee` ](../compliance/confirmation-of-payee/)mutation. Confirmation of Payee (CoP) is a name-verification service for Australian domestic accounts. You can use it to check whether the recipient's name matches the account details held by their financial institution. The service currently supports Australian BSB accounts.&#x20;
+New [`confirmationOfPayee` ](../compliance/confirmation-of-payee/)mutation. Confirmation of Payee (CoP) is a name-verification service for Australian domestic accounts. You can use it to check whether the recipient's name matches the account details held by their financial institution. The service currently supports Australian BSB accounts.
 
 ## 2026-03-18
 
@@ -89,7 +96,7 @@ Two new objects to [`updateSubClient`](../accounts/virtual-account-numbers/disab
 
 ### Added
 
-New `rail` and `railService`  properties to  `Withdrawal` and `Deposit` payloads. You can now see exactly which payment infrastructure (such as NPP or BECS) and specific schemes (such as NPP IFTI) are used to route your transactions.
+New `rail` and `railService` properties to `Withdrawal` and `Deposit` payloads. You can now see exactly which payment infrastructure (such as NPP or BECS) and specific schemes (such as NPP IFTI) are used to route your transactions.
 
 ## 2026-03-03
 
@@ -137,7 +144,7 @@ Please note, that a sibling property `statusMessage` will be hand crafted so tha
 
 The FX Payments `createPayment` can accept sender and recipient as JSON objects now too.
 
-This means that when you need to do an orchestrated FX payment you need to submit only one HTTP request (`createPayment`) instead of 3  (`createSender`, `createRecipient`, and `createPayment`).
+This means that when you need to do an orchestrated FX payment you need to submit only one HTTP request (`createPayment`) instead of 3 (`createSender`, `createRecipient`, and `createPayment`).
 
 ## 2025-10-31
 
@@ -145,7 +152,7 @@ This means that when you need to do an orchestrated FX payment you need to submi
 
 A high demand long awaited feature. You don't need to pre-create senders/recipients before submitting a payout using `createWithdrawal` .
 
-This means that when you need to do a remittance payment (aka payout) you need to submit only one HTTP request (`createWithdrawal`) instead of 3  (`createSender`, `createRecipient`, and `createWithdrawal`).
+This means that when you need to do a remittance payment (aka payout) you need to submit only one HTTP request (`createWithdrawal`) instead of 3 (`createSender`, `createRecipient`, and `createWithdrawal`).
 
 Example:
 

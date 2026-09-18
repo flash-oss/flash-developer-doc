@@ -1,13 +1,27 @@
 # Create sub-clients
 
-There are two types of sub-clients: `company` and `individual`.&#x20;
+There are two types of sub-clients: `company` and `individual`.
 
-For every `company` registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra** **details**:
+For every `company` registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
 
-* `legalName` - company legal name
-* `businessNumber` - company business number (e.g. ABN in Australia)
+* `legalName` - company legal name (required for a company)
+* `businessNumber` - company business number (e.g. ABN in Australia). Optional: leave it out if the business has none
+* `orgType` - the legal structure of the company. Optional: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`
 
-If the above fields are not set, the sub-client will be created as `individual` type.
+If `legalName` is not set, the sub-client will be created as `individual` type.
+
+#### Organisation type
+
+Use `orgType` to refine the the `company` type and say what kind of business the sub-client is:
+
+* `COMPANY` - a legal entity that is separate from the people who own it.
+* `PARTNERSHIP` - two or more people who run the business together and share its income or losses.
+* `TRUST` - a structure where a trustee runs the business on behalf of the trust's members (the beneficiaries).
+* `SOLE_TRADER` - one person who is legally responsible for every part of the business. Put the person's own name in `legalName` and if there's a business name too, then submit it in `tradingAsName`.
+
+These simple definitions follow the Australian Government's [business structures](https://business.gov.au/planning/business-structures-and-types/business-structures) guide.
+
+Any sub-client created with an `orgType` becomes a `COMPANY` and must have a `legalName`. You can only set `orgType` when you create the sub-client and [`updateSubClient`](disable-activate-and-update-sub-clients.md#updating-sub-clients) cannot change it.&#x20;
 
 {% hint style="warning" %}
 This action creates a real account number. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from Flash Payments services.
@@ -35,7 +49,8 @@ const bodyJSON = {
   variables: { 
     input: {
       legalName: "Chineese Tradings", 
-      businessNumber: "330782000329701", 
+      businessNumber: "330782000329701",
+      orgType: "COMPANY", 
       firstName: "John", 
       lastName: "Smith", 
       email: "john.smith@example.com",
@@ -65,7 +80,7 @@ mutation ($input: CreateSubClientInput!) {
   createSubClient(input: $input) {
     success code message
     subClient {
-      id legalName businessNumber fullName clientType status
+      id legalName businessNumber fullName clientType orgType status
       primaryContact {
         firstName lastName email mobile dob
       }
@@ -93,6 +108,7 @@ mutation($input: CreateSubClientInput!) {
       businessNumber
       fullName
       clientType
+      orgType
       status
       primaryContact {
         firstName
@@ -120,6 +136,7 @@ mutation($input: CreateSubClientInput!) {
   "input": {
     "legalName": "Chineese Tradings",
     "businessNumber": "330782000329701",
+    "orgType": "COMPANY",
     "firstName": "John",
     "lastName": "Smith",
     "email": "john.smith@example.com",
@@ -160,7 +177,8 @@ mutation($input: CreateSubClientInput!) {
         "legalName": "Chineese Tradings",
         "businessNumber": "330782000329701",
         "fullName": "John Smith",
-        "clientType": "INDIVIDUAL",
+        "clientType": "C",
+        "orgType": "COMPANY",
         "status": "ACTIVE",
         "primaryContact": {
           "firstName": "John",
