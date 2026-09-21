@@ -62,7 +62,7 @@ You can send funds through an international payment to your Flash Payments accou
 
 ### Security
 
-The API token you generate expires in 4 hours. You can always use `logout` GraphQL mutation to expire it earlier.
+The API token you generate expires in 24 hours. You can always use `logout` GraphQL mutation to expire it earlier.
 
 You can't reset your own password until we verify your identity.
 

@@ -19,7 +19,7 @@ Before doing any other API calls you have to obtain an auth token. It's a standa
 Tip: Use this handy website to parse the token contents: [jwt.io](https://jwt.io/)
 {% endhint %}
 
-The token lifetime is **4 hours** at this time. We might change this value in the future.
+The token lifetime is **24 hours** at this time. We might change this value in the future. The `exp` claim in the token is authoritative: the token is rejected as soon as that time passes, and only the `logout` mutation can invalidate it earlier.
 
 {% hint style="warning" %}
 Warning! You can't log in more than once per second. This limit is in place to maintain platform stability.
