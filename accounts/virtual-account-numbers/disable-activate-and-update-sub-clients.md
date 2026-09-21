@@ -213,6 +213,10 @@ mutation($id: ID!, $input: UpdateSubClientInput!) {
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+The same [uniqueness rule](create-sub-clients.md#duplicate-sub-clients-and-externalid) applies when updating: if the new `externalId` is already used by another of your sub-clients, the update is rejected with `DUPLICATE_SUBCLIENT`, and the sub-client is left unchanged. Re-sending a sub-client's own current `externalId` is accepted.
+{% endhint %}
+
 #### Updating sub-client address
 
 {% tabs %}
