@@ -20,6 +20,8 @@ IMPORTANT: Your Australian VAN will be restricted to local Australian transfers.
 
 The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).
 
+For `company` sub-clients we also record their **principals** - the people who own or control the business: ultimate beneficial owners, beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account.&#x20;
+
 If your Flash account has a multi-currency feature enabled, each of your sub-clients will also have access to virtual accounts in the selected currencies for which you hold balances.
 
 All [deposits](https://developer.flash-payments.com/deposits) sent to your sub-client Virtual Account Numbers (VANs) are booked on your (master-client's) corresponding account balances. **Sub-clients can't have their own balances**.

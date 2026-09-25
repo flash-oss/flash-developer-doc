@@ -4,11 +4,23 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-09-25
+
+### Added
+
+New `principals` field on the createSubClient and updateSubClient mutations and on the `SubClient` type. You can now tell us who owns and controls a `company` sub-client - its ultimate beneficial owners (UBOs), beneficial owners, directors, secretaries and trustees.
+
+* New `PrincipalInput` input and `Principal` type: `firstName`, `middleName`, `lastName`, `dob` and one or more `roles`. Every principal gets an `id`, returned on the `SubClient`.
+* New `PrincipalRole` enum: `ULTIMATE_BENEFICIAL_OWNER`, `BENEFICIAL_OWNER`, `DIRECTOR`, `SECRETARY`, `TRUSTEE`, `OTHER`.
+* `updateSubClient` takes the complete list: an entry with an `id` updates that person, an entry without an `id` adds someone new, and anyone on record you leave out is removed.
+
+&#x20;Our banking partners require this information for every company that holds a virtual account.
+
 ## 2026-09-18
 
 ### Added
 
-New optional `orgType` field on the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients.md) mutation and the `SubClient` type. \
+New optional `orgType` field on the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/) mutation and the `SubClient` type. \
 You can now specify the legal structure of a `company` type sub-client: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`. Existing integrations are unaffected: omitting `orgType` behaves exactly as before.
 
 ## 2026-09-08
@@ -29,7 +41,7 @@ New `sender.bsb` and `sender.accountNo` properties to all [deposit webhooks](web
 
 ### Changes
 
-Improved validation of the company name fields `legalName`, `tradingAsName`, and `companyName` in the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients.md), [createSender](../moving-funds/senders.md#create-an-individual-sender), [updateSender](../moving-funds/senders.md#update-sender), [createRecipient](../moving-funds/recipients/#create-an-individual-recipient), [updateRecipient](../moving-funds/recipients/#update-recipient), [createInstitution](../moving-funds/institutions.md#creating-institutions), and [updateInstitution](../moving-funds/institutions.md#updating-institution-example) mutations. These fields must now be 2–256 characters long and can no longer contain the `<`, `=`, or `>` characters.
+Improved validation of the company name fields `legalName`, `tradingAsName`, and `companyName` in the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/), [createSender](../moving-funds/senders.md#create-an-individual-sender), [updateSender](../moving-funds/senders.md#update-sender), [createRecipient](../moving-funds/recipients/#create-an-individual-recipient), [updateRecipient](../moving-funds/recipients/#update-recipient), [createInstitution](../moving-funds/institutions.md#creating-institutions), and [updateInstitution](../moving-funds/institutions.md#updating-institution-example) mutations. These fields must now be 2–256 characters long and can no longer contain the `<`, `=`, or `>` characters.
 
 ## 2026-06-17
 

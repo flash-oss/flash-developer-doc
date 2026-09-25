@@ -21,7 +21,9 @@ Use `orgType` to refine the `company` type and specify what kind of business the
 
 These simple definitions follow the Australian Government's [business structures](https://business.gov.au/planning/business-structures-and-types/business-structures) guide.
 
-Any sub-client created with an `orgType` becomes a `COMPANY` and must have a `legalName`. You can only set `orgType` when you create the sub-client and [`updateSubClient`](disable-activate-and-update-sub-clients.md#updating-sub-clients) cannot change it.&#x20;
+Any sub-client created with an `orgType` becomes a `COMPANY` and must have a `legalName`. You can only set `orgType` when you create the sub-client and [`updateSubClient`](../disable-activate-and-update-sub-clients.md#updating-sub-clients) cannot change it.&#x20;
+
+#### Data quality requirements
 
 {% hint style="warning" %}
 This action creates a real account number. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from Flash Payments services.
@@ -35,7 +37,7 @@ Please follow our latest requirements for the proper sub-client data submission:
 3. Provide proper `dob` : **the person must be under 65 years of age**&#x20;
 4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract agreement. By default, you can only create local Australian sub-clients with an adequate `address.street` field provided. **Any non-Australian entities will undergo extended due diligence based on their location and industry relevance for Flash Payments.**  &#x20;
 5. Provide proper `idDoc` (`type`, `docNumber`, `issuer` (optional), `issueDate` (optional), `expiryDate` (optional), and `country` ) based on the sub-client contact person's address. For Australian residents, either a driver’s license or a passport is accepted. For non-Australian residents, only a passport is accepted as a document type.
-6. Sometimes, we ask our partners to provide “instructing institution” information, but only if you are creating this VAN on behalf of another financial institution. More about institutions [here](../../moving-funds/institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
+6. Sometimes, we ask our partners to provide “instructing institution” information, but only if you are creating this VAN on behalf of another financial institution. More about institutions [here](../../../moving-funds/institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
 {% endhint %}
 
 The above personal data submission requirements should be as equally followed for the company contact person, with the exception of `address` property, which can be a company address in this case. &#x20;

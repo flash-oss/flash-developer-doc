@@ -17,7 +17,7 @@ const bodyJSON = {
   query: `
 query ($id: ID!, $input: FundingAccountQueryInput!) {
   subClient(id: $id) {
-    id fullName legalName tradingAsNam clientType status 
+    id fullName legalName tradingAsName clientType status 
     primaryContact {
       firstName middleName lastName email dob mobile
     }
@@ -27,6 +27,9 @@ query ($id: ID!, $input: FundingAccountQueryInput!) {
     postalAddress {
       building street suburb state country postcode
     } 
+    principals {
+      id roles firstName middleName lastName dob
+    }
     businessNumber bsb accountNo externalId
     fundingAccounts(input: $input) {
       iban accountNo bic currency externalReference
@@ -71,10 +74,18 @@ query($id: ID!, $input: FundingAccountQueryInput!) {
       country
       postcode
     }
+    principals {
+      id
+      roles
+      firstName
+      middleName
+      lastName
+      dob
+    }
     businessNumber
     bsb
     accountNo
-  	externalId
+    externalId
     fundingAccounts(input: $input) {
       iban
       accountNo
@@ -133,6 +144,24 @@ query($id: ID!, $input: FundingAccountQueryInput!) {
         "country": "AU",
         "postcode": "2017"
       },
+      "principals": [
+        {
+          "id": "68d4c3a1f2b9e07c4d1a5b11",
+          "roles": ["DIRECTOR", "ULTIMATE_BENEFICIAL_OWNER"],
+          "firstName": "John",
+          "middleName": null,
+          "lastName": "Smith",
+          "dob": "1980-12-12"
+        },
+        {
+          "id": "68d4c3a1f2b9e07c4d1a5b12",
+          "roles": ["BENEFICIAL_OWNER"],
+          "firstName": "Jane",
+          "middleName": null,
+          "lastName": "Smith",
+          "dob": null
+        }
+      ],
       "businessNumber": "91383840265",
       "bsb": "802919",
       "accountNo": "1066419",
