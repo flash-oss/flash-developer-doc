@@ -14,7 +14,7 @@ New `principals` field on the [createSubClient](../accounts/virtual-account-numb
 * New `PrincipalRole` enum: `ULTIMATE_BENEFICIAL_OWNER`, `BENEFICIAL_OWNER`, `DIRECTOR`, `SECRETARY`, `TRUSTEE`, `OTHER`.
 * `updateSubClient` takes the complete list: an entry with an `id` updates that person, an entry without an `id` adds someone new, and anyone on record you leave out is removed.
 
-&#x20;Our banking partners require this information for every company that holds a virtual account.
+Optional for now and accepted for `company` sub-clients only. Existing integrations are unaffected.
 
 ## 2026-09-18
 

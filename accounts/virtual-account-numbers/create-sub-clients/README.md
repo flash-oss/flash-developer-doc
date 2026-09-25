@@ -7,6 +7,7 @@ For every `company` registered as a sub-client, there must be one contact person
 * `legalName` - company legal name (required for a company)
 * `businessNumber` - company business number (e.g. ABN in Australia). Optional: leave it out if the business has none
 * `orgType` - the legal structure of the company. Optional: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`
+* `principals` - the people who own or control the company. Optional for now, see [Principals](principals.md)
 
 If `legalName` is not set, the sub-client will be created as `individual` type.
 
