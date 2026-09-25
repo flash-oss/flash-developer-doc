@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added
 
-New `principals` field on the createSubClient and updateSubClient mutations and on the `SubClient` type. You can now tell us who owns and controls a `company` sub-client - its ultimate beneficial owners (UBOs), beneficial owners, directors, secretaries and trustees.
+New `principals` field on the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/principals.md#creating-a-sub-client-with-principals) and [updateSubClient](../accounts/virtual-account-numbers/disable-activate-and-update-sub-clients.md#updating-sub-client-principals) mutations and on the `SubClient` type. You can now tell us who owns and controls a `company` sub-client - its ultimate beneficial owners (UBOs), beneficial owners, directors, secretaries and trustees.
 
 * New `PrincipalInput` input and `Principal` type: `firstName`, `middleName`, `lastName`, `dob` and one or more `roles`. Every principal gets an `id`, returned on the `SubClient`.
 * New `PrincipalRole` enum: `ULTIMATE_BENEFICIAL_OWNER`, `BENEFICIAL_OWNER`, `DIRECTOR`, `SECRETARY`, `TRUSTEE`, `OTHER`.
