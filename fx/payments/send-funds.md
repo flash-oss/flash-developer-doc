@@ -138,7 +138,9 @@ If sending funds from yourself, there's an option to use your company's Flash ac
 
 ### Sender - `sender` object, `senderId`, `subClientId` , or neither <a href="#sender-senderid-or-subclientid-or-neither" id="sender-senderid-or-subclientid-or-neither"></a>
 
-Just like submitting recipient information, you can either [pre-create a sender](../../moving-funds/senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createPayment` as shown in the above example. Please note that a new sender record won’t be created in the latter case.\
+Just like submitting recipient information, you can either [pre-create a sender](../../moving-funds/senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createPayment` as shown in the above example. Please note that a new sender record won’t be created in the latter case.
+
+A `sender` object submitted this way cannot carry principals either. To attach principals to a company sender, create it with `createSender` first and pass its `senderId`.\
 \
 Alternatively, if your account is configured to send funds **on behalf of** your [sub-clients](https://developer.flash-payments.com/sub-clients), you may provide us with the `subClientId` and the FX payment created will be linked to that sub-client. In this case the sub-client will be used as the sender and reported to the government.
 
