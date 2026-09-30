@@ -174,10 +174,6 @@ Please note that the `street` field is mandatory for Australian addresses.
 The date of birth (`dob`) is not mandatory. However, if it is not provided, your transactions may undergo additional compliance reviews, which can lead to longer processing times—potentially several hours or days instead of seconds. Please also be aware that this may result in additional fees to cover the extra effort involved.
 {% endhint %}
 
-{% hint style="info" %}
-For `company` senders you can also tell us [who owns and controls the business](/broken/pages/iqDFuhBqWgvT7DoB0FmD). Optional for now.&#x20;
-{% endhint %}
-
 #### Create an Individual sender
 
 {% tabs %}
@@ -286,6 +282,10 @@ mutation($input: SenderInput!) {
 
 #### Create a Company sender
 
+{% hint style="info" %}
+For `company` senders you can also tell us who owns and controls the business. Please see [Sender principals](sender-principals.md). Optional for now.&#x20;
+{% endhint %}
+
 {% tabs %}
 {% tab title="JavaScript" %}
 ```javascript
@@ -393,7 +393,9 @@ mutation($input: SenderInput!) {
 
 #### Update sender
 
-To add, change or remove a company sender's principals, send the complete `principals` list together with the sender's `companyName` and `address` - see Updating sender principals.
+{% hint style="info" %}
+To add, change or remove a company sender's principals, send the complete `principals` list together with the sender's `companyName` and `address` - see [Updating sender principals](sender-principals.md#updating-sender-principals).
+{% endhint %}
 
 {% tabs %}
 {% tab title="JavaScript" %}
