@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added
 
-New `principals` field on the createSender and updateSender mutations and on the `Sender` type. The principals you can already record for company sub-clients can now be recorded for `company` senders too - their ultimate beneficial owners (UBOs), beneficial owners, directors, secretaries and trustees.
+New `principals` field on the [createSender](../moving-funds/senders/sender-principals.md#creating-a-company-sender-with-principals) and [updateSender](../moving-funds/senders/sender-principals.md#updating-sender-principals) mutations and on the `Sender` type. The principals you can already record for company sub-clients can now be recorded for `company` senders too - their ultimate beneficial owners (UBOs), beneficial owners, directors, secretaries and trustees.
 
 * Same `PrincipalInput`, `Principal` and `PrincipalRole` as for [sub-client principals](../accounts/virtual-account-numbers/create-sub-clients/principals.md). Every principal gets an `id`, returned on the `Sender`.
 * `updateSender` takes the complete list: an entry with an `id` updates that person, an entry without an `id` adds someone new, and anyone on record you leave out is removed.

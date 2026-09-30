@@ -8,7 +8,7 @@ description: >-
 
 For every `company` sender we also want to know who owns and controls it. These people are the sender's **principals**: its ultimate beneficial owners, beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company on whose behalf funds are sent, and we pass it on to them with the payment.
 
-Send them in the `principals` list of `createSender`. Each entry describes one person, exactly as for [sub-client principals](https://developer.flash-payments.com/accounts/virtual-account-numbers/create-sub-clients/principals):
+Send them in the `principals` list of `createSender`. Each entry describes one person, exactly as for [sub-client principals:](../../accounts/virtual-account-numbers/create-sub-clients/principals.md)
 
 * `roles` - every role the person holds. Required, one or more of the values below
 * `firstName` and `lastName` - required. Latin characters only, the same rules as for an individual sender's name
@@ -24,16 +24,16 @@ One person can hold several roles:
 * `TRUSTEE` - holds the organisation's assets on trust for its beneficiaries.
 * `OTHER` - significant control or influence that none of the other roles describes.
 
-Principals are accepted for `company` senders only: sending them for an individual is rejected with `INVALID_DATA`. Do not send an `id` when creating a sender - we assign one to every principal and return it in the response, so that you can [edit that person later](https://claude.ai/epitaxy/local_6635b481-9973-4a21-aa64-06382512ac7a#updating-sender-principals). Real people, real names, real dates of birth - the same data quality expectations apply as to the sender itself.
+Principals are accepted for `company` senders only: sending them for an individual is rejected with `INVALID_DATA`. Do not send an `id` when creating a sender - we assign one to every principal and return it in the response, so that you can [edit that person later](sender-principals.md#updating-sender-principals). Real people, real names, real dates of birth - the same data quality expectations apply as to the sender itself.
 
 {% hint style="info" %}
-Principals are optional for now. They will become mandatory for every `company` sender - we will announce the date in advance in the [API change log](https://developer.flash-payments.com/basics/api-change-log). Please start sending them with every new company sender and add them to your existing ones via `updateSender`. The same details can be recorded in Flash Connect.&#x20;
+Principals are optional for now. They will become mandatory for every `company` sender - we will announce the date in advance in the [API change log](../../basics/api-change-log.md). Please start sending them with every new company sender and add them to your existing ones via `updateSender`. The same details can be recorded in Flash Connect.&#x20;
 {% endhint %}
 
 You can read them back at any time via the `principals` field of the `Sender` type (`id`, `roles`, `firstName`, `middleName`, `lastName`, `dob`). It is an empty list for individual senders.
 
 {% hint style="info" %}
-Principals live on sender records only. A `sender` object submitted inline to [`createWithdrawal`](https://developer.flash-payments.com/moving-funds/payouts/withdraw-funds#sender-sender-object-senderid-subclientid-or-neither) or [`createPayment`](https://developer.flash-payments.com/fx/payments/send-funds#sender-senderid-or-subclientid-or-neither) is not saved as a sender, so any `principals` in it are ignored. To attach principals to the sender of a withdrawal or FX payment, create the sender with `createSender` first and pass its `senderId`. The `sender` of such a withdrawal or payment then returns the principals too; for an inline sender, `principals` is `null`. For withdrawals and payments made on behalf of a sub-client, read the principals from the [sub-client](https://developer.flash-payments.com/accounts/virtual-account-numbers/query-sub-clients) instead.
+Principals live on sender records only. A `sender` object submitted inline to [`createWithdrawal`](../payouts/withdraw-funds.md) or [`createPayment`](../../fx/payments/send-funds.md) is not saved as a sender, so any `principals` in it are ignored. To attach principals to the sender of a withdrawal or FX payment, create the sender with `createSender` first and pass its `senderId`. The `sender` of such a withdrawal or payment then returns the principals too; for an inline sender, `principals` is `null`. For withdrawals and payments made on behalf of a sub-client, read the principals from the [sub-client](../../accounts/virtual-account-numbers/create-sub-clients/principals.md) instead.
 {% endhint %}
 
 #### Creating a company sender with principals
