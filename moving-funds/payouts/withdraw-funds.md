@@ -139,7 +139,7 @@ Please also note that the recipient's Australian `accountIdType` must be either 
 
 ### Sender - `sender` object, `senderId`, `subClientId` , or neither
 
-Just like submitting recipient information, you can either [pre-create a sender](../senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createWithdrawal` as shown in the above example. Please note that a new sender record won’t be created in the latter case.
+Just like submitting recipient information, you can either [pre-create a sender](../senders/#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createWithdrawal` as shown in the above example. Please note that a new sender record won’t be created in the latter case.
 
 A `sender` object submitted this way cannot carry principals either. To attach principals to a company sender, create it with `createSender` first and pass its `senderId`.\
 \

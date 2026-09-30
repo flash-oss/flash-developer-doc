@@ -138,7 +138,7 @@ If sending funds from yourself, there's an option to use your company's Flash ac
 
 ### Sender - `sender` object, `senderId`, `subClientId` , or neither <a href="#sender-senderid-or-subclientid-or-neither" id="sender-senderid-or-subclientid-or-neither"></a>
 
-Just like submitting recipient information, you can either [pre-create a sender](../../moving-funds/senders.md#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createPayment` as shown in the above example. Please note that a new sender record won’t be created in the latter case.
+Just like submitting recipient information, you can either [pre-create a sender](../../moving-funds/senders/#create-a-sender) and provide us with the `senderId` or directly submit a valid `sender` object to `createPayment` as shown in the above example. Please note that a new sender record won’t be created in the latter case.
 
 A `sender` object submitted this way cannot carry principals either. To attach principals to a company sender, create it with `createSender` first and pass its `senderId`.\
 \

@@ -39,7 +39,7 @@ You can now specify the legal structure of a `company` type sub-client: `COMPANY
 
 ### Added
 
-New `website` field on the [Sender](../moving-funds/senders.md). For **company** senders you can now record the ultimate sender's public website. We store it as a canonical bare domain — the scheme, any `www.` prefix, and any path are stripped (so `https://www.example.com/about` is saved as `example.com`).
+New `website` field on the [Sender](../moving-funds/senders/). For **company** senders you can now record the ultimate sender's public website. We store it as a canonical bare domain — the scheme, any `www.` prefix, and any path are stripped (so `https://www.example.com/about` is saved as `example.com`).
 
 ## 2026-06-25
 
@@ -53,7 +53,7 @@ New `sender.bsb` and `sender.accountNo` properties to all [deposit webhooks](web
 
 ### Changes
 
-Improved validation of the company name fields `legalName`, `tradingAsName`, and `companyName` in the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/), [createSender](../moving-funds/senders.md#create-an-individual-sender), [updateSender](../moving-funds/senders.md#update-sender), [createRecipient](../moving-funds/recipients/#create-an-individual-recipient), [updateRecipient](../moving-funds/recipients/#update-recipient), [createInstitution](../moving-funds/institutions.md#creating-institutions), and [updateInstitution](../moving-funds/institutions.md#updating-institution-example) mutations. These fields must now be 2–256 characters long and can no longer contain the `<`, `=`, or `>` characters.
+Improved validation of the company name fields `legalName`, `tradingAsName`, and `companyName` in the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/), [createSender](../moving-funds/senders/#create-an-individual-sender), [updateSender](../moving-funds/senders/#update-sender), [createRecipient](../moving-funds/recipients/#create-an-individual-recipient), [updateRecipient](../moving-funds/recipients/#update-recipient), [createInstitution](../moving-funds/institutions.md#creating-institutions), and [updateInstitution](../moving-funds/institutions.md#updating-institution-example) mutations. These fields must now be 2–256 characters long and can no longer contain the `<`, `=`, or `>` characters.
 
 ## 2026-06-17
 
@@ -259,7 +259,7 @@ Removed `depositDetails` query as deprecated and non-functioning since March 202
 
 ### Changed
 
-Improved validation rules for the following mutations: [createSender](../moving-funds/senders.md#create-a-sender), [updateSender](../moving-funds/senders.md#update-sender), [createInstitution](../moving-funds/institutions.md#creating-institutions), [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client), [createWithdrawal](../moving-funds/payouts/withdraw-funds.md), and [createPayment](../fx/payments/send-funds.md)\
+Improved validation rules for the following mutations: [createSender](../moving-funds/senders/#create-a-sender), [updateSender](../moving-funds/senders/#update-sender), [createInstitution](../moving-funds/institutions.md#creating-institutions), [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client), [createWithdrawal](../moving-funds/payouts/withdraw-funds.md), and [createPayment](../fx/payments/send-funds.md)\
 Affected fields: `idDoc.docNumber` `idDoc.issuer` `legalName` `businessNumber` `legalName` `externalId`. These fields allow only the ASCII characters now.
 
 Also, the first, last, and middle names are limited to 75 chars now.
@@ -270,7 +270,7 @@ Also, FQDN-like names will be rejected. Examples: "Aaron x.com", "Ben.eu", "Visi
 
 ### Added
 
-New fields have been added to the [createSender](../moving-funds/senders.md#create-a-sender), [updateSender](../moving-funds/senders.md#update-sender), and [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document.\
+New fields have been added to the [createSender](../moving-funds/senders/#create-a-sender), [updateSender](../moving-funds/senders/#update-sender), and [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document.\
 To avoid creating a breaking change, we currently allow you to provide `idDoc.country` and/or `idDoc.issuer`. In the future, we plan to make `idDoc.country` a **required** field.
 
 ## 2024-12-09
