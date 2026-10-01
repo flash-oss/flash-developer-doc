@@ -32,6 +32,8 @@ Principals are optional for now. They will become mandatory for every `company` 
 
 You can read them back at any time via the `principals` field of the `SubClient` type (`id`, `roles`, `firstName`, `middleName`, `lastName`, `dob`). It is an empty list for `individual` sub-clients.
 
+Company senders carry the same principals - see [Sender principals](../../../moving-funds/senders/sender-principals.md).
+
 #### Creating a sub-client with principals
 
 {% tabs %}

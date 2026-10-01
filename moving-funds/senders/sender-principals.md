@@ -8,7 +8,7 @@ description: >-
 
 For every `company` sender we also want to know who owns and controls it. These people are the sender's **principals**: its ultimate beneficial owners, beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company on whose behalf funds are sent, and we pass it on to them with the payment.
 
-Send them in the `principals` list of `createSender`. Each entry describes one person, exactly as for [sub-client principals:](../../accounts/virtual-account-numbers/create-sub-clients/principals.md)
+Send them in the `principals` list of `createSender`. Each entry describes one person, exactly as for [sub-client principals](../../accounts/virtual-account-numbers/create-sub-clients/principals.md):
 
 * `roles` - every role the person holds. Required, one or more of the values below
 * `firstName` and `lastName` - required. Latin characters only, the same rules as for an individual sender's name
@@ -32,8 +32,8 @@ Principals are optional for now. They will become mandatory for every `company` 
 
 You can read them back at any time via the `principals` field of the `Sender` type (`id`, `roles`, `firstName`, `middleName`, `lastName`, `dob`). It is an empty list for individual senders.
 
-{% hint style="info" %}
-Principals live on sender records only. A `sender` object submitted inline to [`createWithdrawal`](../payouts/withdraw-funds.md) or [`createPayment`](../../fx/payments/send-funds.md) is not saved as a sender, so any `principals` in it are ignored. To attach principals to the sender of a withdrawal or FX payment, create the sender with `createSender` first and pass its `senderId`. The `sender` of such a withdrawal or payment then returns the principals too; for an inline sender, `principals` is `null`. For withdrawals and payments made on behalf of a sub-client, read the principals from the [sub-client](../../accounts/virtual-account-numbers/create-sub-clients/principals.md) instead.
+{% hint style="warning" %}
+Principals live on sender records only. A `sender` object submitted inline to [`createWithdrawal`](../payouts/withdraw-funds.md#sender-sender-object-senderid-subclientid-or-neither) or [`createPayment`](../../fx/payments/send-funds.md#sender-senderid-or-subclientid-or-neither) is not saved as a sender, so any `principals` in it are ignored. To attach principals to the sender of a withdrawal or FX payment, create the sender with `createSender` first and pass its `senderId`. The `sender` of such a withdrawal or payment then returns the principals too; for an inline sender, `principals` is `null`. For withdrawals and payments made on behalf of a sub-client, read the principals from the [sub-client](../../accounts/virtual-account-numbers/create-sub-clients/principals.md) instead.
 {% endhint %}
 
 #### Creating a company sender with principals
