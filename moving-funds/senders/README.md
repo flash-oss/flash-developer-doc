@@ -283,6 +283,10 @@ mutation($input: SenderInput!) {
 #### Create a Company sender
 
 {% hint style="info" %}
+A `company` sender can also carry an optional `orgType`, its legal structure: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`. When sent, `companyName` is required. For a `SOLE_TRADER`, `companyName` is the person's own full name and `tradingAsName` the business name, if any. The value is returned on the `Sender`, including the sender copy inside a `Withdrawal` or `Payment`. The values are the same as for sub-clients.
+{% endhint %}
+
+{% hint style="info" %}
 For `company` senders you can also tell us who owns and controls the business. Please see [Sender principals](sender-principals.md). Optional for now.&#x20;
 {% endhint %}
 
@@ -293,6 +297,7 @@ const bodyJSON = {
   variables: {
     input: {
       companyName: "Acme Pte Ltd",
+      orgType: "COMPANY", 
       website: "acme.com",
       businessNumber: "12345678912",
       email: "acme@example.com",
@@ -319,7 +324,7 @@ mutation ($input: SenderInput!) {
   createSender(input: $input) {
     success code message 
     sender { 
-      id nickName
+      id nickName orgType
     }  
   }
 }`,
@@ -335,6 +340,8 @@ mutation($input: SenderInput!) {
     sender {
       id 
       nickName
+      orgType
+      website
       # there are many other properties
     }
   }
@@ -347,6 +354,7 @@ mutation($input: SenderInput!) {
 {
   "input": {
     "companyName": "Acme Pte Ltd", 
+    "orgType": "COMPANY", 
     "website": "acme.com",
     "businessNumber": "12345678912", 
     "email": "acme@example.com", 
@@ -382,6 +390,7 @@ mutation($input: SenderInput!) {
       "sender": {
         "id": "68638e6989c1fb1b255ca9c3",
         "nickName": "Acme Pte L",
+        "orgType": "COMPANY",
         "website": "acme.com"
       }
     }
@@ -394,7 +403,9 @@ mutation($input: SenderInput!) {
 #### Update sender
 
 {% hint style="info" %}
-To add, change or remove a company sender's principals, send the complete `principals` list together with the sender's `companyName` and `address` - see [Updating sender principals](sender-principals.md#updating-sender-principals).
+To add, change or remove a company sender's principals, send the complete `principals` list together with the sender's `companyName` and `address` - see [Updating sender principals](sender-principals.md#updating-sender-principals).\
+\
+`orgType` is set or changed the same way, sent together with `companyName`. A sender updated to an individual loses it.
 {% endhint %}
 
 {% tabs %}

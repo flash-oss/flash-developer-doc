@@ -4,6 +4,14 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-10-12
+
+### Added
+
+New optional `orgType` field on the `createSender`, `updateSender`, `createRecipient` and `updateRecipient` mutations and on the `Sender` and `Recipient` types. The legal structure you can already record for sub-clients can now be recorded for `company` senders and recipients too: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`.
+
+Existing integrations are unaffected: omitting `orgType` behaves exactly as before.
+
 ## 2026-09-30
 
 ### Added

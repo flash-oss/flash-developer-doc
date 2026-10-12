@@ -242,6 +242,10 @@ mutation($input: RecipientInput!) {
 
 #### Create a Company recipient
 
+{% hint style="info" %}
+A `company` recipient can also carry an optional `orgType`, its legal structure: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`. When sent, `companyName` is required. For a `SOLE_TRADER`, `companyName` is the person's own full name. The value is returned on the `Recipient`, including the recipient copy inside a `Withdrawal` or `Payment`. The values are the same as for sub-clients.
+{% endhint %}
+
 {% tabs %}
 {% tab title="JavaScript" %}
 ```graphql
@@ -249,6 +253,7 @@ const bodyJSON = {
   variables: {
     input: {
       companyName: "Acme Pty Ltd",
+      orgType: "COMPANY",
       accountIdType: "BSB",
       currency: "AUD",
       bsb: "370370",
@@ -268,7 +273,7 @@ mutation ($input: RecipientInput!) {
   createRecipient(input: $input) {
     success code message 
     recipient {
-      id nickName accountIdType currency email
+      id nickName accountIdType currency email orgType
     }
   }
 }`,
@@ -282,7 +287,7 @@ mutation($input: RecipientInput!) {
   createRecipient(input: $input) {
     success code message
     recipient {
-      id nickName accountIdType currency email
+      id nickName accountIdType currency email orgType
       # there are many other properties
     }
   }
@@ -295,6 +300,7 @@ mutation($input: RecipientInput!) {
  {
   "input": { 
     "companyName": "Acme Pty Ltd",
+    "orgType": "COMPANY",
     "accountIdType": "BSB",
     "currency": "AUD",
     "bsb": "370370",
@@ -323,6 +329,7 @@ mutation($input: RecipientInput!) {
       "recipient": {
         "id": "6859ca4baa36ba8534d97da1",
         "nickName": "Acme Pty L",
+        "orgType": "COMPANY",
         "accountIdType": "BSB",
         "currency": "AUD",
         "email": "john@example.com"
@@ -337,7 +344,7 @@ mutation($input: RecipientInput!) {
 #### Update recipient
 
 {% hint style="info" %}
-Please note the recipient's`accountIdType`can't be changed
+Please note the recipient's `accountIdType` can't be changed, while `orgType` can be set or changed on update, and sent together with `companyName`.
 {% endhint %}
 
 {% tabs %}
