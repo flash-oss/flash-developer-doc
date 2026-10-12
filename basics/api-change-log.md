@@ -12,6 +12,12 @@ New optional `orgType` field on the `createSender`, `updateSender`, `createRecip
 
 Existing integrations are unaffected: omitting `orgType` behaves exactly as before.
 
+### Changes
+
+`businessNumber` is now required when you create a business sub-client via [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/), unless `orgType` is `TRUST` or `SOLE_TRADER`. Those two may legitimately not hold an ABN; every other business must send one, and a business sent without an `orgType` counts as an ordinary company. Requests that leave it out are rejected with `VALIDATION_ERROR`.
+
+If you create trusts or sole traders today without a business number, start sending the matching `orgType` on every `createSubClient` call before this takes effect.
+
 ## 2026-09-30
 
 ### Added

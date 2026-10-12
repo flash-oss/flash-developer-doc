@@ -5,7 +5,7 @@ There are two types of sub-clients: `company` and `individual`.
 For every `company` registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
 
 * `legalName` - company legal name (required for a company)
-* `businessNumber` - company business number (e.g. ABN in Australia). Optional: leave it out if the business has none
+* `businessNumber` - company business number (e.g. ABN in Australia). Required, unless `orgType` is `TRUST` or `SOLE_TRADER`
 * `orgType` - the legal structure of the company. Optional: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`
 * `principals` - the people who own or control the company. Optional for now, see [Principals](principals.md)
 
@@ -23,6 +23,8 @@ Use `orgType` to refine the `company` type and specify what kind of business the
 These simple definitions follow the Australian Government's [business structures](https://business.gov.au/planning/business-structures-and-types/business-structures) guide.
 
 Any sub-client created with an `orgType` becomes a `COMPANY` and must have a `legalName`. You can only set `orgType` when you create the sub-client and [`updateSubClient`](../disable-activate-and-update-sub-clients.md#updating-sub-clients) cannot change it.&#x20;
+
+`orgType` also decides whether the business number is required. A `TRUST` or a `SOLE_TRADER` may legitimately not hold an ABN, so for those two you can leave `businessNumber` out. Every other business must send one, and that includes a business sent without an `orgType` — it is treated as an ordinary company. Creating one without a `businessNumber` is rejected with `VALIDATION_ERROR`, so send the `orgType` that matches the business if it is a trust or a sole trader.
 
 #### Data quality requirements
 
