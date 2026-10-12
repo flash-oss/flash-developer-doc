@@ -8,9 +8,13 @@ description: History of changes to this API schema
 
 ### Added
 
-New optional `orgType` field on the `createSender`, `updateSender`, `createRecipient` and `updateRecipient` mutations and on the `Sender` and `Recipient` types. The legal structure you can already record for sub-clients can now be recorded for `company` senders and recipients too: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`.
+New optional `orgType` field on the [`createSender`](../moving-funds/senders/#create-a-company-sender), [`updateSender`](../moving-funds/senders/#update-sender), [`createRecipient`](../moving-funds/recipients/#create-a-company-recipient) and [`updateRecipient`](../moving-funds/recipients/#update-recipient) mutations and on the `Sender` and `Recipient` types. The legal structure you can already record for sub-clients can now be recorded for `company` senders and recipients too: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`.
 
 Existing integrations are unaffected: omitting `orgType` behaves exactly as before.
+
+### Changes
+
+A `sender` or `recipient` submitted inline to `createPayment` is now validated the same way as on `createWithdrawal`, before processing starts. Valid requests are unaffected.
 
 ## 2026-09-30
 

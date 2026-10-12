@@ -18,7 +18,7 @@ Use `orgType` to refine the `company` type and specify what kind of business the
 * `COMPANY` - a legal entity that is separate from the people who own it.
 * `PARTNERSHIP` - two or more people who run the business together and share its income or losses.
 * `TRUST` - a structure where a trustee runs the business on behalf of the trust's members (the beneficiaries).
-* `SOLE_TRADER` - one person who is legally responsible for every part of the business. Put the person's own name in `legalName` and if there's a business name too, then submit it in `tradingAsName`.
+* `SOLE_TRADER` - one person who is legally responsible for every part of the business. Put the person’s own name in `legalName` and the business name, if any, in `tradingAsName`.
 
 These simple definitions follow the Australian Government's [business structures](https://business.gov.au/planning/business-structures-and-types/business-structures) guide.
 

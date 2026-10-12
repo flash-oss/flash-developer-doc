@@ -4,7 +4,7 @@ description: CRUD queries for your payment senders
 
 # Senders
 
-We are legally obliged to collect the actual sender details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
+We are legally obliged to collect the actual sender details. Please, do not send us the details of an intermediate organisation such as an exchange, bank or gateway.
 
 If you want to receive funds from yourself then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other sender details options.
 
@@ -324,7 +324,7 @@ mutation ($input: SenderInput!) {
   createSender(input: $input) {
     success code message 
     sender { 
-      id nickName orgType
+      id nickName orgType website
     }  
   }
 }`,

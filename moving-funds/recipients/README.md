@@ -4,7 +4,7 @@ description: CRUD queries for your payment recipients
 
 # Recipients
 
-We are legally obliged to collect the actual recipient details. Please, do not send us an intermediate organisation details such as exchanges, banks, gateways, etc.
+We are legally obliged to collect the actual recipient details. Please, do not send us the details of an intermediate organisation such as an exchange, bank or gateway.
 
 Please, send us the final funds recipient. If sending to self then please provide your own details. See the DOCS in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 
@@ -137,7 +137,7 @@ query($input: RecipientQueryInput!) {
 {% hint style="info" %}
 In addresses the `suburb` field is an Australian suburb. For other countries you should put the city (e.g. Manila or London) or any other small administrative area name.
 
-If you find it technically challenging to submit all components of the recipients’s address, we would appreciate it if you could at least collect the recipients’s country along with a complete address string that includes the postcode and put them into the `country` and `street` fields, respectively. In this case, you can skip the `postcode`, `suburb`, and `state` fields, and the recipient record will still be created.&#x20;
+If you find it technically challenging to submit all components of the recipient’s address, we would appreciate it if you could at least collect the recipient’s country along with a complete address string that includes the postcode and put them into the `country` and `street` fields, respectively. In this case, you can skip the `postcode`, `suburb`, and `state` fields, and the recipient record will still be created.&#x20;
 
 Please note that the `street` field is mandatory for Australian addresses.
 {% endhint %}
@@ -344,7 +344,9 @@ mutation($input: RecipientInput!) {
 #### Update recipient
 
 {% hint style="info" %}
-Please note the recipient's `accountIdType` can't be changed, while `orgType` can be set or changed on update, and sent together with `companyName`.
+Please note the recipient’s `accountIdType` can’t be changed.&#x20;
+
+`orgType` can be set or changed on update, send it together with `companyName`.
 {% endhint %}
 
 {% tabs %}
@@ -430,7 +432,7 @@ mutation($id: ID, $input: RecipientInput!) {
 ```javascript
 {
   "data": {
-    "createRecipient": {
+    "updateRecipient": {
       "success": true,
       "code": "SUCCESS",
       "message": "Recipient updated",
