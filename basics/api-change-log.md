@@ -16,6 +16,8 @@ Existing integrations are unaffected: omitting `orgType` behaves exactly as befo
 
 A `sender` or `recipient` submitted inline to `createPayment` is now validated the same way as on `createWithdrawal`, before processing starts. Valid requests are unaffected.
 
+[`createSubClient`](../accounts/virtual-account-numbers/create-sub-clients/) now requires `businessNumber` for a business sub-client unless its `orgType` is `TRUST` or `SOLE_TRADER`. A business sent without `orgType` counts as a company and must include it. A request without it is rejected with `VALIDATION_ERROR`.
+
 ## 2026-09-30
 
 ### Added
