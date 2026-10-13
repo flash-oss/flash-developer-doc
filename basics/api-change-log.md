@@ -8,7 +8,7 @@ description: History of changes to this API schema
 
 ### Added <a href="#user-content-added" id="user-content-added"></a>
 
-New PayID registration API. You can now give each sub-client a PayID aliases at your approved email domains. Your customers can then pay you by that aliases instead of their Australian BSB and account numbers, and the payments arrive as an ordinary deposits on the sub-client VANs. See PayIDs.
+New PayID registration API. You can now give your sub-clients PayID aliases at your approved email domains. Your customers can then pay you by that aliases instead of their Australian BSB and account numbers, and the payments arrive as an ordinary deposits on the sub-client VANs. See PayIDs.
 
 * New mutations `registerAlias` and `deregisterAlias`. A PayID at a domain approved for you is live as soon as the reply arrives.
 * New `aliases` field on the `SubClient` type, listing the sub-client's PayIDs, and new `Alias` type with `alias`, `aliasType` , `status`  and `createdAt`.
