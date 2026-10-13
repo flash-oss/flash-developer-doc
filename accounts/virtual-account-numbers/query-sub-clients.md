@@ -4,6 +4,8 @@
 
 #### Query for a single sub-client
 
+The `aliases` field lists the sub-client's PayIDs. It is resolved separately for every sub-client in a response, so request it only where you need it.
+
 {% tabs %}
 {% tab title="JavaScript" %}
 ```javascript
@@ -31,6 +33,9 @@ query ($id: ID!, $input: FundingAccountQueryInput!) {
       id roles firstName middleName lastName dob
     }
     businessNumber bsb accountNo externalId
+    aliases {
+      alias aliasType status createdAt
+    }
     fundingAccounts(input: $input) {
       iban accountNo bic currency externalReference
     }
@@ -86,6 +91,12 @@ query($id: ID!, $input: FundingAccountQueryInput!) {
     bsb
     accountNo
     externalId
+    aliases {
+      alias
+      aliasType
+      status
+      createdAt
+    }
     fundingAccounts(input: $input) {
       iban
       accountNo
@@ -165,7 +176,15 @@ query($id: ID!, $input: FundingAccountQueryInput!) {
       "businessNumber": "91383840265",
       "bsb": "802919",
       "accountNo": "1066419",
-      "externalId": "991188227733"
+      "externalId": "991188227733",
+      "aliases": [
+        {
+          "alias": "acme-corp@example.com",
+          "aliasType": "EMAIL",
+          "status": "ACTIVE",
+          "createdAt": "2026-10-08T01:12:33.481Z"
+        }
+      ]
     }
   }
 }

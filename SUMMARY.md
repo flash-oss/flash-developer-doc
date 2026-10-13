@@ -23,6 +23,7 @@
   * [Sub-client statuses](accounts/virtual-account-numbers/sub-client-statuses.md)
   * [Disable, Activate and Update sub-clients](accounts/virtual-account-numbers/disable-activate-and-update-sub-clients.md)
   * [Query sub-clients](accounts/virtual-account-numbers/query-sub-clients.md)
+  * [Sub-client PayIDs](accounts/virtual-account-numbers/sub-client-payids.md)
 
 ## 💸 Moving funds
 
@@ -36,6 +37,7 @@
   * [Deposit statuses](moving-funds/deposits/deposit-statuses.md)
   * [Query deposits](moving-funds/deposits/query-deposits.md)
   * [Refund deposits](moving-funds/deposits/refund-deposits.md)
+  * [Deposits to a PayID](moving-funds/deposits/deposits-to-a-payid.md)
 * [Senders](moving-funds/senders/README.md)
   * [Sender principals](moving-funds/senders/sender-principals.md)
 * [Recipients](moving-funds/recipients/README.md)

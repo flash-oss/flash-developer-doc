@@ -22,6 +22,8 @@ The **account name** is your sub-client's name. For companies - it's their `trad
 
 For `company` sub-clients we also need to record their [principals](create-sub-clients/principals.md) - the people who own or control the business: ultimate beneficial owners (UBOs), beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account.&#x20;
 
+Sub-clients can also be paid by **PayID**. Register an address at your own domain on a sub-client's virtual account via the PayIDs API, and your customers can use it instead of the BSB and account number. Payments to a PayID arrive as ordinary deposits on the sub-client's VAN.
+
 If your Flash account has a multi-currency feature enabled, each of your sub-clients will also have access to virtual accounts in the selected currencies for which you hold balances.
 
 All [deposits](https://developer.flash-payments.com/deposits) sent to your sub-client Virtual Account Numbers (VANs) are booked on your (master-client's) corresponding account balances. **Sub-clients can't have their own balances**.

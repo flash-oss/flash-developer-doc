@@ -25,5 +25,5 @@ To browse your deposits, you can use our [FlashConnect](https://connect.uat.flas
 {% hint style="info" %}
 Tip. You can simulate and test a deposit with the FlashConnect tool in the UAT environment. Just go to the _Deposits_ page and click "SEND TEST DEPOSIT".\
 \
-Additionally, you can test a deposit sent by your [sub-client](../../accounts/virtual-account-numbers/) in the UAT. Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST DEPOSIT".
+Additionally, you can test a deposit sent to your sub-client in the UAT. Just go to the _Sub-clients_ page, find the sub-client, and click "SEND TEST DEPOSIT". If the sub-client has PayIDs, you can pick one to simulate a payment addressed to it.
 {% endhint %}
