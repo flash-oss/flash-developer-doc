@@ -1,7 +1,7 @@
 ---
 description: >-
-  How a deposit addressed to a sub-client's PayID shows up in the API, in
-  webhooks and in Flash Connect
+  How a deposit addressed to a sub-client's PayID shows up in the API and in
+  webhooks
 ---
 
 # Deposits to a PayID
@@ -119,6 +119,5 @@ The deposit webhooks carry the PayID too: the `recipient` object of every `depos
     "payid": "acme-corp@example.com"
   },
   // sender, subClient and the other fields as for any deposit
-}
 }
 ```

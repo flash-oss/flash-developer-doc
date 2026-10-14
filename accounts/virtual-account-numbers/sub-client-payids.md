@@ -19,7 +19,7 @@ PayID registration is disabled by default. Contact us to enable it and to approv
 #### What you can and cannot register
 
 * An email address at a domain approved for you. The domain has to be yours, typically the one you issue customer mailboxes at. Public email providers cannot be approved. The part before the `@` is also yours to choose, for example, it can be a customer name or another reference.&#x20;
-* The sub-client's personal email address or an individual phone number are currently not allowed to be used as PayIDs. Contact us if you really need it.&#x20;
+* The sub-client's personal email address or an individual phone number are currently not allowed to be used as PayIDs. Contact us if your integration needs them.
 * PayIDs based on an ABN or an organisation's name are not supported at the moment.
 
 {% hint style="warning" %}
@@ -145,9 +145,6 @@ query($id: ID!) {
 ```javascript
 {
   "data": {
-    "registerAlias": {
-{
-  "data": {
     "subClient": {
       "id": "606d28675a2d931bc925fec2",
       "fullName": "ACME Corp",
@@ -175,7 +172,7 @@ query($id: ID!) {
 `status` is one of:
 
 * `ACTIVE` - registered and able to receive payments
-* `PENDING` - not yet able to receive payments: briefly while a registration completes, or waiting for the owner's verification code (individual phone numbers and personal email addresses)
+* `PENDING` - not yet able to receive payments: briefly while a registration completes
 * `DISABLED` - temporarily disabled; please contact us
 * `PORTED` - being transferred to another financial institution
 
