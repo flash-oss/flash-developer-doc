@@ -6,9 +6,9 @@ description: >-
 
 # Deposits to a PayID
 
-Once you have registered a PayID on a sub-client's Virtual Account Number (VAN), you can collect money from your customer by that alias instead of the Australian BSB and account number.&#x20;
+Once you have registered a PayID on a sub-client’s Virtual Account Number (VAN), your customer can pay into their VAN by that alias instead of the Australian BSB and account number.
 
-Before paying, the customer's bank shows them the account name registered for the PayID, which is your sub-client's account name as registered with Flash. The deposit then arrives as an ordinary deposit on the sub-client's VAN, booked on your master account balance and linked to the sub-client, exactly like a payment to the BSB and account number: the same statuses, the same webhooks and the same queries.
+Before paying, their bank shows them the account name registered for the PayID, which is the sub-client’s name as registered with Flash. The transaction arrives as an ordinary deposit on the VAN, booked on your master account balance and linked to the sub-client, exactly like a deposit to the BSB and account number: the same statuses, the same webhooks and the same queries.
 
 #### Which PayID a deposit was addressed to
 

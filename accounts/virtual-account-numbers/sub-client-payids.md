@@ -6,11 +6,11 @@ description: >-
 
 # Sub-client PayIDs
 
-PayIDs are easy-to-remember aliases for Virtual Account Numbers (VANs) that your sub-clients can use to pay you instead of their Australian BSB and account numbers.&#x20;
+PayIDs are easy-to-remember aliases for your sub-clients’ Virtual Account Numbers (VANs) that help your customers pay into their own VANs by those aliases instead of quoting their BSB and account numbers.&#x20;
 
 ### Domain PayIDs
 
-You can register a PayID on your sub-client virtual account with Flash using your approved email domain, such as `jane.smith@yourdomain.com.au`. This allows you to accept domestic AUD transfers from your customer by that alias within Australia, as demonstrated in the examples below. A transfer sent to a PayID arrives as an ordinary deposit on the sub-client’s VAN and increases your master account balance, so deposit processing remains unchanged.
+You can register a PayID on your sub-client virtual account with Flash using your approved email domain, such as `jane.smith@yourdomain.com.au`. Your sub-client then makes domestic AUD transfers to their VAN by that alias, from an account in their own name. Each transfer arrives as an ordinary deposit on the sub-client’s VAN and increases your master account balance, so deposit processing remains unchanged.
 
 {% hint style="info" %}
 PayID registration is disabled by default. Contact us to enable it and to approve the email domain (or domains) you will register PayIDs at.&#x20;
@@ -240,7 +240,7 @@ A deregistered PayID can be registered again later, and that is a new registrati
 
 #### Receiving payments to a PayID
 
-Customers pay their sub-client VAN by the PayID instead of the BSB and account number. Before paying, their bank shows them their sub-client's account name strictly as registered with Flash (it cannot be customized). The payment arrives as an ordinary deposit on the sub-client's virtual account, with the PayID recorded on it. See Deposits to a PayID.
+Your sub-client pays into their VAN by the PayID instead of the BSB and account number. Before paying, their bank shows them the account name registered for the PayID, the sub-client’s own name as registered with Flash (it cannot be customised), so they can confirm they are paying the right account. The payment arrives as an ordinary deposit on the sub-client’s virtual account, with the PayID recorded on it. See Deposits to a PayID.
 
 #### PayID Limits
 
