@@ -6,11 +6,11 @@ description: >-
 
 # Sub-client PayIDs
 
-PayIDs are easy-to-remember aliases for your sub-clients’ Virtual Account Numbers (VANs) that help your customers pay into their own VANs by those aliases instead of quoting their BSB and account numbers.&#x20;
+PayIDs are easy-to-remember aliases for your sub-clients’ [Virtual Account Numbers (VANs) ](./)that help your customers pay into their own VANs using those aliases instead of quoting their BSB and account numbers.&#x20;
 
 ### Domain PayIDs
 
-You can register a PayID on your sub-client virtual account with Flash using your approved email domain, such as `jane.smith@yourdomain.com.au`. Your sub-client then makes domestic AUD transfers to their VAN by that alias, from an account in their own name. Each transfer arrives as an ordinary deposit on the sub-client’s VAN and increases your master account balance, so deposit processing remains unchanged.
+You can register a PayID on your sub-client virtual account with Flash using your approved email domain, such as `jane.smith@yourdomain.com.au`. Your sub-client then makes domestic AUD transfers to their VAN by that alias, from an account in their own name. Each transfer arrives as an ordinary [deposit](../../moving-funds/deposits/) on the sub-client’s VAN and increases your master account balance, so deposit processing remains unchanged.
 
 {% hint style="info" %}
 PayID registration is disabled by default. Contact us to enable it and to approve the email domain (or domains) you will register PayIDs at.&#x20;
@@ -23,7 +23,7 @@ PayID registration is disabled by default. Contact us to enable it and to approv
 * PayIDs based on an ABN or an organisation's name are not supported at the moment.
 
 {% hint style="warning" %}
-A PayID can be registered with one VAN only and we never disclose who holds a taken PayID. Please always register a PayID on the virtual account of the sub-client it belongs to.
+A PayID can be registered with one bank account only, anywhere in Australia, and we never disclose who holds a taken PayID. Please always register a PayID on the virtual account of the sub-client it belongs to.
 {% endhint %}
 
 #### Registering a PayID
@@ -94,7 +94,7 @@ Registration completes within the request. There is no webhook to wait for. When
 
 #### **Listing a sub-client's PayIDs**
 
-The `aliases` field of the `SubClient` type lists the sub-client's PayIDs, newest first, pending ones included. `aliases` is resolved separately for every sub-client in a response, so request it only where you need it. Deregistered PayIDs are not listed.&#x20;
+The `aliases` field of the [`SubClient`](query-sub-clients.md) type lists the sub-client's PayIDs, newest first, pending ones included. `aliases` is resolved separately for every sub-client in a response, so request it only where you need it. Deregistered PayIDs are not listed.&#x20;
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -240,11 +240,11 @@ A deregistered PayID can be registered again later, and that is a new registrati
 
 #### Receiving payments to a PayID
 
-Your sub-client pays into their VAN by the PayID instead of the BSB and account number. Before paying, their bank shows them the account name registered for the PayID, the sub-client’s own name as registered with Flash (it cannot be customised), so they can confirm they are paying the right account. The payment arrives as an ordinary deposit on the sub-client’s virtual account, with the PayID recorded on it. See Deposits to a PayID.
+Your sub-client pays into their VAN by the PayID instead of the BSB and account number. Before paying, their bank shows them the account name registered for the PayID, the sub-client’s own name as registered with Flash (it cannot be customised), so they can confirm they are paying the right account. The payment arrives as an ordinary deposit on the sub-client’s virtual account, with the PayID recorded on it. See [Deposits to a PayID](../../moving-funds/deposits/deposits-to-a-payid.md).
 
 #### PayID Limits
 
-To protect the PayID scheme, each sub-client can hold a small number of PayIDs, and your account has a daily allowance of new registrations across all your sub-clients. Every attempt to register a new PayID counts towards it, whether or not it succeeds. We do not disclose the specific figures for the these limits here for security reasons. Contact us if these allowances do not fit your use case.
+To protect the PayID scheme, each sub-client can hold a small number of PayIDs, and your account has a daily allowance of new registrations across all your sub-clients. Every attempt to register a new PayID counts towards it, whether or not it succeeds. We do not disclose the specific figures for  these limits here for security reasons. Contact us if these allowances do not fit your use case.
 
 #### Testing in UAT
 

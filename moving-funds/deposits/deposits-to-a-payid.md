@@ -6,9 +6,9 @@ description: >-
 
 # Deposits to a PayID
 
-Once you have registered a PayID on a sub-client’s Virtual Account Number (VAN), your customer can pay into their VAN by that alias instead of the Australian BSB and account number.
+Once you have registered a [PayID](../../accounts/virtual-account-numbers/sub-client-payids.md) on a sub-client’s Virtual Account Number (VAN), your customer can pay into their VAN by that alias instead of the Australian BSB and account number.
 
-Before paying, their bank shows them the account name registered for the PayID, which is the sub-client’s name as registered with Flash. The transaction arrives as an ordinary deposit on the VAN, booked on your master account balance and linked to the sub-client, exactly like a deposit to the BSB and account number: the same statuses, the same webhooks and the same queries.
+Before paying, their bank shows them the account name registered for the PayID, which is the sub-client’s name as registered with Flash. The transaction arrives as an ordinary [deposit](./) on the VAN, booked on your master account balance and linked to the sub-client, exactly like a deposit to the BSB and account number: the same [statuses](deposit-statuses.md), the same [webhooks](../../basics/webhooks/regular-webhooks.md) and the same [queries](query-deposits.md).
 
 #### Which PayID a deposit was addressed to
 
@@ -103,7 +103,7 @@ query($input: ID) {
 
 #### Webhooks
 
-The deposit webhooks carry the PayID too: the `recipient` object of every `deposit_*` payload has `payid` next to `accountName`, `bsb` and `accountNo`. The field is absent for deposits paid to the BSB and account number.
+The [deposit webhooks](../../basics/webhooks/regular-webhooks.md) carry the PayID too: the `recipient` object of every `deposit_*` payload has `payid` next to `accountName`, `bsb` and `accountNo`. The field is absent for deposits paid to the BSB and account number.
 
 ```javascript
 // excerpt of a deposit_cleared payload

@@ -4,7 +4,7 @@
 
 #### Query for a single sub-client
 
-The `aliases` field lists the sub-client's PayIDs. It is resolved separately for every sub-client in a response, so request it only where you need it.
+The `aliases` field lists the sub-client's [PayIDs](sub-client-payids.md). It is resolved separately for every sub-client in a response, so request it only where you need it.
 
 {% tabs %}
 {% tab title="JavaScript" %}
