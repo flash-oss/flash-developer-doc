@@ -155,7 +155,7 @@ const bodyJSON = {
       dob: "1987-06-05",
       accountIdType: "BSB",
       currency: "AUD",
-      bsb: "370370",
+      bsb: "802919",
       accountNo: "12341234",
       email: "john@example.com",
       address: {
@@ -203,7 +203,7 @@ mutation($input: RecipientInput!) {
     "dob": "1987-06-05",
     "accountIdType": "BSB",
     "currency": "AUD",
-    "bsb": "370370",
+    "bsb": "802919",
     "accountNo": "12341234",
     "email": "john@example.com",
     "address": {
@@ -248,7 +248,7 @@ A `company` recipient can also carry an optional `orgType`, its legal structure:
 
 {% tabs %}
 {% tab title="JavaScript" %}
-```graphql
+```javascript
 const bodyJSON = {
   variables: {
     input: {
@@ -256,7 +256,7 @@ const bodyJSON = {
       orgType: "COMPANY",
       accountIdType: "BSB",
       currency: "AUD",
-      bsb: "370370",
+      bsb: "802919",
       accountNo: "12341234",
       email: "john@example.com",
       address: {
@@ -303,7 +303,7 @@ mutation($input: RecipientInput!) {
     "orgType": "COMPANY",
     "accountIdType": "BSB",
     "currency": "AUD",
-    "bsb": "370370",
+    "bsb": "802919",
     "accountNo": "12341234",
     "email": "john@example.com",
     "address": {
@@ -361,7 +361,7 @@ const bodyJSON = {
       lastName: "Malkovich",
       accountIdType: "BSB",
       currency: "AUD",
-      bsb: "370370",
+      bsb: "802919",
       accountNo: "12341234",
       email: "john@example.com",
       address: {
@@ -413,7 +413,7 @@ mutation($id: ID, $input: RecipientInput!) {
     "lastName": "Malkovich",
     "accountIdType": "BSB",
     "currency": "AUD",
-    "bsb": "370370",
+    "bsb": "802919",
     "accountNo": "12341234",
     "email": "john@example.com",
     "address": {

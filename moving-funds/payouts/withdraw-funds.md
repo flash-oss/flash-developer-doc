@@ -27,7 +27,7 @@ You must have enough [balance](../../accounts/master-balance/) in your account f
         },
       },
       recipient: {
-        bsb: "370370",
+        bsb: "802919",
         accountNo: "123123123",
         companyName: "Acme Pty Ltd",
         currency: "AUD",
@@ -86,7 +86,7 @@ mutation($input: CreateWithdrawalInput!) {
       }
     },
     "recipient": {
-      "bsb": "370370",
+      "bsb": "802919",
       "accountNo": "123123123",
       "companyName": "Acme Pty Ltd",
       "currency": "AUD",
@@ -157,7 +157,7 @@ const bodyJSON = {
       currency: "AUD",
       externalReference: "invoice #1234",
       recipient: {
-        bsb: "370370",
+        bsb: "802919",
         accountNo: "123123123",
         companyName: "Acme Pty Ltd",
         currency: "AUD",
@@ -211,7 +211,7 @@ mutation ($input: CreateWithdrawalInput!) {
       "currency": "AUD",
       "externalReference": "invoice #1234",
       "recipient": {
-        "bsb": "370370",
+        "bsb": "802919",
         "accountNo": "123123123",
         "companyName": "Acme Pty Ltd",
         "currency": "AUD",
@@ -274,7 +274,7 @@ const bodyJSON = {
       currency: "AUD",
       externalReference: "invoice #123",
       recipient: {
-        bsb: "370370",
+        bsb: "802919",
         accountNo: "123123123",
         companyName: "Acme Pty Ltd",
         currency: "AUD",
@@ -335,7 +335,7 @@ mutation ($input: CreateWithdrawalInput!) {
       "currency": "AUD",
       "externalReference": "invoice #123",
       "recipient": {
-        "bsb": "370370",
+        "bsb": "802919",
         "accountNo": "123123123",
         "companyName": "Acme Pty Ltd",
         "currency": "AUD",
