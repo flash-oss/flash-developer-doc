@@ -408,8 +408,7 @@ All webhook HTTP requests would be coming from these IP addresses:
   "totalFee": 1,
   "currency": "AUD",
   "externalId": "12344321",
-  "statusMessage": "The transaction is declined because the recipient account 
-  does not exist or has been closed.",
+  "statusMessage": "The transaction is declined because the recipient account does not exist or has been closed.",
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
@@ -426,8 +425,7 @@ All webhook HTTP requests would be coming from these IP addresses:
 
 <summary>withdrawal_refunded</summary>
 
-```json
-{
+<pre class="language-json"><code class="lang-json">{
   "event": "withdrawal_refunded",
   "eventScheduledAt": "2026-03-03T01:25:11.984Z",
   "id": "51711af8c078ba061f623531",
@@ -439,7 +437,7 @@ All webhook HTTP requests would be coming from these IP addresses:
   "refundReason": "No account or incorrect account number",
   "statusMessage": "Payout reversal",
   "refundedAt": "2026-03-04T15:21:11.920Z",
-  "clearedAt": "2026-03-03T03:25:12.792Z", // Present only when the withdrawal was CONFIRMED before being refunded.
+  "<a data-footnote-ref href="#user-content-fn-1">clearedAt</a>": "2026-03-03T03:25:12.792Z",
   "recipient": {
     "displayName": "John Smith",
     "bsb": "012620",
@@ -453,7 +451,7 @@ All webhook HTTP requests would be coming from these IP addresses:
     "externalId": "111222333"
   }
 }
-```
+</code></pre>
 
 </details>
 
@@ -949,3 +947,5 @@ All webhook HTTP requests would be coming from these IP addresses:
 ```
 
 </details>
+
+[^1]: Please note that the `clearedAt` field is resent only when the withdrawal had `CONFIRMED` status before being refunded.
