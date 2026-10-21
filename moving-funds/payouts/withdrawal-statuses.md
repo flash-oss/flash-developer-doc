@@ -20,7 +20,7 @@ description: Withdrawal processing statuses
      * `REFUNDED` - see step 4 below.
      * `CANCELLED` - manual action. Your **balance goes up** by the amount, Flash Payments keeps the fee. _**FINAL status.**_
      * `PENDING` - rare case - retrying. Sometimes it might work. Go to item 3.
-4. The recipient bank decided to return this transaction back to Flash Payments.`CONFIRMED` → `FAILED` → `REFUNDED` - usual way - automatic refunding. Your **balance goes up** by the withdrawal amount, Flash Payments keeps the fee. _**FINAL status**_.
+4. The recipient bank rejected the payout (`PENDING` → `FAILED` → `REFUNDED`) or accepted it and later returned it (`CONFIRMED` → `FAILED` → `REFUNDED`). Automatic refunding. Your **balance goes up** by the withdrawal amount, Flash Payments keeps the fee. _**FINAL status.**_
 
 {% hint style="warning" %}
 The <mark style="color:orange;">REVIEWING</mark> is an **optional** action by Flash Payments Compliance team. Occasionally we pick some transactions for extended AML/CT review. Most transactions do not ever get into the <mark style="color:orange;">REVIEWING</mark> status.

@@ -6,6 +6,8 @@ description: Two types of the webhooks
 
 The primary triggers for all webhooks are **status** changes in payments, withdrawals, deposits, or conversions. For example, a webhook is sent when a withdrawal status changes from `PENDING` to `CONFIRMED`.
 
+The **sequence of events** depends on how the transaction progresses, see [Withdrawal statuses](../../moving-funds/payouts/withdrawal-statuses.md). For example, `withdrawal_refunded` can arrive with or without a preceding `withdrawal_completed`.
+
 There are two types of webhooks in Flash Payments.
 
 * [Regular webhooks](regular-webhooks.md) - a URL would need to be saved to your [FlashConnect](https://connect.uat.flash-payments.com.au/) settings. Supports all types of events.
@@ -379,7 +381,7 @@ All webhook HTTP requests would be coming from these IP addresses:
   "totalFee": 1,
   "currency": "AUD",
   "externalId": "12344321",
-  "statusMessage": "Transaction Confirmed",
+  "statusMessage": "Payout processed",
   "clearedAt": "2021-03-03T03:25:12.792Z",
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
@@ -406,6 +408,8 @@ All webhook HTTP requests would be coming from these IP addresses:
   "totalFee": 1,
   "currency": "AUD",
   "externalId": "12344321",
+  "statusMessage": "The transaction is declined because the recipient account 
+  does not exist or has been closed.",
   "subClient": {
     "id": "203af01936410fd5d5e3c8f14d",
     "fullName": "ACME Inc",
@@ -435,7 +439,7 @@ All webhook HTTP requests would be coming from these IP addresses:
   "refundReason": "No account or incorrect account number",
   "statusMessage": "Payout reversal",
   "refundedAt": "2026-03-04T15:21:11.920Z",
-  "clearedAt": "2026-03-03T03:25:12.792Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z", // Present only when the withdrawal was CONFIRMED before being refunded.
   "recipient": {
     "displayName": "John Smith",
     "bsb": "012620",
