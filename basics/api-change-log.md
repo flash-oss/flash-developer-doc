@@ -4,6 +4,18 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-10-21
+
+### Changed
+
+The `rail` field on the `Deposit` and `Withdrawal` types now returns more specific values. Transactions that were previously reported as `NPP` are now reported as `AU_NPP` (domestic NPP) or `AU_NPP_IFTI` (international instruction over NPP), and `BECS` is now `AU_BECS`.&#x20;
+
+The `NPP` and `BECS` values of the `Rail` enum are deprecated and are no longer returned.
+
+### Deprecated
+
+The `railService` field on `Deposit` and `Withdrawal` is deprecated and now always returns `null`. The scheme it described is now part of `rail` (for example `AU_NPP_IFTI`).
+
 ## 2026-10-13 <a href="#user-content-2026-10-13" id="user-content-2026-10-13"></a>
 
 ### Added <a href="#user-content-added" id="user-content-added"></a>
