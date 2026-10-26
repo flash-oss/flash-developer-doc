@@ -14,3 +14,5 @@ If you get instructed by another financial institution then you must submit thei
 
 If the payouts didn't pass compliance we would reject it with a proper rejection code and descriptive message.
 
+Wondering what happens to a withdrawal during a bank outage, how long a compliance review can take, or when a withdrawal is final? See the [Payouts FAQ](payouts-faq.md).
+
