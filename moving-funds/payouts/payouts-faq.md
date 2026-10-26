@@ -24,7 +24,7 @@ Once a withdrawal is accepted, the amount plus the fee is debited from your bala
 
 #### Q: Can I retry `createWithdrawal` with the same `idempotencyKey`? <a href="#user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey" id="user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey"></a>
 
-Yes, when the first attempt failed. The `idempotencyKey` is reserved for your account for 24 hours, and a second `createWithdrawal` with the same key within that window is refused with a GraphQL error, code `DUPLICATE_IDEMPOTENCY_KEY` (HTTP 409). It does not return the original withdrawal. The key is released as soon as the mutation answers `success: false` or throws, so a retry after a rejection such as `NO_BALANCE` or a validation error is safe with the same key.
+Yes, when the first attempt failed. The `idempotencyKey` is reserved for your account for 24 hours, and a second `createWithdrawal` with the same key within that window is refused with a GraphQL error whose code is `DUPLICATE_IDEMPOTENCY_KEY` (the error's extensions carry `statusCode: 409` and the HTTP response itself is a normal GraphQL reply with an `errors` array). It does not return the original withdrawal.The key is released as soon as the mutation answers `success: false` or throws, so a retry after a rejection such as `NO_BALANCE` or a validation error is safe with the same key.
 
 If you never received a response (timeout, dropped connection), you do not know whether the withdrawal was created, and a retry may come back with `DUPLICATE_IDEMPOTENCY_KEY`. Treat that as "possibly created" and look the withdrawal up with the [`withdrawals`](query-withdrawals.md) query filtered by your `externalId` before deciding anything. For that to work, always send an `externalId`.
 
@@ -79,7 +79,7 @@ The refunded amount is credited back to your balance automatically, the fee is k
 
 #### Q: Is it safe to resubmit a withdrawal rejected with `TECHNICAL_ISSUE`? <a href="#user-content-is-it-safe-to-resubmit-a-withdrawal-rejected-with-technical_issue" id="user-content-is-it-safe-to-resubmit-a-withdrawal-rejected-with-technical_issue"></a>
 
-Yes. `TECHNICAL_ISSUE` is only ever set on a final status, `CANCELLED` or `REFUNDED`, and the amount is already back on your balance when you receive it. The original withdrawal will not be paid. Create a new withdrawal with a new `idempotencyKey` and `externalId`, do not reuse the old ones.
+Yes. `TECHNICAL_ISSUE` is only ever set on a final status, `CANCELLED` or `REFUNDED`, and the amount is already back on your balance when you receive it. The original withdrawal will not be paid. Create a new withdrawal with a new `idempotencyKey` and a new `externalId`. The old `externalId` stays attached to the cancelled withdrawal and would be refused with `EXTERNAL_ID_EXISTS`.
 
 We use `TECHNICAL_ISSUE` when the bank or rail returned a reason we could not map to a more specific code, when the retries described above were exhausted, or on a technical failure on our side or our partner's. It is rare, and we investigate every occurrence.
 
@@ -91,13 +91,13 @@ We use `TECHNICAL_ISSUE` when the bank or rail returned a reason we could not ma
 
 ### Webhooks
 
-#### Which webhooks will I receive, and in what order? <a href="#user-content-which-webhooks-will-i-receive-and-in-what-order" id="user-content-which-webhooks-will-i-receive-and-in-what-order"></a>
+#### Q: Which webhooks will I receive, and in what order? <a href="#user-content-which-webhooks-will-i-receive-and-in-what-order" id="user-content-which-webhooks-will-i-receive-and-in-what-order"></a>
 
 For a withdrawal created with a `callbackUri` or with [regular webhooks](../../basics/webhooks/regular-webhooks.md) enabled:
 
 <table><thead><tr><th width="249.328125">Path</th><th>Webhooks, in order</th></tr></thead><tbody><tr><td>Automated checks pass</td><td><code>withdrawal_initiated</code> → <code>withdrawal_pending</code> → <code>withdrawal_completed</code></td></tr><tr><td>Manual review, released</td><td><code>withdrawal_initiated</code> → <code>withdrawal_reviewing</code> → <code>withdrawal_pending</code> → <code>withdrawal_completed</code></td></tr><tr><td>Manual review, declined</td><td><code>withdrawal_initiated</code> → <code>withdrawal_reviewing</code> → <code>withdrawal_cancelled</code></td></tr><tr><td>Bank rejects the payout</td><td><code>withdrawal_initiated</code> → <code>withdrawal_pending</code> → <code>withdrawal_failed</code> + <code>withdrawal_refunded</code></td></tr><tr><td>Bank returns the payout after confirmation</td><td><code>… withdrawal_completed</code> → <code>withdrawal_failed</code> + <code>withdrawal_refunded</code></td></tr></tbody></table>
 
-`withdrawal_failed` and `withdrawal_refunded` are sent together. The other events arrive in the order shown, usually within seconds of each other. Each delivery carries a `flashfx-request-id` header that stays the same across our retries, so you can ignore duplicates. Delivery retries and signature verification are described on the [Webhooks](../../basics/webhooks/) pages.
+`withdrawal_failed` and `withdrawal_refunded` are sent together. The other events arrive in the order shown, usually within seconds of each other. The event name is in the payload of a `callbackUri` callback (`event` field) and in the regular webhook delivery, and each regular webhook delivery carries a `flashfx-request-id` header that stays the same across our retries, so you can ignore duplicates. Delivery retries and signature verification are described on the [Webhooks](../../basics/webhooks/) pages.
 
 ### Testing
 
