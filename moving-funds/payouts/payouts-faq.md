@@ -7,7 +7,7 @@ description: Answers to the frequently asked questions about payouts
 This page helps you find answers to the questions we are most often asked about payouts made using [`createWithdrawal`](withdraw-funds.md). Unless an answer says otherwise, it applies to AUD payouts delivered in Australia via NPP or Direct Entry (BECS). International payouts follow the receiving rail's own rules. The reference pages remain [Withdrawal statuses](withdrawal-statuses.md), [Rejection codes](rejection-codes.md) and [Webhooks](../../basics/webhooks/#withdrawal_initiated). We add to this page as new questions come up. If yours is not here, please ask us.
 
 {% hint style="info" %}
-In one line: a withdrawal is either rejected synchronously when you create it, or accepted and processed by us to a final status. We never queue a withdrawal waiting for funds, and we never move a withdrawal from `FAILED` back to `PENDING` on our own.&#x20;
+**In one line:** a payout is either rejected synchronously when you create it, or accepted and processed by us to a final status. We never queue a payout waiting for funds, and we never automatically move a payout from `FAILED` back to `PENDING` without contacting you first.
 {% endhint %}
 
 ### Balance <a href="#user-content-balance" id="user-content-balance"></a>
@@ -24,7 +24,7 @@ Once a withdrawal is accepted, the amount plus the fee is debited from your bala
 
 #### Q: Can I retry `createWithdrawal` with the same `idempotencyKey`? <a href="#user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey" id="user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey"></a>
 
-Yes, when the first attempt failed. The `idempotencyKey` is reserved for your account for 24 hours, and a second `createWithdrawal` with the same key within that window is refused with a GraphQL error whose code is `DUPLICATE_IDEMPOTENCY_KEY` (the error's extensions carry `statusCode: 409` and the HTTP response itself is a normal GraphQL reply with an `errors` array). It does not return the original withdrawal.The key is released as soon as the mutation answers `success: false` or throws, so a retry after a rejection such as `NO_BALANCE` or a validation error is safe with the same key.
+Yes, when the first attempt failed. The `idempotencyKey` is reserved for your account for 24 hours, and a second `createWithdrawal` with the same key within that window is refused with a GraphQL error whose code is `DUPLICATE_IDEMPOTENCY_KEY` (the error's extensions carry `statusCode: 409` and the HTTP response itself is a normal GraphQL reply with an `errors` array). It does not return the original withdrawal. The key is released as soon as the mutation answers `success: false` or throws, so a retry after a rejection such as `NO_BALANCE` or a validation error is safe with the same key.
 
 If you never received a response (timeout, dropped connection), you do not know whether the withdrawal was created, and a retry may come back with `DUPLICATE_IDEMPOTENCY_KEY`. Treat that as "possibly created" and look the withdrawal up with the [`withdrawals`](query-withdrawals.md) query filtered by your `externalId` before deciding anything. For that to work, always send an `externalId`.
 
@@ -38,17 +38,17 @@ The second call is rejected with `success: false`, `code: "EXTERNAL_ID_EXISTS"` 
 
 The withdrawal is accepted, passes our automated checks, moves to `PENDING` and stays `PENDING` while we deliver it. We do not reject a withdrawal because a rail is down, and `PENDING` has no time limit. What we do depends on where the problem is:
 
-* **The recipient's bank is not reachable via NPP.** We send the payout by Direct Entry instead, either straight away when we know the account is not NPP-enabled or after NPP tells us so. The `rail` field on the withdrawal changes from `NPP` to `BECS`. The status stays `PENDING` until the Direct Entry payment is processed. Note that Direct Entry truncates your `externalReference` to 18 characters, see [Withdraw funds](withdraw-funds.md).
+* **The recipient's bank is not reachable via NPP.** We send the payout by Direct Entry instead, either straight away when we know the account is not NPP-enabled or after NPP tells us so. The `rail` field on the withdrawal changes from `NPP` to `BECS`. The status stays `PENDING` until the Direct Entry payment is processed. Note that Direct Entry truncates your `externalReference` to 18 characters, see [Withdraw funds](withdraw-funds.md#payment-reference-externalreference).
 * **The recipient's bank rejects the payout temporarily** (maintenance, participant unavailable). We retry automatically with an increasing delay for up to about three days. When several payouts to the same bank are rejected within a few minutes we pause new attempts to that bank for 20 minutes before retrying. Only if every retry fails does the withdrawal become `FAILED` and then `REFUNDED` with `rejectCode: TECHNICAL_ISSUE`.
 * **Our banking partner's API is unavailable, or our settlement account is momentarily short.** Delivery pauses and resumes automatically. The withdrawal stays `PENDING` throughout.
 
-You receive one `withdrawal_pending` webhook when the withdrawal enters `PENDING.` The retries above are not status changes and do not produce further webhooks. The next webhook is `withdrawal_completed`, or `withdrawal_failed` followed by `withdrawal_refunded`.
+You receive one `withdrawal_pending` webhook when the withdrawal enters `PENDING`.The retries above are not status changes and do not produce further webhooks. The next webhook is `withdrawal_completed`, or `withdrawal_failed` followed by `withdrawal_refunded`.
 
 ### Compliance review
 
 #### Q: How long can a withdrawal stay in `REVIEWING`, and does it expire? <a href="#user-content-how-long-can-a-withdrawal-stay-in-reviewing-and-does-it-expire" id="user-content-how-long-can-a-withdrawal-stay-in-reviewing-and-does-it-expire"></a>
 
-A withdrawal goes to `REVIEWING` when our automated screening asks the Compliance team to look at it. You receive the `withdrawal_reviewing` webhook. The analyst either releases it (`PENDING`, then `CONFIRMED`) or declines it (`CANCELLED` with `rejectCode: COMPLIANCE_DECLINED`, the amount is returned to your balance, the fee is kept).
+A withdrawal goes to `REVIEWING` when our automated screening asks the Compliance team to look at it. You receive the `withdrawal_reviewing` webhook. The analyst either releases it (`PENDING`, then `CONFIRMED`) or declines it (`CANCELLED` with `rejectCode: COMPLIANCE_DECLINED`; the amount is returned to your balance; the fee is kept).
 
 Most reviews are completed within business hours on the same day. Withdrawals created overnight or at the weekend, Sydney time, wait for the next business day. Accurate sender and recipient details, including full addresses, are the best way to avoid a review in the first place.
 
@@ -70,10 +70,10 @@ Rarely, yes. `CONFIRMED` means the recipient's bank has accepted the funds, but 
 
 A return is not a separate transaction. The original withdrawal itself moves to `REFUNDED`, so everything you need is on the record you already have:
 
-* The `withdrawal_failed` and `withdrawal_refunded` webhooks carry the same `id` that `createWithdrawal` returned and your `externalId`. `withdrawal_failed` adds the `rejectCode` and `statusMessage`,  `withdrawal_refunded` adds `refundAmount`, `refundReason`, `refundedAt` and the recipient's BSB and account number.
+* The `withdrawal_failed` and `withdrawal_refunded` webhooks carry the same `id` that `createWithdrawal` returned and your `externalId`; `withdrawal_failed` adds the `rejectCode` and `statusMessage`,  `withdrawal_refunded` adds `refundAmount`, `refundReason`, `refundedAt` and the recipient's BSB and account number.
 * The `Withdrawal` type returns `status`, `rejectCode`, `statusMessage`, `rejectedAt` and `refundedAt`, and the `withdrawals` query filters by `externalId`.
 
-The refunded amount is credited back to your balance automatically, the fee is kept. Returns are the exception rather than the rule, and almost always come down to the quality of the recipient's details, so an invalid or closed account is the usual `rejectCode`.
+The refunded amount is credited back to your balance automatically. The fee is kept. Returns are the exception rather than the rule, and almost always come down to the quality of the recipient's details, so an invalid or closed account is the usual `rejectCode`.
 
 ### Rejection codes <a href="#user-content-rejection-codes" id="user-content-rejection-codes"></a>
 
