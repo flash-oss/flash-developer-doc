@@ -7,8 +7,16 @@ description: >-
 
 # Withdrawal outcomes simulation
 
-To trigger a happy or unhappy path scenario, put the corresponding keyword in the `externalReference` field when you submit a withdrawal. The keyword instructs our system to automatically simulate that outcome instead of routing the withdrawal through the standard compliance and payout pipelines, which may require manual intervention by a compliance analyst.\
-\
+To trigger a happy or unhappy path scenario, put the corresponding keyword in the `externalReference` field when you submit a withdrawal. The keyword instructs our system to automatically simulate that outcome instead of routing the withdrawal through the standard compliance and payout pipelines, which may require manual intervention by a compliance analyst.
+
+{% hint style="warning" %}
+**Recipient bank details in UAT**
+
+Because UAT never moves real money, any valid [Australian BSB](https://bank.codes/australia-bsb-number/bank/) and account number will suffice for a successful payout simulation.
+
+The one exception is a Flash Payments BSB, for example, 370-370. A payout to any Flash BSB is treated as a transfer to another Flash account, so that account **must exist** in UAT. If it does not, the payout is failed and refunded with the reason `Account not found` , and you receive `withdrawal_failed` followed by `withdrawal_refunded` instead of the outcome you were simulating.&#x20;
+{% endhint %}
+
 Typically, you want to adapt your system to handle the following common withdrawal scenarios:&#x20;
 
 #### 1. Too long in the <mark style="color:orange;">REVIEWING</mark> status
@@ -18,8 +26,7 @@ If your withdrawal is in this status this means that we are doing an internal re
 {% hint style="info" %}
 Please always provide accurate [sender](https://developer.flash-payments.com/senders#create-a-sender) and [recipient](https://developer.flash-payments.com/recipients#create-a-recipient) information, including the full address, to prevent delays associated with internal compliance reviews on our side.
 
-Sender and recipient addresses are automatically validated when a transaction is created. If the address cannot be verified, the transaction will be flagged for review by our Compliance team, resulting in processing delays.\
-To help ensure smooth and timely processing, please provide complete and accurate address details.
+Sender and recipient addresses are automatically validated when a transaction is created. If the address cannot be verified, the transaction will be flagged for review by our Compliance team, resulting in processing delays. To help ensure smooth and timely processing, please always provide complete and accurate address details.
 {% endhint %}
 
 You can simulate the behaviour. Your `externalReference` must include this text: `HALT_AML`. For example: `"testing HALT_AML attempt 2"`. The withdrawal will get stuck in <mark style="color:orange;">`REVIEWING`</mark> forever.
