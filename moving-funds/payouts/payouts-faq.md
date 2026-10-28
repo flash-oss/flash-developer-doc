@@ -24,13 +24,15 @@ Once a withdrawal is accepted, the amount plus the fee is debited from your bala
 
 #### Q: Can I retry `createWithdrawal` with the same `idempotencyKey`? <a href="#user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey" id="user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey"></a>
 
-Yes, when the first attempt failed. The `idempotencyKey` is reserved for your account for 24 hours, and a second `createWithdrawal` with the same key within that window is refused with a GraphQL error whose code is `DUPLICATE_IDEMPOTENCY_KEY` (the error's extensions carry `statusCode: 409` and the HTTP response itself is a normal GraphQL reply with an `errors` array). It does not return the original withdrawal. The key is released as soon as the mutation answers `success: false` or returns an error, so a retry after a rejection such as `NO_BALANCE` or a validation error is safe with the same key.
+Yes, a retry after a rejection such as `NO_BALANCE` or a validation error is safe with the same `idempotencyKey`. \
+\
+If `createWithdrawal` succeeded, the `idempotencyKey` is blocked for 24 hours. A second `createWithdrawal` with the same `idempotencyKey` within those 24 hours returns the error `DUPLICATE_IDEMPOTENCY_KEY`.
 
 If you never received a response (timeout, dropped connection), you do not know whether the withdrawal was created, and a retry may come back with `DUPLICATE_IDEMPOTENCY_KEY`. Treat that as "possibly created" and look the withdrawal up with the [`withdrawals`](query-withdrawals.md) query filtered by your `externalId` before deciding anything. For that to work, always send an `externalId`.
 
 #### Q: What happens if I submit the same `externalId` twice? <a href="#user-content-what-happens-if-i-submit-the-same-externalid-twice" id="user-content-what-happens-if-i-submit-the-same-externalid-twice"></a>
 
-The second call is rejected with `success: false`, `code: "EXTERNAL_ID_EXISTS"` and nothing is created. `externalId` is unique within your account across all your withdrawals, with no expiry, so it is the durable guard against duplicates. The `idempotencyKey` only protects the 24-hour retry window. Use your own payout identifier as the `externalId`, use the `withdrawals` query filtered by `externalId` to find the original, and never generate a new `externalId` for a retry of the same payout.
+The second call is rejected with `success: false`, `code: "EXTERNAL_ID_EXISTS"` and nothing is created. `externalId` is unique within your account across all your withdrawals, with no expiry. The `idempotencyKey` only protects the 24-hour retry window. Use your own payout identifier as the `externalId`, use the `withdrawals` query filtered by `externalId` to find the original, and never generate a new `externalId` for a retry of the same payout.
 
 ### Delivery <a href="#user-content-delivery" id="user-content-delivery"></a>
 
@@ -69,7 +71,7 @@ That shows as `CONFIRMED` → `FAILED` → `REFUNDED`, with a `rejectCode` such 
 
 A return is not a separate transaction. The original withdrawal itself moves to `REFUNDED`, so everything you need is on the record you already have:
 
-* The `withdrawal_failed` and `withdrawal_refunded` webhooks carry the same `id` that `createWithdrawal` returned and your `externalId`; `withdrawal_failed` adds the `rejectCode` and `statusMessage`,  `withdrawal_refunded` adds `refundAmount`, `refundReason`, `refundedAt` and the recipient's BSB and account number.
+* The `withdrawal_failed` and `withdrawal_refunded` webhooks carry the same `id` that `createWithdrawal` returned and your `externalId`; `withdrawal_failed` adds the `rejectCode` and `statusMessage`, `withdrawal_refunded` adds `refundAmount`, `refundReason`, `refundedAt` and the recipient's BSB and account number.
 * The `Withdrawal` type returns `status`, `rejectCode`, `statusMessage`, `rejectedAt` and `refundedAt`, and the `withdrawals` query filters by `externalId`.
 
 The refunded amount is credited back to your balance automatically. The fee is kept. Returns are the exception rather than the rule, and almost always come down to the quality of the recipient's details, so an invalid or closed account is the usual `rejectCode`.
