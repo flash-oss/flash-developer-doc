@@ -1,5 +1,6 @@
 ---
 description: Answers to the frequently asked questions about payouts
+hidden: true
 ---
 
 # Payouts FAQ
