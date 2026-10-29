@@ -4,6 +4,12 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-10-29
+
+### Changed
+
+`firstName` and `lastName` no longer have to start with a letter, so names such as `'t Hooft` are now accepted. The `firstName`, `middleName` and `lastName` descriptions in the schema now list the allowed characters.
+
 ## 2026-10-21
 
 ### Changed
