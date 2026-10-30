@@ -5,91 +5,145 @@ hidden: true
 
 # Payouts FAQ
 
-This page helps you find answers to the questions we are most often asked about payouts made using [`createWithdrawal`](withdraw-funds.md). Unless an answer says otherwise, it applies to AUD payouts delivered in Australia via NPP or Direct Entry (BECS). International payouts follow the receiving rail's own rules. The reference pages remain [Withdrawal statuses](withdrawal-statuses.md), [Rejection codes](rejection-codes.md) and [Webhooks](../../basics/webhooks/#withdrawal_initiated). We add to this page as new questions come up. If yours is not here, please ask us.
+This page gives answers to the questions that we get most often about payouts that you make with [`createWithdrawal`](withdraw-funds.md).&#x20;
+
+Some words on this page have a special meaning:
+
+* **Payout** and **withdrawal** have the same meaning: money that you send from your Flash balance to a bank account. The API uses the word withdrawal.
+* **NPP** and **Direct Entry (DE)** are the two methods to send money to an Australian bank account. NPP is immediate and operates 24 hours a day, 7 days a week. DE, also known as BECS, sends payments in batches on business days. We select the method automatically. The `rail` field of the withdrawal shows the method that we used: NPP or BECS.
+* A **webhook** is a message that we send to your server when the status of a payout changes. The name of the webhook, for example `withdrawal_cancelled`, shows the new status.
+
+If an answer does not say differently, it applies to AUD payouts to Australian bank accounts. International payouts obey the rules of the payment system in the country of the recipient. For reference, see [Withdrawal statuses](withdrawal-statuses.md), [Rejection codes](rejection-codes.md) and [Webhooks](../../basics/webhooks/#withdrawal_initiated). We will add new questions to this page when they occur. If your question is not here, ask us.
 
 {% hint style="info" %}
-**In one line:** a payout is either rejected synchronously when you create it, or accepted and processed by us to a final status. We never queue a payout waiting for funds.
+**In short:** when you create a payout, we immediately reject it or accept it. If we accept it, we move it to its final status. We never hold a payout while we wait for money to come to your balance.
 {% endhint %}
 
-### Balance <a href="#user-content-balance" id="user-content-balance"></a>
+#### Balance <a href="#user-content-balance" id="user-content-balance"></a>
 
-#### Q: What happens when my balance is too low? <a href="#user-content-what-happens-when-my-balance-is-too-low" id="user-content-what-happens-when-my-balance-is-too-low"></a>
+<details>
 
-The withdrawal is rejected immediately and nothing is created. `createWithdrawal` returns `success: false`, `code: "NO_BALANCE"`. There is no withdrawal record, no status and no webhook, so there is nothing to hold, release or expire. Top up the balance and submit again.
+<summary> <strong>Q: What happens when my balance is too low?</strong></summary>
 
-The check is on your available balance in the withdrawal `currency`. If you fund AUD through a [conversion](../../fx/conversions/) while the FX market is closed, the conversion waits for the market to open (Monday 8:00 am Sydney), and withdrawals created before then are rejected with `NO_BALANCE`. AUD deposits to your account via NPP settle around the clock.
+We reject the withdrawal immediately. `createWithdrawal` returns `success: false and code: "NO_BALANCE"`. We do not create a withdrawal record, we do not set a status, and we do not send a webhook. We do not hold anything, and nothing has a time limit. Add money to your balance and send the request again.
 
-Once a withdrawal is accepted, the amount plus the fee is debited from your balance at once (status `INITIALISED`), so an accepted withdrawal is always funded.
+When we accept a withdrawal, we immediately take the amount and the fee from your balance (status `INITIALISED`). Thus, an accepted withdrawal is always funded.
 
-### Creating withdrawals and retrying <a href="#user-content-creating-withdrawals-and-retrying" id="user-content-creating-withdrawals-and-retrying"></a>
+</details>
 
-#### Q: Can I retry `createWithdrawal` with the same `idempotencyKey`? <a href="#user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey" id="user-content-can-i-retry-createwithdrawal-with-the-same-idempotencykey"></a>
+#### Creating withdrawals and retrying <a href="#user-content-creating-withdrawals-and-retrying" id="user-content-creating-withdrawals-and-retrying"></a>
 
-Yes, a retry after a rejection such as `NO_BALANCE` or a validation error is safe with the same `idempotencyKey`. \
-\
-If `createWithdrawal` succeeded, the `idempotencyKey` is blocked for 24 hours. A second `createWithdrawal` with the same `idempotencyKey` within those 24 hours returns the error `DUPLICATE_IDEMPOTENCY_KEY`.
+<details>
 
-If you never received a response (timeout, dropped connection), you do not know whether the withdrawal was created, and a retry may come back with `DUPLICATE_IDEMPOTENCY_KEY`. Treat that as "possibly created" and look the withdrawal up with the [`withdrawals`](query-withdrawals.md) query filtered by your `externalId` before deciding anything. For that to work, always send an `externalId`.
+<summary><strong>Q: Can I retry <code>createWithdrawal</code> with the same <code>idempotencyKey</code>?</strong></summary>
 
-#### Q: What happens if I submit the same `externalId` twice? <a href="#user-content-what-happens-if-i-submit-the-same-externalid-twice" id="user-content-what-happens-if-i-submit-the-same-externalid-twice"></a>
+Yes. If we rejected the first call, for example with `NO_BALANCE` or a validation error, you can send it again with the same `idempotencyKey`.
 
-The second call is rejected with `success: false`, `code: "EXTERNAL_ID_EXISTS"` and nothing is created. `externalId` is unique within your account across all your withdrawals, with no expiry. The `idempotencyKey` only protects the 24-hour retry window. Use your own payout identifier as the `externalId`, use the `withdrawals` query filtered by `externalId` to find the original, and never generate a new `externalId` for a retry of the same payout.
+The `idempotencyKey` is a unique value that you send with each `createWithdrawal` call. If you send the same call again, the `idempotencyKey` prevents a second payout. If the first call was successful, we block the `idempotencyKey` for 24 hours. In these 24 hours, a second `createWithdrawal` with the same `idempotencyKey` returns the error `DUPLICATE_IDEMPOTENCY_KEY`.&#x20;
 
-### Delivery <a href="#user-content-delivery" id="user-content-delivery"></a>
+If you got no response, for example because of a timeout or a lost connection, you do not know if we created the withdrawal. If you send the call again, it can return `DUPLICATE_IDEMPOTENCY_KEY`. In this case the withdrawal possibly exists. Before you do anything else, find the withdrawal with the [`withdrawals`](query-withdrawals.md) query filtered by your `externalId`. This is possible only if you always send an `externalId`.
 
-#### Q: What happens during an NPP, bank or partner outage? <a href="#user-content-what-happens-during-an-npp-bank-or-partner-outage" id="user-content-what-happens-during-an-npp-bank-or-partner-outage"></a>
+</details>
 
-The withdrawal is accepted, passes our automated checks, moves to `PENDING` and stays `PENDING` while we deliver it. We do not reject a withdrawal because a rail is down, and `PENDING` has no time limit. What we do depends on where the problem is:
+<details>
 
-* **The recipient's bank is not reachable via NPP.** We send the payout by Direct Entry instead, either straight away when we know the account is not NPP-enabled or after NPP tells us so. The `rail` field on the withdrawal changes from `NPP` to `BECS`. The status stays `PENDING` until the Direct Entry payment is processed. Note that Direct Entry truncates your `externalReference` to 18 characters, see [Withdraw funds](withdraw-funds.md#payment-reference-externalreference).
-* **The recipient's bank or our banking partner rejects the payout temporarily** (maintenance, participant unavailable). We retry automatically with an increasing delay. Only if every retry fails does the withdrawal become `FAILED` and then `REFUNDED` with `rejectCode: TECHNICAL_ISSUE`.
+<summary><strong>Q: What happens if I submit the same <code>externalId</code> twice?</strong></summary>
 
-You receive one `withdrawal_pending` webhook when the withdrawal enters `PENDING`. The retries above are not status changes and do not produce further webhooks. The next webhook is `withdrawal_completed`, or `withdrawal_failed` followed by `withdrawal_refunded`.
+The `externalId` is your reference for the payout, for example the transaction ID in your system. We reject the second call with `success: false and code: "EXTERNAL_ID_EXISTS"`. We do not create a record. You can use an `externalId` only one time in your account, and it has no time limit.
+
+The `idempotencyKey` protects you for 24 hours. The `externalId` protects you permanently. Thus:
+
+* Send your transaction ID as the `externalId`.
+* To find the original withdrawal, use [`withdrawals`](query-withdrawals.md) query, filtered by `externalId`.
+* When you send the same withdrawal again, do not submit a new `externalId` with it.
+
+</details>
+
+#### Delivery <a href="#user-content-delivery" id="user-content-delivery"></a>
+
+<details>
+
+<summary><strong>Q: What happens during a payment infrastructure or recipient bank outage?</strong></summary>
+
+We accept the withdrawal, do our automated checks, and set the status to `PENDING`. The status stays `PENDING` while we deliver the payout. We do not reject a withdrawal because a payment system is not available, and `PENDING` has no time limit. The next step is different for each type of problem:
+
+* **The recipient bank cannot accept NPP payments.** We send the payout by DE. We do this immediately if we already know that the account cannot get NPP payments, or after NPP tells us. The `rail` field of the withdrawal changes from `NPP` to `BECS`. The status stays `PENDING` until the DE transaction is complete. Note: DE cuts your externalReference to 18 characters. See [Withdraw funds](withdraw-funds.md#payment-reference-externalreference).
+* **The recipient bank, or our banking partner, rejects the payout for a temporary reason** (for example, scheduled maintenance). We send the payout again automatically. Each time, we wait longer before we send it again. If all of these attempts fail, we set the status to `FAILED` and then `REFUNDED`, with `rejectCode: TECHNICAL_ISSUE`.
+
+We send you one `withdrawal_pending` webhook when the status becomes `PENDING`. When we retry the payout, the status does not change, so we do not send more webhooks. The next webhook we send is `withdrawal_completed`, or `withdrawal_failed`  and then `withdrawal_refunded`.
+
+</details>
 
 ### Compliance review
 
-#### Q: How long can a withdrawal stay in `REVIEWING`, and does it expire? <a href="#user-content-how-long-can-a-withdrawal-stay-in-reviewing-and-does-it-expire" id="user-content-how-long-can-a-withdrawal-stay-in-reviewing-and-does-it-expire"></a>
+<details>
 
-A withdrawal goes to `REVIEWING` when our automated screening asks the Compliance team to look at it. You receive the `withdrawal_reviewing` webhook. The analyst either releases it (`PENDING`, then `CONFIRMED`) or declines it (`CANCELLED` with `rejectCode: COMPLIANCE_DECLINED`; the amount is returned to your balance; the fee is kept).
+<summary><strong>Q: How long can a withdrawal stay in <code>REVIEWING</code>, and does it expire?</strong></summary>
 
-Reviews are handled by our Compliance team during Sydney business hours, and how long one takes depends on the case. Accurate sender and recipient details, including full addresses, are the best way to avoid a manual review in the first place.
+Sometimes our automated checks send a withdrawal to our Compliance team for a review. The status becomes `REVIEWING`, and we send you the `withdrawal_reviewing` webhook. A Compliance analyst then releases the withdrawal (status `PENDING`, then `CONFIRMED`) or declines it (status `CANCELLED` with `rejectCode: COMPLIANCE_DECLINED`). If the analyst declines it, we return the amount to your balance and keep the fee.
 
-`REVIEWING` does not expire on its own. The only timer starts when the Compliance team sends you a [Request for Information (RFI)](../../compliance/request-for-information/): the RFI carries its `deadline` (7 business days), and if it is still unanswered after 8 business days the withdrawal is cancelled with `rejectCode: DATA_ENQUIRY_TIME_ELAPSED` and the amount is returned to your balance.
+Our Compliance team works in Sydney business hours. The time for a review is different for each case. The best way to prevent a manual review is to submit accurate sender and recipient details, with full addresses.
 
-### Failures, returns and refunds <a href="#user-content-failures-returns-and-refunds" id="user-content-failures-returns-and-refunds"></a>
+The `REVIEWING` status has no time limit. A timer starts only when our Compliance team sends you a [Request for Information (RFI)](../../compliance/request-for-information/), a set of questions about the withdrawal, which you must answer. The deadline of the RFI is 7 business days. If you do not answer in 8 business days, we cancel the withdrawal with `rejectCode: DATA_ENQUIRY_TIME_ELAPSED` and return the amount to your balance.
 
-#### Q: Does Flash ever move a payout from `FAILED` back to `PENDING`? <a href="#user-content-does-flash-ever-move-a-payout-from-failed-back-to-pending" id="user-content-does-flash-ever-move-a-payout-from-failed-back-to-pending"></a>
+</details>
 
-Rarely, yes. A payout moves from `FAILED` back to `PENDING` only after our team reviews it and resubmits it once the cause has been fixed. For example, a bank might reject a payout for a reason we haven’t encountered before. If you see a withdrawal in `FAILED` for more than a few minutes, we’re already working on it, so you don’t need to do anything.
+#### Failures, returns and refunds <a href="#user-content-failures-returns-and-refunds" id="user-content-failures-returns-and-refunds"></a>
 
-#### Q: Can a `CONFIRMED` withdrawal still fail? <a href="#user-content-can-a-confirmed-withdrawal-still-fail" id="user-content-can-a-confirmed-withdrawal-still-fail"></a>
+<details>
 
-Rarely, yes, and what `CONFIRMED` means depends on the rail. Via NPP it means the payment has settled and the receiving bank has accepted it. Occasionally that bank, or the recipient, later asks for the payment to be returned. Via Direct Entry it means the payment has been dispatched to the receiving bank in a BECS file. The bank then processes it and can return it, typically within one to three business days, an invalid or closed account being the usual reason.\
-\
-That shows as `CONFIRMED` → `FAILED` → `REFUNDED`, with a `rejectCode` such as `RECIPIENT_INVALID_ACCOUNT`, `RECIPIENT_ACCOUNT_CLOSED` or `CANCELLATION_BY_RECIPIENT_FI` and the amount back on your balance. Treat `REFUNDED` and `CANCELLED` as the only statuses after which no money moves.
+<summary><strong>Q: Does Flash ever move a payout from <code>FAILED</code> back to <code>PENDING</code>?</strong></summary>
 
-#### Q: How do I link a return or refund to the original payout? <a href="#user-content-how-do-i-link-a-return-or-refund-to-the-original-payout" id="user-content-how-do-i-link-a-return-or-refund-to-the-original-payout"></a>
+Yes, but rarely. This occurs only when our team examines a failed payout, addresses the cause, and sends the payout again. For example, a bank can reject a payout for a reason that we did not see before. If a withdrawal stays in `FAILED` for more than a few minutes, we already examine it. You do not have to do anything.
 
-A return is not a separate transaction. The original withdrawal itself moves to `REFUNDED`, so everything you need is on the record you already have:
+</details>
 
-* The `withdrawal_failed` and `withdrawal_refunded` webhooks carry the same `id` that `createWithdrawal` returned and your `externalId`; `withdrawal_failed` adds the `rejectCode` and `statusMessage`, `withdrawal_refunded` adds `refundAmount`, `refundReason`, `refundedAt` and the recipient's BSB and account number.
-* The `Withdrawal` type returns `status`, `rejectCode`, `statusMessage`, `rejectedAt` and `refundedAt`, and the `withdrawals` query filters by `externalId`.
+<details>
 
-The refunded amount is credited back to your balance automatically. The fee is kept. Returns are the exception rather than the rule, and almost always come down to the quality of the recipient's details, so an invalid or closed account is the usual `rejectCode`.
+<summary><strong>Q: Can a <code>CONFIRMED</code> withdrawal still fail?</strong></summary>
 
-### Rejection codes <a href="#user-content-rejection-codes" id="user-content-rejection-codes"></a>
+Yes, but not often. The meaning of `CONFIRMED` is different for each delivery method:
 
-#### Q: Is it safe to resubmit a withdrawal rejected with `TECHNICAL_ISSUE`? <a href="#user-content-is-it-safe-to-resubmit-a-withdrawal-rejected-with-technical_issue" id="user-content-is-it-safe-to-resubmit-a-withdrawal-rejected-with-technical_issue"></a>
+* **NPP**: the money is at the recipient bank, and the bank accepted it. In some cases, the bank or the recipient asks us later to return the money.
+* **DE**: we sent the payout to the recipient bank. The bank then processes the payout and can send it back, usually in one to three business days. The usual cause is an account that is not valid or is closed.
 
-Yes. `TECHNICAL_ISSUE` is only ever set on a final status, `CANCELLED` or `REFUNDED`, and the amount is already back on your balance when you receive it. The original withdrawal will not be paid. Create a new withdrawal with a new `idempotencyKey` and a new `externalId`. The old `externalId` stays attached to the cancelled withdrawal and would be refused with `EXTERNAL_ID_EXISTS`.
+In both cases, the status goes from `CONFIRMED` to `FAILED` to `REFUNDED`, with a `rejectCode` such as `RECIPIENT_INVALID_ACCOUNT`, `RECIPIENT_ACCOUNT_CLOSED` or `CANCELLATION_BY_RECIPIENT_FI`. We return the amount to your balance.
 
-We use `TECHNICAL_ISSUE` when the retries described above were exhausted, or on a technical failure on our side or our partner's.
+</details>
 
-#### Q: What do `TECHNICAL_ISSUE`, `EXPIRED` and `DATA_ENQUIRY_TIME_ELAPSED` mean? <a href="#user-content-what-do-technical_issue-expired-and-data_enquiry_time_elapsed-mean" id="user-content-what-do-technical_issue-expired-and-data_enquiry_time_elapsed-mean"></a>
+<details>
 
-* `TECHNICAL_ISSUE`: see the previous question. Safe to resubmit as a new withdrawal.
-* `EXPIRED`: the withdrawal was created in [Flash Connect](https://connect.flash-payments.com/) by a member whose transactions need approval, and nobody approved it within 7 days. It is cancelled by a nightly job and the amount is returned to your balance. Withdrawals created through the API are straight-through and never wait for approval, so an API integration will not see this code.
-* `DATA_ENQUIRY_TIME_ELAPSED`: the Compliance team sent you a request for information about this withdrawal and did not receive your answers within 8 business days. The withdrawal is cancelled and the amount returned to your balance. Answer RFIs through the [RFI API](../../compliance/request-for-information/answer-rfi-questions.md) or in Flash Connect to avoid this.
+<summary><strong>Q: How do I link a return or refund to the original payout?</strong></summary>
+
+A return is not a new transaction. The status of the first withdrawal changes to `REFUNDED`. Thus, all the data that you need is in the withdrawal that you already have:
+
+* The `withdrawal_failed` and `withdrawal_refunded` webhooks have the same `id` that `createWithdrawal` returned, as well as your `externalId`. The `withdrawal_failed` webhook also has the `rejectCode` and the `statusMessage`. The withdrawal\_refunded webhook includes `refundAmount`, `refundReason`, `refundedAt`, and the BSB and account number of the recipient.
+* The `Withdrawal` object returns `status`, `rejectCode`, `statusMessage`, `rejectedAt` and `refundedAt`. The `withdrawals` query can filter by `externalId`.
+
+We return the refunded amount to your balance automatically and keep the fee. Returns do not occur often. The usual cause is incorrect recipient details with an invalid or closed account being the usual `rejectCode`.
+
+</details>
+
+#### Rejection codes <a href="#user-content-rejection-codes" id="user-content-rejection-codes"></a>
+
+<details>
+
+<summary><strong>Q: Is it safe to resubmit a withdrawal rejected with <code>TECHNICAL_ISSUE</code>?</strong></summary>
+
+Yes. `TECHNICAL_ISSUE` appears only on a withdrawal with a final status, `CANCELLED` or `REFUNDED`, and the amount is already back on your balance when you receive it. Make a new withdrawal with a new `idempotencyKey` and a new `externalId`. The old `externalId` stays attached to the cancelled withdrawal. If you use it again, we return `EXTERNAL_ID_EXISTS`.
+
+We use `TECHNICAL_ISSUE` when all our automatic retries failed. We also use it when there was a technical problem on our side or at our banking partner.
+
+</details>
+
+<details>
+
+<summary><strong>Q: What do <code>EXPIRED</code> and <code>DATA_ENQUIRY_TIME_ELAPSED</code> mean?</strong></summary>
+
+* `EXPIRED`: a user made the withdrawal in [Flash Connect](https://connect.flash-payments.com/), our web portal. The transactions of this user need approval from another account member, and nobody approved the withdrawal in 7 days. We cancel it and return the amount to your balance. Withdrawals that you make through the API do not wait for approval. Thus, you will not see this code through the API.
+* `DATA_ENQUIRY_TIME_ELAPSED`: our Compliance team sent you a Request for Information (RFI) about this withdrawal, and you did not answer in 8 business days. We cancel the withdrawal and return the amount to your balance. To prevent this, answer the RFI through the [RFI API](../../compliance/request-for-information/answer-rfi-questions.md) or in Flash Connect.
+
+</details>
 
 ### Webhooks
 
