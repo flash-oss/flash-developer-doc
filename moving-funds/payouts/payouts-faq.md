@@ -151,11 +151,11 @@ We use `TECHNICAL_ISSUE` when all our automatic retries failed. We also use it w
 We send webhooks if you set a `callbackUri` on the withdrawal, or if you turned on [regular webhooks](../../basics/webhooks/regular-webhooks.md) for your account. The sequence depends on the path:\
 \
 **Automated checks pass**\
-`withdrawal_initiated` → `withdrawal_pending` → `withdrawal_completed`\
-\
+`withdrawal_initiated` → `withdrawal_pending` → `withdrawal_completed`
+
 **Manual review, released**\
-`withdrawal_initiated` → `withdrawal_reviewing` → `withdrawal_pending` → `withdrawal_completed`\
-\
+`withdrawal_initiated` → `withdrawal_reviewing` → `withdrawal_pending` → `withdrawal_completed`
+
 **Manual review, declined**\
 `withdrawal_initiated` → `withdrawal_reviewing` → `withdrawal_cancelled`&#x20;
 
