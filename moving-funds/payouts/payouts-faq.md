@@ -5,15 +5,13 @@ hidden: true
 
 # Payouts FAQ
 
-This page gives answers to the questions that we get most often about payouts that you make with [`createWithdrawal`](withdraw-funds.md).&#x20;
-
-Some words on this page have a special meaning:
+This page answers the questions we get most often about the payouts you make with [createWithdrawal](withdraw-funds.md). Some words on this page have a special meaning:
 
 * **Payout** and **withdrawal** have the same meaning: money that you send from your Flash balance to a bank account. The API uses the word withdrawal.
 * **NPP** and **Direct Entry (DE)** are the two methods to send money to an Australian bank account. NPP is immediate and operates 24 hours a day, 7 days a week. DE, also known as BECS, sends payments in batches on business days. We select the method automatically. The `rail` field of the withdrawal shows the method that we used: NPP or BECS.
 * A **webhook** is a message that we send to your server when the status of a payout changes. The name of the webhook, for example `withdrawal_cancelled`, shows the new status.
 
-If an answer does not say differently, it applies to AUD payouts to Australian bank accounts. International payouts obey the rules of the payment system in the country of the recipient. For reference, see [Withdrawal statuses](withdrawal-statuses.md), [Rejection codes](rejection-codes.md) and [Webhooks](../../basics/webhooks/#withdrawal_initiated). We will add new questions to this page when they occur. If your question is not here, ask us.
+If an answer does not say differently, it applies to AUD payouts to Australian bank accounts. International payouts follow the rules of the payment system in the country of the recipient. For reference, see [Withdrawal statuses](withdrawal-statuses.md), [Rejection codes](rejection-codes.md) and [Webhooks](../../basics/webhooks/#withdrawal_initiated). We will add new questions and answers to this page when they occur. If your question is not here, ask us.
 
 {% hint style="info" %}
 **In short:** when you create a payout, we immediately reject it or accept it. If we accept it, we move it to its final status. We never hold a payout while we wait for money to come to your balance.
@@ -25,7 +23,7 @@ If an answer does not say differently, it applies to AUD payouts to Australian b
 
 <summary> <strong>Q: What happens when my balance is too low?</strong></summary>
 
-We reject the withdrawal immediately. `createWithdrawal` returns `success: false and code: "NO_BALANCE"`. We do not create a withdrawal record, we do not set a status, and we do not send a webhook. We do not hold anything, and nothing has a time limit. Add money to your balance and send the request again.
+We reject the withdrawal immediately. `createWithdrawal` returns `success: false` and `code: "NO_BALANCE"`. We do not create a withdrawal record, we do not set a status, and we do not send a webhook. We do not hold anything, and nothing has a time limit. Add money to your balance and send the request again.
 
 When we accept a withdrawal, we immediately take the amount and the fee from your balance (status `INITIALISED`). Thus, an accepted withdrawal is always funded.
 
@@ -49,7 +47,7 @@ If you got no response, for example because of a timeout or a lost connection, y
 
 <summary><strong>Q: What happens if I submit the same <code>externalId</code> twice?</strong></summary>
 
-The `externalId` is your reference for the payout, for example the transaction ID in your system. We reject the second call with `success: false and code: "EXTERNAL_ID_EXISTS"`. We do not create a record. You can use an `externalId` only one time in your account, and it has no time limit.
+The `externalId` is your reference for the payout, for example the transaction ID in your system. We reject the second call with `success: false` and `code: "EXTERNAL_ID_EXISTS"`. We do not create a record. You can use an `externalId` only one time in your account, and it has no time limit.
 
 The `idempotencyKey` protects you for 24 hours. The `externalId` protects you permanently. Thus:
 
@@ -67,7 +65,7 @@ The `idempotencyKey` protects you for 24 hours. The `externalId` protects you pe
 
 We accept the withdrawal, do our automated checks, and set the status to `PENDING`. The status stays `PENDING` while we deliver the payout. We do not reject a withdrawal because a payment system is not available, and `PENDING` has no time limit. The next step is different for each type of problem:
 
-* **The recipient bank cannot accept NPP payments.** We send the payout by DE. We do this immediately if we already know that the account cannot get NPP payments, or after NPP tells us. The `rail` field of the withdrawal changes from `NPP` to `BECS`. The status stays `PENDING` until the DE transaction is complete. Note: DE cuts your externalReference to 18 characters. See [Withdraw funds](withdraw-funds.md#payment-reference-externalreference).
+* **The recipient bank is not connected to NPP network.** We send the payout by DE. The `rail` field of the withdrawal becomes `AU_BECS` instead of `AU_NPP`. The status stays `PENDING` until the DE transaction is complete. Note: DE cuts your `externalReference` to 18 characters. See [Withdraw funds](withdraw-funds.md#payment-reference-externalreference).
 * **The recipient bank, or our banking partner, rejects the payout for a temporary reason** (for example, scheduled maintenance). We send the payout again automatically. Each time, we wait longer before we send it again. If all of these attempts fail, we set the status to `FAILED` and then `REFUNDED`, with `rejectCode: TECHNICAL_ISSUE`.
 
 We send you one `withdrawal_pending` webhook when the status becomes `PENDING`. When we retry the payout, the status does not change, so we do not send more webhooks. The next webhook we send is `withdrawal_completed`, or `withdrawal_failed`  and then `withdrawal_refunded`.
@@ -80,7 +78,7 @@ We send you one `withdrawal_pending` webhook when the status becomes `PENDING`. 
 
 <summary><strong>Q: How long can a withdrawal stay in <code>REVIEWING</code>, and does it expire?</strong></summary>
 
-Sometimes our automated checks send a withdrawal to our Compliance team for a review. The status becomes `REVIEWING`, and we send you the `withdrawal_reviewing` webhook. A Compliance analyst then releases the withdrawal (status `PENDING`, then `CONFIRMED`) or declines it (status `CANCELLED` with `rejectCode: COMPLIANCE_DECLINED`). If the analyst declines it, we return the amount to your balance and keep the fee.
+Sometimes our automated checks send a withdrawal to our Compliance team for review. The status becomes `REVIEWING`, and we send you the `withdrawal_reviewing` webhook. A Compliance analyst then releases the withdrawal (status `PENDING`, then `CONFIRMED`) or declines it (status `CANCELLED` ). Check the `rejectCode` and `rejectMessage` to understand why this transaction was declined. If the analyst declines the payout, we return the amount to your balance and keep the fee.
 
 Our Compliance team works in Sydney business hours. The time for a review is different for each case. The best way to prevent a manual review is to submit accurate sender and recipient details, with full addresses.
 
@@ -117,7 +115,7 @@ In both cases, the status goes from `CONFIRMED` to `FAILED` to `REFUNDED`, with 
 
 A return is not a new transaction. The status of the first withdrawal changes to `REFUNDED`. Thus, all the data that you need is in the withdrawal that you already have:
 
-* The `withdrawal_failed` and `withdrawal_refunded` webhooks have the same `id` that `createWithdrawal` returned, as well as your `externalId`. The `withdrawal_failed` webhook also has the `rejectCode` and the `statusMessage`. The withdrawal\_refunded webhook includes `refundAmount`, `refundReason`, `refundedAt`, and the BSB and account number of the recipient.
+* The `withdrawal_failed` and `withdrawal_refunded` webhooks have the same `id` that `createWithdrawal` returned, as well as your `externalId`. The `withdrawal_failed` webhook also has the `rejectCode` and the `statusMessage`. The `withdrawal_refunded` webhook includes `refundAmount`, `refundReason`, `refundedAt`, and the BSB and account number of the recipient.
 * The `Withdrawal` object returns `status`, `rejectCode`, `statusMessage`, `rejectedAt` and `refundedAt`. The `withdrawals` query can filter by `externalId`.
 
 We return the refunded amount to your balance automatically and keep the fee. Returns do not occur often. The usual cause is incorrect recipient details with an invalid or closed account being the usual `rejectCode`.
@@ -145,18 +143,37 @@ We use `TECHNICAL_ISSUE` when all our automatic retries failed. We also use it w
 
 </details>
 
-### Webhooks
+#### Webhooks
 
-#### Q: Which webhooks will I receive, and in what order? <a href="#user-content-which-webhooks-will-i-receive-and-in-what-order" id="user-content-which-webhooks-will-i-receive-and-in-what-order"></a>
+<details>
 
-For a withdrawal created with a `callbackUri` or with [regular webhooks](../../basics/webhooks/regular-webhooks.md) enabled:
+<summary><strong>Q: Which webhooks will I receive, and in what order?</strong></summary>
 
-<table><thead><tr><th width="249.328125">Path</th><th>Webhooks, in order</th></tr></thead><tbody><tr><td>Automated checks pass</td><td><code>withdrawal_initiated</code> → <code>withdrawal_pending</code> → <code>withdrawal_completed</code></td></tr><tr><td>Manual review, released</td><td><code>withdrawal_initiated</code> → <code>withdrawal_reviewing</code> → <code>withdrawal_pending</code> → <code>withdrawal_completed</code></td></tr><tr><td>Manual review, declined</td><td><code>withdrawal_initiated</code> → <code>withdrawal_reviewing</code> → <code>withdrawal_cancelled</code></td></tr><tr><td>Bank rejects the payout</td><td><code>withdrawal_initiated</code> → <code>withdrawal_pending</code> → <code>withdrawal_failed</code> + <code>withdrawal_refunded</code></td></tr><tr><td>Bank returns the payout after confirmation</td><td><code>withdrawal_initiated</code> → (<code>withdrawal_reviewing</code>) → <code>withdrawal_pending</code> → <code>withdrawal_completed</code> → <code>withdrawal_failed</code> + <code>withdrawal_refunded</code></td></tr></tbody></table>
+We send webhooks if you set a `callbackUri` on the withdrawal, or if you turned on [regular webhooks](../../basics/webhooks/regular-webhooks.md) for your account. The sequence depends on the path as per below:\
+\
+**Automated checks pass**\
+`withdrawal_initiated` → `withdrawal_pending` → `withdrawal_completed`\
+\
+**Manual  review, released**\
+`withdrawal_initiated` → `withdrawal_reviewing` → `withdrawal_pending` → `withdrawal_completed`\
+\
+**Manual review, declined**\
+`withdrawal_initiated` → `withdrawal_reviewing` → `withdrawal_cancelled`&#x20;
 
-`withdrawal_failed` and `withdrawal_refunded` are sent together. The other events arrive in the order shown, usually within seconds of each other. The event name is in the payload of a `callbackUri` callback (`event` field) and in the regular webhook delivery, and each regular webhook delivery carries a `flashfx-request-id` header that stays the same across our retries, so you can ignore duplicates. Delivery retries and signature verification are described on the [Webhooks](../../basics/webhooks/) pages.
+**The recipient's bank rejects the payout**\
+`withdrawal_initiated` → `withdrawal_pending` → `withdrawal_failed` + `withdrawal_refunded`&#x20;
 
-### Testing
+**The recipient's bank returns the payout after confirmation**\
+`withdrawal_initiated` → (`withdrawal_reviewing`) → `withdrawal_pending` → `withdrawal_completed` → `withdrawal_failed` + `withdrawal_refunded`&#x20;
 
-#### Q: How do I test these outcomes before going live? <a href="#user-content-how-do-i-test-these-outcomes-before-going-live" id="user-content-how-do-i-test-these-outcomes-before-going-live"></a>
+</details>
 
-In UAT, put a keyword in `externalReference` to simulate a long review, an AML decline, an RFI, or a payout that completes and is then returned. See [Withdrawal outcomes simulation](withdrawal-outcomes-simulation.md).
+#### Testing <a href="#user-content-which-webhooks-will-i-receive-and-in-what-order" id="user-content-which-webhooks-will-i-receive-and-in-what-order"></a>
+
+<details>
+
+<summary><strong>Q: How do I test my payout outcomes properly before going live?</strong></summary>
+
+In our UAT environment, you can simulate each result with a keyword in the `externalReference` field: a long review, a Compliance decline, an RFI, or a payout that completes and then comes back. See [Withdrawal outcomes simulation](withdrawal-outcomes-simulation.md).
+
+</details>
