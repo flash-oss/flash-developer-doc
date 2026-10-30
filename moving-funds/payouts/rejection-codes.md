@@ -38,7 +38,7 @@ EXPIRED
 Please do not retry a withdrawal if it was rejected by our Compliance team or by a beneficiary financial institution.
 
 Only those withdrawals rejected with code `TECHNICAL_ISSUE` may be re-submitted as new transactions.\
-`TECHNICAL_ISSUE`, `EXPIRED` and `DATA_ENQUIRY_TIME_ELAPSED` are explained in the [Payouts FAQ](payouts-faq.md#user-content-what-do-technical_issue-expired-and-data_enquiry_time_elapsed-mean).
+`TECHNICAL_ISSUE`, `EXPIRED` and `DATA_ENQUIRY_TIME_ELAPSED` are explained in the [Payouts FAQ](payouts-faq.md#q-what-do-expired-and-data_enquiry_time_elapsed-mean).
 {% endhint %}
 
 Please also note that while the rejection codes are set, the corresponding free text `statusMessage` will have a case-by-case human written text explaining the root cause of the cancellation. We'll try to be as descriprive as possible taking into account the legal bounds (we are not allowed by the law to disclose certain information).

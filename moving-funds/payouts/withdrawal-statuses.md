@@ -19,7 +19,7 @@ description: Withdrawal processing statuses
    * `FAILED` - NOT FINAL status. Depending on the processing error we have three scenarios now.
      * `REFUNDED` - see step 4 below.
      * `CANCELLED` - manual action. Your **balance goes up** by the amount, Flash Payments keeps the fee. _**FINAL status.**_
-     * `PENDING` - rare case, only when our operations team re-submits the payout by hand after fixing the cause. We never do this automatically, and we contact you first. See the [Payouts FAQ](payouts-faq.md#user-content-does-flash-ever-move-a-payout-from-failed-back-to-pending).
+     * `PENDING` - rare case, only when our operations team re-submits the payout by hand after fixing the cause. We never do this automatically, and we contact you first. See the [Payouts FAQ](payouts-faq.md#q-does-flash-ever-move-a-payout-from-failed-back-to-pending).
 4.  The recipient bank rejected the payout or accepted it and later returned it.
 
     * `PENDING` → `FAILED` → `REFUNDED` (rejected)
