@@ -1,6 +1,5 @@
 ---
 description: Answers to the frequently asked questions about payouts
-hidden: true
 ---
 
 # Payouts FAQ
@@ -139,7 +138,7 @@ We use `TECHNICAL_ISSUE` when all our automatic retries failed. We also use it w
 <summary><strong>Q: What do <code>EXPIRED</code> and <code>DATA_ENQUIRY_TIME_ELAPSED</code> mean?</strong></summary>
 
 * `EXPIRED`: a user made the withdrawal in [Flash Connect](https://connect.flash-payments.com/), our web portal. The transactions of this user need approval from another account member, and nobody approved the withdrawal in 7 days. We cancel it and return the amount to your balance. Withdrawals that you make through the API do not wait for approval. Thus, you will not see this code through the API.
-* `DATA_ENQUIRY_TIME_ELAPSED`: our Compliance team sent you a Request for Information (RFI) about this withdrawal, and you did not answer in 8 business days. We cancel the withdrawal and return the amount to your balance. To prevent this, answer the RFI through the [RFI API](../../compliance/request-for-information/answer-rfi-questions.md) or in Flash Connect.
+* `DATA_ENQUIRY_TIME_ELAPSED`: our Compliance team sent you a Request for Information (RFI) about this withdrawal, and you did not answer in 8 business days. We cancel the withdrawal and return the amount to your balance. To prevent this, answer the RFI through the [RFI API](../../compliance/request-for-information/answer-rfi-questions.md) or in the RFI form emailed to you.
 
 </details>
 
