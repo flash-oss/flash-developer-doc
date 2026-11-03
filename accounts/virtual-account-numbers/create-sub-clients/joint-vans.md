@@ -10,7 +10,7 @@ A joint VAN (aka sub-client) is one account that two to five people hold togethe
 Joint sub-clients are currently available in the UAT environment. In production, `createSubClient` with `clientType: JOINT` returns `NOT_SUPPORTED` until we switch the feature on. Please follow the announcements in the [API change log](../../../basics/api-change-log.md).
 {% endhint %}
 
-### **Creating a joint sub-client**
+### Creating a joint sub-client
 
 Send `clientType: JOINT` and the details in `accountHolders`. Each entry describes one account holder. Follow these rules:
 
@@ -18,7 +18,7 @@ Send `clientType: JOINT` and the details in `accountHolders`. Each entry describ
 * Put the personal details in `accountHolders` only. Leave out the top-level `firstName`, `middleName`, `lastName`, `email`, `mobile`, `dob` and `idDoc`.
 * Leave out `legalName`, `tradingAsName`, `businessNumber`, `orgType` and `principals`. A `JOINT` sub-client is for people, not for a business. A trust or a partnership that two people run is a `COMPANY` sub-client with the matching [`orgType`](./#organisation-type), and the trustees or partners are its [principals](principals.md).
 * Send one `address` for the sub-client, at the top level. We record it as one residential address for all holders.
-* `externalId`, `instructingInstitutionId` and `postalAddress`  work as for every other sub-client.
+* `externalId`, `instructingInstitutionId` and `postalAddress` work as for every other sub-client.
 
 The [data quality requirements](./#data-quality-requirements) apply to every account holder: real people, real names, real documents. We check the request before we create anything. A request that breaks one of the rules above is rejected with an error, and no sub-client is created:
 
@@ -28,7 +28,6 @@ The [data quality requirements](./#data-quality-requirements) apply to every acc
     {
       "message": "'accountHolders' needs two to five entries when 'clientType' is JOINT",
       "extensions": { "code": "BAD_USER_INPUT" }
-      // other properties omitted
     }
   ],
   "data": { "createSubClient": null }
@@ -39,7 +38,7 @@ An `externalId` that one of your sub-clients already has is rejected with `DUPLI
 
 The **account name** of the joint virtual account lists every holder, joined with "and". For the example below it is `Duncan Brian Smith and Emily Smith`. A payer's bank shows this name when it checks the account before a payment.
 
-You can read the holders back at any time via the `accountHolders` field of the `SubClient` type. See [Query sub-clients](../query-sub-clients.md). It is an empty list for `individual` and `company` sub-clients.
+You can read the holders back at any time via the `accountHolders` field of the `SubClient` type. See [Query sub-clients](../query-sub-clients.md#query-for-a-joint-sub-client). It is an empty list for `individual` and `company` sub-clients.
 
 {% hint style="info" %}
 You cannot add or remove account holders, or change their details, after the sub-client is created. [`updateSubClient`](../disable-activate-and-update-sub-clients.md#updating-sub-clients) changes `externalId`, `address` and `postalAddress` only. If the holders change, create a new sub-client and deactivate the old one.
@@ -48,6 +47,10 @@ You cannot add or remove account holders, or change their details, after the sub
 ### Example
 
 A joint VAN is registered to a married couple, Duncan and Emily Smith. Duncan is identified by his passport, while Emily is identified by her driver licence.
+
+{% hint style="info" %}
+In the response, `primaryContact` and `fullName` are the first holder’s. The account name of the virtual account is different, see above.
+{% endhint %}
 
 {% tabs %}
 {% tab title="JavaScript" %}

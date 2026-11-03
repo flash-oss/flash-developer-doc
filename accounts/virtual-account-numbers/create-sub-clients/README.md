@@ -4,7 +4,7 @@ There are three types of sub-clients. Tell us which one you create in `clientTyp
 
 * `INDIVIDUAL` - one person
 * `COMPANY` - a business or other organisation. Send its `legalName`, a contact person and [principals](principals.md)
-* `JOINT` - one account held by two to five people. Send every person details in `accountHolders`, see [Joint VANs](joint-vans.md)
+* `JOINT` - one account held by two to five people. Send each person's details in `accountHolders`, see [Joint VANs](joint-vans.md)
 
 {% hint style="warning" %}
 Please send `clientType` with every new sub-client. While this field is optional for now, it will soon become required. Please follow the announcements in the [API change log](../../../basics/api-change-log.md). &#x20;
@@ -12,7 +12,7 @@ Please send `clientType` with every new sub-client. While this field is optional
 Currently, if you leave `clientType` out, we create a `COMPANY` when `legalName` is sent, and an `INDIVIDUAL` otherwise.
 {% endhint %}
 
-For every entity registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
+For every company registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
 
 * `legalName` - company legal name (required for a company)
 * `orgType` - the legal structure of the company. Optional: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`

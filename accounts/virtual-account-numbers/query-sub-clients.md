@@ -439,7 +439,7 @@ query($input: SubClientQueryInput!){
 To list the sub-clients of one type, filter by `clientType`: `INDIVIDUAL`, `COMPANY` or `JOINT`.
 
 {% tabs %}
-{% tab title="JavaSscript" %}
+{% tab title="JavaScript" %}
 ```javascript
 const bodyJSON = {
   variables: {

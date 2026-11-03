@@ -226,7 +226,7 @@ const bodyJSON = {
   variables: {
     id: "660fef8e1f3b5452bd6945ec",
     input: {
-      adddress: {
+      address: {
         street: "456 New St",
         suburb: "Newtow",
         state: "VIC",
