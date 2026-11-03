@@ -1,15 +1,25 @@
 # Create sub-clients
 
-There are two types of sub-clients: `company` and `individual`.
+There are three types of sub-clients. Tell us which one you create in `clientType`:
 
-For every `company` registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
+* `INDIVIDUAL` - one person
+* `COMPANY` - a business or other organisation. Send its `legalName`, a contact person and [principals](principals.md)
+* `JOINT` - one account held by two to five people. Send every person details in `accountHolders`, see [Joint VANs](joint-vans.md)
+
+{% hint style="warning" %}
+Please send `clientType` with every new sub-client. While this field is optional for now, it will soon become required. Please follow the announcements in the [API change log](../../../basics/api-change-log.md). &#x20;
+
+Currently, if you leave `clientType` out, we create a `COMPANY` when `legalName` is sent, and an `INDIVIDUAL` otherwise.
+{% endhint %}
+
+For every entity registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
 
 * `legalName` - company legal name (required for a company)
 * `orgType` - the legal structure of the company. Optional: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`
 * `businessNumber` - company business number (e.g. ABN in Australia). Required for a `COMPANY` or `PARTNERSHIP`, and whenever `orgType` is not sent. Optional for a `TRUST` or `SOLE_TRADER`.
 * `principals` - the people who own or control the company. Optional for now, see [Principals](principals.md)
 
-If `legalName` is not set, the sub-client will be created as `individual` type.
+When `clientType` is `COMPANY`, `legalName` is required. When `clientType` is `INDIVIDUAL` or `JOINT`, leave out `legalName`, `tradingAsName`, `businessNumber`, `orgType` and `principals`.
 
 #### Organisation type
 
@@ -55,6 +65,7 @@ To create a sub-client, you need to execute the `createSubClient` mutation as be
 const bodyJSON = {
   variables: { 
     input: {
+      clientType: "COMPANY",
       legalName: "Chineese Tradings", 
       businessNumber: "330782000329701",
       orgType: "COMPANY", 
@@ -141,6 +152,7 @@ mutation($input: CreateSubClientInput!) {
 ```javascript
 { 
   "input": {
+    "clientType": "COMPANY",
     "legalName": "Chineese Tradings",
     "businessNumber": "330782000329701",
     "orgType": "COMPANY",
@@ -184,7 +196,7 @@ mutation($input: CreateSubClientInput!) {
         "legalName": "Chineese Tradings",
         "businessNumber": "330782000329701",
         "fullName": "John Smith",
-        "clientType": "C",
+        "clientType": "COMPANY",
         "orgType": "COMPANY",
         "status": "ACTIVE",
         "primaryContact": {

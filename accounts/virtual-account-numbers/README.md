@@ -6,19 +6,23 @@ description: >-
 
 # Virtual account numbers
 
-The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, companies, or other organisations.
+The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, to companies and other organisations, and to [joint accounts](create-sub-clients/joint-vans.md) held by two to five people.
 
 {% hint style="info" %}
 Note: This feature is **disabled** by default. Contact us if you want it.
 {% endhint %}
 
-Each sub-client will receive a dedicated **BSB** and **Vitrual Account Number** (VAN) that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
+Each sub-client will receive a dedicated **BSB** and **Virtual Account Number** (VAN) that you or your clients can use to accept and withdraw domestic AUD transfers within Australia.
 
 {% hint style="warning" %}
 IMPORTANT: Your Australian VAN will be restricted to local Australian transfers. For international payments (aka FX payments), we offer different solutions.
 {% endhint %}
 
-The **account name** is your sub-client's name. For companies - it's their `tradingAsName` or `legalName`. For individuals - it's their `fullName` (`firstName` + `middleName` + `lastName`).
+The **account name** of the virtual account is your sub-client's name:
+
+* **Company:** the `tradingAsName`, or the `legalName` when there is no trading name
+* **Individual:** the person's full name (`firstName` + `middleName` + `lastName`)
+* **Joint:** the full names of all account holders, joined with "and" (`Duncan Brian Smith and Emily Smith`)
 
 For `company` sub-clients we also need to record their [principals](create-sub-clients/principals.md) - the people who own or control the business: ultimate beneficial owners (UBOs), beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account.&#x20;
 
