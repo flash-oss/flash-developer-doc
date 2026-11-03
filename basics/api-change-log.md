@@ -8,14 +8,12 @@ description: History of changes to this API schema
 
 ### Added <a href="#user-content-added" id="user-content-added"></a>
 
-Joint sub-clients: one virtual account for two to five people who hold it together, for example a couple. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
+Joint sub-clients: one virtual account for two to five people who hold it together, for example a couple. Now available in UAT. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
 
 * New `clientType` field on the [`createSubClient`](../accounts/virtual-account-numbers/create-sub-clients/) mutation: `INDIVIDUAL`, `COMPANY` or `JOINT`. Optional for now. When you leave it out, a request with a `legalName` creates a `COMPANY`. Any other request creates an `INDIVIDUAL`, exactly as before.
 * New `JOINT` value of the `SubClientType` enum, returned on the `SubClient` type and accepted in the `subClients` filter.
 * New `accountHolders` field on `createSubClient` and new `AccountHolderInput` input: the two to five people who hold the account, each with `firstName`, `middleName`, `lastName`, `email`, `mobile`, `dob` and `idDoc`. Accepted for `JOINT` only.
 * New `accountHolders` field on the `SubClient` type and new `AccountHolder` type, to read the holders back. An empty list for every other `clientType`.
-
-Now available in UAT. In production, `createSubClient` with `clientType: JOINT` returns `NOT_SUPPORTED` until we enable the feature.
 
 ### Changed <a href="#user-content-changed" id="user-content-changed"></a>
 
