@@ -1,0 +1,244 @@
+# Create sub-clients
+
+There are three types of sub-clients. Tell us which one you create in `clientType`:
+
+* `INDIVIDUAL` - one person
+* `COMPANY` - a business or other organisation. Send its `legalName`, a contact person and [principals](principals.md)
+* `JOINT` - one account held by two to five people. Send each person's details in `accountHolders`, see [Joint VANs](joint-vans.md)
+
+{% hint style="warning" %}
+Please send `clientType` with every new sub-client. While this field is optional for now, it will soon become required. Please follow the announcements in the [API change log](../../../basics/api-change-log.md). &#x20;
+
+Currently, if you leave `clientType` out, we create a `COMPANY` when `legalName` is sent, and an `INDIVIDUAL` otherwise.
+{% endhint %}
+
+For every company registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
+
+* `legalName` - company legal name (required for a company)
+* `orgType` - the legal structure of the company. Optional: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`
+* `businessNumber` - company business number (e.g. ABN in Australia). Required for a `COMPANY` or `PARTNERSHIP`, and whenever `orgType` is not sent. Optional for a `TRUST` or `SOLE_TRADER`.
+* `principals` - the people who own or control the company. Optional for now, see [Principals](principals.md)
+
+When `clientType` is `COMPANY`, `legalName` is required. When `clientType` is `INDIVIDUAL` or `JOINT`, leave out `legalName`, `tradingAsName`, `businessNumber`, `orgType` and `principals`.
+
+#### Organisation type
+
+Use `orgType` to refine the `company` type and specify what kind of business the sub-client is:
+
+* `COMPANY` - a legal entity that is separate from the people who own it.
+* `PARTNERSHIP` - two or more people who run the business together and share its income or losses.
+* `TRUST` - a structure where a trustee runs the business on behalf of the trust's members (the beneficiaries).
+* `SOLE_TRADER` - one person who is legally responsible for every part of the business. Put the person’s own name in `legalName` and the business name, if any, in `tradingAsName`.
+
+These simple definitions follow the Australian Government's [business structures](https://business.gov.au/planning/business-structures-and-types/business-structures) guide.
+
+Any sub-client created with an `orgType` becomes a `COMPANY` and must have a `legalName`.&#x20;
+
+A `COMPANY` or `PARTNERSHIP` must also have a `businessNumber.` A `TRUST` or `SOLE_TRADER` can be created without one. A business sent without `orgType` counts as a company and needs a `businessNumber` too.
+
+You can only set `orgType` when you create the sub-client and [`updateSubClient`](../disable-activate-and-update-sub-clients.md#updating-sub-clients) cannot change it.&#x20;
+
+#### Data quality requirements
+
+{% hint style="warning" %}
+This action creates a real account number. If you ever submit fake, unreal, testing, or incorrect data - you will be immediately **blocked** from Flash Payments services.
+
+Please add all possible precautions, processes, staff training, warning messages, and validation checks to your system(s) before creating a sub-client.
+
+Please follow our latest requirements for the proper sub-client data submission:
+
+1. Provide proper `firstName` , `middleName`, and `lastName` Please note that including the accurate `middleName`  is essential for the account name matching capability of the Australian New Payments Platform (NPP) real-time digital payment network.
+2. Provide proper `mobile` number
+3. Provide proper `dob` : **the person must be under 65 years of age**&#x20;
+4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract agreement. By default, you can only create local Australian sub-clients with an adequate `address.street` field provided. **Any non-Australian entities will undergo extended due diligence based on their location and industry relevance for Flash Payments.**  &#x20;
+5. Provide proper `idDoc` (`type`, `docNumber`, `issuer` (optional), `issueDate` (optional), `expiryDate` (optional), and `country` ) based on the sub-client contact person's address. For Australian residents, either a driver’s license or a passport is accepted. For non-Australian residents, only a passport is accepted as a document type.
+6. Sometimes, we ask our partners to provide “instructing institution” information, but only if you are creating this VAN on behalf of another financial institution. More about institutions [here](../../../moving-funds/institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
+{% endhint %}
+
+The above personal data submission requirements should be as equally followed for the company contact person, with the exception of `address` property, which can be a company address in this case. &#x20;
+
+To create a sub-client, you need to execute the `createSubClient` mutation as below. You can find the description of each field in the GraphQL API schema.
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: { 
+    input: {
+      clientType: "COMPANY",
+      legalName: "Chineese Tradings", 
+      businessNumber: "330782000329701",
+      orgType: "COMPANY", 
+      firstName: "John", 
+      lastName: "Smith", 
+      email: "john.smith@example.com",
+      mobile: "+61422832849",
+      dob: "1979-05-12",
+      address: {
+        building: "25",
+        street: "Xihu Road, Yuexiu District",
+        suburb: "Guangzhou City",
+        state: "Guangdong Province",
+        postcode: "510030",
+        country: "CN",
+      },
+      idDoc: {
+        type: "passport",
+        docNumber: "FF1948394",
+        issuer: "Australian Passport Office (APO)",
+        issueDate: "2000-01-01",
+        expiryDate: "2045-01-01",
+        country: "AU",
+      },
+      externalId: "991188227733",
+    },
+  },
+  query: `
+mutation ($input: CreateSubClientInput!) {
+  createSubClient(input: $input) {
+    success code message
+    subClient {
+      id legalName businessNumber fullName clientType orgType status
+      primaryContact {
+        firstName lastName email mobile dob
+      }
+      address {
+        country
+      }      
+      bsb accountNo externalId
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+mutation($input: CreateSubClientInput!) {
+  createSubClient(input: $input) {
+    success
+    code
+    message
+    subClient {
+      id
+      legalName
+      businessNumber
+      fullName
+      clientType
+      orgType
+      status
+      primaryContact {
+        firstName
+        lastName
+        email
+        mobile
+        dob
+      }
+      address {
+        country
+      }
+      bsb
+      accountNo
+      externalId
+      # more properties available, see API schema
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```javascript
+{ 
+  "input": {
+    "clientType": "COMPANY",
+    "legalName": "Chineese Tradings",
+    "businessNumber": "330782000329701",
+    "orgType": "COMPANY",
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john.smith@example.com",
+    "mobile": "+61422832849",
+    "dob": "1979-05-12",
+    "address": {
+      "building": "25",
+      "street": "Xihu Road, Yuexiu District",
+      "suburb": "Guangzhou City",
+      "state": "Guangdong Province",
+      "postcode": "510030",
+      "country": "CN"
+    },
+    "idDoc": {
+      "type": "passport",
+      "docNumber": "FF1948394",
+      "issuer": "Australian Passport Office (APO)",
+      "issueDate": "2000-01-01",
+      "expiryDate": "2045-01-01",
+      "country": "AU"     
+    },
+    "externalId": "991188227733"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```javascript
+{
+  "data": {
+    "createSubClient": {
+      "success": true,
+      "code": "SUBCLIENT_CREATED",
+      "message": "Sub-client was successfully created",
+      "subClient": {
+        "id": "606d28675a2d931bc925fec2",
+        "legalName": "Chineese Tradings",
+        "businessNumber": "330782000329701",
+        "fullName": "John Smith",
+        "clientType": "COMPANY",
+        "orgType": "COMPANY",
+        "status": "ACTIVE",
+        "primaryContact": {
+          "firstName": "John",
+          "lastName": "Smith",
+          "email": "john.smith@example.com",
+          "mobile": "+61 422 832 849",
+          "dob": "1979-05-12"
+        },
+        "address": {
+          "country": "CN"
+        },
+        "bsb": "802919",
+        "accountNo": "1066419",
+        "externalId": "991188227733"
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### Duplicate sub-clients and externalId
+
+`externalId`  is the identifier of the sub-client in your system. It must be unique across your sub-clients: if you call `createSubClient` with an `externalId` that one of your sub-clients already has, no new sub-client is created and the mutation returns:
+
+```json
+{
+  "data": {
+    "createSubClient": {
+      "success": false,
+      "code": "DUPLICATE_SUBCLIENT",
+      "message": "Sub-client with this externalId already exists",
+      "subClient": null
+    }
+  }
+}
+```
+
+This makes `createSubClient` safe to retry after a timeout or a lost response. Treat `DUPLICATE_SUBCLIENT` as confirmation that the sub-client already exists and retrieve it instead of creating it again.
+
+{% hint style="info" %}
+Always send your own stable identifier as `externalId`. Sub-clients created without an `externalId` are not protected against duplicate submissions.
+{% endhint %}

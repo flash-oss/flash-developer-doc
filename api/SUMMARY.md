@@ -1,0 +1,86 @@
+# Table of contents
+
+* [Overview](README.md)
+
+## 🔤 Basics
+
+* [Why GraphQL](basics/why-graphql.md)
+* [Sending data as JSON](basics/sending-data-as-json.md)
+* [Authentication](basics/authentication.md)
+* [Required fields](basics/required-fields.md)
+* [Webhooks](basics/webhooks/README.md)
+  * [Ad hoc webhooks](basics/webhooks/adhoc-webhooks.md)
+  * [Regular webhooks](basics/webhooks/regular-webhooks.md)
+* [API change log](basics/api-change-log.md)
+
+## 🏦 Accounts
+
+* [Master Balance](accounts/master-balance/README.md)
+  * [Statement](accounts/master-balance/statement.md)
+* [Virtual account numbers](accounts/virtual-account-numbers/README.md)
+  * [Create sub-clients](accounts/virtual-account-numbers/create-sub-clients/README.md)
+    * [Principals](accounts/virtual-account-numbers/create-sub-clients/principals.md)
+    * [Joint VANs](accounts/virtual-account-numbers/create-sub-clients/joint-vans.md)
+  * [Sub-client statuses](accounts/virtual-account-numbers/sub-client-statuses.md)
+  * [Disable, Activate and Update sub-clients](accounts/virtual-account-numbers/disable-activate-and-update-sub-clients.md)
+  * [Query sub-clients](accounts/virtual-account-numbers/query-sub-clients.md)
+  * [Sub-client PayIDs](accounts/virtual-account-numbers/sub-client-payids.md)
+
+## 💸 Moving funds
+
+* [Payouts](moving-funds/payouts/README.md)
+  * [Withdraw funds](moving-funds/payouts/withdraw-funds.md)
+  * [Withdrawal statuses](moving-funds/payouts/withdrawal-statuses.md)
+  * [Withdrawal outcomes simulation](moving-funds/payouts/withdrawal-outcomes-simulation.md)
+  * [Query withdrawals](moving-funds/payouts/query-withdrawals.md)
+  * [Rejection codes](moving-funds/payouts/rejection-codes.md)
+  * [Payouts FAQ](moving-funds/payouts/payouts-faq.md)
+* [Deposits](moving-funds/deposits/README.md)
+  * [Deposit statuses](moving-funds/deposits/deposit-statuses.md)
+  * [Query deposits](moving-funds/deposits/query-deposits.md)
+  * [Refund deposits](moving-funds/deposits/refund-deposits.md)
+  * [Deposits to a PayID](moving-funds/deposits/deposits-to-a-payid.md)
+* [Senders](moving-funds/senders/README.md)
+  * [Sender principals](moving-funds/senders/sender-principals.md)
+* [Recipients](moving-funds/recipients/README.md)
+  * [Delivery methods](moving-funds/recipients/delivery-methods.md)
+* [Institutions](moving-funds/institutions.md)
+
+## 💱 FX
+
+* [Quote](fx/quote.md)
+* [Conversions](fx/conversions/README.md)
+  * [Convert funds](fx/conversions/convert-funds.md)
+  * [Query conversions](fx/conversions/query-conversions.md)
+  * [Conversion statuses](fx/conversions/conversion-statuses.md)
+* [FX Payments](fx/payments/README.md)
+  * [Send funds](fx/payments/send-funds.md)
+  * [Payment statuses](fx/payments/payment-statuses.md)
+  * [Query payments](fx/payments/query-payments.md)
+  * [Auto receive funds](fx/payments/auto-receive-funds.md)
+
+## 🔍 COMPLIANCE
+
+* [Request for Information](compliance/request-for-information/README.md)
+  * [RFI statuses](compliance/request-for-information/rfi-statuses.md)
+  * [Query RFIs](compliance/request-for-information/query-rfis.md)
+  * [Answer RFI questions](compliance/request-for-information/answer-rfi-questions.md)
+  * [Decline an RFI](compliance/request-for-information/decline-an-rfi.md)
+  * [RFI response codes](compliance/request-for-information/rfi-response-codes.md)
+* [Confirmation of Payee](compliance/confirmation-of-payee/README.md)
+  * [Testing CoP integration](compliance/confirmation-of-payee/testing-cop-integration.md)
+  * [CoP response codes](compliance/confirmation-of-payee/cop-response-codes.md)
+* [Adverse Media Search](compliance/adverse-media-search/README.md)
+  * [Run AMS Request](compliance/adverse-media-search/run-ams-request.md)
+  * [AMS statuses](compliance/adverse-media-search/ams-statuses.md)
+  * [Query AMS requests](compliance/adverse-media-search/query-ams-requests.md)
+* [Bank information](compliance/bank-information.md)
+* [Address Cleanser](compliance/address-cleanser/README.md)
+  * [Cleanse an address](compliance/address-cleanser/cleanse-an-address.md)
+  * [Query Address Cleanser requests](compliance/address-cleanser/query-address-cleanser-requests.md)
+
+## Other
+
+* [Account members](other/account-members.md)
+* [Reference data](other/reference-data.md)
+* [Rate limiting](other/rate-limiting.md)

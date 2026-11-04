@@ -1,0 +1,951 @@
+---
+description: Two types of the webhooks
+---
+
+# Webhooks
+
+The primary triggers for all webhooks are **status** changes in payments, withdrawals, deposits, or conversions. For example, a webhook is sent when a withdrawal status changes from `PENDING` to `CONFIRMED`.
+
+The **sequence of events** depends on how the transaction progresses, see [Withdrawal statuses](../../moving-funds/payouts/withdrawal-statuses.md). For example, `withdrawal_refunded` can arrive with or without a preceding `withdrawal_completed`.
+
+There are two types of webhooks in Flash Payments.
+
+* [Regular webhooks](regular-webhooks.md) - a URL would need to be saved to your [FlashConnect](https://connect.uat.flash-payments.com.au/) settings. Supports all types of events.
+  * You can browse the history of all the webhook HTTP requests and your server responses, their JSON bodies and headers.
+  * If there is no response we will show you what exactly the problem is: DNS issue, networking issue, 5XX response, etc.
+  * You can receive webhooks when a deposit lands to your Virtual Account Number (VAN).
+* [Ad hoc webhooks](adhoc-webhooks.md) - you would need to provide a callback URL per each payment/withdrawal/conversion while creating them.
+
+The webhooks HTTP POST calls will follow all the [standard HTTP redirects](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections) (3XX codes).
+
+### Security
+
+#### Cryptographic signature
+
+All webhook HTTP requests carry a cryptographic signature. [Ad hoc](adhoc-webhooks.md) and [regular webhooks](regular-webhooks.md) do it slightly different though.
+
+#### Headers
+
+Each request will contain at least these 4 headers:
+
+```
+content-type: application/json
+user-agent: FlashFX
+flashfx-request-id: [A unique ID of this particuar event]
+flashfx-signature: [The cryptographic signature]
+```
+
+#### Flash Payments webhook request IP address
+
+All webhook HTTP requests would be coming from these IP addresses:
+
+* UAT environment: `52.64.185.170` and `13.210.129.208`
+* Production environment: `52.62.138.234` and `52.65.3.195`
+
+### Example payloads
+
+**Deposits**
+
+<details>
+
+<summary>deposit_initiated</summary>
+
+<pre class="language-json"><code class="lang-json"><strong>{
+</strong>  "event": "deposit_initiated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
+  "statusMessage": "Deposit initiated",
+  "recipient": {
+    "accountName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+  "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
+    "bankCountry": "AU",
+<strong>    "bsb": "809387",
+</strong><strong>    "accountNo": "1839394"
+</strong>  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+</code></pre>
+
+</details>
+
+<details>
+
+<summary>deposit_reviewing</summary>
+
+<pre class="language-json"><code class="lang-json"><strong>{
+</strong>  "event": "deposit_reviewing",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
+  "statusMessage": "Awaiting manual compliance",
+  "recipient": {
+    "accountName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+  "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+</code></pre>
+
+</details>
+
+<details>
+
+<summary>deposit_cleared</summary>
+
+<pre class="language-json"><code class="lang-json"><strong>{
+</strong>  "event": "deposit_cleared",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
+  "statusMessage": "Deposit cleared",
+  "recipient": {
+    "accountName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+  "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+</code></pre>
+
+</details>
+
+<details>
+
+<summary>deposit_cancelled</summary>
+
+```json
+{
+  "event": "deposit_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
+  "statusMessage": "Cancelled by: john@example.com : ",
+  "recipient": {
+    "accountName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+    "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>deposit_refunding</summary>
+
+```json
+{
+  "event": "deposit_refunding",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "totalFee": 1,
+  "refundAmount": 99,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "refundReason": "Client refund request",
+  "statusMessage": "Deposit refunded",
+  "refundedAt": "2026-03-03T03:28:43.936Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
+  "recipient": {
+    "accountName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+    "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>deposit_refunded</summary>
+
+```json
+{
+  "event": "deposit_refunded",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "603f0198770d6595e3c83e0d",
+  "amount": 100,
+  "totalFee": 1,
+  "refundAmount": 99,
+  "currency": "AUD",
+  "externalReference": "2233445566",
+  "refundReason": "Client refund request",
+  "statusMessage": "Deposit refunded",
+  "refundedAt": "2026-03-03T03:28:43.936Z",
+  "clearedAt": "2026-03-03T03:25:12.792Z",
+  "recipient": {
+    "accountName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387"
+  },
+    "sender": {
+    "accountName": "ACME Inc",
+    "companyName": "ACME Inc",
+    "bankName": "Bank ACME",
+    "bankCountry": "AU",
+    "bsb": "809387",
+    "accountNo": "1839394"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+**Withdrawals**
+
+<details>
+
+<summary>withdrawal_initiated</summary>
+
+```json
+{
+  "event": "withdrawal_initiated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>withdrawal_reviewing</summary>
+
+```json
+{
+  "event": "withdrawal_reviewing",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "statusMessage": "Awaiting manual compliance"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>withdrawal_pending</summary>
+
+```json
+{
+  "event": "withdrawal_pending",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "statusMessage": "Sent to recipient bank"
+  "externalId": "12344321",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>withdrawal_completed</summary>
+
+```json
+{
+  "event": "withdrawal_completed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalId": "12344321",
+  "statusMessage": "Payout processed",
+  "clearedAt": "2021-03-03T03:25:12.792Z",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>withdrawal_failed</summary>
+
+```json
+{
+  "event": "withdrawal_failed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalId": "12344321",
+  "statusMessage": "The transaction is declined because the recipient account does not exist or has been closed.",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+<details>
+
+<summary>withdrawal_refunded</summary>
+
+<pre class="language-json"><code class="lang-json">{
+  "event": "withdrawal_refunded",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "refundAmount": 2000,
+  "currency": "AUD",
+  "externalId": "12344321",
+  "refundReason": "No account or incorrect account number",
+  "statusMessage": "Payout reversal",
+  "refundedAt": "2026-03-04T15:21:11.920Z",
+  "<a data-footnote-ref href="#user-content-fn-1">clearedAt</a>": "2026-03-03T03:25:12.792Z",
+  "recipient": {
+    "displayName": "John Smith",
+    "bsb": "012620",
+    "accountNo": "89900998"
+  },
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "John Smith",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+</code></pre>
+
+</details>
+
+<details>
+
+<summary>withdrawal_cancelled</summary>
+
+```json
+{
+  "event": "withdrawal_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "51711af8c078ba061f623531",
+  "amount": 2000,
+  "totalFee": 1,
+  "currency": "AUD",
+  "externalId": "12344321",
+  "rejectCode": "CANCELLATION_REQUESTED_BY_PARTICIPANT",
+  "rejectedAt": "2025-07-24T21:41:14.581Z"
+  "statusMessage": "The transaction is rejected upon request.",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+**Payments**
+
+<details>
+
+<summary>currency_converted</summary>
+
+```json
+{
+  "event": "currency_converted",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>payment_complete</summary>
+
+```json
+{
+  "event": "payment_complete",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>payment_failed</summary>
+
+```json
+{
+  "event": "payment_failed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>payment_cancelled</summary>
+
+```json
+{
+  "event": "payment_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>payment_created</summary>
+
+```json
+{
+  "event": "payment_created",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 3500,
+  "fromCurrency": "EUR",
+  "toAmount": 2501.94,
+  "toCurrency": "AUD",
+  "subClient": {
+    "id": "203af01936410fd5d5e3c8f14d",
+    "fullName": "ACME Inc",
+    "accountNo": "1839394",
+    "bsb": "809387",
+    "externalId": "111222333"
+  }
+}
+```
+
+</details>
+
+**Conversions**
+
+<details>
+
+<summary>conversion_initialised</summary>
+
+```json
+{
+  "event": "conversion_initialised",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_pending</summary>
+
+```json
+{
+  "event": "conversion_pending",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_converted</summary>
+
+```json
+{
+  "event": "conversion_converted",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_failed</summary>
+
+```json
+{
+  "event": "conversion_failed",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+<details>
+
+<summary>conversion_cancelled</summary>
+
+```json
+{
+  "event": "conversion_cancelled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "60711af8c078ba061f623531",
+  "fromAmount": 1000,
+  "fromCurrency": "AUD",
+  "toAmount": 411.04,
+  "toCurrency": "EUR",
+  "rate": 0.41104,
+  "externalId": "12344321"
+}
+```
+
+</details>
+
+**Sub-clients**
+
+<details>
+
+<summary>subclient_initiated</summary>
+
+```json
+{
+  "event": "subclient_initiated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "INITIATED",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_active</summary>
+
+```json
+{
+  "event": "subclient_active",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "ACTIVE",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_unapproved</summary>
+
+```json
+{
+  "event": "subclient_unapproved",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "UNAPPROVED",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_failed_kyc</summary>
+
+```json
+{
+  "event": "subclient_failed_kyc",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "FAILED_KYC",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_deactivated</summary>
+
+```json
+{
+  "event": "subclient_deactivated",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "DEACTIVATED",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+<details>
+
+<summary>subclient_disabled</summary>
+
+```json
+{
+  "event": "subclient_disabled",
+  "eventScheduledAt": "2026-03-03T01:25:11.984Z",
+  "id": "695257f8c8754a74ad671c48",
+  "fullName": "John Doe",
+  "status": "DEACTIVATED",
+  "externalId": "123456789"
+}
+```
+
+</details>
+
+**Adverse Media Search**
+
+<details>
+
+<summary>ams_initialised</summary>
+
+```json
+{
+  "event": "ams_initialised",
+  "eventScheduledAt": "2026-03-03T08:23:14.521Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "INITIALISED"
+}
+```
+
+</details>
+
+<details>
+
+<summary>ams_pending</summary>
+
+```json
+{
+  "event": "ams_pending",
+  "eventScheduledAt": "2026-03-03T08:23:15.108Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "PENDING"
+}
+```
+
+</details>
+
+<details>
+
+<summary>ams_completed</summary>
+
+```json
+{
+  "event": "ams_completed",
+  "eventScheduledAt": "2026-03-03T08:26:42.774Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "COMPLETED"
+}
+```
+
+</details>
+
+<details>
+
+<summary>ams_failed</summary>
+
+```json
+{
+  "event": "ams_failed",
+  "eventScheduledAt": "2026-03-03T08:26:42.774Z",
+  "id": "6820a4f3e1c2b5d8f0123456",
+  "name": "John Smith",
+  "country": "AU",
+  "status": "FAILED"
+}
+```
+
+</details>
+
+**Request for Information (RFI)**
+
+<details>
+
+<summary>rfi_created</summary>
+
+```json
+{
+  "event": "rfi_created",
+  "eventScheduledAt": "2026-05-28T09:00:01.115Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "We are waiting for your replies",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-28T09:00:00.000Z"
+}
+```
+
+</details>
+
+<details>
+
+<summary>rfi_assessing</summary>
+
+```json
+{
+  "event": "rfi_assessing",
+  "eventScheduledAt": "2026-05-28T11:42:13.512Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "We are assessing the information you provided",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-28T11:42:13.512Z"
+}
+```
+
+</details>
+
+<details>
+
+<summary>rfi_closed</summary>
+
+```json
+{
+  "event": "rfi_closed",
+  "eventScheduledAt": "2026-05-29T02:10:44.901Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "We assessed the information you provided",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-29T02:10:44.890Z"
+}
+```
+
+</details>
+
+<details>
+
+<summary>rfi_cancelled</summary>
+
+```json
+{
+  "event": "rfi_cancelled",
+  "eventScheduledAt": "2026-05-28T14:05:09.220Z",
+  "id": "61f3a2c8d1e9b7a4c5d6e7f8",
+  "statusMessage": "This request has been withdrawn and no longer needs a response",
+  "deadline": "2026-06-04T09:00:00.000Z",
+  "depositIds": [],
+  "withdrawalIds": ["61f3a2c8d1e9b7a4c5d6e7aa"],
+  "paymentIds": [],
+  "createdAt": "2026-05-28T09:00:00.000Z",
+  "updatedAt": "2026-05-28T14:05:09.210Z"
+}
+```
+
+</details>
+
+[^1]: Please note that the `clearedAt` field is resent only when the withdrawal had `CONFIRMED` status before being refunded.

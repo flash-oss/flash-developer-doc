@@ -1,0 +1,725 @@
+---
+description: History of changes to this API schema
+---
+
+# API change log
+
+## 2026-11-03 <a href="#user-content-2026-11-xx" id="user-content-2026-11-xx"></a>
+
+### Added <a href="#user-content-added" id="user-content-added"></a>
+
+Joint sub-clients: one virtual account for two to five people who hold it together, for example a couple. Now available in UAT. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
+
+* New `clientType` field on the [`createSubClient`](../accounts/virtual-account-numbers/create-sub-clients/) mutation: `INDIVIDUAL`, `COMPANY` or `JOINT`. Optional for now. When you leave it out, a request with a `legalName` creates a `COMPANY`. Any other request creates an `INDIVIDUAL`, exactly as before.
+* New `JOINT` value of the `SubClientType` enum, returned on the `SubClient` type and accepted in the `subClients` filter.
+* New `accountHolders` field on `createSubClient` and new `AccountHolderInput` input: the two to five people who hold the account, each with `firstName`, `middleName`, `lastName`, `email`, `mobile`, `dob` and `idDoc`. Accepted for `JOINT` only.
+* New `accountHolders` field on the `SubClient` type and new `AccountHolder` type, to read the holders back. An empty list for every other `clientType`.
+
+### Changed <a href="#user-content-changed" id="user-content-changed"></a>
+
+`firstName`, `lastName`, `email`, `mobile`, `dob` and `idDoc` on `CreateSubClientInput` are no longer marked as required in the schema. A `JOINT` sub-client sends them for each account holder instead. They are still required for `INDIVIDUAL` and `COMPANY` sub-clients, and a request without them is rejected as before. If you generate code from the schema, regenerate it.
+
+## 2026-10-29
+
+### Changed
+
+`firstName` and `lastName` no longer have to start with a letter, so names such as `'t Hooft` are now accepted. The `firstName`, `middleName` and `lastName` descriptions in the schema now list the allowed characters.
+
+## 2026-10-21
+
+### Changed
+
+The `rail` field on the `Deposit` and `Withdrawal` types now returns more specific values. Transactions that were previously reported as `NPP` are now reported as `AU_NPP` (domestic NPP) or `AU_NPP_IFTI` (international instruction over NPP), and `BECS` is now `AU_BECS`.&#x20;
+
+The `NPP` and `BECS` values of the `Rail` enum are deprecated and are no longer returned.
+
+### Deprecated
+
+The `railService` field on `Deposit` and `Withdrawal` is deprecated and now always returns `null`. The scheme it described is now part of `rail` (for example `AU_NPP_IFTI`).
+
+## 2026-10-13 <a href="#user-content-2026-10-13" id="user-content-2026-10-13"></a>
+
+### Added <a href="#user-content-added" id="user-content-added"></a>
+
+New PayID registration API. You can now give your sub-clients PayID aliases at your approved email domains. Your sub-clients can then pay into their VANs by those aliases instead of the BSB and account numbers, and the payments arrive as ordinary deposits on the sub-client VANs. See [Sub-client PayIDs](../accounts/virtual-account-numbers/sub-client-payids.md).
+
+* New mutations [`registerAlias`](../accounts/virtual-account-numbers/sub-client-payids.md#registering-a-payid) and [`deregisterAlias`](../accounts/virtual-account-numbers/sub-client-payids.md#deregistering-a-payid). A PayID at a domain approved for you is live as soon as the `ALIAS_REGISTERED` reply arrives.
+* New `aliases` field on the `SubClient` type, listing the sub-client's PayIDs, and new `Alias` type with `alias`, `aliasType`, `status` and `createdAt`.
+
+## 2026-10-12
+
+### Added
+
+New optional `orgType` field on the [`createSender`](../moving-funds/senders/#create-a-company-sender), [`updateSender`](../moving-funds/senders/#update-sender), [`createRecipient`](../moving-funds/recipients/#create-a-company-recipient) and [`updateRecipient`](../moving-funds/recipients/#update-recipient) mutations and on the `Sender` and `Recipient` types. The legal structure you can already record for sub-clients can now be recorded for `company` senders and recipients too: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`.
+
+Existing integrations are unaffected: omitting `orgType` behaves exactly as before.
+
+## 2026-09-30
+
+### Added
+
+New `principals` field on the [createSender](../moving-funds/senders/sender-principals.md#creating-a-company-sender-with-principals) and [updateSender](../moving-funds/senders/sender-principals.md#updating-sender-principals) mutations and on the `Sender` type. The principals you can already record for company sub-clients can now be recorded for `company` senders too - their ultimate beneficial owners (UBOs), beneficial owners, directors, secretaries and trustees.
+
+* Same `PrincipalInput`, `Principal` and `PrincipalRole` as for [sub-client principals](../accounts/virtual-account-numbers/create-sub-clients/principals.md). Every principal gets an `id`, returned on the `Sender`.
+* `updateSender` takes the complete list: an entry with an `id` updates that person, an entry without an `id` adds someone new, and anyone on record you leave out is removed.
+* `principals` is also returned on the `sender` of a `Withdrawal` or `Payment` created with a `senderId`. A `sender` object submitted inline to `createWithdrawal` or `createPayment` does not store principals - create the sender first and pass its `senderId`.
+
+Optional for now and accepted for `company` senders only. Existing integrations are unaffected.
+
+## 2026-09-25
+
+### Added
+
+New `principals` field on the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/principals.md#creating-a-sub-client-with-principals) and [updateSubClient](../accounts/virtual-account-numbers/disable-activate-and-update-sub-clients.md#updating-sub-client-principals) mutations and on the `SubClient` type. You can now tell us who owns and controls a `company` sub-client - its ultimate beneficial owners (UBOs), beneficial owners, directors, secretaries and trustees.
+
+* New `PrincipalInput` input and `Principal` type: `firstName`, `middleName`, `lastName`, `dob` and one or more `roles`. Every principal gets an `id`, returned on the `SubClient`.
+* New `PrincipalRole` enum: `ULTIMATE_BENEFICIAL_OWNER`, `BENEFICIAL_OWNER`, `DIRECTOR`, `SECRETARY`, `TRUSTEE`, `OTHER`.
+* `updateSubClient` takes the complete list: an entry with an `id` updates that person, an entry without an `id` adds someone new, and anyone on record you leave out is removed.
+
+Optional for now and accepted for `company` sub-clients only. Existing integrations are unaffected.
+
+## 2026-09-18
+
+### Added
+
+New optional `orgType` field on the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/) mutation and the `SubClient` type. \
+You can now specify the legal structure of a `company` type sub-client: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`. Existing integrations are unaffected: omitting `orgType` behaves exactly as before.
+
+## 2026-09-08
+
+### Added
+
+New `website` field on the [Sender](../moving-funds/senders/). For **company** senders you can now record the ultimate sender's public website. We store it as a canonical bare domain — the scheme, any `www.` prefix, and any path are stripped (so `https://www.example.com/about` is saved as `example.com`).
+
+## 2026-06-25
+
+### Added
+
+New properties `sender.bsb` and `sender.accountNo` for the `Deposit` type: [deposits](../moving-funds/deposits/) now show the sender's Australian bank account BSB and Acc#.
+
+New `sender.bsb` and `sender.accountNo` properties to all [deposit webhooks](webhooks/#deposit_initiated) payloads.
+
+## 2026-06-24
+
+### Changes
+
+Improved validation of the company name fields `legalName`, `tradingAsName`, and `companyName` in the [createSubClient](../accounts/virtual-account-numbers/create-sub-clients/), [createSender](../moving-funds/senders/#create-an-individual-sender), [updateSender](../moving-funds/senders/#update-sender), [createRecipient](../moving-funds/recipients/#create-an-individual-recipient), [updateRecipient](../moving-funds/recipients/#update-recipient), [createInstitution](../moving-funds/institutions.md#creating-institutions), and [updateInstitution](../moving-funds/institutions.md#updating-institution-example) mutations. These fields must now be 2–256 characters long and can no longer contain the `<`, `=`, or `>` characters.
+
+## 2026-06-17
+
+### Added
+
+New RFI status `CANCELLED` and a new [`rfi_cancelled`](webhooks/#rfi_cancelled) webhook event.
+
+Our compliance team can now withdraw their request for information when it is no longer needed — the RFI moves to `CANCELLED`, you are notified by email and webhook, no response is required, and any linked deposits, withdrawals, or payments are left unaffected.<br>
+
+New [Address Cleanser API](../compliance/address-cleanser/). You can now validate and standardise physical addresses against multiple geocoding providers directly via the API — useful before processing payments and for keeping your address data consistent.
+
+* New [`cleanseAddress`](../compliance/address-cleanser/cleanse-an-address.md) mutation — submits an address for cleansing. The result is returned synchronously with a suggested recommendation (`approve`, `review`, `reject`) and a score.
+* New [`addressCleanserRequest`](../compliance/address-cleanser/query-address-cleanser-requests.md) and [`addressCleanserRequests`](../compliance/address-cleanser/query-address-cleanser-requests.md) queries — retrieve your past requests with optional filters by recommendation and date range.
+
+Charged per request — 1,000 requests per month are free. Please contact support to have this API enabled for your account.
+
+## 2026-06-12
+
+### Added
+
+New [Request for Information (RFI)](../compliance/request-for-information/) API. When our compliance review flags one of your transactions, we raise an RFI — you can now receive, answer, and decline RFIs programmatically instead of (or alongside) the secure form sent by email.
+
+* New [`rfi`](../compliance/request-for-information/query-rfis.md#retrieving-a-single-rfi) and [`rfis`](../compliance/request-for-information/query-rfis.md#retrieving-all-rfis) queries — retrieve your RFIs with optional filters by status and date range.
+* New [`answerRfiQuestion`](../compliance/request-for-information/answer-rfi-questions.md) mutation — answers a single RFI question with text and/or documents. Files are sent inline as base64; no separate upload step.
+* New [`declineRfi`](../compliance/request-for-information/decline-an-rfi.md) mutation — declines an RFI when you cannot provide the requested information.
+* Three new [webhook events](webhooks/#rfi_created): `rfi_created`, `rfi_assessing`, `rfi_closed`. Dispatched for every RFI regardless of whether it is answered via the API or via the email form.
+
+The RFI API is available to all clients — no enablement step is required.
+
+## 2026-06-10
+
+### Added
+
+New [`members`](../other/account-members.md) query. You can now programmatically retrieve the users registered on your client account — their contact details, roles, access controls and statuses — information previously only available via the Flash Connect portal.
+
+* Optional [`MembersQueryInput`](../other/account-members.md#filtering-members) filters: `status`, `roles`, `access`. A member matches if it holds at least one of the listed values.
+* Results are always scoped to your own client account.
+
+## 2026-04-14
+
+### Added
+
+New Adverse Media Search (AMS) API. You can now screen individuals and organisations against web-based adverse media sources directly via the API.
+
+* New [`adverseMediaSearch`](../compliance/adverse-media-search/run-ams-request.md) mutation — submits a search for an individual or organisation. The scan runs in the background; use the returned `id` to track progress.
+* New [`amsRequest`](../compliance/adverse-media-search/query-ams-requests.md#retrieving-a-single-ams-request) and [`amsRequests`](../compliance/adverse-media-search/query-ams-requests.md#retrieving-all-your-ams-requests) queries — retrieves your AMS requests with optional filters by status, date range, name, and country.
+* Four new [webhook events](webhooks/#ams_initialised): `ams_initialised`, `ams_pending`, `ams_completed`, `ams_failed`.
+
+Please contact support to have this API enabled for your account.
+
+## 2026-04-10
+
+### Added
+
+New [`confirmationOfPayee` ](../compliance/confirmation-of-payee/)mutation. Confirmation of Payee (CoP) is a name-verification service for Australian domestic accounts. You can use it to check whether the recipient's name matches the account details held by their financial institution. The service currently supports Australian BSB accounts.
+
+## 2026-03-18
+
+### Added
+
+Two new objects to [`updateSubClient`](../accounts/virtual-account-numbers/disable-activate-and-update-sub-clients.md) mutation. You can change a sub-client's `address` and `postalAddress`. The updated address will be re-verified, so please make sure to include all its components, even if some fields, like the `country`, remain unchanged.
+
+## 2026-03-05
+
+### Added
+
+New `rail` and `railService` properties to `Withdrawal` and `Deposit` payloads. You can now see exactly which payment infrastructure (such as NPP or BECS) and specific schemes (such as NPP IFTI) are used to route your transactions.
+
+## 2026-03-03
+
+### Added
+
+New `currnecy` property to the `StatementQueryInput`, which allows you to retrieve any currency balance, not just the default `AUD`.
+
+## 2026-02-26
+
+### Added
+
+New `eventScheduledAt` property to all [webhook](webhooks/) payloads.
+
+## 2025-12-31
+
+### Added
+
+New sub-client (aka Virtual Account Number, VAN) [statuses](../accounts/virtual-account-numbers/sub-client-statuses.md).
+
+Previously a sub-client could be in 2 statuses: `ACTIVE` and `DEACTIVATED`.
+
+Now there are 6: `INITIATED`, `ACTIVE`, <mark style="color:orange;">`UNAPPROVED`</mark>, `DEACTIVATED`, `FAILED_KYC`, `DISABLED`.
+
+A set of new webhook events become available. See [here](webhooks/#subclient_initiated). A webhook is sent when a sub-client status gets changed.
+
+## 2025-12-30
+
+### Added
+
+A new `rejectCode` when we [cancel](../moving-funds/payouts/rejection-codes.md) your payout - `SOURCE_OF_FUNDS_INADEQUATE`. You'll receive it if we sent you an RFI (request for information) but your response contained a low quality data.
+
+Please note, that a sibling property `statusMessage` will be hand crafted so that you know what exactly is wrong with your RFI reply (within the legal bounds). Please use the text to improve your KYC processes.
+
+## 2025-11-14
+
+### Added
+
+A new `rejectCode` when we [cancel](../moving-funds/payouts/rejection-codes.md) your payout - `DATA_ENQUIRY_RESPONSE_INADEQUATE`. You'll receive it if we sent you an RFI (request for information) but your response contained a low quality data.
+
+Please note, that a sibling property `statusMessage` will be hand crafted so that you know what exactly is wrong with your RFI reply (within the legal bounds). Please use the text to improve your KYC processes.
+
+## 2025-11-10
+
+### Added
+
+The FX Payments `createPayment` can accept sender and recipient as JSON objects now too.
+
+This means that when you need to do an orchestrated FX payment you need to submit only one HTTP request (`createPayment`) instead of 3 (`createSender`, `createRecipient`, and `createPayment`).
+
+## 2025-10-31
+
+### Added
+
+A high demand long awaited feature. You don't need to pre-create senders/recipients before submitting a payout using `createWithdrawal` .
+
+This means that when you need to do a remittance payment (aka payout) you need to submit only one HTTP request (`createWithdrawal`) instead of 3 (`createSender`, `createRecipient`, and `createWithdrawal`).
+
+Example:
+
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      amount: 1000, 
+      recipient: {                  // <- this is new !!!
+        bsb: "370370",
+        accountNo: "123123123",
+        companyName: "Acme Pty Ltd",
+        currency: "AUD",
+        accountIdType: "BSB",
+        address: { street: "1 Main St SYDNEY NSW 2000", country: "AU" },
+      },
+      sender: {                     // <- this is new too !!!
+        companyName: "Acme LLC",
+        address: { street: "1 Jon St PORTLAND VA 54321", country: "US" },
+      },
+    },
+  }, 
+  query: ` 
+mutation ($input: CreateWithdrawalInput!) {
+  createWithdrawal(input: $input) {
+    success code message withdrawal { id }
+  }
+}`,
+};
+
+```
+
+## 2025-10-24
+
+### Changed
+
+Enum `WithdrawalReason` is renamed to `TransactionReason`. The `reason` field inside `CreateWithdrawalInput` and `Withdrawal` type now uses `TransactionReason` instead of `WithdrawalReason`.
+
+## 2025-08-07
+
+### Changed
+
+The validation logic for the `bic` field in the `createRecipient` mutation has been relaxed:
+
+* When `accountIdType` is set to `IBAN`, `BSB`, or `PAYID`, the `bic` field is **not required** any more.
+* When `accountIdType` is set to `ABA`, `CLABE`, `IFSC`, `CNAPS`, `SORT_CODE`, or `ACC_NO`, the `bic` field is still **required**.
+
+## 2025-07-26
+
+### Added
+
+Three new fields to the `Withdrawal` type:
+
+* `clearedAt` - the timestamp when the withdrawal become `CONFIRMED`.
+* `rejectedAt` - the timestamp when the it was rejected by Flash Payments. See the `rejectCode` and `statusMessage` fields to understand the rejection reason.
+* `refundedAt` - the timestamp when it was refunded. Very rare situation.
+
+## 2025-07-25
+
+### Added
+
+The new optional field called `reason` was added to the `createWithdrawal` mutation and `Withdrawal` type.
+
+If you have a payment/transaction/payout **purpose** - you must submit it to us via the API. See all the possible purpose codes (aka reason values) in the [GraphQL playground](https://api.flash-payments.com) (click the link in the header of this website), look inside the "docs" by the word "reason". You need to find the GraphQL enum called `WithdrawalReason`.
+
+## 2025-07-24
+
+### Added
+
+An optional `affiliation` field has been added to the `login` mutation.\
+This field accepts the `Affiliation` enum values `FP_AUS` or `FP_LUX`, allowing users to specify which Flash Payments subsidiary account to access when multiple contractual agreements exist. It is only required if your have more than one such agreement with us.
+
+## 2025-05-02
+
+### Removed (BREAKING)
+
+Removed `depositDetails` query as deprecated and non-functioning since March 2024.
+
+## 2025-01-24
+
+### Changed
+
+Improved validation rules for the following mutations: [createSender](../moving-funds/senders/#create-a-sender), [updateSender](../moving-funds/senders/#update-sender), [createInstitution](../moving-funds/institutions.md#creating-institutions), [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client), [createWithdrawal](../moving-funds/payouts/withdraw-funds.md), and [createPayment](../fx/payments/send-funds.md)\
+Affected fields: `idDoc.docNumber` `idDoc.issuer` `legalName` `businessNumber` `legalName` `externalId`. These fields allow only the ASCII characters now.
+
+Also, the first, last, and middle names are limited to 75 chars now.
+
+Also, FQDN-like names will be rejected. Examples: "Aaron x.com", "Ben.eu", "Visit as at URL:example.com/about", etc.
+
+## 2025-01-18
+
+### Added
+
+New fields have been added to the [createSender](../moving-funds/senders/#create-a-sender), [updateSender](../moving-funds/senders/#update-sender), and [createSubClient](../accounts/virtual-account-numbers/#creating-a-sub-client) mutations. You can now provide `idDoc.country`, `idDoc.issueDate`, and `idDoc.expiryDate`. The `idDoc.issuer` field now only stores additional information about the issuer, while `idDoc.country` holds the country code of the country that issued the document.\
+To avoid creating a breaking change, we currently allow you to provide `idDoc.country` and/or `idDoc.issuer`. In the future, we plan to make `idDoc.country` a **required** field.
+
+## 2024-12-09
+
+### Added
+
+New [updateSubClient](../accounts/virtual-account-numbers/#update-sub-clients) mutation. You can change a sub-client's `externalId` now, but nothing else.
+
+## 2024-10-22
+
+### Added
+
+New the [Conversions](../fx/conversions/) feature.
+
+* New mutation `createConversion`. New queries `conversion` and `conversions`.
+* The `FromCurrency` enum used to have only one item `AUD`. Now there are 8: `AUD CAD CHF EUR GBP NZD SGD USD`.
+* New property for the `Quote` type: `applicability`. It indicates if the quote can be used for _payments_ or _conversions_.
+
+## 2024-10-11
+
+### Fixed
+
+The `bankInfo` [query](https://developer.flash-payments.com/reference-data/bank-information) was not returning information about BICs and IBANs. It works now.
+
+## 2024-10-01
+
+### Changed (BREAKING)
+
+Improved validation of `recipient`, `sender`, `withdrawal`, `institution` related mutations. From now on `email`, `companyName`, `legalName`, `businessNumber`, `externalReference` must include only the ASCII characters.
+
+## 2024-05-18
+
+### Removed (BREAKING)
+
+Removed `AccountIdType.PH_CASH`, `Recipient.phCashoutNetwork` with `RecipientInput.phCashoutNetwork` and the corresponding enum type `PhCashoutNetwork` from the GraphQL schema. These were not working for more than a year.
+
+## 2024-05-17
+
+### Removed (BREAKING)
+
+Removed `AccountIdType.RIPPLE`, `Recipient.rippleAddress` with `Recipient.destTag` from the GraphQL schema. These were deprecated 2.5 years ago.
+
+## 2024-04-16
+
+### Removed (BREAKING)
+
+Removed `Sender.isRipple` and `CurrencyIso3.XRP` from the GraphQL schema. These were deprecated 2.5 years ago.
+
+## 2024-03-13
+
+### Added
+
+New [static codes and standard status messages](https://developer.flash-payments.com/reference-data/rejection-codes) introduced for rejected (aka cancelled) withdrawals. When withdrawals [get cancelled](https://developer.flash-payments.com/withdrawals/withdrawal-statuses) you can clearly see why using the new `rejectCode` and `statusMessage`. Available in the `Withdrawal` type and sent to your application via the [withdrawal\_cancelled](https://developer.flash-payments.com/webhooks#withdrawal_cancelled) webhook.
+
+## 2024-02-05
+
+### Changed
+
+Improved [`updateRecipient`](https://developer.flash-payments.com/recipients#update-recipient) to respond with appropriate error message when trying to change the recipient's `accountIdType` which is not allowed by design.
+
+## 2023-11-01
+
+### Added
+
+Added [`instructingInstitution`](../moving-funds/payouts/withdraw-funds.md#instructing-institutions) to the `CreateWithdrawalInput.`
+
+## 2023-10-25
+
+### Removed (BREAKING)
+
+* Fields `acceptingInstructionInstitutionSenderId` and `acceptingMoneyInstitutionSenderId` were removed from the `CreateWithdrawalInput`.
+
+### Added
+
+* Instead `instructingInstitutionId` was added. (A new API for creating "institutions" is coming soon, but at the moment they can be created via the Flash Connect.)
+
+## 2023-08-22
+
+### Added
+
+* [`statement`](../accounts/master-balance/statement.md) query.
+  * This query returns the same data as the Download CSV button on the Account Statement page of the [Flash Connect](https://connect.flash-payments.com). It explains every change of you primary balance.
+  * Currently it returns exactly 1 day of data. We plan to make date range selection more flexible in the future.
+
+## 2023-08-04
+
+### Changes
+
+* Changed links from [flash-fx.com](https://flash-fx.com/) to [flash-payments.com](https://flash-payments.com/) domain. Old domain will continue working unit future notice.
+
+## 2023-07-28
+
+### Changes
+
+* Our system always allowed `accountNo` to have letter. However, our API forced digits only. So, from now on, when you use `createRecipient`, your `accountNo` can have both letters and digits.
+
+## 2023-05-25
+
+### Changes
+
+* Improved mobile phone validation. Now if mobile starts with "00" it's treated as if it starts with "+".
+* Quote size accepts positive numbers only.
+
+### Changes (BREAKING)
+
+* The `recipient.mobile` and `sender.mobile` can accept only **valid** international phone numbers.
+
+## 2023-03-15
+
+### Added
+
+* Added the `withdrawal_pending` [webhook](webhooks/). Invoked after the transaction is sent to the recipient bank for processing.
+* Added [example](https://developer.flash-fx.com/webhooks#withdrawal_pending) for the `withdrawal_pending` [webhook](webhooks/).
+
+## 2023-03-03
+
+### Added
+
+* `idempotencyKey` to `createPayment` input.
+* `idempotencyKey` to `createWithdrawal` input.
+* New [sub-client](../accounts/virtual-account-numbers/) status - `UNAPPROVED`.
+
+## 2023-02-23
+
+### Added
+
+* Fixed the `withdrawal_reviewing` [webhook](webhooks/). It was never sent before even though declared on the Flash Connect website.
+* Added [example](https://developer.flash-fx.com/webhooks#withdrawal_reviewing) for the `withdrawal_reviewing` [webhook](webhooks/).
+
+## 2023-02-08
+
+### Removed (BREAKING)
+
+* Removed the auto-creation of `id` for embedded senders and recipients. This means that if you (or FlashFX system) have created withdrawals and payments without explicitly providing sender or recipient ID then from now on the `sender.id` or `recipient.id` will be `null`. But, if you create payments or withdrawals via this API then you will always have `payment.sender.id` or `withdrwal.recipient.id`.
+
+## 2022-09-06
+
+### Added
+
+* Missing `expireAt` property to the `Quote` object returned by the `quote` query.
+
+## 2022-09-02
+
+### Added
+
+* New `REVIEWING` status to deposit and withdrawal status enum.
+  * _`REVIEWING` : deposit_/withdrawal _is being internally checked by our compliance team before proceeding._
+  * Added corresponding [webhook](webhooks/) event types: `deposit_reviewing` and `withdrawal_reviewing`.
+
+## 2022-08-25
+
+### Added
+
+* New [webhook](webhooks/) event type: `deposit_initiated` to notify that we received a deposit but not yet cleared it.
+  * Previously only the `deposit_cleared` was sent and customers had no idea we are holding (reviewing) the deposit.
+  * The `deposit_cleared` will be sent immediately as we approve (clear) the deposits. So, no changes here.
+
+## 2022-07-01
+
+### Added
+
+* New item in `deposit` and related webhooks:
+  * `recipient` - deposit recipient information as specified by deposit sender for this transaction:
+    * `accountName`
+    * `accountNo`
+    * `bsb`
+* New item in `deposit.sender:`
+  * `bankName`
+* New mutation to refund deposits:
+  * `refundDeposit(id:ID! input:RefundDepositInput): RefundDepositReply`
+
+## 2022-04-22
+
+### Changes
+
+* Additional validation for `dob` field introduced for Senders, Recipients and Sub-clients to enforce the data is entered in YYYY-MM-DD format. The field will also allow for only the data after 1900-01-01 and individuals of 18 years of age or older.
+
+## 2022-04-12
+
+### Changes
+
+* Added validation of address fields. From now on, any address submitted as a part of any transaction should only include ASCII characters.
+
+## 2022-02-25
+
+### Changes
+
+* Added `deposit.sender.accountName` so that you can query who deposited money to your Virtual Account Number (VAN).
+
+## 2022-02-14
+
+### Changes
+
+* Additional validation for `lastName`, `middleName` and `firstName` introduced allowing only for latin alphabetical characters and special symbols: <img src="../.gitbook/assets/Screenshot 2022-02-14 at 14.51.52.png" alt="" data-size="line">
+
+## 2022-02-09
+
+### Changes
+
+* `FundingAccount` type has been extended to include all deposit details you need to bring money to Australia. Your account address can now be retrieved using `accountAddress` property along with `name` and `address` fields which identify the accepting financial institution associated with your account.
+
+## 2022-01-12
+
+### Changes
+
+* `lastName` and `firstName` fields of `Sender` and `Recipient` objects can now be one symbol long to allow for initials. Please note that such single symbols have to be alphabetic.
+
+## 2021-11-02
+
+### Changes
+
+* Occasionally `Payment` objects do not have `sender` or `recipient` properties. Thus these properties are now marked at "not required" (exclamation mark was removed) when querying payments.
+* We have added rate limiting. You can receive HTTP 429 error code and get temporary blocked if abusing the API too much.
+
+## 2021-08-13
+
+### Changed (BREAKING)
+
+* Removed **XRP** currency form the list of supported currencies.
+
+## 2021-07-22
+
+### Changed (BREAKING)
+
+* While creating sub-clients the address of the person/company was not required. It was a bug which was fixed. To create a sub-client you would also need their: **street** address, **suburb**/city, **state**/region, **postcode**, and country.
+
+## 2021-07-14
+
+### Changes
+
+* Allow `accountNo` to be 4 digits long. Some old Japanese bank accounts could be just 4 digits.
+
+## 2021-07-08
+
+### Added
+
+* The ability to query deposits, withdrawals, payments by the associated sub-client (`subClientId`).
+* The payments can also have sub-clients now. Added the `Payment.subClient` field.
+
+## 2021-06-29
+
+### Added
+
+* The `totalFee` property to both `Deposit` and `Withdrawal` types as well as webhook payloads.
+
+## 2021-06-22
+
+### Added
+
+* The `bankInfo` reference query. You can now validate your BSB for existence, check if we support your BIC, and retrieve BIC (aka SWIFT code) by IBAN.
+
+## 2021-06-17
+
+### Added
+
+* The `fundingAccounts` and `SubClient.fundingAccounts` queries. It returns international bank account numbers you can deposit in order to bring money to Australia. See [Auto receive funds](../fx/payments/auto-receive-funds.md) for more details.
+
+## 2021-05-25
+
+### Changed
+
+* The `senderId` was always required when creating withdrawals via `createWithdrawal`. But now, if you provided the `subClientId` and didn't provide the `senderId` the sub-client becomes the sender, and will be reported to the government as the sender. However, you still must provide the `senderId` if your sub-client moves funds for other people/companies.
+
+## 2021-05-17
+
+### Changed (BREAKING)
+
+* Replaced `docIssuer`, `docType` and `docNumber` fields from `CreateSubClientInput` with `idDoc` nested field instead.
+
+## 2021-04-26
+
+### Changed
+
+* `RecipientAccountIdType` was fully duplicating the `AccountIdType`. Replace the former with the latter. This might break your auto-generated code in strongly typed languages. But won't change any API queries or responses. So, this change is not considered to be a breaking.
+
+## 2021-04-16
+
+### Added
+
+* Added ability to disable and activate sub-clients
+  * mutation `disableSubClient(id: ID!): MutateSubClientReply`
+  * mutation `activateSubClient(id: ID!): MutateSubClientReply`
+
+## 2021-04-12
+
+### Added
+
+* Added deposit queries
+  * query `deposits(input: DepositQueryInput): [Deposit]`
+  * query `deposit(id: ID!): Deposit`
+* **Introduced sub-client feature** – transactional virtual account numbers for AUD processing in Australia.
+  * query `subClients(input: SubClientQueryInput): [SubClient]`
+  * query `subClient(id: ID!): SubClient`
+  * mutation `createSubClient(input: CreateSubClientInput!): MutateSubClientReply`
+* Deposit and withdrawal webhooks now include `subClient` object with sub-client information when present
+
+## 2021-01-07
+
+### Removed (BREAKING)
+
+These types and fields were never used by anyone for couple of years.
+
+* Removed enum `DepositMechanism`.
+* `PaymentInput` and `ConfirmPaymentInput` fields:
+  * removed `depositMechanism`
+  * removed `depositReference`
+  * removed `depositAmount`
+
+## 2020-12-16
+
+### Added
+
+* New item in `BsbDepositDetails`
+  * `accountName` - Australian account name.
+* New item in `Withdrawal`
+  * `statusMessage` - a human readable message of the current status reason, like processing error messages.
+* New item in `Payment` and `PaymentInput`
+  * `sourceOfFunds` - mandatory field for some destinations.
+* New enum `SourceOfFunds`.
+
+## 2020-10-14
+
+### Added
+
+* New items in both query type and mutation input `Senders`.
+  * `legalName`
+  * `tradingAsName`
+  * `businessNumber` - differs by country, e.g. ABN in Australia.
+  * `acn` - Australian Company Number. Should not be used for other countries.
+
+## 2020-06-18
+
+### Changed (BREAKING)
+
+* Fixed typo in `RecipientQueryInput` field name. `snaps` -> `cnaps`
+
+## 2020-05-04
+
+### Added
+
+* New compliance-related fields to the `CreateWithdrawalInput` input:
+  * `acceptingMoneyInstitutionSenderId` - you must pre-create this `Sender` and submit every time if you are not the FI who collected the money for this withdrawal.
+  * `acceptingInstructionInstitutionSenderId` - you must pre-create this `Sender` and submit every time if you were instructed by other FI to make this withdrawal.
+
+## 2020-03-05
+
+### Changed (BREAKING)
+
+* Fixed typo in the `WithdrawalStatus` enum item. `INITIALISING` -> `INITIALISED`
+
+## 2020-02-12
+
+### Added
+
+* `callbackUri` to `Payment`, `Withdrawal`, `CreateWithdrawalInput`. Now you can query the callback/webhook URI you have supplied earlier. Also, this allows you to receive webhooks when you create a withdrawal (aka _local payout_).
+
+## 2020-02-11
+
+### Added
+
+* New items in `RecipientQueryInput`. This means that recipients can be searched by:
+  * `firstName`
+  * `lastName`
+  * `middleName`
+  * `dob` - date of birth
+  * `companyName`
+  * `phCashoutNetwork`
+  * `payid`
+  * `bic`
+  * `iban`
+  * `aba`
+  * `bsb`
+  * `clabe`
+  * `cnaps`
+  * `sortCode`
+  * `ifsc`
+  * `accountNo`
+  * `rippleAddress`
+  * `externalId` - ID in your system
+
+## 2020-01-28
+
+### Added
+
+* Introduced Withdrawals - send money from your account (FlashFX digital wallet) to local banks.
+  * query `withdrawal(id: ID): Withdrawal`
+  * query `withdrawals(input: WithdrawalQueryInput): [Withdrawal]`
+  * mutation `createWithdrawal(input: CreateWithdrawalInput!): CreateWithdrawalReply`
+* `PHP` currency support.
+* `middleName` property in recipients and senders.
+* `PAYID` recipient type for Australian local payments or withdrawals.
+  * `Recipient.payid` new property.
+* `PH_CASH` recipient type for Philippines cash network payments.
+  * `Recipient.phCashoutNetwork` new property.
+* You can now query your recipients by `accountIdType` property. For example: ` recipients(input: {`` `` `**`accountIdType: PH_CASH`**` `` ``}) `
+
+### Removed (BREAKING)
+
+* Removed the unused enum `PaymentType`. It has no sense and was deprecated a year ago.
+  * Simultaneously removed properties `Payment.paymentType`, `PaymentQueryInput.paymentTypes`, `PaymentInput.paymentType`.
+* Removed the long deprecated `PaymentInput.recipient` object. The only way to provide a recipient for a payment is via `PaymentInput.recipientId`. You would need to [pre-create the recipient](../moving-funds/recipients/#create-a-recipient) beforehand.
+* Removed the never used `AccountIdType` enum values: `BPAY`, `FIN_BTN`, `INTERAC`.
