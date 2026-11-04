@@ -1,0 +1,11 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: Flash Payments Developer API
+  structure:
+    - type: space
+      key: space-1
+      title: Flash Payments Developer API
+      path: api
+      default: true
+      content:
+        directory: ./api
