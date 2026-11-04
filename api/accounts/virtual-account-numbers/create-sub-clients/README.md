@@ -3,16 +3,14 @@
 There are three types of sub-clients. Tell us which one you create in `clientType`:
 
 * `INDIVIDUAL` - one person
-* `COMPANY` - a business or other organisation. Send its `legalName`, a contact person and [principals](principals.md)
-* `JOINT` - one account held by two to five people. Send each person's details in `accountHolders`, see [Joint VANs](joint-vans.md)
+* `COMPANY` - a business or other organisation. Send its `legalName` and a contact person. [Principals](principals.md) are optional for now.
+* `JOINT` - one account held by two to five people. Send each person's details in `accountHolders`.See [Joint VANs](joint-vans.md).
 
 {% hint style="warning" %}
-Please send `clientType` with every new sub-client. While this field is optional for now, it will soon become required. Please follow the announcements in the [API change log](../../../basics/api-change-log.md). &#x20;
-
-Currently, if you leave `clientType` out, we create a `COMPANY` when `legalName` is sent, and an `INDIVIDUAL` otherwise.
+Send `clientType` with every new sub-client. It is optional for now and will become required. We will announce it in the [API change log](../../../basics/api-change-log.md). Currently, if you leave `clientType` out, we create a `COMPANY` when `legalName` is sent, and an `INDIVIDUAL` otherwise.
 {% endhint %}
 
-For every company registered as a sub-client, there must be one contact person for individual data submitted. Ideally, the contact person should be a **company director** or have a similar role. Therefore, if you are creating a sub-client of the `company` type, we require you to provide **extra details**:
+Every `COMPANY` sub-client needs one contact person, ideally a company director or someone in a similar role. A company sub-client also needs these details:
 
 * `legalName` - company legal name (required for a company)
 * `orgType` - the legal structure of the company. Optional: `COMPANY`, `TRUST`, `PARTNERSHIP` or `SOLE_TRADER`
@@ -23,7 +21,7 @@ When `clientType` is `COMPANY`, `legalName` is required. When `clientType` is `I
 
 #### Organisation type
 
-Use `orgType` to refine the `company` type and specify what kind of business the sub-client is:
+Use `orgType` to say what kind of business a `COMPANY` sub-client is:
 
 * `COMPANY` - a legal entity that is separate from the people who own it.
 * `PARTNERSHIP` - two or more people who run the business together and share its income or losses.
@@ -34,7 +32,7 @@ These simple definitions follow the Australian Government's [business structures
 
 Any sub-client created with an `orgType` becomes a `COMPANY` and must have a `legalName`.&#x20;
 
-A `COMPANY` or `PARTNERSHIP` must also have a `businessNumber.` A `TRUST` or `SOLE_TRADER` can be created without one. A business sent without `orgType` counts as a company and needs a `businessNumber` too.
+A `COMPANY` or `PARTNERSHIP` must also have a `businessNumber`. A `TRUST` or `SOLE_TRADER` can be created without one. A business sent without `orgType` counts as a company and needs a `businessNumber` too.
 
 You can only set `orgType` when you create the sub-client and [`updateSubClient`](../disable-activate-and-update-sub-clients.md#updating-sub-clients) cannot change it.&#x20;
 
@@ -47,15 +45,15 @@ Please add all possible precautions, processes, staff training, warning messages
 
 Please follow our latest requirements for the proper sub-client data submission:
 
-1. Provide proper `firstName` , `middleName`, and `lastName` Please note that including the accurate `middleName`  is essential for the account name matching capability of the Australian New Payments Platform (NPP) real-time digital payment network.
+1. Provide proper `firstName`, `middleName` and `lastName`. An accurate `middleName` is essential for account name matching on the New Payments Platform (NPP).
 2. Provide proper `mobile` number
-3. Provide proper `dob` : **the person must be under 65 years of age**&#x20;
+3. Provide proper `dob`: **the person must be under 65 years of age**&#x20;
 4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract agreement. By default, you can only create local Australian sub-clients with an adequate `address.street` field provided. **Any non-Australian entities will undergo extended due diligence based on their location and industry relevance for Flash Payments.**  &#x20;
 5. Provide proper `idDoc` (`type`, `docNumber`, `issuer` (optional), `issueDate` (optional), `expiryDate` (optional), and `country` ) based on the sub-client contact person's address. For Australian residents, either a driver’s license or a passport is accepted. For non-Australian residents, only a passport is accepted as a document type.
 6. Sometimes, we ask our partners to provide “instructing institution” information, but only if you are creating this VAN on behalf of another financial institution. More about institutions [here](../../../moving-funds/institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
 {% endhint %}
 
-The above personal data submission requirements should be as equally followed for the company contact person, with the exception of `address` property, which can be a company address in this case. &#x20;
+The same rules apply to the company contact person and to every account holder of a joint sub-client. The only difference: for a company, `address` can be the company address.
 
 To create a sub-client, you need to execute the `createSubClient` mutation as below. You can find the description of each field in the GraphQL API schema.
 
@@ -222,7 +220,7 @@ mutation($input: CreateSubClientInput!) {
 
 #### Duplicate sub-clients and externalId
 
-`externalId`  is the identifier of the sub-client in your system. It must be unique across your sub-clients: if you call `createSubClient` with an `externalId` that one of your sub-clients already has, no new sub-client is created and the mutation returns:
+`externalId` is the identifier of the sub-client in your system. It must be unique across your sub-clients: if you call `createSubClient` with an `externalId` that one of your sub-clients already has, no new sub-client is created and the mutation returns:
 
 ```json
 {

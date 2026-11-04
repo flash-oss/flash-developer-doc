@@ -89,7 +89,7 @@ mutation ($input: ID!) {
 ```
 {% endtab %}
 
-{% tab title="GrraphQL Query" %}
+{% tab title="GraphQL Query" %}
 ```graphql
 mutation($input: ID!) {
   activateSubClient(id: $input) {

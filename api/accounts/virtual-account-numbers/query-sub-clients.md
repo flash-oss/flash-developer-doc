@@ -4,7 +4,7 @@
 
 #### Query for a single sub-client
 
-`aliases` lists the sub-client's [PayIDs](sub-client-payids.md). `principals` lists the people who own or control a `company` sub-client. `accountHolders` lists the people who hold a [joint VAN](create-sub-clients/joint-vans.md). Each of these fields is resolved separately for every sub-client in a response, so request them only where you need them. `accountHolders` is an empty list unless `clientType` is `JOINT`.
+`aliases` lists the sub-client’s [PayIDs](sub-client-payids.md). `principals` lists the people who own or control a `COMPANY` sub-client. `accountHolders` lists the people who hold a [joint VAN](create-sub-clients/joint-vans.md). We load each of these lists separately for every sub-client in the response, so request them only when you need them. `accountHolders` is an empty list unless `clientType` is `JOINT`.
 
 {% tabs %}
 {% tab title="JavaScript" %}

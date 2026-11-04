@@ -1,12 +1,12 @@
 ---
 description: >-
-  Generate named Virtual Account Numbers (aka sub-clients) for your clients' for
-  collection
+  Generate named Virtual Account Numbers (aka sub-clients) for your clients to
+  collect payments
 ---
 
 # Virtual account numbers
 
-The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, to companies and other organisations, and to [joint accounts](create-sub-clients/joint-vans.md) held by two to five people.
+The sub-client (aka _merchant_) feature allows you to create client accounts for deposit collection purposes. These virtual accounts can be issued to individuals, to companies and other organisations, and to [joint sub-clients](create-sub-clients/joint-vans.md) held by two to five people.
 
 {% hint style="info" %}
 Note: This feature is **disabled** by default. Contact us if you want it.
@@ -22,9 +22,9 @@ The **account name** of the virtual account is your sub-client's name:
 
 * **Company:** the `tradingAsName`, or the `legalName` when there is no trading name
 * **Individual:** the person's full name (`firstName` + `middleName` + `lastName`)
-* **Joint:** the full names of all account holders, joined with "and" (`Duncan Brian Smith and Emily Smith`)
+* **Joint:** the first account holder’s full name for now. We will change it to the full names of all holders, joined with “and”, and announce it in the [API change log](../../basics/api-change-log.md).
 
-For `company` sub-clients we also need to record their [principals](create-sub-clients/principals.md) - the people who own or control the business: ultimate beneficial owners (UBOs), beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account.&#x20;
+For `COMPANY` sub-clients we also need to record their [principals](create-sub-clients/principals.md) - the people who own or control the business: ultimate beneficial owners (UBOs), beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account.&#x20;
 
 Sub-clients can also be paid by **PayID**. Register an alias at your own domain on a sub-client's virtual account via the [PayIDs API](sub-client-payids.md), and your customer can use it instead of the BSB and account number. Payments to a PayID arrive as ordinary deposits on the sub-client's VAN.
 

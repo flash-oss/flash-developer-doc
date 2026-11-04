@@ -6,7 +6,7 @@ description: >-
 
 # Principals
 
-For every `company` sub-client, we also want to know who owns and controls it. These people are the sub-client's **principals**: its ultimate beneficial owners, beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account, and we pass it on to them when the sub-client's virtual accounts are issued.
+For every `COMPANY` sub-client, we also want to know who owns and controls it. These people are the sub-client's **principals**: its ultimate beneficial owners, beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account, and we pass it on to them when the sub-client's virtual accounts are issued.
 
 Send them in the `principals` list of `createSubClient`. Each entry describes one person:
 
@@ -24,7 +24,7 @@ One person can hold several roles:
 * `TRUSTEE` - holds the organisation's assets on trust for its beneficiaries.
 * `OTHER` - significant control or influence that none of the other roles describes.
 
-Principals are accepted for `company` sub-clients only. A request that sends them for an `individual` or a [`joint`](joint-vans.md) sub-client is rejected. Do not send an `id` when creating a sub-client - we assign one to every principal and return it in the response, so that you can [edit that person later](../disable-activate-and-update-sub-clients.md#updating-sub-client-principals). [The data quality requirements](./#data-quality-requirements) apply to principals as well: real people, real names, real dates of birth.
+Principals are accepted for `COMPANY` sub-clients only. A request that sends them for an `INDIVIDUAL` or a [`JOINT`](joint-vans.md) sub-client is rejected. Do not send an `id` when creating a sub-client - we assign one to every principal and return it in the response, so that you can [edit that person later](../disable-activate-and-update-sub-clients.md#updating-sub-client-principals). [The data quality requirements](./#data-quality-requirements) apply to principals as well: real people, real names, real dates of birth.
 
 {% hint style="info" %}
 Principals are optional for now. They will become mandatory for every `company` sub-client - we will announce the date in advance in the [API change log](../../../basics/api-change-log.md). Please start sending them with every new company sub-client and add them to your existing ones via `updateSubClient`. The same details can be recorded in Flash Connect.&#x20;
