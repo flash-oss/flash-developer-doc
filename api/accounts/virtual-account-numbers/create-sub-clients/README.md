@@ -4,7 +4,7 @@ There are three types of sub-clients. Tell us which one you create in `clientTyp
 
 * `INDIVIDUAL` - one person
 * `COMPANY` - a business or other organisation. Send its `legalName` and a contact person. [Principals](principals.md) are optional for now.
-* `JOINT` - one account held by two to five people. Send each person's details in `accountHolders`.See [Joint VANs](joint-vans.md).
+* `JOINT` - one account held by two to five people. Send each person's details in `accountHolders`. See [Joint VANs](joint-vans.md).
 
 {% hint style="warning" %}
 Send `clientType` with every new sub-client. It is optional for now and will become required. We will announce it in the [API change log](../../../basics/api-change-log.md). Currently, if you leave `clientType` out, we create a `COMPANY` when `legalName` is sent, and an `INDIVIDUAL` otherwise.
@@ -49,7 +49,7 @@ Please follow our latest requirements for the proper sub-client data submission:
 2. Provide proper `mobile` number
 3. Provide proper `dob`: **the person must be under 65 years of age**&#x20;
 4. Provide proper residential `address` including unit and street number. The sub-client address should correspond to your approved use case from the contract agreement. By default, you can only create local Australian sub-clients with an adequate `address.street` field provided. **Any non-Australian entities will undergo extended due diligence based on their location and industry relevance for Flash Payments.**  &#x20;
-5. Provide proper `idDoc` (`type`, `docNumber`, `issuer` (optional), `issueDate` (optional), `expiryDate` (optional), and `country` ) based on the sub-client contact person's address. For Australian residents, either a driver’s license or a passport is accepted. For non-Australian residents, only a passport is accepted as a document type.
+5. Provide proper `idDoc` (`type`, `docNumber`, `issuer` (optional), `issueDate` (optional), `expiryDate` (optional) and `country`) based on the sub-client contact person’s address. For Australian residents, either a driver licence or a passport is accepted. For non-Australian residents, only a passport is accepted as a document type.
 6. Sometimes, we ask our partners to provide “instructing institution” information, but only if you are creating this VAN on behalf of another financial institution. More about institutions [here](../../../moving-funds/institutions.md). You may provide the ID of the already created institution via the field `instructingInstitutionId` or as a full object via the `instructingInstitution` field.
 {% endhint %}
 

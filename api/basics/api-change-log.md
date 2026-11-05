@@ -6,9 +6,9 @@ description: History of changes to this API schema
 
 ## 2026-11-03 <a href="#user-content-2026-11-xx" id="user-content-2026-11-xx"></a>
 
-### Added <a href="#user-content-added" id="user-content-added"></a>
+### Added <a href="#user-content-2026-11-xx" id="user-content-2026-11-xx"></a>
 
-Joint sub-clients: one virtual account for two to five people who hold it together, for example a couple. Now available in UAT. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
+Joint sub-clients: one virtual account for two to five people who hold it together, for example a couple. Available in UAT now. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
 
 * New `clientType` field on the [`createSubClient`](../accounts/virtual-account-numbers/create-sub-clients/) mutation: `INDIVIDUAL`, `COMPANY` or `JOINT`. Optional for now. When you leave it out, a request with a `legalName` creates a `COMPANY`. Any other request creates an `INDIVIDUAL`, exactly as before.
 * New `JOINT` value of the `SubClientType` enum, returned on the `SubClient` type and accepted in the `subClients` filter.
@@ -17,7 +17,7 @@ Joint sub-clients: one virtual account for two to five people who hold it togeth
 
 ### Changed <a href="#user-content-changed" id="user-content-changed"></a>
 
-`firstName`, `lastName`, `email`, `mobile`, `dob` and `idDoc` on `CreateSubClientInput` are no longer marked as required in the schema. A `JOINT` sub-client sends them for each account holder instead. They are still required for `INDIVIDUAL` and `COMPANY` sub-clients, and a request without them is rejected as before. If you generate code from the schema, regenerate it.
+`firstName`, `lastName`, `email`, `mobile`, `dob` and `idDoc` on `CreateSubClientInput` are no longer marked as required in the schema. For a `JOINT` sub-client, send them for each person in `accountHolders` instead. They are still required for `INDIVIDUAL` and `COMPANY` sub-clients, and a request without them is rejected as before. If you generate code from the schema, regenerate it.
 
 ## 2026-10-29
 

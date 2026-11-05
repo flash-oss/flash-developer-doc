@@ -16,11 +16,11 @@ Send `clientType: JOINT` and the details in `accountHolders`. Each entry describ
 
 * Send two to five account holders. The order matters: the first holder becomes the `primaryContact` of the sub-client.
 * Put the personal details in `accountHolders` only. Leave out the top-level `firstName`, `middleName`, `lastName`, `email`, `mobile`, `dob` and `idDoc`.
-* Leave out `legalName`, `tradingAsName`, `businessNumber`, `orgType` and `principals`. A `JOINT` sub-client is for people, not for a business.&#x20;
+* Leave out `legalName`, `tradingAsName`, `businessNumber`, `orgType` and `principals`. A `JOINT` sub-client is for people, not for a business.
 * Send one `address` for the sub-client, at the top level. We record it as one residential address for all holders.
 * `externalId`, `instructingInstitutionId` and `postalAddress` work as for every other sub-client.
 
-A trust or a partnership that two people run is a `COMPANY` sub-client with the matching [`orgType`](./#organisation-type), and the trustees or partners are its [principals](principals.md).
+A `TRUST` or a `PARTNERSHIP` that two people run is a `COMPANY` sub-client with the matching [`orgType`](./#organisation-type), and the trustees or partners are its [principals](principals.md).
 
 The [data quality requirements](./#data-quality-requirements) apply to every account holder: real people, real names, real documents. We check the request before we create anything. A request that breaks one of the rules above is rejected with an error, and no sub-client is created:
 

@@ -27,12 +27,12 @@ One person can hold several roles:
 Principals are accepted for `COMPANY` sub-clients only. A request that sends them for an `INDIVIDUAL` or a [`JOINT`](joint-vans.md) sub-client is rejected. Do not send an `id` when creating a sub-client - we assign one to every principal and return it in the response, so that you can [edit that person later](../disable-activate-and-update-sub-clients.md#updating-sub-client-principals). [The data quality requirements](./#data-quality-requirements) apply to principals as well: real people, real names, real dates of birth.
 
 {% hint style="info" %}
-Principals are optional for now. They will become mandatory for every `company` sub-client - we will announce the date in advance in the [API change log](../../../basics/api-change-log.md). Please start sending them with every new company sub-client and add them to your existing ones via `updateSubClient`. The same details can be recorded in Flash Connect.&#x20;
+Principals are optional for now. They will become mandatory for every `COMPANY` sub-client - we will announce the date in advance in the [API change log](../../../basics/api-change-log.md). Please start sending them with every new company sub-client and add them to your existing ones via `updateSubClient`. The same details can be recorded in Flash Connect.&#x20;
 {% endhint %}
 
-You can read them back at any time via the `principals` field of the `SubClient` type (`id`, `roles`, `firstName`, `middleName`, `lastName`, `dob`). It is an empty list for `individual` or [`joint`](joint-vans.md) sub-clients.
+You can read them back at any time via the `principals` field of the `SubClient` type (`id`, `roles`, `firstName`, `middleName`, `lastName`, `dob`). It is an empty list for `INDIVIDUAL` or [`JOINT`](joint-vans.md) sub-clients.
 
-Company senders carry the same principals - see [Sender principals](../../../moving-funds/senders/sender-principals.md).
+Company senders carry the same principals. See [Sender principals](../../../moving-funds/senders/sender-principals.md).
 
 #### Creating a sub-client with principals
 

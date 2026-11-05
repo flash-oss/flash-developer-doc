@@ -136,6 +136,8 @@ mutation($input: ID!) {
 
 At this point, you can only update the `externalId`, `address`, `postalAddress` and `principals` properties because each sub-client has a set of linked domestic and international Virtual Account Numbers to send and receive funds.
 
+You cannot change the account holders of a [joint sub-client](create-sub-clients/joint-vans.md). If the holders change, create a new sub-client and disable the old one.
+
 {% hint style="info" %}
 Please note, that the updated address will be re-verified, so make sure to include all its components, even if some fields, like the `country`, remain unchanged.<br>
 {% endhint %}
@@ -228,7 +230,7 @@ const bodyJSON = {
     input: {
       address: {
         street: "456 New St",
-        suburb: "Newtow",
+        suburb: "Newtown",
         state: "VIC",
         postcode: "3220", 
         country: "AU",
@@ -280,7 +282,7 @@ mutation($id: ID!, $input: UpdateSubClientInput!) {
   "input": {
     "address": {
         "street": "456 New St",
-        "suburb": "Newtow",
+        "suburb": "Newtown",
         "state": "VIC",
         "postcode": "3220",
         "country": "AU"
@@ -305,7 +307,7 @@ mutation($id: ID!, $input: UpdateSubClientInput!) {
         "address": {
           "building": null,
           "street": "456 New St",
-          "suburb": "Newtow",
+          "suburb": "Newtown",
           "state": "VIC",
           "postcode": "3220",
           "country": "AU"
@@ -320,13 +322,13 @@ mutation($id: ID!, $input: UpdateSubClientInput!) {
 
 #### Updating sub-client principals
 
-`principals` is the **complete list** of the people who own or control a `company` sub-client. What you send replaces what is on record:
+`principals` is the **complete list** of the people who own or control a `COMPANY` sub-client. What you send replaces what is on record:
 
 * an entry with an `id` - that principal is updated
 * an entry without an `id` - a new principal is added
 * a principal on record whose `id` you do not send - that principal is removed and is no longer returned
 
-Every entry needs the person's full details (`roles`, `firstName`, `lastName`, plus `middleName` and `dob` if you have them), even when you only change their roles. Optional fields you leave out are kept as they are. The list cannot be left with no one: omitting `principals`, or sending an empty list, leaves the principals unchanged. An `id` that does not belong to this sub-client is rejected with `NOT_FOUND`, and principals on an `individual` sub-client are rejected with `INVALID_DATA`.&#x20;
+Every entry needs the person's full details (`roles`, `firstName`, `lastName`, plus `middleName` and `dob` if you have them), even when you only change their roles. Optional fields you leave out are kept as they are. The list cannot be left with no one: omitting `principals`, or sending an empty list, leaves the principals unchanged. An `id` that does not belong to this sub-client is rejected with `NOT_FOUND`, and principals on an `INDIVIDUAL` or `JOINT` sub-client are rejected.&#x20;
 
 In the example below the sub-client had two principals on record: Wei Zhang (`68d4c3a1f2b9e07c4d1a5b01`, director and ultimate beneficial owner) and Mei Lin (`68d4c3a1f2b9e07c4d1a5b02`, beneficial owner). The request keeps Wei as a director only, adds Carol Nguyen as the company secretary, and removes Mei because her `id` is not in the list.
 
