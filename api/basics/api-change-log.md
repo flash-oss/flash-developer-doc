@@ -4,9 +4,9 @@ description: History of changes to this API schema
 
 # API change log
 
-## 2026-11-03 <a href="#user-content-2026-11-xx" id="user-content-2026-11-xx"></a>
+## 2026-11-03
 
-### Added <a href="#user-content-2026-11-xx" id="user-content-2026-11-xx"></a>
+### Added
 
 Joint sub-clients: one virtual account for two to five people who hold it together, for example a couple. Available in UAT now. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
 
