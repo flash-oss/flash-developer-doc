@@ -253,7 +253,7 @@ mutation ($input: CreateWithdrawalInput!) {
 {% hint style="warning" %}
 We are legally obliged to collect the actual sender and beneficiary details. Please do not send us intermediate organisation details such as exchanges, banks, gateways, etc.
 
-If it is an intermediate, please see [Instiutions](withdraw-funds.md#institutions) instead.
+If it is an intermediate, see [Instructing Institutions](withdraw-funds.md#instructing-institutions) below instead.
 
 Please always send us the ultimate sender and recipient. If sending funds to yourself, please provide your own details. See the schema in [Playground](https://api.uat.flash-payments.com.au/) for other recipient details options.
 
@@ -379,22 +379,25 @@ mutation ($input: CreateWithdrawalInput!) {
 
 ### Instructing Institutions
 
-An organisation that instructed you to make a withdrawal. This data is mandatory if you submit this withdrawal on behalf of another financial institution.
+An instructing institution is another financial institution that instructed you to make this withdrawal. Send it whenever you make the withdrawal on behalf of such an institution. See [Institutions](../institutions.md) for the fields and how to manage them.
 
 {% hint style="info" %}
-For more information please see [Institutions](../institutions.md).
+An instructing institution can be identified by its `bic` or its `lei`. Please add at least one of them to every institution you use. See [BIC and LEI](../institutions.md#user-content-bic-and-lei).&#x20;
 {% endhint %}
 
 #### Using existing institutions `instructingInstitutionId`
 
-This optional field refers to an existing `Institution` that was created earlier in the Flash Connect interface or via this API.
+Send the `id` of an institution you created earlier in Flash Connect or with [`createInstitution`](../institutions.md#creating-institutions). The withdrawal is rejected with `INSTITUTION_NOT_FOUND` when none of your institutions has this `id`, and with `BANNED_INSTITUTION` when the institution does not meet our compliance requirements.
 
 #### Create institutions on the fly using the `instructingInstitution` field
 
-Optional field that allows you to provide [Institution](../institutions.md) details without pre-creating one. Once passed, Flash Payments will create the Institution for you. Before creating an institution, we will try to find an existing one:
+Send the institution details inside the withdrawal instead of creating the institution first. Before we create it, we look for one of yours that already matches:
 
-* By `instructingInstitution.externalId` if present.
-* By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
+* by `instructingInstitution.externalId`
+* by `instructingInstitution.businessNumber` and `instructingInstitution.address.country`
+* by `instructingInstitution.legalName` and `instructingInstitution.address.country`
+
+When we find one, we use it for the withdrawal and apply the details you sent to it in the background, at most once a day per institution. This is also a way to add a `bic` or `lei` to an institution you already have.
 
 The `instructingInstitution` object accepts the same fields as [`createInstitution`](../institutions.md#creating-institution-example).
 

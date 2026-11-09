@@ -1,34 +1,49 @@
 ---
-description: CRUD queries for Institutions
+description: Create, update and query the institutions that instruct your withdrawals
 ---
 
 # Institutions
 
-### Instructing Institution
+### What an Instructing Institution is <a href="#user-content-what-an-institution-is" id="user-content-what-an-institution-is"></a>
 
-`Institution` entity is a piece of information about the party who instructed you to make the withdrawal. This data is important for compliance within Australia. This is not the sender. If there is no other institution who has instructed this withdrawal, leave this blank and your own details will be used for compliance and auditing purposes.&#x20;
+An instructing institution is another financial institution that instructed you to make a withdrawal. We record it for compliance reporting in Australia. It is not the sender of the money.
+
+If nobody instructed you, do not send an institution. We then use your own company details for compliance and auditing.<br>
 
 <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Institution explanation</p></figcaption></figure>
 
-#### Creating institutions
+You use an institution in two places:
 
-* via Flash Connect (you can copy an ID of an existing Institution).&#x20;
-* via API by invoking `createInstitution` mutation.&#x20;
-* by providing `instructingInstitution` object into `createWithdrawal` mutation.&#x20;
+* `createWithdrawal`, in `instructingInstitutionId` or `instructingInstitution`. See [Withdraw funds](payouts/withdraw-funds.md).
+* `createSubClient`, in the same two fields, when you create a virtual account on behalf of another financial institution. See [Create sub-clients](../accounts/virtual-account-numbers/create-sub-clients/).
+
+### BIC and LEI <a href="#user-content-bic-and-lei" id="user-content-bic-and-lei"></a>
+
+An institution can carry a `bic`, a  `lei`, or both. Please add at least one of them to every institution you use.&#x20;
+
+The `institutions` query lists your institutions with their identifiers. Anyone can look up an LEI for free at [search.gleif.org](https://search.gleif.org/).
+
+### Creating institutions
+
+There are three ways to create an institution:
+
+* in Flash Connect, on the Institutions page. Copy the institution `id` from there when you want to use it as `instructingInstitutionId`.
+* via API with the `createInstitution` mutation.
+* inside a withdrawal, in the `instructingInstitution` field of `createWithdrawal`. See [Withdraw funds.](payouts/withdraw-funds.md)
 
 {% hint style="warning" %}
-Please avoid creating multiple Institutions for the same organisation because they are used for compliance reporting and subject to review.&#x20;
+Create one institution per organisation. Institutions go into our compliance reports and our compliance team reviews each of them.
 {% endhint %}
 
 {% hint style="info" %}
-Before creating or updating an institution we will try to find an existing one by:&#x20;
+Before creating or updating an institution we will try to find an existing one by:
 
-* By `instructingInstitution.externalId`
-* By `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
-* By `instructingInstitution.legalName` AND `instructingInstitution.address.country`
+* by `instructingInstitution.externalId`
+* by `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
+* by `instructingInstitution.legalName` AND `instructingInstitution.address.country`&#x20;
+
+When we find one, `createInstitution` returns `INSTITUTION_ALREADY_EXISTS` together with that institution, so you can read its `id`. `bic` and `lei` are not used for matching.&#x20;
 {% endhint %}
-
-
 
 ### Creating institution example
 
@@ -39,24 +54,26 @@ const bodyJSON = {
   variables: {
     input: {
       legalName: "Intermediate Institution Ltd",
+      bic: "BANKAU2S",
+      lei: "5493001KJTIIGC8Y1R12",
       website: "example.com",
       businessNumber: "A39477669937",
       address: {
-        postcode: "2000",
         street: "203 Business Street",
-        country: "AU",
-        state: "NSW",
         suburb: "Sydney",
+        state: "NSW",
+        postcode: "2000",
+        country: "AU",
+      },
     },
   },
-},
-query: `
+  query: `
 mutation ($input: InstitutionInput!) {
   createInstitution(input: $input) {
-    success code message    
-    institution {     
-      id
-    }  
+    success code message
+    institution {
+      id legalName bic lei
+    }
   }
 }`,
 };
@@ -65,13 +82,16 @@ mutation ($input: InstitutionInput!) {
 
 {% tab title="GraphQL Query" %}
 ```graphql
-mutation($input: InstitutionInput!) {
+mutation ($input: InstitutionInput!) {
   createInstitution(input: $input) {
     success
     code
     message
     institution {
       id
+      legalName
+      bic
+      lei
     }
   }
 }
@@ -79,17 +99,20 @@ mutation($input: InstitutionInput!) {
 {% endtab %}
 
 {% tab title="Variables" %}
-```javascript
- "input": {
+```json
+{
+  "input": {
     "legalName": "Intermediate Institution Ltd",
+    "bic": "BANKAU2S",
+    "lei": "5493001KJTIIGC8Y1R12",
     "website": "example.com",
     "businessNumber": "A39477669937",
     "address": {
-      "postcode": "2000",
       "street": "203 Business Street",
-      "country": "AU",
+      "suburb": "Sydney",
       "state": "NSW",
-      "suburb": "Sydney"
+      "postcode": "2000",
+      "country": "AU"
     }
   }
 }
@@ -97,7 +120,7 @@ mutation($input: InstitutionInput!) {
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```json
 {
   "data": {
     "createInstitution": {
@@ -106,7 +129,9 @@ mutation($input: InstitutionInput!) {
       "message": "Institution created",
       "institution": {
         "id": "65570da4f176682c5e412552",
-        "website": "example.com"
+        "legalName": "Intermediate Institution Ltd",
+        "bic": "BANKAU2S",
+        "lei": "5493001KJTIIGC8Y1R12"
       }
     }
   }
@@ -115,22 +140,27 @@ mutation($input: InstitutionInput!) {
 {% endtab %}
 {% endtabs %}
 
-**Updating institutions**
+### **Updating institutions**
 
-You can update an existing institution by invoking the `updateInstitution` mutation with its `id`. The input always requires `legalName` and `address`; every other field is optional. Only the non-empty fields you send are applied — omitted or empty optional fields keep their current values (you can't blank out a field by sending an empty value), and the `address` you provide is merged over the stored one.\
-If nothing actually changes, the update is a no-op and returns `NO_CHANGES`; the stored data and its compliance status are left untouched.
+Update an institution with the `updateInstitution` mutation and its `id`. The input always requires `legalName` and `address`, every other field is optional.
+
+We apply only the non-empty fields you send. A field you leave out or send empty keeps its stored value, so you cannot blank a field this way. The `address` you send is merged over the stored one.
+
+If nothing changes, we return `NO_CHANGES` and leave the institution untouched. Every real change goes to our compliance team for review again.
 
 {% hint style="info" %}
-Before persisting a change, we check whether a different institution already exists with the same:
+Before we save, we check that no other institution of yours matches the new values by:
 
-* `externalId` if present, or
+* `externalId`&#x20;
 * `businessNumber` AND `address.country`
 * `legalName` AND `address.country`
 
 If a match is found, the update is rejected with the `INSTITUTION_ALREADY_EXISTS` code.
 {% endhint %}
 
-#### Updating institution example
+You can also send the new details inside `instructingInstitution` on your next withdrawal for that institution. When the details match an institution you already have, we use it for the withdrawal and apply your changes in the background. We do that at most once a day per institution.
+
+### **Add an LEI to an existing institution**
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -140,23 +170,19 @@ const bodyJSON = {
     id: "65570da4f176682c5e412552",
     input: {
       legalName: "Intermediate Institution Ltd",
-      businessNumber: "A39477669937",
+      lei: "5493001KJTIIGC8Y1R12",
       address: {
-        postcode: "2000",
-        street: "203 Business Street",
         country: "AU",
-        state: "NSW",
-        suburb: "Sydney",
+      },
     },
   },
-},
-query: `
+  query: `
 mutation ($id: ID, $input: InstitutionInput!) {
   updateInstitution(id: $id, input: $input) {
-    success code message    
-    institution {     
-      id    
-    }  
+    success code message
+    institution {
+      id bic lei
+    }
   }
 }`,
 };
@@ -165,13 +191,15 @@ mutation ($id: ID, $input: InstitutionInput!) {
 
 {% tab title="GraphQL Query" %}
 ```graphql
-mutation($id: ID, $input: InstitutionInput!) {
+mutation ($id: ID, $input: InstitutionInput!) {
   updateInstitution(id: $id, input: $input) {
     success
     code
     message
     institution {
       id
+      bic
+      lei
     }
   }
 }
@@ -179,18 +207,14 @@ mutation($id: ID, $input: InstitutionInput!) {
 {% endtab %}
 
 {% tab title="Variables" %}
-```javascript
+```json
 {
   "id": "65570da4f176682c5e412552",
   "input": {
     "legalName": "Intermediate Institution Ltd",
-    "businessNumber": "A39477669937",
+    "lei": "5493001KJTIIGC8Y1R12",
     "address": {
-      "postcode": "2000",
-      "street": "203 Business Street",
-      "country": "AU",
-      "state": "NSW",
-      "suburb": "Sydney"
+      "country": "AU"
     }
   }
 }
@@ -198,7 +222,7 @@ mutation($id: ID, $input: InstitutionInput!) {
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```json
 {
   "data": {
     "updateInstitution": {
@@ -206,9 +230,156 @@ mutation($id: ID, $input: InstitutionInput!) {
       "code": "UPDATED",
       "message": "Institution 65570da4f176682c5e412552 updated.",
       "institution": {
-        "id": "65570da4f176682c5e412552"
+        "id": "65570da4f176682c5e412552",
+        "bic": null,
+        "lei": "5493001KJTIIGC8Y1R12"
       }
     }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Querying institutions
+
+The `institutions` query returns your institutions, newest first. Every field you set in `input` must match exactly. Leave `input` out to get all of them. The `institution` query returns one institution by its `id`.
+
+#### List all institutions
+
+The example below lists every institution with its identifiers.
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {},
+  },
+  query: `
+query ($input: InstitutionQueryInput) {
+  institutions(input: $input) {
+    id legalName externalId bic lei
+    address {
+      country
+    }
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query ($input: InstitutionQueryInput) {
+  institutions(input: $input) {
+    id
+    legalName
+    externalId
+    bic
+    lei
+    address {
+      country
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```json
+{
+  "input": {}
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+  "data": {
+    "institutions": [
+      {
+        "id": "65570da4f176682c5e412552",
+        "legalName": "Intermediate Institution Ltd",
+        "externalId": "inst-001",
+        "bic": null,
+        "lei": "5493001KJTIIGC8Y1R12",
+        "address": { "country": "AU" }
+      },
+      {
+        "id": "6412a9c0e1f3b2a4c5d6e7f8",
+        "legalName": "Other Remitter Pte Ltd",
+        "externalId": "inst-002",
+        "bic": null,
+        "lei": null,
+        "address": { "country": "SG" }
+      }
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### Find an institution by your own ID
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+const bodyJSON = {
+  variables: {
+    input: {
+      externalId: "inst-002",
+    },
+  },
+  query: `
+query ($input: InstitutionQueryInput) {
+  institutions(input: $input) {
+    id legalName externalId bic lei
+  }
+}`,
+};
+```
+{% endtab %}
+
+{% tab title="GraphQL Query" %}
+```graphql
+query ($input: InstitutionQueryInput) {
+  institutions(input: $input) {
+    id
+    legalName
+    externalId
+    bic
+    lei
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Variables" %}
+```json
+{
+  "input": {
+    "externalId": "inst-002"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+  "data": {
+    "institutions": [
+      {
+        "id": "6412a9c0e1f3b2a4c5d6e7f8",
+        "legalName": "Other Remitter Pte Ltd",
+        "externalId": "inst-002",
+        "bic": null,
+        "lei": null
+      }
+    ]
   }
 }
 ```
