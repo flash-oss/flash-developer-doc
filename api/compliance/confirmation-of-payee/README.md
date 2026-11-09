@@ -85,8 +85,8 @@ mutation ($input: CopInput!) {
 
 The `code` field in the response indicates the [result of the verification](cop-response-codes.md).&#x20;
 
-The `billable` field indicates whether the CoP request may be subject to a fee. \
-\
+The `billable` field indicates whether the CoP request may be subject to a fee.&#x20;
+
 The `success` field is `false` when the check was not carried out, for example when CoP is not enabled for your company or a limit was reached. `NOT_MATCH`, `ACCOUNT_CLOSED` and `ACCOUNT_NOT_FOUND` are results and come with `success: true`, so act on `code`.
 
 {% hint style="info" %}

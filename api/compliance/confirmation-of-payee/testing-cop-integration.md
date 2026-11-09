@@ -38,8 +38,9 @@ CoP can be used independently from your payment flows as an account investigatio
 4. If `MATCH` then the account holder name is confirmed. Record the result for your records.
 5. If `CLOSE_MATCH` then the name partially matches. The reply does not include the name the bank holds, so ask your user to confirm the name they entered.
 6. If `NOT_MATCH` then the name does not match the account. This may warrant further due diligence.
-7. If `ACCOUNT_CLOSED` or `ACCOUNT_NOT_FOUND` then the account is no longer active or does not exist. Flag accordingly.
-8. If `COP_PLATFORM_ERROR` then the check could not be completed. The account may have opted out of CoP. Retry later or use alternative verification methods.
+7. If `ACCOUNT_CLOSED` then the account is no longer active. Flag it accordingly.
+8. If `ACCOUNT_NOT_FOUND` then no CoP record exists for these details: they are wrong, or the account is not covered by CoP. Check the details with your payee.
+9. If `COP_PLATFORM_ERROR` then the check could not be completed. The account may have opted out of CoP. Retry later or use alternative verification methods.
 
 {% hint style="info" %}
 Each CoP request is logged and available in your [Flash Connect](https://connect.flash-payments.com/) request history, making it easy to maintain an audit trail of your verification checks.
@@ -64,8 +65,9 @@ A typical future integration flow could look like this:
 3. If `MATCH` then proceed with the payment.
 4. If `CLOSE_MATCH` then display a warning to your user and let them decide whether to proceed.
 5. If `NOT_MATCH` then alert the user and recommend they verify the account details.
-6. If `ACCOUNT_CLOSED` or `ACCOUNT_NOT_FOUND` then block the payment and ask the user to provide correct details.
-7. If `COP_PLATFORM_ERROR` then optionally proceed, as the account may have opted out of CoP.
+6. If `ACCOUNT_CLOSED` then block the payment and ask the user for other account details.
+7. If `ACCOUNT_NOT_FOUND` then treat the account as unverified: the details may be wrong, or the account may not be covered by CoP. Ask the user to check the details and decide according to your own risk rules.
+8. If `COP_PLATFORM_ERROR` then optionally proceed, as the account may have opted out of CoP.
 
 {% hint style="info" %}
 **CoP is advisory**. The response does not block payments automatically. It is **your responsibility** to act on the result codes appropriately for your use case.
@@ -77,7 +79,7 @@ If Confirmation of Payee is not enabled for your company over the API, the mutat
 
 If your company has not yet accepted the Confirmation of Payee disclaimer in Flash Connect, the reply is:
 
-```jsonl
+```json
 {
   "data": {
     "confirmationOfPayee": {
