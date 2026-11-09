@@ -379,7 +379,7 @@ mutation ($input: CreateWithdrawalInput!) {
 
 ### Instructing Institutions
 
-An instructing institution is another financial institution that instructed you to make this withdrawal. Send it whenever you make the withdrawal on behalf of such an institution. See [Institutions](../institutions.md) for the fields and how to manage them.
+An instructing institution is another financial institution that instructed you to make this withdrawal. Send it whenever you make the withdrawal on behalf of such an institution. See [Institutions](../institutions.md) for how to create, update and query them.
 
 {% hint style="info" %}
 An instructing institution can be identified by its `bic` or its `lei`. Please add at least one of them to every institution you use. See [BIC and LEI](../institutions.md#user-content-bic-and-lei).&#x20;
@@ -410,6 +410,7 @@ const bodyJSON = {
       // ...recipient, sender, and the other withdrawal fields...
       instructingInstitution: {
         legalName: "Intermediate Institution Ltd",
+        lei: "5493001KJTIIGC8Y1R12",
         website: "example.com",
         businessNumber: "A39477669937",
         address: {

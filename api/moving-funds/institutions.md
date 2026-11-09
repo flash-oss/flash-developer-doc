@@ -8,7 +8,9 @@ description: Create, update and query the institutions that instruct your withdr
 
 An instructing institution is another financial institution that instructed you to make a withdrawal. We record it for compliance reporting in Australia. It is not the sender of the money.
 
-If nobody instructed you, do not send an institution. We then use your own company details for compliance and auditing.<br>
+If nobody instructed you, do not send an institution. We then use your own company details for compliance and auditing.
+
+<br>
 
 <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Institution explanation</p></figcaption></figure>
 
@@ -19,9 +21,9 @@ You use an institution in two places:
 
 ### BIC and LEI <a href="#user-content-bic-and-lei" id="user-content-bic-and-lei"></a>
 
-An institution can carry a `bic`, a  `lei`, or both. Please add at least one of them to every institution you use.&#x20;
+An institution can carry a `bic`, an `lei`, or both. Please add at least one of them to every institution you use.&#x20;
 
-The `institutions` query lists your institutions with their identifiers. Anyone can look up an LEI for free at [search.gleif.org](https://search.gleif.org/).
+The `institutions` query lists your institutions with their identifiers. Anyone can look up an `lei` for free at [search.gleif.org](https://search.gleif.org/).
 
 ### Creating institutions
 
@@ -29,7 +31,7 @@ There are three ways to create an institution:
 
 * in Flash Connect, on the Institutions page. Copy the institution `id` from there when you want to use it as `instructingInstitutionId`.
 * via API with the `createInstitution` mutation.
-* inside a withdrawal, in the `instructingInstitution` field of `createWithdrawal`. See [Withdraw funds.](payouts/withdraw-funds.md)
+* inside a withdrawal, in the `instructingInstitution` field of `createWithdrawal`. See [Withdraw funds](payouts/withdraw-funds.md).
 
 {% hint style="warning" %}
 Create one institution per organisation. Institutions go into our compliance reports and our compliance team reviews each of them.
@@ -38,9 +40,9 @@ Create one institution per organisation. Institutions go into our compliance rep
 {% hint style="info" %}
 Before creating or updating an institution we will try to find an existing one by:
 
-* by `instructingInstitution.externalId`
-* by `instructingInstitution.businessNumber` AND `instructingInstitution.address.country`
-* by `instructingInstitution.legalName` AND `instructingInstitution.address.country`&#x20;
+* &#x20;`externalId`
+* &#x20;`businessNumber` AND `address.country`
+* &#x20;`legalName` AND `address.country`&#x20;
 
 When we find one, `createInstitution` returns `INSTITUTION_ALREADY_EXISTS` together with that institution, so you can read its `id`. `bic` and `lei` are not used for matching.&#x20;
 {% endhint %}
@@ -140,9 +142,9 @@ mutation ($input: InstitutionInput!) {
 {% endtab %}
 {% endtabs %}
 
-### **Updating institutions**
+### Updating institutions
 
-Update an institution with the `updateInstitution` mutation and its `id`. The input always requires `legalName` and `address`, every other field is optional.
+Update an institution with the `updateInstitution` mutation and its `id`. The input always requires `legalName` and `address`. Every other field is optional.
 
 We apply only the non-empty fields you send. A field you leave out or send empty keeps its stored value, so you cannot blank a field this way. The `address` you send is merged over the stored one.
 
@@ -160,7 +162,7 @@ If a match is found, the update is rejected with the `INSTITUTION_ALREADY_EXISTS
 
 You can also send the new details inside `instructingInstitution` on your next withdrawal for that institution. When the details match an institution you already have, we use it for the withdrawal and apply your changes in the background. We do that at most once a day per institution.
 
-### **Add an LEI to an existing institution**
+### Add an LEI to an existing institution
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -243,7 +245,7 @@ mutation ($id: ID, $input: InstitutionInput!) {
 
 ### Querying institutions
 
-The `institutions` query returns your institutions, newest first. Every field you set in `input` must match exactly. Leave `input` out to get all of them. The `institution` query returns one institution by its `id`.
+The `institutions` query returns your institutions, newest first. Every field you set in `input` must match exactly. Leave `input` out, or send an empty object to get all of them. The `institution` query returns one institution by its `id`.
 
 #### List all institutions
 
