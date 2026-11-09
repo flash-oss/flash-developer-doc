@@ -58,6 +58,10 @@ Additionally, financial institutions store account holder names in varying forma
 For this reason, **we currently recommend using CoP as a standalone verification tool** rather than as a blocking step in your payment flow.
 {% endhint %}
 
+{% hint style="info" %}
+We keep a CoP result for up to 6 hours, the maximum the AP+ rules for CoP allow, except `ACCOUNT_NOT_FOUND`, which is checked again every time. Sending the same account details and name again within that time returns the stored result instead of a new check, so there is no point in retrying.
+{% endhint %}
+
 A typical future integration flow could look like this:
 
 1. Before submitting a payment or withdrawal, call `confirmationOfPayee` with the recipient's account details.
@@ -77,7 +81,7 @@ A typical future integration flow could look like this:
 
 If Confirmation of Payee is not enabled for your company over the API, the mutation replies with `success: false` and `code: "COP_NOT_AVAILABLE"`. Contact Flash Payments support to enable it.
 
-If your company has not yet accepted the Confirmation of Payee disclaimer in Flash Connect, the reply is:
+If your company has not yet accepted the Confirmation of Payee disclaimer in [Flash Connect](https://connect.flash-payments.com/), the reply is:
 
 ```json
 {
@@ -91,8 +95,6 @@ If your company has not yet accepted the Confirmation of Payee disclaimer in Fla
   }
 }
 ```
-
-Open the Confirmation of Payee page in Flash Connect and accept the disclaimer. One acceptance covers the whole company.
 
 Standard [rate limiting](../../other/rate-limiting.md) applies to CoP requests. CoP also has two limits of its own. Both reply with `code: "COP_LIMIT_EXCEEDED"`:
 
