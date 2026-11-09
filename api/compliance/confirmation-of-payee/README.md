@@ -17,7 +17,7 @@ The feature is also available through the [Flash Connect](https://connect.flash-
 
 ### Making a CoP Request
 
-To verify account details, execute the `confirmationOfPayee` mutation. You must provide the `accountIdType`, the relevant account details, and the `accountName` you wish to verify.
+To verify account details, execute the `confirmationOfPayee` mutation. Only `accountIdType: BSB` is supported today: provide the `bsb`, the `accountNo` and the `accountName` you wish to verify. Any other `accountIdType` replies with `code: "ACCOUNT_TYPE_NOT_SUPPORTED"`.
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -74,7 +74,7 @@ mutation ($input: CopInput!) {
     "confirmationOfPayee": {
       "success": true,
       "code": "MATCH",
-      "message": "Account name matches",
+      "message": "Account name matches the account name entered",
       "billable": true
     }
   }
@@ -83,9 +83,11 @@ mutation ($input: CopInput!) {
 {% endtab %}
 {% endtabs %}
 
-The `code` field in the response indicates the [result of the verification](https://developer.flash-payments.com/~/revisions/QODtCCHQ0ULYQp2U9s5d/other/confirmation-of-payee/response-codes).&#x20;
+The `code` field in the response indicates the [result of the verification](cop-response-codes.md).&#x20;
 
-The `billable` field indicates whether the CoP request may be subject to a fee.&#x20;
+The `billable` field indicates whether the CoP request may be subject to a fee. \
+\
+The `success` field is `false` when the check was not carried out, for example when CoP is not enabled for your company or a limit was reached. `NOT_MATCH`, `ACCOUNT_CLOSED` and `ACCOUNT_NOT_FOUND` are results and come with `success: true`, so act on `code`.
 
 {% hint style="info" %}
 CoP requests are billed based on your agreement with Flash Payments. Contact Flash Payments support for details on pricing.

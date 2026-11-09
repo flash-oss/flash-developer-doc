@@ -6,7 +6,7 @@ In the UAT environment, you can simulate different CoP responses by using specif
 The pattern matching on the  `accountName` field is **substring-based** and **case-insensitive,** e.g. using `"Test Copimatch"`, `"John copimatch Smith"`, or `"COPIMATCH"` will all trigger the same scenario.
 {% endhint %}
 
-Here is a current list of the testing keywords and the most common [response codes](https://developer.flash-payments.com/~/revisions/9LlT1HXk7YEwcubW18VI/compliance/confirmation-of-payee/cop-response-codes). Please note this list **can be changed over time.**
+Here is a current list of the testing keywords and the most common [response codes](cop-response-codes.md). Please note this list **can be changed over time.**
 
 | Account Name Keyword | Response Code        | Simulated Account Type     |
 | -------------------- | -------------------- | -------------------------- |
@@ -36,13 +36,13 @@ CoP can be used independently from your payment flows as an account investigatio
 2. Call `confirmationOfPayee` with those details.
 3. Inspect the `code` in the response.
 4. If `MATCH` then the account holder name is confirmed. Record the result for your records.
-5. If `CLOSE_MATCH` then the name partially matches. Review the `message` for details and decide whether further investigation is needed.
+5. If `CLOSE_MATCH` then the name partially matches. The reply does not include the name the bank holds, so ask your user to confirm the name they entered.
 6. If `NOT_MATCH` then the name does not match the account. This may warrant further due diligence.
 7. If `ACCOUNT_CLOSED` or `ACCOUNT_NOT_FOUND` then the account is no longer active or does not exist. Flag accordingly.
 8. If `COP_PLATFORM_ERROR` then the check could not be completed. The account may have opted out of CoP. Retry later or use alternative verification methods.
 
 {% hint style="info" %}
-Each CoP request is logged and available in your [FlashConnect](https://connect.flash-payments.com.au/) request history, making it easy to maintain an audit trail of your verification checks.
+Each CoP request is logged and available in your [Flash Connect](https://connect.flash-payments.com/) request history, making it easy to maintain an audit trail of your verification checks.
 {% endhint %}
 
 #### CoP as a part of your payment integration flow
@@ -73,7 +73,9 @@ A typical future integration flow could look like this:
 
 #### Error Handling&#x20;
 
-If your account does not have CoP enabled, the API will return:
+If Confirmation of Payee is not enabled for your company over the API, the mutation replies with `success: false` and `code: "COP_NOT_AVAILABLE"`. Contact Flash Payments support to enable it.
+
+If your company has not yet accepted the Confirmation of Payee disclaimer in Flash Connect, the reply is:
 
 ```jsonl
 {
@@ -81,16 +83,23 @@ If your account does not have CoP enabled, the API will return:
     "confirmationOfPayee": {
       "success": false,
       "code": "COP_API_DISABLED",
-      "message": "Confirmation Of Payee API is disabled. Please contact support.",
-      "billable": false
+      "message": "This service's disclaimer has not been accepted. Open Flash Connect to review and accept it.",
+      "billable": null
     }
   }
 }
 ```
 
-Standard [rate limiting](https://developer.flash-payments.com/~/revisions/VVAbKd5tNL6a2Thg7Hh6/other/rate-limiting) applies to CoP requests. Additionally, CoP has its own usage limits. If you exceed them, you will receive the `COP_LIMIT_EXCEEDED` code.
+Open the Confirmation of Payee page in Flash Connect and accept the disclaimer. One acceptance covers the whole company.
+
+Standard [rate limiting](../../other/rate-limiting.md) applies to CoP requests. CoP also has two limits of its own. Both reply with `code: "COP_LIMIT_EXCEEDED"`:
+
+* A free monthly allowance of requests, if your company has no CoP pricing plan. The `message` says how many requests you have made this month. The allowance resets on the first day of the next month (UTC). Contact Flash Payments support for a pricing plan.
+* A protection against many requests ending in `NOT_MATCH` or `ACCOUNT_NOT_FOUND` within a short time. It lifts by itself. Slow down and retry later.
+
+These limits apply in UAT as well: `copinotmatch`, `copcnotmatch` and `copnotfound` count as failed lookups, so a test loop over them ends in `COP_LIMIT_EXCEEDED` for a while.
 
 {% hint style="info" %}
-When the [response code](https://developer.flash-payments.com/~/revisions/cMEPQHA2kkPOWBiWhppd/compliance/confirmation-of-payee/cop-response-codes) is `COP_PLATFORM_ERROR`, it may indicate that the account holder has opted out of CoP verification. The general recommendation is to proceed with the payment.
+When the [response code](cop-response-codes.md) is `COP_PLATFORM_ERROR`, it may indicate that the account holder has opted out of CoP verification. The general recommendation is to proceed with the payment.
 {% endhint %}
 
