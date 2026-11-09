@@ -15,7 +15,11 @@ Confirmation of Payee (CoP) is a security feature that verifies whether an accou
 The feature is also available through the [Flash Connect](https://connect.flash-payments.com/) portal. You can perform CoP checks directly from the UI, view your request history, and monitor usage statistics without writing any code. This can be useful for manual verification workflows or for getting familiar with the feature before integrating it into your application via the API.
 {% endhint %}
 
-### Making a CoP Request
+### Before you start
+
+Two things must be in place before the mutation returns a result: Flash Payments team has enabled Confirmation of Payee over the API for your account, and your company account administrator has accepted the Confirmation of Payee disclaimer in Flash Connect. The disclaimer is shown on the Confirmation of Payee page there and is accepted once per account. Until then the mutation replies with `success: false` and either `code: "COP_NOT_AVAILABLE"` (not enabled) or `code: "COP_API_DISABLED"` (disclaimer not accepted).
+
+### Making a CoP request
 
 To verify account details, execute the `confirmationOfPayee` mutation. Only `accountIdType: BSB` is supported today: provide the `bsb`, the `accountNo` and the `accountName` you wish to verify. Any other `accountIdType` replies with `code: "ACCOUNT_TYPE_NOT_SUPPORTED"`.
 
@@ -55,7 +59,7 @@ mutation ($input: CopInput!) {
 {% endtab %}
 
 {% tab title="Variables" %}
-```javascript
+```json
  {
   "input": {
     "accountIdType": "BSB",
@@ -68,7 +72,7 @@ mutation ($input: CopInput!) {
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```json
 {
   "data": {
     "confirmationOfPayee": {
@@ -85,7 +89,7 @@ mutation ($input: CopInput!) {
 
 The `code` field in the response indicates the [result of the verification](cop-response-codes.md).&#x20;
 
-The `billable` field indicates whether the CoP request may be subject to a fee.&#x20;
+The `billable` field indicates whether the CoP request may be subject to a fee.
 
 The `success` field is `false` when the check was not carried out, for example when CoP is not enabled for your company or a limit was reached. `NOT_MATCH`, `ACCOUNT_CLOSED` and `ACCOUNT_NOT_FOUND` are results and come with `success: true`, so act on `code`.
 

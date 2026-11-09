@@ -43,7 +43,7 @@ CoP can be used independently from your payment flows as an account investigatio
 9. If `COP_PLATFORM_ERROR` then the check could not be completed. The account may have opted out of CoP. Retry later or use alternative verification methods.
 
 {% hint style="info" %}
-Each CoP request is logged and available in your [Flash Connect](https://connect.flash-payments.com/) request history, making it easy to maintain an audit trail of your verification checks.
+Each CoP result with `success: true` is stored and shown in your [Flash Connect](https://connect.flash-payments.com/) request history, making it easy to maintain an audit trail of your verification checks.&#x20;
 {% endhint %}
 
 #### CoP as a part of your payment integration flow
@@ -54,6 +54,8 @@ While CoP is fully functional on our platform, and the adoption among Australian
 This means a significant portion of accounts may return `ACCOUNT_NOT_FOUND` or `COP_PLATFORM_ERROR`  not because the details are wrong, but because the receiving institution does not yet fully participate in CoP.
 
 Additionally, financial institutions store account holder names in varying formats (e.g., abbreviated names, reordered words, special characters). The current matching algorithm used by the Australian Payments Plus (AP+) relies on basic string similarity, which can produce false-negative `NOT_MATCH` results for accounts that are, in fact, correct.
+
+We compare the names a second time with our own rules for spelling, word order and initials, which can turn such a `NOT_MATCH` into `CLOSE_MATCH` or `MATCH`, never the other way round.
 
 For this reason, **we currently recommend using CoP as a standalone verification tool** rather than as a blocking step in your payment flow.
 {% endhint %}
