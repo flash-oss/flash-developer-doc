@@ -4,6 +4,14 @@ description: History of changes to this API schema
 
 # API change log
 
+## 2026-11-12
+
+### Changed
+
+* The account name of a joint virtual account is now the full names of all account holders, joined with “and”. For example, `Duncan Brian Smith and Emily Smith`. Before, it was the first holder’s full name. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
+* `fullName` of a `JOINT` sub-client now returns the account name. Before, it returned the first holder’s full name.
+* `legalName` of an `INDIVIDUAL` or a `JOINT` sub-client now returns the account name. Before, it was `null`.&#x20;
+
 ## 2026-11-03
 
 ### Added

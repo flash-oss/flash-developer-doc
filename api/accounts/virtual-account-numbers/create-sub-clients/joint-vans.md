@@ -16,7 +16,7 @@ Send `clientType: JOINT` and the details in `accountHolders`. Each entry describ
 
 * Send two to five account holders. The order matters: the first holder becomes the `primaryContact` of the sub-client.
 * Put the personal details in `accountHolders` only. Leave out the top-level `firstName`, `middleName`, `lastName`, `email`, `mobile`, `dob` and `idDoc`.
-* Leave out `legalName`, `tradingAsName`, `businessNumber`, `orgType` and `principals`. A `JOINT` sub-client is for people, not for a business.
+* Leave out `legalName`, `tradingAsName`, `businessNumber`, `orgType` and `principals`. A `JOINT` sub-client is for people, not for a business. We set `legalName` ourselves. It is the account name.
 * Send one `address` for the sub-client, at the top level. We record it as one residential address for all holders.
 * `externalId`, `instructingInstitutionId` and `postalAddress` work as for every other sub-client.
 
@@ -38,7 +38,7 @@ The [data quality requirements](./#data-quality-requirements) apply to every acc
 
 An `externalId` that one of your sub-clients already has is rejected with `DUPLICATE_SUBCLIENT`, as for every sub-client.
 
-For now, the **account name** of the joint virtual account is the first holder’s full name. For the example below it is `Duncan Brian Smith`. We will change it to list every holder, joined with “and” (`Duncan Brian Smith and Emily Smith`), and announce the change in the [API change log](../../../basics/api-change-log.md). A payer’s bank shows the account name when it checks the account before a payment.
+The **account name** of the joint virtual account is the full names of all holders, in the order you sent them, joined with “and”. For the example below it is `Duncan Brian Smith and Emily Smith`. A payer’s bank shows the account name when it checks the account before a payment.
 
 You can read the holders back at any time via the `accountHolders` field of the `SubClient` type. See [Query sub-clients](../query-sub-clients.md#query-for-a-joint-sub-client). It is an empty list for `INDIVIDUAL` and `COMPANY` sub-clients.
 
@@ -51,7 +51,7 @@ You cannot add or remove account holders, or change their details, after the sub
 A joint VAN is registered to a married couple, Duncan and Emily Smith. Duncan’s ID is his passport. Emily’s ID is her driver licence.
 
 {% hint style="info" %}
-In the response, `primaryContact` and `fullName` come from the first holder.
+In the response, `primaryContact` is the first holder. `fullName` is the account name.
 {% endhint %}
 
 {% tabs %}

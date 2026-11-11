@@ -20,9 +20,9 @@ IMPORTANT: Your Australian VAN will be restricted to local Australian transfers.
 
 The **account name** of the virtual account is your sub-client's name:
 
-* **Company:** the `tradingAsName`, or the `legalName` when there is no trading name
+* **Company:** the `legalName`
 * **Individual:** the person's full name (`firstName` + `middleName` + `lastName`)
-* **Joint:** the first account holder’s full name for now. We will change it to the full names of all holders, joined with “and”, and announce it in the [API change log](../../basics/api-change-log.md).
+* **Joint:** the full names of all account holders, in the order you sent them, joined with “and”. For example, `Duncan Brian Smith and Emily Smith`.
 
 For `COMPANY` sub-clients we also need to record their [principals](create-sub-clients/principals.md) - the people who own or control the business: ultimate beneficial owners (UBOs), beneficial owners, directors, company secretaries and trustees. Our banking partners require this information for every company that holds a virtual account.&#x20;
 

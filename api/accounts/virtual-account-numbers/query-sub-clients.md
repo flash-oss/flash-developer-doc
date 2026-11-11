@@ -194,7 +194,7 @@ query($id: ID!, $input: FundingAccountQueryInput!) {
 
 #### Query for a joint sub-client
 
-`accountHolders` returns every holder with their contact details and `idDoc`. The first holder is also the `primaryContact`.
+`accountHolders` returns every holder with their contact details and `idDoc`. The first holder is also the `primaryContact`. `fullName` is the account name.
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -288,7 +288,7 @@ query($id: ID!) {
   "data": {
     "subClient": {
       "id": "690862b1c4f2a93d7e5f1a20",
-      "fullName": "Duncan Brian Smith",
+      "fullName": "Duncan Brian Smith and Emily Smith",
       "clientType": "JOINT",
       "status": "ACTIVE",
       "primaryContact": {
@@ -408,7 +408,7 @@ query($input: SubClientQueryInput!){
       {
         "id": "5fb314cb9224595df522db61",
         "fullName": "Richard Smith",
-        "legalName": null,
+        "legalName": "Richard Smith",
         "clientType": "INDIVIDUAL",
         "status": "ACTIVE",
         "businessNumber": null,
