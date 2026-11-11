@@ -64,7 +64,7 @@ const bodyJSON = {
   variables: { 
     input: {
       clientType: "COMPANY",
-      legalName: "Chineese Tradings", 
+      legalName: "Chinese Tradings", 
       businessNumber: "330782000329701",
       orgType: "COMPANY", 
       firstName: "John", 
@@ -151,7 +151,7 @@ mutation($input: CreateSubClientInput!) {
 { 
   "input": {
     "clientType": "COMPANY",
-    "legalName": "Chineese Tradings",
+    "legalName": "Chinese Tradings",
     "businessNumber": "330782000329701",
     "orgType": "COMPANY",
     "firstName": "John",
@@ -191,9 +191,9 @@ mutation($input: CreateSubClientInput!) {
       "message": "Sub-client was successfully created",
       "subClient": {
         "id": "606d28675a2d931bc925fec2",
-        "legalName": "Chineese Tradings",
+        "legalName": "Chinese Tradings",
         "businessNumber": "330782000329701",
-        "fullName": "John Smith",
+        "fullName": "Chinese Tradings",
         "clientType": "COMPANY",
         "orgType": "COMPANY",
         "status": "ACTIVE",

@@ -232,7 +232,7 @@ mutation($input: CreateSubClientInput!) {
       "message": "Sub-client was successfully created",
       "subClient": {
         "id": "690862b1c4f2a93d7e5f1a20",
-        "fullName": "Duncan Brian Smith",
+        "fullName": "Duncan Brian Smith and Emily Smith",
         "clientType": "JOINT",
         "status": "ACTIVE",
         "primaryContact": {
