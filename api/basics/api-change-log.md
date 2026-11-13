@@ -4,28 +4,13 @@ description: History of changes to this API schema
 
 # API change log
 
-## 2026-11-12
+## 2026-11-11
 
 ### Changed
 
-* The account name of a joint virtual account is now the full names of all account holders, joined with “and”. For example, `Duncan Brian Smith and Emily Smith`. Before, it was the first holder’s full name. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
-* `fullName` of a `JOINT` sub-client now returns the account name. Before, it returned the first holder’s full name.
-* `legalName` of an `INDIVIDUAL` or a `JOINT` sub-client now returns the account name. Before, it was `null`.&#x20;
-
-## 2026-11-03
-
-### Added
-
-Joint sub-clients: one virtual account for two to five people who hold it together, for example a couple. Available in UAT now. See [Joint VANs](../accounts/virtual-account-numbers/create-sub-clients/joint-vans.md).
-
-* New `clientType` field on the [`createSubClient`](../accounts/virtual-account-numbers/create-sub-clients/) mutation: `INDIVIDUAL`, `COMPANY` or `JOINT`. Optional for now. When you leave it out, a request with a `legalName` creates a `COMPANY`. Any other request creates an `INDIVIDUAL`, exactly as before.
-* New `JOINT` value of the `SubClientType` enum, returned on the `SubClient` type and accepted in the `subClients` filter.
-* New `accountHolders` field on `createSubClient` and new `AccountHolderInput` input: the two to five people who hold the account, each with `firstName`, `middleName`, `lastName`, `email`, `mobile`, `dob` and `idDoc`. Accepted for `JOINT` only.
-* New `accountHolders` field on the `SubClient` type and new `AccountHolder` type, to read the holders back. An empty list for every other `clientType`.
-
-### Changed <a href="#user-content-changed" id="user-content-changed"></a>
-
-`firstName`, `lastName`, `email`, `mobile`, `dob` and `idDoc` on `CreateSubClientInput` are no longer marked as required in the schema. For a `JOINT` sub-client, send them for each person in `accountHolders` instead. They are still required for `INDIVIDUAL` and `COMPANY` sub-clients, and a request without them is rejected as before. If you generate code from the schema, regenerate it.
+* `firstName`, `lastName`, `email`, `mobile`, `dob` and `idDoc` on `CreateSubClientInput` are no longer marked as required in the schema. They are still required for `INDIVIDUAL` and `COMPANY` sub-clients. If you generate code from the schema, regenerate it.
+* New optional `clientType` field on the `createSubClient` mutation: `INDIVIDUAL` or `COMPANY`. When you leave it out, requests work as before.
+* `legalName` of an `INDIVIDUAL` sub-client now returns the person’s full name. Before, it was `null`.
 
 ## 2026-10-29
 
