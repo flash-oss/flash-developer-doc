@@ -16,14 +16,19 @@ query ($id: ID!) {
   amsRequest(id: $id) {
     id
     name
+    akaNames
+    isCompany
     country
+    approximateDob
     status
+    recommendation
     createdAt
     results {
       title
       link
+      recommendation
       adversityScore
-      personSimilarity
+      nameSimilarity
       summary
     }
   }
@@ -38,14 +43,19 @@ query($id: ID!) {
   amsRequest(id: $id) {
     id
     name
+    akaNames
+    isCompany
     country
+    approximateDob
     status
+    recommendation
     createdAt
     results {
       title
       link
+      recommendation
       adversityScore
-      personSimilarity
+      nameSimilarity
       summary
       # there are many other result fields
     }
@@ -69,15 +79,20 @@ query($id: ID!) {
     "amsRequest": {
       "id": "6820a4f3e1c2b5d8f0123456",
       "name": "John Smith",
+      "akaNames": ["Johnny Smith"],
+      "isCompany": false,
       "country": "AU",
+      "approximateDob": "1980-05",
       "status": "COMPLETED",
+      "recommendation": "review",
       "createdAt": "2025-03-15T08:23:14.521Z",
       "results": [
         {
           "title": "Local businessman John Smith fined for tax evasion",
           "link": "https://example-news.com.au/articles/smith-tax",
+          "recommendation": "review",
           "adversityScore": 72,
-          "personSimilarity": 85,
+          "nameSimilarity": 100,
           "summary": "John Smith of Sydney was fined $45,000 for understating income over three financial years."
         }
       ]
@@ -166,7 +181,7 @@ query($input: AmsQueryInput) {
 
 #### Filtering AMS requests
 
-Use the `input` parameter to narrow results by status, date range, or name.
+Use the `input` parameter to narrow results by status, date range, name, date of birth or country.
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -243,13 +258,15 @@ query($input: AmsQueryInput) {
 
 Available filter fields on `AmsQueryInput`:
 
-| Field          | Description                                                   |
-| -------------- | ------------------------------------------------------------- |
-| `statuses`     | Filter by one or more AMS statuses                            |
-| `minCreatedAt` | Return only requests created after this timestamp (ISO 8601)  |
-| `maxCreatedAt` | Return only requests created before this timestamp (ISO 8601) |
-| `firstName`    | Filter by first name — case insensitive, partial match        |
-| `middleName`   | Filter by middle name — case insensitive, partial match       |
-| `lastName`     | Filter by last name — case insensitive, partial match         |
-| `accountName`  | Filter by business name — case insensitive, partial match     |
-| `country`      | Filter by two-letter ISO country code                         |
+| Field            | Description                                                                 |
+| ---------------- | --------------------------------------------------------------------------- |
+| `statuses`       | Filter by one or more AMS statuses                                          |
+| `minCreatedAt`   | Return only requests created after this timestamp (ISO 8601)                |
+| `maxCreatedAt`   | Return only requests created before this timestamp (ISO 8601)               |
+| `name`           | Searched name contains this value — case insensitive                        |
+| `approximateDob` | Exact match on the date of birth sent with the search (`YYYY`, `YYYY-MM` or `YYYY-MM-DD`) |
+| `country`        | Filter by two-letter ISO country code                                       |
+
+{% hint style="info" %}
+`amsRequests` returns at most 1,000 requests, newest first. To reach older requests, narrow the query with `minCreatedAt` / `maxCreatedAt`.
+{% endhint %}
