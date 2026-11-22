@@ -256,16 +256,7 @@ query($input: AmsQueryInput) {
 {% endtab %}
 {% endtabs %}
 
-Available filter fields on `AmsQueryInput`:
-
-| Field            | Description                                                                 |
-| ---------------- | --------------------------------------------------------------------------- |
-| `statuses`       | Filter by one or more AMS statuses                                          |
-| `minCreatedAt`   | Return only requests created after this timestamp (ISO 8601)                |
-| `maxCreatedAt`   | Return only requests created before this timestamp (ISO 8601)               |
-| `name`           | Searched name contains this value — case insensitive                        |
-| `approximateDob` | Exact match on the date of birth sent with the search (`YYYY`, `YYYY-MM` or `YYYY-MM-DD`) |
-| `country`        | Filter by two-letter ISO country code                                       |
+See `AmsQueryInput` in the GraphQL API schema for the filter fields.
 
 {% hint style="info" %}
 `amsRequests` returns at most 1,000 requests, newest first. To reach older requests, narrow the query with `minCreatedAt` / `maxCreatedAt`.

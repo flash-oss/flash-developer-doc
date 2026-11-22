@@ -197,7 +197,7 @@ Webhook events fired during a scan:
 | `ams_completed`   | `COMPLETED`   |
 | `ams_failed`      | `FAILED`      |
 
-See [AMS statuses](ams-statuses.md) for the full lifecycle and the result fields.
+See [AMS statuses](ams-statuses.md) for the full lifecycle and the recommendation values.
 
 #### Deduplication
 
