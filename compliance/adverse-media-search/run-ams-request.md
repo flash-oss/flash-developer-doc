@@ -12,9 +12,10 @@ To run a search, execute the `adverseMediaSearch` mutation as below.
 const bodyJSON = {
   variables: {
     input: {
-      firstName: "John",
-      lastName: "Smith",
+      name: "John Smith",
+      akaNames: ["Johnny Smith"],
       country: "AU",
+      approximateDob: "1980-05",
     },
   },
   query: `
@@ -53,9 +54,10 @@ mutation($input: AmsRequestInput!) {
 ```json
 {
   "input": {
-    "firstName": "John",
-    "lastName": "Smith",
-    "country": "AU"
+    "name": "John Smith",
+    "akaNames": ["Johnny Smith"],
+    "country": "AU",
+    "approximateDob": "1980-05"
   }
 }
 ```
@@ -71,7 +73,7 @@ mutation($input: AmsRequestInput!) {
       "message": "Name scan scheduled",
       "amsRequest": {
         "id": "6820a4f3e1c2b5d8f0123456",
-        "status": "INITIALISED"
+        "status": "PENDING"
       }
     }
   }
@@ -82,7 +84,7 @@ mutation($input: AmsRequestInput!) {
 
 #### Search for an organisation
 
-Use `accountName` instead of individual name fields when screening a business or other non-person entity.
+Set `isCompany: true` when screening a business or other non-person entity.
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -90,7 +92,9 @@ Use `accountName` instead of individual name fields when screening a business or
 const bodyJSON = {
   variables: {
     input: {
-      accountName: "Acme Pty Ltd",
+      name: "Acme Pty Ltd",
+      akaNames: ["Acme Trading"],
+      isCompany: true,
       country: "AU",
     },
   },
@@ -130,7 +134,9 @@ mutation($input: AmsRequestInput!) {
 ```json
 {
   "input": {
-    "accountName": "Acme Pty Ltd",
+    "name": "Acme Pty Ltd",
+    "akaNames": ["Acme Trading"],
+    "isCompany": true,
     "country": "AU"
   }
 }
@@ -147,7 +153,7 @@ mutation($input: AmsRequestInput!) {
       "message": "Name scan scheduled",
       "amsRequest": {
         "id": "6820b1d9c3f4a7e2d0987654",
-        "status": "INITIALISED"
+        "status": "PENDING"
       }
     }
   }
@@ -156,23 +162,31 @@ mutation($input: AmsRequestInput!) {
 {% endtab %}
 {% endtabs %}
 
-#### Name — `firstName` / `lastName` / `middleName` or `accountName`
+#### Name — `name`
 
-For individuals, provide  `firstName` and `lastName`. The optional `middleName` improves matching accuracy.
+Required. The full name of the individual or organisation as it is commonly written, 2 to 256 characters. Letters and numbers in any language, spaces and common punctuation (`.,'-/&@+`) are allowed.
 
-For organisations, use `accountName` instead. You cannot combine `accountName` with individual name fields.
+#### Other names — `akaNames`
 
-{% hint style="warning" %}
-Either `accountName` **or** at least one of `firstName` / `lastName` is required. Providing both will result in a validation error.
-{% endhint %}
+Optional. Up to 4 other names the subject is known by, such as aliases, trading or former names. They follow the same rules as `name` and are searched alongside it.
+
+#### Individual or organisation — `isCompany`
+
+Optional. `true` when `name` is an organisation. Defaults to `false` (an individual).
 
 #### Country — `country`
 
-A two-letter ISO 3166-1 alpha-2 country code (e.g. `AU`, `US`, `GB`). This is required and used to contextualise results — articles where the detected location does not match the supplied country are flagged via `locationMismatch`.
+Required. A two-letter ISO 3166-1 alpha-2 country code (e.g. `AU`, `US`, `GB`), used to focus the search on the subject's country.
+
+#### Date of birth — `approximateDob`
+
+Optional, for individuals. Send only the parts you know: `YYYY`, `YYYY-MM` or `YYYY-MM-DD`. The individual must be at least 18 and no more than 120 years old.
+
+Articles stating an age or birth year that does not fit this date of birth are marked with `ageMismatch: true`, as they are most likely about a different person with the same name.
 
 #### Background scan — tracking progress
 
-The scan runs in the background and may take several minutes. The mutation returns immediately with `status: INITIALISED`. Use the returned `id` to poll for results or subscribe to webhook events to be notified when the scan progresses.
+The scan runs in the background and may take several minutes. The mutation returns immediately with the request `id`. Use it to poll the [`amsRequest`](query-ams-requests.md) query, or subscribe to webhook events to be notified when the scan progresses.
 
 Webhook events fired during a scan:
 
@@ -183,17 +197,17 @@ Webhook events fired during a scan:
 | `ams_completed`   | `COMPLETED`   |
 | `ams_failed`      | `FAILED`      |
 
-See [AMS statuses](ams-statuses.md) for the full lifecycle.
+See [AMS statuses](ams-statuses.md) for the full lifecycle and the recommendation values.
 
 #### Deduplication
 
-If you submit a search for the same name and country more than once within the same calendar day, the existing request is returned rather than creating a new one. The `code` field indicates whether the scan was newly scheduled or is already in progress or complete:
+If you submit the same search more than once within the same UTC calendar day, the existing request is returned instead of creating a new one. Two searches are the same when `name`, `country`, `isCompany`, `approximateDob` and `akaNames` all match. A `FAILED` request is never reused. The `code` field tells you which case applied:
 
-| Code                     | Meaning                                                         |
-| ------------------------ | --------------------------------------------------------------- |
-| `SCAN_SCHEDULED`         | New scan created and queued                                     |
-| `SCAN_ALREADY_SCHEDULED` | A scan for this name and country is already in progress today   |
-| `SCAN_ALREADY_COMPLETED` | A completed scan for this name and country already exists today |
+| Code                     | Meaning                                      |
+| ------------------------ | -------------------------------------------- |
+| `SCAN_SCHEDULED`         | New scan created and queued                  |
+| `SCAN_ALREADY_SCHEDULED` | The same search is already in progress today |
+| `SCAN_ALREADY_COMPLETED` | The same search already completed today      |
 
 #### Monthly request limit
 

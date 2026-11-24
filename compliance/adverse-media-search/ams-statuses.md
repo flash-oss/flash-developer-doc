@@ -26,26 +26,16 @@ description: Adverse media search request statuses
 A `FAILED` request is not billed. You may submit the same search again — a new request will be created and processed.
 {% endhint %}
 
+#### Recommendation
+
+Each article in `results` carries a `recommendation`. Once a request reaches `COMPLETED`, its own `recommendation` is the most severe one among its articles:
+
+| Value    | Meaning                                                                                       |
+| -------- | --------------------------------------------------------------------------------------------- |
+| `accept` | No adverse media found about the subject                                                      |
+| `review` | Possibly adverse content about someone with a close name, or a paywalled article. Check it.  |
+| `flag`   | Highly adverse content naming the subject exactly                                             |
+
 #### Results
 
-Once a request reaches `COMPLETED`, the `results` field is populated with an array of `AmsWebSearchResult` objects. Each result represents a single web article found during the scan and includes:
-
-| Field                | Description                                                                   |
-| -------------------- | ----------------------------------------------------------------------------- |
-| `title`              | Title of the web page                                                         |
-| `snippet`            | Web search snippet                                                            |
-| `link`               | URL of the article                                                            |
-| `adversityScore`     | Overall adversity score, 0–100. Higher = more adverse content found           |
-| `personSimilarity`   | Similarity between the search subject and the person in the article, 0–100    |
-| `role`               | Role of the subject in the article — e.g. `perpetrator`, `victim`, `other`    |
-| `roleDetails`        | Further detail on the role or alleged involvement                             |
-| `summary`            | One-sentence summary of the article                                           |
-| `extractedCountry`   | ISO country code extracted from the article, if detected                      |
-| `extractedState`     | State or region extracted from the article, if detected                       |
-| `locationMismatch`   | `true` if the article's detected location does not match the supplied country |
-| `paywall`            | `true` if the article is behind a paywall and could not be fully analysed     |
-| `exactFullNameMatch` | `true` if the article contains an exact match of the full name                |
-| `dob`                | Date of birth extracted from the article, if detected                         |
-| `ageInArticle`       | Age of the person extracted from the article, if detected                     |
-| `articlePublishDate` | Publication date of the article, if detected                                  |
-| `lookup`             | Keywords found in the article and their occurrence counts                     |
+The `results` field lists every article analysed during the scan, including ones that turned out not to be adverse. Each `AmsWebSearchResult` describes one article. See the GraphQL API schema for the fields.
