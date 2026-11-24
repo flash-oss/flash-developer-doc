@@ -30,11 +30,11 @@ A `FAILED` request is not billed. You may submit the same search again — a new
 
 Each article in `results` carries a `recommendation`. Once a request reaches `COMPLETED`, its own `recommendation` is the most severe one among its articles:
 
-| Value    | Meaning                                                                                    |
-| -------- | ------------------------------------------------------------------------------------------ |
-| `accept` | No adverse media found about the subject                                                   |
-| `review` | Possibly adverse content about someone with a close name, or a paywalled article — check it |
-| `flag`   | Highly adverse content naming the subject exactly                                          |
+| Value    | Meaning                                                                                       |
+| -------- | --------------------------------------------------------------------------------------------- |
+| `accept` | No adverse media found about the subject                                                      |
+| `review` | Possibly adverse content about someone with a close name, or a paywalled article. Check it.  |
+| `flag`   | Highly adverse content naming the subject exactly                                             |
 
 #### Results
 

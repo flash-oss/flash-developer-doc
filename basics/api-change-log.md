@@ -8,17 +8,19 @@ description: History of changes to this API schema
 
 ### Added
 
-[Adverse Media Search](../compliance/adverse-media-search/README.md) changes since its release, now reflected in these docs:
+New inputs and fields for [Adverse Media Search](../compliance/adverse-media-search/README.md).
 
-* `adverseMediaSearch` takes a single `name` plus `isCompany`, up to 4 `akaNames`, and an optional `approximateDob` (`YYYY`, `YYYY-MM` or `YYYY-MM-DD`). Articles whose stated age does not fit it are marked with `ageMismatch`.
-* New `isCompany` field on the `AmsRequest` type. Null for searches made before it existed.
-* New `recommendation` field (`accept`, `review` or `flag`) on `AmsRequest` and on each `AmsWebSearchResult`, plus new `matchedFullName`, `nameSimilarity`, `amlCtfScore`, `earliestAssumedBirthYear` and `latestAssumedBirthYear` result fields.
-* `amsRequests` can filter by `name` and `approximateDob`.
+* `adverseMediaSearch` takes one `name` and an `isCompany` flag. You can also send up to 4 `akaNames` and an optional `approximateDob` (`YYYY`, `YYYY-MM` or `YYYY-MM-DD`).
+* When an article states an age that does not fit `approximateDob`, the article has `ageMismatch: true`.
+* New `isCompany` field on the `AmsRequest` type. It is null for older searches.
+* New `recommendation` field on `AmsRequest` and on each `AmsWebSearchResult`. The values are `accept`, `review` and `flag`.
+* New fields on `AmsWebSearchResult`: `matchedFullName`, `nameSimilarity`, `amlCtfScore`, `earliestAssumedBirthYear` and `latestAssumedBirthYear`.
+* You can filter `amsRequests` by `name` and `approximateDob`.
 
 ### Removed
 
-* `firstName`, `middleName`, `lastName` and `accountName` on `AmsRequestInput` and `AmsQueryInput`. Use `name` and `isCompany`.
-* `personSimilarity`, `locationMismatch` and `exactFullNameMatch` on `AmsWebSearchResult`. Use `nameSimilarity`, `extractedCountry` and `matchedFullName`.
+* `firstName`, `middleName`, `lastName` and `accountName` on `AmsRequestInput` and `AmsQueryInput`. Use `name` and `isCompany` instead.
+* `personSimilarity`, `locationMismatch` and `exactFullNameMatch` on `AmsWebSearchResult`. Use `nameSimilarity`, `extractedCountry` and `matchedFullName` instead.
 
 ## 2026-11-03 <a href="#user-content-2026-11-xx" id="user-content-2026-11-xx"></a>
 
