@@ -15,9 +15,27 @@ Confirmation of Payee (CoP) is a security feature that verifies whether an accou
 The feature is also available through the [Flash Connect](https://connect.flash-payments.com/) portal. You can perform CoP checks directly from the UI, view your request history, and monitor usage statistics without writing any code. This can be useful for manual verification workflows or for getting familiar with the feature before integrating it into your application via the API.
 {% endhint %}
 
-### Before you start
+### Which accounts you can check
 
-Two things must be in place before the mutation returns a result: Flash Payments team has enabled Confirmation of Payee over the API for your account, and your company account administrator has accepted the Confirmation of Payee disclaimer in Flash Connect. The disclaimer is shown on the Confirmation of Payee page there and is accepted once per account. Until then the mutation replies with `success: false` and either `code: "COP_NOT_AVAILABLE"` (not enabled) or `code: "COP_API_DISABLED"` (disclaimer not accepted).
+Confirmation of Payee works for individual accounts, joint accounts and business accounts. The request is the same for all three: the **BSB**, the **account number** and the **name** you expect to be on the account. You do not send the account type, and the reply does not tell you the account type.
+
+* **Individual account.** Send the person's name.
+* **Joint account.** Send the name of one account holder. It is compared with each account holder the bank lists, so you do not need to send them all.
+* **Company account.** Send the legal name. Endings such as "Pty Ltd" and "Limited" make no difference. A trading name matches only if the bank holds it for the account.
+
+### How the name is compared
+
+When the account is found, the reply has one of three codes. Letter case, punctuation and titles such as "Mr" make no difference.
+
+| Code          | What it means                                    | Examples                                                                                                                                                                                      |
+| ------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `MATCH`       | The name is the same as the name on the account. | <ul><li>"John Smith" for an account held by John Smith. </li><li>"Jane Smith" for a joint account of John Smith and Jane Smith. </li><li>"Acme" or "Acme Limited" for Acme Pty Ltd.</li></ul> |
+| `CLOSE_MATCH` | The name is nearly the same.                     | <ul><li>"Jon Smith", "J Smith" or "Smith John" for John Smith. </li><li>"John Smith" for John Andrew Smith. </li><li>"Acme" for Acme Holdings Pty Ltd.</li></ul>                              |
+| `NOT_MATCH`   | The name is different.                           | <ul><li>"John Williams" for John Smith. </li><li>"Peter Smith" for a joint account of John Smith and Jane Smith. </li><li>"John Smith" for Acme Pty Ltd.</li></ul>                            |
+
+The examples show the usual result. The result depends on how the bank holds the name, so the same payee can get `MATCH` at one bank and `CLOSE_MATCH` at another. The reply never includes the actual name the bank holds.
+
+What to do for each code is on the [CoP response codes](cop-response-codes.md) page. To try each account type in UAT, use the keywords on the [Testing CoP integration](testing-cop-integration.md) page.
 
 ### Making a CoP request
 
