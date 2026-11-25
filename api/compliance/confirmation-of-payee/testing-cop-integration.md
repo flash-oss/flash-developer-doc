@@ -23,6 +23,8 @@ Here is a current list of the testing keywords and the most common [response cod
 | `coperror`           | `COP_PLATFORM_ERROR` | -                          |
 
 {% hint style="info" %}
+The account type does not change the reply: `copimatch`, `copijmatch` and `copcmatch` all return `MATCH`.
+
 You can start with testing CoP requests in the [API Playground](https://api.uat.flash-payments.com.au/). Log in with your UAT credentials and use the [`confirmationOfPayee` mutation](./#making-a-cop-request).
 {% endhint %}
 

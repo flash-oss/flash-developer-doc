@@ -17,7 +17,7 @@ The feature is also available through the [Flash Connect](https://connect.flash-
 
 ### Which accounts you can check
 
-Confirmation of Payee works for individual accounts, joint accounts and business accounts. The request is the same for all three: the **BSB**, the **account number** and the **name** you expect to be on the account. You do not send the account type, and the reply does not tell you the account type.
+Confirmation of Payee works for individual accounts, joint accounts and company accounts. The request is the same for all three: the **BSB**, the **account number** and the **name** you expect to be on the account. You do not send the account type, and the reply does not tell you the account type.
 
 * **Individual account.** Send the person's name.
 * **Joint account.** Send the name of one account holder. It is compared with each account holder the bank lists, so you do not need to send them all.
